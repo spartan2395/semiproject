@@ -1,4 +1,4 @@
-package com.lntegrated.controller.select;
+package com.lntegrated.clinic;
 
 import java.io.Reader;
 
@@ -10,7 +10,6 @@ import com.Integrated.db.GetSSF;
 
 public class SqlConfig {
 	private SqlSessionFactory sqlsfac;
-	GetSSF ssf = new GetSSF();
 	public SqlSessionFactory getsqlSessionFactory() {
 		String resources = "com/lntegrated/controller/select/hosconfig.xml";
 		Reader reader = null;

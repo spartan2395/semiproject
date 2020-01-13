@@ -1,4 +1,4 @@
-package com.lntegrated.controller.select;
+package com.lntegrated.clinic.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
