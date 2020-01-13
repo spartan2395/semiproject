@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lntegerated.doctor_mapper">
+<mapper namespace="com.lntegerated.clinic_mapper">
 	<!-- 의사에게 진료예약되어있는 사람들의 리스트 -->
 	<select id="clinic_list" parameterType="String" resultType="clinicDto">
 	  	SELECT NAME_U,NAME_D,DISEASE,RESERV_DATE,CATEGORY,CHECKD FROM 
