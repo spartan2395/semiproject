@@ -17,10 +17,10 @@
   </insert>
   <!-- 예약 정보 수정 -->
   <update id = "tele_update_info" parameterType="map">
-  	UPDATE TELEMEDICINE SET RESERV_DATE = #{reserv_date} where ID_U = #{id_u} AND ID_D = #{id_d}
+  	UPDATE TELEMEDICINE SET RESERV_DATE = #{reserv_date} WHERE TEL_SEQ = #{tel_seq}
   </update>
   <!-- 환자 예약 승인 -->
   <update id = "tele_update_check" parameterType="map">
-  	UPDATE TELEMEDICINE SET CHECKD = 'Y' WHERE ID_U=#{id_u} AND ID_D=#{id_d}
+  	UPDATE TELEMEDICINE SET CHECKD = 'Y' WHERE TEL_SEQ = #{tel_seq}
   </update>
 </mapper>

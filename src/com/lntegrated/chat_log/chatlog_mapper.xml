@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chatlog.mapper">
+  <select id = "chat_log_select" parameterType="int" resultType="chatlogdto">
+  		SELECT NAME_U,NAME_D,RESERV_DATE,CHAT FROM CHAT_LOG JOIN TELEMEDICINE USING(CHAT_NO)
+  		WHERE CHAT_NO = #{chat_no}
+  </select>
+  
+  <insert id = "chat_log_insert" parameterType="String">
+  	INSERT INTO CHAT_LOG VALUES(CHAT_LOG_SEQ.NEXTVAL,#{chat})
+  </insert>
+  
+</mapper>
