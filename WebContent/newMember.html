@@ -6,36 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="resources/newMember.css" type="text/css">
+    <link rel="icon" href="resources/imgs/carrot.png" type="image/x-icon">
+
     <title>당근 병원 - 당신 근처의 병원</title>
 </head>
-
-<script type='text/javascript'>
-    window.onload = function () {
-        var arraylist = document.getElementsByTagName("input");
-
-        for (var i = 0; i < arraylist.length; i++) {
-            arraylist[i].addEventListener("focusin", function () {
-                this.parentElement.style.border = "2px inset #daeff7";
-            })
-            arraylist[i].addEventListener("focusout", function () {
-                this.parentElement.style.border = "solid 1px #75adc7";
-            })
-        }
-
-        var id = document.getElementsByTagName("input")[0].value;
-        var idDiv = document.getElementById("id");
-        if (id = null) {
-            alert("dd")
-        }
-    };
-</script>
-
+<script type='text/javascript' src="resources/newMember.js"></script>
 <body>
 
     <div class="container">
 
         <div id="content">
-            <a href=""><img src="resources/imgs/logo.svg" alt="logo" style="width: 250px; margin-top: 20px;"></a>
+            <a href=""><img src="resources/imgs/carrotlogopractice.png" alt="logo" style="width: 250px; margin-top: 20px;"></a>
             <p style="font-weight: 900; font-size: larger; color: #263e63; margin : 20px 0 20px 0;">회원가입</p>
         </div>
         <form action="">
@@ -45,15 +26,19 @@
                     <div class="wbtn">
                         <span class="wbutton"><input type="text"></span>
                         <a href="" class="btna"><span class="btn">아이디 확인</span></a>
+                        <p class="required"></p>
                     </div>
                 </div>
+                
                 <div>
                     <h4>비밀번호</h4>
                     <span><input type="text"></span>
+                    <p class="required"></p>
                 </div>
                 <div>
                     <h4>비밀번호 확인</h4>
                     <span><input type="text"></span>
+                    <p class="required"></p>
                 </div>
             </div>
 
@@ -61,6 +46,7 @@
                 <div>
                     <h4>이름</h4>
                     <span><input type="text"></span>
+                    <p class="required"></p>
                 </div>
                 <div id="bd">
                     <h4>생년월일</h4>
@@ -101,21 +87,23 @@
                         <div class="wbtn">
                             <span class="wbutton"><input type="text"></span>
                             <a href="" class="btna"><span class="btn">인증번호</span></a>
+                            <p class="required"></p>
                         </div>
                     </div>
                     <div>
                         <h4>인증번호</h4>
                         <span><input type="text"></span>
+<p class="required"></p>
                     </div>
                 </div>
 
                 <div id="confirm">
-                    <a href="" class="confirma"><span id="confirmbtn">회원 가입</span></a>
+                    <button href="" class="confirma"><span id="confirmbtn">회원 가입</span></button>
                 </div>
         </form>
     </div>
     <div id="footer">
-        <p>@Carrot Doctor Team <br> jfekjfkejkfjekfk|fefefeeffef | fwfwefefefefe | fefegegegege | fewgaegegege</p>
+        <p>@Carrot Doctor Team <br> jfekjfkejkfjekfk|fefefeeffef | fwfwefefefefe | fefegegegege | fewgaegegege<br><br><br></p> 
     </div>
     
 </body>
