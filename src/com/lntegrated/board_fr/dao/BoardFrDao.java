@@ -10,11 +10,11 @@ import com.lntegrated.board_fr.dto.BoardFrDto;
 public class BoardFrDao extends SqlConfig{
 	private SqlSession session = null;
 	private String namespace = "";
-	//°Ô½Ã±Û ÀüÃ¼ ¸®½ºÆ®
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½Æ®
 	public List<BoardFrDto> boardFrList(){
 		List<BoardFrDto> list = null;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("board_fr/boardfr_config.xml").openSession();
 			list = session.selectList(namespace+"board_list");
 		}catch(Exception e) {
 			System.out.println("Board_Fr_list ERROR");
@@ -23,11 +23,11 @@ public class BoardFrDao extends SqlConfig{
 		}
 		return list;
 	}
-	//°Ô½Ã±Û Á¦¸ñ°Ë»ö
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½Ë»ï¿½
 	public List<BoardFrDto> boardFrSearchList(String title){
 		List<BoardFrDto> list = null;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("board_fr/boardfr_config.xml").openSession();
 			list = session.selectList(namespace+"board_search_list", title);
 		}catch(Exception e) {
 			System.out.println("Board_Fr_Search_list ERROR");
@@ -36,11 +36,11 @@ public class BoardFrDao extends SqlConfig{
 		}
 		return list;
 	}
-	//°Ô½Ã±Û »ó¼¼Á¤º¸
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public BoardFrDto boardFrInfo(int board_no) {
 		BoardFrDto dto = null;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("board_fr/boardfr_config.xml").openSession();
 			dto = session.selectOne(namespace+"board_info", board_no);
 		}catch(Exception e) {
 			System.out.println("Board_Fr_Info ERROR");
@@ -49,11 +49,11 @@ public class BoardFrDao extends SqlConfig{
 		}
 		return dto;
 	}
-	//°Ô½Ã±Û ÀÛ¼º
+	//ï¿½Ô½Ã±ï¿½ ï¿½Û¼ï¿½
 	public int boardInsert(BoardFrDto dto) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("board_fr/boardfr_config.xml").openSession();
 			res = session.insert(namespace+"board_insert", dto);
 			if(res > 0) {
 				session.commit();
@@ -65,11 +65,11 @@ public class BoardFrDao extends SqlConfig{
 		}
 		return res;
 	}
-	//°Ô½Ã±Û ¼öÁ¤
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int boardUpdateInfo(BoardFrDto dto) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("board_fr/boardfr_config.xml").openSession();
 			res = session.update(namespace+"board_update_info", dto);
 			if(res > 0) {
 				session.commit();
@@ -81,11 +81,11 @@ public class BoardFrDao extends SqlConfig{
 		}
 		return res;
 	}
-	//°Ô½Ã±Û Á¶È¸¼ö Áõ°¡
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int boardUpadteViews(int board_no) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("board_fr/boardfr_config.xml").openSession();
 			res = session.update(namespace+"board_update_views", board_no);
 			if(res > 0) {
 				session.commit();
@@ -97,11 +97,11 @@ public class BoardFrDao extends SqlConfig{
 		}
 		return res;
 	}
-	//°Ô½Ã±Û »èÁ¦
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int boardDelete(int board_no) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("board_fr/boardfr_config.xml").openSession();
 			res = session.delete(namespace+"board_delete", board_no);
 			if(res > 0) {
 				session.commit();

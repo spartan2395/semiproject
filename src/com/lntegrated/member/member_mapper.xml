@@ -13,7 +13,7 @@
 	
 	<!-- 회원가입 -->
 	<insert id ="member_insert" parameterType="memberdto">
-		INSERT INTO USER_TB VALUES(#{id_u},#{pw_u},#{name_u},#{gender_u},#{number_u},#{addr_u},#{email_u},'Y')
+		INSERT INTO USER_TB VALUES(#{id_u},#{pw_u},#{name_u},#{gender_u},#{number_u},#{addr_u},#{email_u},'L')
 	</insert>
 	
 	<!-- 정보 수정 -->

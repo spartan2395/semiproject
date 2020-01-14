@@ -9,9 +9,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class SqlConfig {
 	private SqlSessionFactory sqlfac;
-	private String resources = "com/lntegrated/db.dbpropertis";
-	
-	public SqlSessionFactory getSessionFactory() {
+	public SqlSessionFactory getSessionFactory(String log) {
+		String resources = "com/lntegrated/"+log;
 		Reader reader = null;
 		try {
 			reader = Resources.getResourceAsReader(resources);

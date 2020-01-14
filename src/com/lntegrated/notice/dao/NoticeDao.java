@@ -9,11 +9,11 @@ import com.lntegrated.notice.dto.NoticeDto;
 public class NoticeDao extends SqlConfig{
 	private String namespase = "com.lntegrated.notice.";
 	private SqlSession session = null;
-	//°øÁö»çÇ× ¸®½ºÆ®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	public List<NoticeDto> notice_List(){
 		List<NoticeDto> list = null;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("notice/notice_config.xml").openSession();
 			list = session.selectList(namespase+"notice_list");
 		}catch(Exception e) {
 			System.out.println("Notice_List ERROR");
@@ -22,11 +22,11 @@ public class NoticeDao extends SqlConfig{
 		}
 		return list;
 	}
-	//°øÁö»çÇ× »ó¼¼º¸±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ó¼¼ºï¿½ï¿½ï¿½
 	public NoticeDto notice_Info(int nt_seq) {
 		NoticeDto dto = null;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("notice/notice_config.xml").openSession();
 			dto = session.selectOne(namespase+"notice_info", nt_seq);
 		}catch(Exception e) {
 			System.out.println("Notice_Info ERROR");
@@ -35,11 +35,11 @@ public class NoticeDao extends SqlConfig{
 		}
 		return dto;
 	}
-	//°øÁö»çÇ× Ãß°¡
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 	public int notice_insert(NoticeDto dto) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("notice/notice_config.xml").openSession();
 			res = session.insert(namespase+"notice_insert", dto);
 			if(res > 0) {
 				session.commit();
@@ -51,11 +51,11 @@ public class NoticeDao extends SqlConfig{
 		}
 		return res;
 	}
-	//°øÁö»çÇ× ¼öÁ¤
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int notice_update(NoticeDto dto) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("notice/notice_config.xml").openSession();
 			res = session.update(namespase+"notice_update", dto);
 			if(res > 0) {
 				session.commit();
@@ -67,11 +67,11 @@ public class NoticeDao extends SqlConfig{
 		}
 		return res;
 	}
-	//Á¶È¸ ¼ö Áõ°¡
+	//ï¿½ï¿½È¸ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int notice_Update_Views(int nt_seq) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("notice/notice_config.xml").openSession();
 			res = session.update(namespase+"notice_views_update", nt_seq);
 			if(res > 0) {
 				session.commit();
@@ -83,11 +83,11 @@ public class NoticeDao extends SqlConfig{
 		}
 		return res;
 	}
-	//°øÁö»çÇ× »èÁ¦
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int notice_delete(int nt_seq) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("notice/notice_config.xml").openSession();
 			res = session.delete(namespase+"notice_delete", nt_seq);
 			if(res > 0) {
 				session.commit();

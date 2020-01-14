@@ -14,7 +14,7 @@ public class InquiryDao extends SqlConfig{
 	public List<InquiryDto> inquiryList(){
 		List<InquiryDto> list = null;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("inquiry/inquiry_config.xml").openSession();
 			list = session.selectList(namespace+"inquiry_list");
 		}catch(Exception e) {
 			System.out.println("Inquiry_List ERROR");
@@ -27,7 +27,7 @@ public class InquiryDao extends SqlConfig{
 	public InquiryDto inquiryInfo(int board_no) {
 		InquiryDto dto = null;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("inquiry/inquiry_config.xml").openSession();
 			dto = session.selectOne(namespace+"inquiry_info", board_no);
 		}catch(Exception e) {
 			System.out.println("Inquiry_Info ERROR");
@@ -40,7 +40,7 @@ public class InquiryDao extends SqlConfig{
 	public int inquiryInsert(InquiryDto dto) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("inquiry/inquiry_config.xml").openSession();
 			res = session.insert(namespace+"inquiry_insert", dto);
 			if(res > 0) {
 				session.commit();
@@ -56,7 +56,7 @@ public class InquiryDao extends SqlConfig{
 	public int inquiryUpdate(InquiryDto dto) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("inquiry/inquiry_config.xml").openSession();
 			res = session.update(namespace+"inquiry_update", dto);
 			if(res > 0) {
 				session.commit();
@@ -70,7 +70,7 @@ public class InquiryDao extends SqlConfig{
 	public int inquiryUpdateChk(int board_no) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("inquiry/inquiry_config.xml").openSession();
 			res = session.update(namespace+"inquiry_update_chk", board_no);
 			if(res > 0) {
 				session.commit();

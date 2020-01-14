@@ -13,11 +13,11 @@ import com.lntegrated.clinic.dto.ClinicDto;
 public class ClinicDao extends SqlConfig{
 	SqlSession session = null;
 	String namespace = "clinic_mapper.";
-	//ÀÇ»ç¿¡°Ô ¿¹¾àÀÌµÇ¾î ÀÖ´Â ¼Õ´Ôµé ¸®½ºÆ® 
+	//ï¿½Ç»ç¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ÌµÇ¾ï¿½ ï¿½Ö´ï¿½ ï¿½Õ´Ôµï¿½ ï¿½ï¿½ï¿½ï¿½Æ® 
 	public List<ClinicDto> clinicList(String id_d) {
 		List<ClinicDto> list = new ArrayList<ClinicDto>();
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("clinic/clinic_config.xml").openSession();
 			list = session.selectList(namespace+"clinic_list", id_d);
 		}catch(Exception e) {
 			System.out.println("clinicList ERROR");
@@ -26,12 +26,12 @@ public class ClinicDao extends SqlConfig{
 		}
 		return list;
 	}
-	//¿¹¾àÀÚ »ó¼¼ Á¤º¸
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public ClinicDto clinicMemberInfo(String id_u) {
 		ClinicDto dto = null;
 		
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("clinic/clinic_config.xml").openSession();
 			dto = session.selectOne(namespace+"clinic_memberinfo", id_u);
 		}catch(Exception e) {
 			System.out.println("ClinicmemberInfo ERROR");
@@ -40,11 +40,11 @@ public class ClinicDao extends SqlConfig{
 		}
 		return dto;
 	}
-	//¿¹¾à ½ÅÃ»
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
 	public int clinicinsert(ClinicDto dto) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("clinic/clinic_config.xml").openSession();
 			res = session.insert(namespace+"clinic_insert", dto);
 			if(res > 0) {
 				session.commit();
@@ -56,11 +56,11 @@ public class ClinicDao extends SqlConfig{
 		}
 		return res;
 	}
-	//½ÂÀÎ À¯¹«
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int clinicupdate(String id_u , String id_d) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("clinic/clinic_config.xml").openSession();
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("id_u", id_u);
 			map.put("id_d",id_d);

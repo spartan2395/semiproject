@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
-	<properties resource="com/lntergrated/db/db.propertis"></properties>
+	<properties resource="com/Integrated/db/db.propertis"></properties>
 	<typeAliases>
 		<typeAlias type="com/lntergrated/board_fr/dto/BoardFrDto" alias="chatlogdto"/>
 	</typeAliases>
@@ -17,6 +17,6 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="com/lntegrated/board_fr/boardfr_mapper.xml"/>
+    <mapper resource="com/Integrated/board_fr/boardfr_mapper.xml"/>
   </mappers>
 </configuration>

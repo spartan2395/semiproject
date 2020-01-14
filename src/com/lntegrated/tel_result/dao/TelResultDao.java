@@ -9,11 +9,11 @@ import com.lntegrated.tel_result.dto.TelResultDto;
 public class TelResultDao extends SqlConfig{
 	private SqlSession session = null;
 	private String namespace = "com.lntegrated.telresult";
-	//È¯ÀÚ °Ë»ö(Áø´Ü±â·Ï)
+	//È¯ï¿½ï¿½ ï¿½Ë»ï¿½(ï¿½ï¿½ï¿½Ü±ï¿½ï¿½)
 	public List<TelResultDto> telResultList(String id_u){
 		List<TelResultDto> list = null;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("tel_result/tel_result_config.xml").openSession();
 			list = session.selectList(namespace+"tel_result_list", id_u);
 		}catch(Exception e) {
 			System.out.println("Tel_Result_List ERROR");
@@ -22,11 +22,11 @@ public class TelResultDao extends SqlConfig{
 		}
 		return list;
 	}
-	//È¯ÀÚ (Áø´Ü¼­)
+	//È¯ï¿½ï¿½ (ï¿½ï¿½ï¿½Ü¼ï¿½)
 	public TelResultDto telResultInfo(int tel_seq) {
 		TelResultDto dto = null;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("tel_result/tel_result_config.xml").openSession();
 			dto = session.selectOne(namespace+"tel_result_info",tel_seq);
 		}catch(Exception e) {
 			System.out.println("Tel_Result_Info ERROR");
@@ -35,11 +35,11 @@ public class TelResultDao extends SqlConfig{
 		}
 		return dto;
 	}
-	//ÀÇ»ç (Áø´Ü¼­ ÀÛ¼º)
+	//ï¿½Ç»ï¿½ (ï¿½ï¿½ï¿½Ü¼ï¿½ ï¿½Û¼ï¿½)
 	public int relResultInsert(TelResultDto dto) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("tel_result/tel_result_config.xml").openSession();
 			res = session.insert(namespace+"tel_result_insert", dto);
 			if(res > 0) {
 				session.commit();
