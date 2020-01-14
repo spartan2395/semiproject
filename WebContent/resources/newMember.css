@@ -1,0 +1,125 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #fcfeff;
+}
+
+h4{
+    margin-bottom: 1px;
+    color: #263e63;
+}
+
+span{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    border: solid 1px #75adc7;
+    text-align: center;
+}
+
+input{
+    width:95%;
+    height: 65%;
+    border: none;
+    margin-top: 8px;
+    font-size: 13pt;
+} 
+
+select{
+    margin-top: 14px;
+	width: 90%;
+	border: 0;
+	background: url("imgs/selecticon.png") no-repeat 95% 50%; 
+	border-radius: 0px;
+    -webkit-appearance: none;
+    font-size: 13pt;
+}
+
+.wbutton{
+    display: inline-block;
+    width: 300px;
+}
+.btna{
+    display: inline-block;
+    font-size: large;
+}
+
+.btn{
+    display: inline-block;
+    width: 130px;
+    height: 40px;
+    border: solid 1px #263e63;
+    background-color: #75adc7;
+    text-align: center;
+    padding-top: 10px;
+    margin-left: 10px;
+}
+
+.btna:visited, .btna:link, .btna:active, .confirma:visited, .confirma:link, .confirma:active {
+    text-decoration: none;
+    color: white;
+}
+
+.wbtn>*{
+    vertical-align: middle;
+}
+
+.container{
+    position: relative;
+    width: 450px;
+    left: 50%;
+    right: 0;
+    transform: translateX(-50%);
+}
+
+.confirma{
+    display: table;
+    width: 100%;
+    height: 50px;
+    background-color: #75adc7;
+    border: solid 1px #263e63;
+}
+
+#idpw, #who, #verification, #confirm{
+    margin-bottom: 50px;        
+}
+
+
+#content{
+    text-align: center;
+}
+
+#footer{
+    position: absolute;
+    left: -15%;
+    width: 600px;
+    text-align: center;
+    color: gray;
+}
+
+#confirmbtn{
+    display: table-cell;
+    vertical-align: middle;
+    font-size: x-large;
+    border: 1px;
+    
+}
+
+#bd_yy, #bd_mm, #bd_d{
+	display: table-cell;
+	table-layout: fixed;
+	width: 147px;
+	vertical-align: middle;
+}
+
+#bd_yy+ #bd_mm,#bd_mm+ #bd_d{
+	padding-left: 10px;
+}
+
+
+
+
