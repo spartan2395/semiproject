@@ -1,10 +1,9 @@
 package com.lntegrated.notice.dao;
 
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 
-import com.lntegrated.notice.SqlConfig;
+import com.Integrated.db.SqlConfig;
 import com.lntegrated.notice.dto.NoticeDto;
 
 public class NoticeDao extends SqlConfig{
@@ -14,7 +13,7 @@ public class NoticeDao extends SqlConfig{
 	public List<NoticeDto> notice_List(){
 		List<NoticeDto> list = null;
 		try {
-			session = getSqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			list = session.selectList(namespase+"notice_list");
 		}catch(Exception e) {
 			System.out.println("Notice_List ERROR");
@@ -27,7 +26,7 @@ public class NoticeDao extends SqlConfig{
 	public NoticeDto notice_Info(int nt_seq) {
 		NoticeDto dto = null;
 		try {
-			session = getSqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			dto = session.selectOne(namespase+"notice_info", nt_seq);
 		}catch(Exception e) {
 			System.out.println("Notice_Info ERROR");
@@ -40,7 +39,7 @@ public class NoticeDao extends SqlConfig{
 	public int notice_insert(NoticeDto dto) {
 		int res = 0;
 		try {
-			session = getSqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			res = session.insert(namespase+"notice_insert", dto);
 			if(res > 0) {
 				session.commit();
@@ -56,7 +55,7 @@ public class NoticeDao extends SqlConfig{
 	public int notice_update(NoticeDto dto) {
 		int res = 0;
 		try {
-			session = getSqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			res = session.update(namespase+"notice_update", dto);
 			if(res > 0) {
 				session.commit();
@@ -72,7 +71,7 @@ public class NoticeDao extends SqlConfig{
 	public int notice_Update_Views(int nt_seq) {
 		int res = 0;
 		try {
-			session = getSqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			res = session.update(namespase+"notice_views_update", nt_seq);
 			if(res > 0) {
 				session.commit();
@@ -88,7 +87,7 @@ public class NoticeDao extends SqlConfig{
 	public int notice_delete(int nt_seq) {
 		int res = 0;
 		try {
-			session = getSqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			res = session.delete(namespase+"notice_delete", nt_seq);
 			if(res > 0) {
 				session.commit();

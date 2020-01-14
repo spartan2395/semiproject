@@ -2,7 +2,7 @@ package com.lntegrated.chat_log.dao;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.lntegrated.chat_log.SqlConfig;
+import com.Integrated.db.SqlConfig;
 import com.lntegrated.chat_log.dto.ChatLogDto;
 
 public class ChatLogDao extends SqlConfig{

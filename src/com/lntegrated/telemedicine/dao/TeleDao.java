@@ -1,10 +1,9 @@
 package com.lntegrated.telemedicine.dao;
 
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 
-import com.lntegrated.telemedicine.SqlConfig;
+import com.Integrated.db.SqlConfig;
 import com.lntegrated.telemedicine.dto.TeleDto;
 
 public class TeleDao extends SqlConfig{

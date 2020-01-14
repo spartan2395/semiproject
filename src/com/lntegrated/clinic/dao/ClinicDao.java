@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.lntegrated.clinic.SqlConfig;
+import com.Integrated.db.SqlConfig;
 import com.lntegrated.clinic.dto.ClinicDto;
 
 public class ClinicDao extends SqlConfig{
@@ -17,7 +17,7 @@ public class ClinicDao extends SqlConfig{
 	public List<ClinicDto> clinicList(String id_d) {
 		List<ClinicDto> list = new ArrayList<ClinicDto>();
 		try {
-			session = getsqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			list = session.selectList(namespace+"clinic_list", id_d);
 		}catch(Exception e) {
 			System.out.println("clinicList ERROR");
@@ -31,7 +31,7 @@ public class ClinicDao extends SqlConfig{
 		ClinicDto dto = null;
 		
 		try {
-			session = getsqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			dto = session.selectOne(namespace+"clinic_memberinfo", id_u);
 		}catch(Exception e) {
 			System.out.println("ClinicmemberInfo ERROR");
@@ -44,7 +44,7 @@ public class ClinicDao extends SqlConfig{
 	public int clinicinsert(ClinicDto dto) {
 		int res = 0;
 		try {
-			session = getsqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			res = session.insert(namespace+"clinic_insert", dto);
 			if(res > 0) {
 				session.commit();
@@ -60,7 +60,7 @@ public class ClinicDao extends SqlConfig{
 	public int clinicupdate(String id_u , String id_d) {
 		int res = 0;
 		try {
-			session = getsqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("id_u", id_u);
 			map.put("id_d",id_d);

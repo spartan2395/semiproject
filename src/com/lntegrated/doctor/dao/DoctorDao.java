@@ -1,12 +1,8 @@
 package com.lntegrated.doctor.dao;
 
 import java.util.List;
-
-import javax.websocket.Session;
-
 import org.apache.ibatis.session.SqlSession;
-
-import com.lntegrated.doctor.SqlConfig;
+import com.Integrated.db.SqlConfig;
 import com.lntegrated.doctor.dto.DoctorDto;
 
 public class DoctorDao extends SqlConfig{

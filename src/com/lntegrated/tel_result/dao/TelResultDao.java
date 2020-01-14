@@ -1,10 +1,9 @@
 package com.lntegrated.tel_result.dao;
 
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 
-import com.lntegrated.tel_result.SqlConfig;
+import com.Integrated.db.SqlConfig;
 import com.lntegrated.tel_result.dto.TelResultDto;
 
 public class TelResultDao extends SqlConfig{
@@ -14,7 +13,7 @@ public class TelResultDao extends SqlConfig{
 	public List<TelResultDto> telResultList(String id_u){
 		List<TelResultDto> list = null;
 		try {
-			session = getSqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			list = session.selectList(namespace+"tel_result_list", id_u);
 		}catch(Exception e) {
 			System.out.println("Tel_Result_List ERROR");
@@ -27,7 +26,7 @@ public class TelResultDao extends SqlConfig{
 	public TelResultDto telResultInfo(int tel_seq) {
 		TelResultDto dto = null;
 		try {
-			session = getSqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			dto = session.selectOne(namespace+"tel_result_info",tel_seq);
 		}catch(Exception e) {
 			System.out.println("Tel_Result_Info ERROR");
@@ -40,7 +39,7 @@ public class TelResultDao extends SqlConfig{
 	public int relResultInsert(TelResultDto dto) {
 		int res = 0;
 		try {
-			session = getSqlSessionFactory().openSession();
+			session = getSessionFactory().openSession();
 			res = session.insert(namespace+"tel_result_insert", dto);
 			if(res > 0) {
 				session.commit();

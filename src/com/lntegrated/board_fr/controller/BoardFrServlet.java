@@ -1,4 +1,4 @@
-package com.lntegrated.chat_log.controller;
+package com.lntegrated.board_fr.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ChatLogServlet
+ * Servlet implementation class BoardFrServlet
  */
-@WebServlet("/ChatLogServlet")
-public class ChatLogServlet extends HttpServlet {
+@WebServlet("/BoardFrServlet")
+public class BoardFrServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChatLogServlet() {
+    public BoardFrServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,6 +36,7 @@ public class ChatLogServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
+		
 		doGet(request, response);
 	}
 

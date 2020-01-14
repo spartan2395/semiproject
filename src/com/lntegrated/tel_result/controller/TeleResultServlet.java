@@ -1,4 +1,4 @@
-package com.lntegrated.chat_log.controller;
+package com.lntegrated.tel_result.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ChatLogServlet
+ * Servlet implementation class TeleResultServlet
  */
-@WebServlet("/ChatLogServlet")
-public class ChatLogServlet extends HttpServlet {
+@WebServlet("/TeleResultServlet")
+public class TeleResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChatLogServlet() {
+    public TeleResultServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

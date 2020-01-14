@@ -2,10 +2,9 @@ package com.lntegrated.member.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 
-import com.lntegrated.member.SqlConfig;
+import com.Integrated.db.SqlConfig;
 import com.lntegrated.member.dto.MemberDto;
 
 public class MemberDao extends SqlConfig{
@@ -15,7 +14,7 @@ public class MemberDao extends SqlConfig{
 	public List<MemberDto> memberList(){
 		List<MemberDto> list = new ArrayList<MemberDto>();
 		try {
-			session = getSqlSessionFac().openSession();
+			session = getSessionFactory().openSession();
 			list = session.selectList(namespace+"memberList");
 		}catch(Exception e) {
 			System.out.println("memberList ERROR");
@@ -28,7 +27,7 @@ public class MemberDao extends SqlConfig{
 	public MemberDto memberInfo(String id_u) {
 		MemberDto dto = null;
 		try {
-			session = getSqlSessionFac().openSession();
+			session = getSessionFactory().openSession();
 			dto = session.selectOne(namespace+"memberinfo",id_u);
 		}catch(Exception e) {
 			System.out.println("Member_Info ERROR");
@@ -41,7 +40,7 @@ public class MemberDao extends SqlConfig{
 	public int memberinsert(MemberDto dto) {
 		int res = 0;
 		try {
-			session = getSqlSessionFac().openSession();
+			session = getSessionFactory().openSession();
 			res = session.insert(namespace+"member_insert", dto);
 			if(res > 0) {
 				session.commit();
@@ -57,7 +56,7 @@ public class MemberDao extends SqlConfig{
 	public int memberupdate(MemberDto dto) {
 		int res = 0;
 		try {
-			session = getSqlSessionFac().openSession();
+			session = getSessionFactory().openSession();
 			res = session.update(namespace+"update", dto);
 			if(res > 0) {
 				session.commit();
@@ -73,7 +72,7 @@ public class MemberDao extends SqlConfig{
 	public int memberdelete(String id_u) {
 		int res = 0;
 		try {
-			session = getSqlSessionFac().openSession();
+			session = getSessionFactory().openSession();
 			res = session.update(namespace+"member_delete", id_u);
 			if(res > 0) {
 				session.commit();
