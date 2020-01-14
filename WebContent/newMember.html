@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="resources/newMember.css" type="text/css">
+    <title>당근 병원 - 당신 근처의 병원</title>
+</head>
+
+<script type='text/javascript'>
+    window.onload = function () {
+        var arraylist = document.getElementsByTagName("input");
+
+        for (var i = 0; i < arraylist.length; i++) {
+            arraylist[i].addEventListener("focusin", function () {
+                this.parentElement.style.border = "2px inset #daeff7";
+            })
+            arraylist[i].addEventListener("focusout", function () {
+                this.parentElement.style.border = "solid 1px #75adc7";
+            })
+        }
+
+        var id = document.getElementsByTagName("input")[0].value;
+        var idDiv = document.getElementById("id");
+        if (id = null) {
+            alert("dd")
+        }
+    };
+</script>
+
+<body>
+
+    <div class="container">
+
+        <div id="content">
+            <a href=""><img src="resources/imgs/logo.svg" alt="logo" style="width: 250px; margin-top: 20px;"></a>
+            <p style="font-weight: 900; font-size: larger; color: #263e63; margin : 20px 0 20px 0;">회원가입</p>
+        </div>
+        <form action="">
+            <div id="idpw">
+                <div id="id">
+                    <h4>아이디</h4>
+                    <div class="wbtn">
+                        <span class="wbutton"><input type="text"></span>
+                        <a href="" class="btna"><span class="btn">아이디 확인</span></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>비밀번호</h4>
+                    <span><input type="text"></span>
+                </div>
+                <div>
+                    <h4>비밀번호 확인</h4>
+                    <span><input type="text"></span>
+                </div>
+            </div>
+
+            <div id="who">
+                <div>
+                    <h4>이름</h4>
+                    <span><input type="text"></span>
+                </div>
+                <div id="bd">
+                    <h4>생년월일</h4>
+                    <div id="bd_yy">
+                        <span id="span1">
+                            <input type="text" placeholder="출생 년도">
+                        </span>
+                    </div>
+                    <div id="bd_mm">
+                        <span id="span1">
+                            <select>
+                                <option value="월">월</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div id="bd_d">
+                        <span id="span1">
+                            <input type="text" placeholder="일">
+                        </span>
+                    </div>
+                </div>
+
+                <div id="verification">
+                    <div>
+                        <h4>전화번호</h4>
+                        <div class="wbtn">
+                            <span class="wbutton"><input type="text"></span>
+                            <a href="" class="btna"><span class="btn">인증번호</span></a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>인증번호</h4>
+                        <span><input type="text"></span>
+                    </div>
+                </div>
+
+                <div id="confirm">
+                    <a href="" class="confirma"><span id="confirmbtn">회원 가입</span></a>
+                </div>
+        </form>
+    </div>
+    <div id="footer">
+        <p>@Carrot Doctor Team <br> jfekjfkejkfjekfk|fefefeeffef | fwfwefefefefe | fefegegegege | fewgaegegege</p>
+    </div>
+    
+</body>
+
+
+</html>
