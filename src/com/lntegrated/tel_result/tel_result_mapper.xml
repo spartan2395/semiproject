@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lntegrated.telresult">
+	<!-- 진단 결과 검색 리스트 -->
+	<select id = "tel_result_list" parameterType="String" resultType="telresultdto">
+		SELECT TEL_SEQ,ID_U,ID_D,RESERV_DATE,DX_NAME,DX_CONTENT,PURPOSE,REMARKS,ISS_DATE
+		FROM TEL_RESULT JOIN TELEMEDICINE USING(TEL_SEQ) WHERE ID_U = #{id_u}
+	</select>
+ 	<!-- 진단 결과 상세보기 -->
+  	<select id ="tel_result_info" parameterType="String" resultType="telresultdto">
+  		SELECT TEL_SEQ, ID_U,ID_D,RESERV_DATE,DX_NAME,DX_CONTENT,PURPOSE,REMARKS,ISS_DATE
+  		FROM TEL_RESULT JOIN TELEMEDICINE USING(TEL_SEQ) WHERE TEL_SEQ = #{tel_seq}
+  	</select>
+  	<!-- 진단서 작성 -->
+	<insert id = "tel_result_insert" parameterType="telresultdto">
+		INSERT INTO TEL_RESULT(#{tel_seq},#{dx_name},#{dx_content},#{pupose},#{remarks},SYSDATE)
+	</insert>
+</mapper>
