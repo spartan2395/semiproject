@@ -1,4 +1,4 @@
-package com.lntegrated.chat_log.controller;
+package com.lntegrated.notice.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ChatLogServlet
+ * Servlet implementation class NoticeServlet
  */
-@WebServlet("/ChatLogServlet")
-public class ChatLogServlet extends HttpServlet {
+@WebServlet("/NoticeServlet")
+public class NoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChatLogServlet() {
+    public NoticeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

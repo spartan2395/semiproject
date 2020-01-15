@@ -1,4 +1,4 @@
-package com.lntegrated.chat_log.controller;
+package com.lntegrated.comments.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ChatLogServlet
+ * Servlet implementation class CommentServelt
  */
-@WebServlet("/ChatLogServlet")
-public class ChatLogServlet extends HttpServlet {
+@WebServlet("/CommentServelt")
+public class CommentServelt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChatLogServlet() {
+    public CommentServelt() {
         super();
         // TODO Auto-generated constructor stub
     }
