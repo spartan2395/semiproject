@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+/*헤더*/
+	#headerWrap{width: 100%; height: 94px; background: none; transistion: background .3s ease; z-index: 10; position: absolute;}
+	#headerWrap.on { background:rgb(255,224,157);}
+	#headerWrap a img{float: left; width: 151px; height: 34px; margin-top: 30px; margin-left: 30px;}
+	#headerWrap .menu{float: left; position: relative; margin-top: 25px; margin-left: 45px;}
+	#headerWrap .menu>ul>li{float: left; margin-right: 50px;}
+	#headerWrap .menu > ul > li > a { color:orange; font-size:18pt; line-height:55px;}
+	#headerWrap .menuDepth{margin-top: 20px;}
+	#headerWrap .menuDepth ul>li>a{color: white; font-size: 12pt; padding-top: 15px;}
+	
+	/*인사말*/
+	.headMenu{position: fixed; top: 90px; left: 0; right: 0; z-index: 5;
+    		  border-top: 1px solid #e6e3df; background: #fff; transition: top .3s ease;}
+    .headMenu ul{overflow: hidden; float: left; padding: 34px 0;}
+    .headMenu ul li{float: left;}
+    .headMenu ul li + li { margin-left: 32px;}
+    .headMenu h1{float: left; height: 64px; margin: 12px 48px 0 32px; font-size: 16pt;
+   				 color: #333; font-weight: 450; line-height: 64px; color: orange;}
+   	#headerWrap .bgDepth {top: 94px; background: rgb(255,224,157);}
+   	.helloWrap{position: relative; width: 1100px; margin: 0 auto; padding-bottom: 130px; margin-top: 130px;}
+   	.helloWrap h1{padding: 59px 0 58px; font-weight: 100; font-size: 30px; line-height: 40px;}
+    .helloWrap h1 span{display: block; padding-bottom: 13px; font-size: 16px; color:orange; font-weight: 450;}
+    
+    /*사이트소개*/
+   	.siteinfoWrap{position: relative; width: 1100px; margin: 0 auto; padding-bottom: 130px; margin-top: 130px;}
+   	.siteinfoWrap h1{padding: 59px 0 58px; font-weight: 100; font-size: 30px; line-height: 40px;}
+    .siteinfoWrap h1 span{display: block; padding-bottom: 13px; font-size: 16px; color:orange; font-weight: 450;}
+    
+    
+    
+    
+    
