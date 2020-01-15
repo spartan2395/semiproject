@@ -25,6 +25,4 @@ window.onload = function () {
             
         }
     }
-
-
 };

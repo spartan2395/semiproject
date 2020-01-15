@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lntegerated.doctor_mapper">
 	<!-- 회원 정보 리스트 -->
-	<select id="doctor_list" resultType="doctorlist">
+	<select id="doctor_list" resultType="doctordto">
 		SELECT ID_D,PW_D,NAME_D,GENDER_D,NUMBER_D,ADDR_D,MEDICAL_D,EMAIL_D,GRADE_D,DEPARTMENT,ACTIVATION
 		FROM DOCTOR_TB
 	</select>

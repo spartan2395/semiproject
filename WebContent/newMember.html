@@ -51,16 +51,26 @@
                     <span><input type="text" required pattern="^[가-힣]*$"></span>
                     <p class="required"></p>
                 </div>
+                <div>
+                    <h4>성별</h4>
+                    <span id="span1">
+                        <select required>
+                            <option value="여">여</option>
+                            <option value="남">남</option>   
+                        </select>
+                    </span>
+                    <p class="required"></p>
+                </div>
                 <div id="bd">
                     <h4>생년월일</h4>
                     <div id="bd_yy">
-                        <span id="span1">
+                        <span>
                             <input type="text" placeholder="출생 년도" pattern="^[0-9]*$" maxlength="4">
                         </span>
                         <p class="required"></p>
                     </div>
                     <div id="bd_mm">
-                        <span id="span1">
+                        <span>
                             <select required>
                                 <option value="월">월</option>
                                 <option value="1">1</option>
@@ -79,7 +89,7 @@
                         </span>
                     </div>
                     <div id="bd_d">
-                        <span id="span1"><input type="text" placeholder="일" pattern="^[0-9]*$" maxlength="2"></span>
+                        <span><input type="text" placeholder="일" pattern="^[0-9]*$" maxlength="2"></span>
                         <p class="required"></p>
                     </div>
                 </div>
@@ -87,6 +97,11 @@
                     <h4>이메일</h4>
                     <span><input type="text" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+$"></span>
                     <p class="required" hidden></p>
+                </div>
+                <div>
+                    <h4>주소</h4>
+                    <span><input type="text" ></span>
+                    <p class="required"></p>
                 </div>
             </div>
 
