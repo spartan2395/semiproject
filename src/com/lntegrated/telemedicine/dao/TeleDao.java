@@ -1,21 +1,20 @@
 package com.lntegrated.telemedicine.dao;
 
 import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
 
-import com.lntegrated.telemedicine.SqlConfig;
+import com.Integrated.db.SqlConfig;
 import com.lntegrated.telemedicine.dto.TeleDto;
 
 public class TeleDao extends SqlConfig{
 	SqlSession session = null;
 	String namespace = "com.tele.mapper.";
 	int res = 0;
-	//¿¹¾à ¸®½ºÆ®
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	public List<TeleDto> teleList(String id_d){
 		List<TeleDto> list = null;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
 			list = session.selectList(namespace+"tele_list", id_d);
 		}catch(Exception e) {
 			System.out.println("Telemedicine_list ERROR");
@@ -28,7 +27,7 @@ public class TeleDao extends SqlConfig{
 	public TeleDto teleInfo(int tel_seq){
 		TeleDto dto = null;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
 			dto = session.selectOne(namespace+"tele_info", tel_seq);
 		}catch(Exception e) {
 			System.out.println("Telemedicine_info ERROR");
@@ -41,7 +40,7 @@ public class TeleDao extends SqlConfig{
 	public int teleInsert(TeleDto dto) {
 		res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
 			res = session.insert(namespace+"tele_insert", dto);
 			if(res > 0) {
 				session.commit();
@@ -57,7 +56,7 @@ public class TeleDao extends SqlConfig{
 	public int teleUpdateInfo(TeleDto dto) {
 		res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
 			res = session.update(namespace+"tele_update_info", dto);
 			if(res > 0) {
 				session.commit();
@@ -73,7 +72,7 @@ public class TeleDao extends SqlConfig{
 	public int teleUpdateChk(int tel_seq) {
 		res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
 			res = session.update(namespace+"tele_update_check", tel_seq);
 		}catch(Exception e) {
 			System.out.println("Telemedicine_update_check ERROR");

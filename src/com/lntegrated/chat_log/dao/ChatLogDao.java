@@ -2,7 +2,7 @@ package com.lntegrated.chat_log.dao;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.lntegrated.chat_log.SqlConfig;
+import com.Integrated.db.SqlConfig;
 import com.lntegrated.chat_log.dto.ChatLogDto;
 
 public class ChatLogDao extends SqlConfig{
@@ -12,7 +12,7 @@ public class ChatLogDao extends SqlConfig{
 	public ChatLogDto chatLogInfo(int chat_no) {
 		ChatLogDto dto = null;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("chat_log/chat_log_config.xml").openSession();
 			dto = session.selectOne(namespace+"chat_log_select",chat_no);
 		}catch(Exception e) {
 			System.out.println("Chat_log_Info ERROR");
@@ -25,7 +25,7 @@ public class ChatLogDao extends SqlConfig{
 	public int chatLogInsert(ChatLogDto dto) {
 		int res = 0;
 		try {
-			session = getSessionFactory().openSession();
+			session = getSessionFactory("chat_log/chat_log_config.xml").openSession();
 			res = session.insert(namespace+"chat_log_insert", dto.getChat());
 			if(res > 0) {
 				session.commit();

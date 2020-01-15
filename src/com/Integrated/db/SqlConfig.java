@@ -1,4 +1,4 @@
-package com.lntegrated.telemedicine;
+package com.Integrated.db;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -8,11 +8,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class SqlConfig {
-	
-	private String resources = "com/lntegrated/db/db.propertis";
-	private SqlSessionFactory sqlfac = null;
-	
-	public SqlSessionFactory getSessionFactory() {
+	private SqlSessionFactory sqlfac;
+	public SqlSessionFactory getSessionFactory(String log) {
+		String resources = "com/lntegrated/"+log;
 		Reader reader = null;
 		try {
 			reader = Resources.getResourceAsReader(resources);

@@ -7,13 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lntegrated.member.dao.MemberDao;
+import com.lntegrated.member.dto.MemberDto;
+
+
 /**
  * Servlet implementation class MemberServlet
  */
 @WebServlet("/MemberServlet")
 public class MemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private MemberDao dao = new MemberDao();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -26,15 +30,27 @@ public class MemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
+		
+		dao.memberinsert(new MemberDto(
+				request.getParameter("id"),
+				request.getParameter("pw"),
+				request.getParameter("name"),
+				request.getParameter("gender"),
+				request.getParameter("number"),
+				request.getParameter("addr"),
+				request.getParameter("email")
+				));
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
 		doGet(request, response);
 	}
 

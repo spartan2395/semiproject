@@ -1,4 +1,4 @@
-package com.lntegrated.chat_log.controller;
+package com.lntegrated.inquiry.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ChatLogServlet
+ * Servlet implementation class InquiryServlet
  */
-@WebServlet("/ChatLogServlet")
-public class ChatLogServlet extends HttpServlet {
+@WebServlet("/InquiryServlet")
+public class InquiryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChatLogServlet() {
+    public InquiryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
