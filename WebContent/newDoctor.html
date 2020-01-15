@@ -49,6 +49,16 @@
                     <span><input type="text" required pattern="^[가-힣]*$"></span>
                     <p class="required"></p>
                 </div>
+                <div>
+                    <h4>성별</h4>
+                    <span id="span1">
+                        <select required>
+                            <option value="여">여</option>
+                            <option value="남">남</option>   
+                        </select>
+                        <p class="required"></p>
+                    </span>
+                </div>
                 <div id="bd">
                     <h4>생년월일</h4>
                     <div id="bd_yy">
@@ -83,7 +93,7 @@
                 </div>
                 <div>
                     <h4>이메일</h4>
-                    <span><input type="text" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+$"></span>
+                    <span><input type="text" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$"></span>
                     <p class="required"></p>
                 </div>
                 <div>
@@ -97,7 +107,7 @@
                 <div>
                     <h4>전화번호</h4>
                     <div class="wbtn">
-                        <span class="wbutton"><input type="text" pattern="(010)-\d{3,4}-\d{4}" placeholder="000-0000-0000" required></span>
+                        <span class="wbutton"><input type="text" pattern="(010)-\d{3,4}-\d{4}" placeholder="010-0000-0000" required></span>
                         <a href="" class="btna"><span class="btn">인증번호</span></a>
                         <p class="required"></p>
                     </div>
@@ -107,7 +117,11 @@
                     <span><input type="text" pattern="^[0-9]*$" required></span>
                     <p class="required"></p>
                 </div>
-                
+                <div>
+                    <h4>소속 병원 주소</h4>
+                    <span><input type="text" required></span>
+                    <p class="required"></p>
+                </div>
                 <div>
                     <h4>의사인증</h4>
                     <span><input type="text" pattern="^[0-9]*$" required></span>
