@@ -27,15 +27,15 @@
                 <div id="id">
                     <h4>아이디</h4>
                     <div class="wbtn">
-                        <span class="wbutton"><input type="text" required pattern="^[a-zA-Z0-9]*$"></span>
-                        <a href="" class="btna"><span class="btn">아이디 확인</span></a>
+                        <span class="wbutton"><input type="text" name = "id_u" required pattern="^[a-zA-Z0-9]*$"></span>
+                        <a id = "idchk" onclick = "" class="btna"><span class="btn">아이디 확인</span></a>
                         <p class="required"></p>
                     </div>
                 </div>
 
                 <div>
                     <h4>비밀번호</h4>
-                    <span><input type="text" pattern="^[a-zA-Z0-9]*$" required></span>
+                    <span><input type="text" name = "pw_u" pattern="^[a-zA-Z0-9]*$" required></span>
                     <p class="required"></p>
                 </div>
                 <div>
@@ -48,7 +48,7 @@
             <div id="who">
                 <div>
                     <h4>이름</h4>
-                    <span><input type="text" required pattern="^[가-힣]*$"></span>
+                    <span><input type="text" name = "name_u" required pattern="^[가-힣]*$"></span>
                     <p class="required"></p>
                 </div>
                 <div id="bd">
@@ -85,7 +85,7 @@
                 </div>
                 <div>
                     <h4>이메일</h4>
-                    <span><input type="text" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+$"></span>
+                    <span><input type="text" name = "email_u" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+$"></span>
                     <p class="required" hidden></p>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                 <div>
                     <h4>전화번호</h4>
                     <div class="wbtn">
-                        <span class="wbutton"><input type="text" pattern="(010)-\d{3,4}-\d{4}" placeholder="000-0000-0000" required></span>
+                        <span class="wbutton"><input type="text" name = "number_u" pattern="(010)-\d{3,4}-\d{4}" placeholder="000-0000-0000" required></span>
                         <a href="" class="btna"><span class="btn">인증번호</span></a>
                         <p class="required"></p>
                     </div>
