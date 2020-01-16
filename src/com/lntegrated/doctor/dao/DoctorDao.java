@@ -6,7 +6,7 @@ import com.Integrated.db.SqlConfig;
 import com.lntegrated.doctor.dto.DoctorDto;
 
 public class DoctorDao extends SqlConfig{
-	String namespace = "com.lntegerated.doctor_mapper";
+	String namespace = "com.lntegerated.doctor_mapper.";
 	SqlSession session = null;
 	//????
 	public List<DoctorDto> doctorList(){
@@ -28,6 +28,7 @@ public class DoctorDao extends SqlConfig{
 			session = getSessionFactory("doctor/doctor_config.xml").openSession();
 			dto = session.selectOne(namespace+"doctor_info", id_d);
 		}catch(Exception e) {
+			
 			System.out.println("Doctor_info ERROR");
 		}finally {
 			session.close();
@@ -39,12 +40,13 @@ public class DoctorDao extends SqlConfig{
 		int res = 0;
 		try {
 			session = getSessionFactory("doctor/doctor_config.xml").openSession();
-			res = session.insert(namespace+"doctor_insert", dto);
+			res = session.insert(namespace+"doctor_insert",dto);
 			if(res > 0) {
 				session.commit();
 			}
 		}catch(Exception e) {
 			System.out.println("Doctor_insert ERROR");
+			e.printStackTrace();
 		}finally {
 			session.close();
 		}

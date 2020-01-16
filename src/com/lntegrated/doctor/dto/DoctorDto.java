@@ -1,4 +1,5 @@
 package com.lntegrated.doctor.dto;
+//ìƒë…„ì›”ì¼ ì¶”ê°€
 
 public class DoctorDto {
 	private String id_d;
@@ -12,7 +13,7 @@ public class DoctorDto {
 	private String grade_d;
 	private String department;
 	
-	//ÀÇ»ç Á¤º¸ °Ë»ö AND ¼öÁ¤ AND È¸¿ø °¡ÀÔ
+	//ï¿½Ç»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ AND ï¿½ï¿½ï¿½ï¿½ AND È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public DoctorDto(String id_d, String pw_d, String name_d,String number_d,String gender_d,
 			String addr_d,String medical_d,String email_d,String grade_d,String department) {
 		this.id_d = id_d;
@@ -22,6 +23,7 @@ public class DoctorDto {
 		this.number_d = number_d;
 		this.addr_d = addr_d;
 		this.medical_d = medical_d;
+		this.email_d = email_d;
 		this.grade_d = grade_d;
 		this.department = department;
 	}

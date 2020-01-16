@@ -7,19 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/reset.css">
 <style type="text/css">
 
 	#headerWrap{width: 100%; height: 94px; background: none; transistion: background .3s ease; z-index: 10; position: absolute;}
-	#headerWrap.on { background:rgba(33,32,30,0.85);}
+	#headerWrap.on { background:rgb(255,224,157);}
 	#headerWrap a img{float: left; width: 151px; height: 34px; margin-top: 30px; margin-left: 30px;}
 	#headerWrap .menu{float: left; position: relative; margin-top: 25px; margin-left: 45px;}
 	#headerWrap .menu>ul>li{float: left; margin-right: 50px;}
 	#headerWrap .menu > ul > li > a { color:orange; font-size:18pt; line-height:55px;}
 	#headerWrap .menuDepth{margin-top: 20px;}
 	#headerWrap .menuDepth ul>li>a{color: white; font-size: 12pt; padding-top: 15px;}
-	#headerWrap .bgDepth {top: 94px; background: rgba(33,32,30,0.85);}
+	
 
 </style>
 <script type="text/javascript">
@@ -33,7 +31,8 @@ function menuHeader(){
 		$(this).parent().addClass('on');
 		$('#headerWrap').addClass('on');
 		$('#headerWrap .menuDepth').not($(this).next('.menuDepth')).stop().hide();
-		$(this).next('.menuDepth').stop().slideDown('fast');
+		//$(this).next('.menuDepth').stop().slideDown('fast');
+		$('.menuDepth').stop().slideDown('fast');
 		$('#headerWrap .bgDepth').stop().slideDown('fast');
 		
 	});
