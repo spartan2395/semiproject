@@ -30,6 +30,7 @@ public class MemberDao extends SqlConfig{
 			session = getSessionFactory("member/member_config.xml").openSession();
 			dto = session.selectOne(namespace+"memberinfo",id_u);
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Member_Info ERROR");
 		}finally {
 			session.close();
@@ -47,6 +48,7 @@ public class MemberDao extends SqlConfig{
 			}
 		}catch(Exception e) {
 			System.out.println("Member_Insert ERROR");
+			e.printStackTrace();
 		}finally {
 			session.close();
 		}

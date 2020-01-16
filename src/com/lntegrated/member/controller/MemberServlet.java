@@ -33,27 +33,51 @@ public class MemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
+		String command = request.getParameter("command");
+		System.out.println(command);
 		
-		MemberDto dto = new MemberDto();
 		MemberDao dao = new MemberDao();
-		PrintWriter out = response.getWriter();
 		
-		int res = 0;
-		
-		dto.setId_u(request.getParameter("id_u"));
-		dto.setPw_u(request.getParameter("pw_u"));
-		dto.setName_u(request.getParameter("name_u"));
-		dto.setGender_u(request.getParameter("gender_u"));
-		dto.setNumber_u(request.getParameter("number_u"));
-		dto.setAddr_u(request.getParameter("addr_u"));
-		dto.setEmail_u(request.getParameter("email_u"));
-		
-		res = dao.memberinsert(dto);
-		if(res > 0) {
-			jsResponse("회원가입 성공", "hello.jsp", response);
+		if(command.equals("MemberChk")) {
+			String id_u = request.getParameter("id");
+			if(dao.memberInfo(id_u) != null) {
+				response.getWriter().println(1);
+			}else {
+				response.getWriter().println(0);
+			}
+			
 		}
-		else {
-			jsResponse("회원가입 실패", "index.jsp", response);
+		else if(command.equals("Memberinsert")) {
+			String id_u = request.getParameter("id_u");
+			String pw_u = request.getParameter("pw_u");
+			String name_u = request.getParameter("name_u");
+			String gender_u = request.getParameter("gender_u");
+			String number_u = request.getParameter("number_u");
+			String addr_u = request.getParameter("addr_u");
+			String email_u = request.getParameter("email_u");
+			MemberDto dto = new MemberDto();
+			if(gender_u.equals("남")) {
+				gender_u = "M";
+			}
+			else {
+				gender_u = "F";
+			}
+			dto.setId_u(id_u);
+			dto.setPw_u(pw_u);
+			dto.setName_u(name_u);
+			dto.setGender_u(gender_u);
+			dto.setNumber_u(number_u);
+			dto.setAddr_u(addr_u);
+			dto.setEmail_u(email_u);
+			
+			int res = dao.memberinsert(dto);
+			System.out.println(res);
+			if(res > 0) {
+				jsResponse("회원가입 성공", "MemberServlet?command=", response);
+			}
+			else {
+				jsResponse("회원가입 실패", "MemberServlet", response);
+			}
 		}
 		
 	}
