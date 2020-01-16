@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.lntegrated.doctor.dao.DoctorDao;
 import com.lntegrated.doctor.dto.DoctorDto;
 
@@ -53,8 +55,8 @@ public class DoctorServlet extends HttpServlet {
 					grade = "D";
 				}
 				int res = dao.insert(new DoctorDto(request.getParameter("id"), request.getParameter("pw"), request.getParameter("name")
-						, request.getParameter("number"), "M", request.getParameter("addr"), request.getParameter("addr_job"), request.getParameter("email"), 
-						grade, request.getParameter("department")));
+						,request.getParameter("number"),"M", request.getParameter("addr_home"), request.getParameter("addr_job"), request.getParameter("email"), 
+						"D", request.getParameter("department")));
 				if(res > 0) {
 					response.sendRedirect("index.html");
 				}else {
@@ -64,6 +66,15 @@ public class DoctorServlet extends HttpServlet {
 							+ "</script>");
 				}
 			break;
+			case "idchk" : 
+				DoctorDto dto = null;
+						dto = dao.doctorInfo(request.getParameter("id").replace(" ", ""));
+				if(dto != null) {
+					response.getWriter().println(1);	
+				}else {
+					response.getWriter().println(0);
+				}
+				break;
 		}
 	}
 

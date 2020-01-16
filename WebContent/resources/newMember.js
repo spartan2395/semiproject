@@ -26,3 +26,24 @@ window.onload = function () {
         }
     }
 };
+function idchk(){
+	$.ajax({
+		url:"DoctorServlet",
+		data:{"command":"idchk","id":$("input[name=id]").val()},
+		dataType:"text",
+		type:"post",
+		
+		success:function(data){
+			if(data > 0){
+				alert("이미 사용중인 아이디 입니다.");
+				$("input[name=id]").val("");
+			}else{
+				alert("사용 가능한 아이디 입니다.");
+			}
+		},
+		error:function(data){
+			console.log(data);
+		}
+	});
+}
+

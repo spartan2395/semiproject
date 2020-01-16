@@ -27,7 +27,7 @@
                     <h4>아이디</h4>
                     <div class="wbtn">
                         <span class="wbutton"><input type="text" name = "id" required pattern="^[a-zA-Z0-9]*$"></span>
-                        <a href="" onclick = "" class="btna"><span class="btn">아이디 확인</span></a>
+                        <a onclick = "idchk()" class="btna"><span class="btn">아이디 확인</span></a>
                         <p class="required"></p>
                     </div>
                 </div>
@@ -94,18 +94,13 @@
                 <div>
                     <h4>이메일</h4>
 
-                    <span><input type="text" name = "email" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+$"></span>
+                    <span><input type="text" name ="email" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+$"></span>
 
                     <p class="required"></p>
                 </div>
                 <div>
                     <h4>주소</h4>
                     <span><input type="text" name = "addr_home"></span>
-                    <p class="required"></p>
-                </div>
-                <div>
-                    <h4>병원 주소</h4>
-                    <span><input type="text" name = "addr_job"></span>
                     <p class="required"></p>
                 </div>
             </div>
@@ -126,7 +121,7 @@
                 </div>
                 <div>
                     <h4>소속 병원 주소</h4>
-                    <span><input type="text" required></span>
+                    <span><input type="text" required name = "addr_job"></span>
                     <p class="required"></p>
                 </div>
                 <div>
