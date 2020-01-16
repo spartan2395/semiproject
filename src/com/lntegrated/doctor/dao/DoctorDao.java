@@ -68,7 +68,7 @@ public class DoctorDao extends SqlConfig{
 		}
 		return res;
 	}
-	//ȸ�� ����
+
 	public int delete(String id_d) {
 		int res = 0;
 		try {
