@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lntegrated.comments.mapper">
+	<!-- 해당 글에 달린 댓글들 출력 -->
+	<select id="comm_list" parameterType="int" resultType="commdto">
+		SELECT BOARD_NO,CONTENT_A,REGDATE_A,ID_U FROM COMMENTS
+		WHERE BOARD_NO = #{board_no}
+	</select>
+	<!-- 댓글 작성 -->
+	<insert id = "comm_insert" parameterType="commdto">
+		INSERT INTO COMMENTS VALUES(#{board_no},#{content_a},'SYSDATE',#{id_u})
+	</insert>
+	<!-- 댓글 수정 -->
+	<update id = "comm_update" parameterType="dto">
+		UPDATE COMMENTS SET CONTENT_A WHERE BOARD_NO = #{board_no} AND ID_U = #{id_u}
+	</update>
+	<!-- 댓글 삭제 -->
+	<delete id="comm_delete" parameterType="map">
+		DELETE FROM COMMENTS WHERE BOARD_NO = #{board_no} AND ID_U = #{id_u}
+	</delete>
+</mapper>

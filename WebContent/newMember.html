@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="resources/newMember.css" type="text/css">
+    <link rel="icon" href="resources/imgs/carrot.png" type="image/x-icon">
+
+    <title>당근 병원 - 당신 근처의 병원</title>
+</head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type='text/javascript' src="resources/newMember.js"></script>
+
+<body>
+    <div id="content">
+        <a href=""><img src="resources/imgs/carrotlogopractice.png" alt="logo"
+                style="width: 250px; margin-top: 20px;"></a>
+        <p style="font-weight: 900; font-size: larger; color: #263e63; margin : 20px 0 20px 0;">회원가입(개인)</p>
+    </div>
+    
+    <div class="container">
+
+       
+        <form action="MemberServlet" method="post">
+        	<input type = "hidden" name = "command" value = "Memberinsert"/>
+            <div id="idpw">
+                <div id="id">
+                    <h4>아이디</h4>
+                    <div class="wbtn">
+                        <span class="wbutton"><input type="text" id = "id_u" name = "id_u" required pattern="^[a-zA-Z0-9]*$"></span>
+                        <a id = "idchk" class="btna"><span class="btn">아이디 확인</span></a>
+                        <p class="required"></p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>비밀번호</h4>
+                    <span><input type="text" id = "pw_u" name = "pw_u" pattern="^[a-zA-Z0-9]*$" required></span>
+                    <p class="required"></p>
+                </div>
+                <div>
+                    <h4>비밀번호 확인</h4>
+                    <span><input type="text" id = "pw_u_chk" name = "pw_u_chk" pattern="^[a-zA-Z0-9]*$" required></span>
+                    <p class="required"></p>
+                </div>
+            </div>
+
+            <div id="who">
+                <div>
+                    <h4>이름</h4>
+                    <span><input type="text" name = "name_u" required pattern="^[가-힣]*$"></span>
+                    <p class="required"></p>
+                </div>
+                <div>
+                    <h4>성별</h4>
+                    <span id="span1">
+                        <select name = "gender_u" required>
+                            <option value="여">여</option>
+                            <option value="남">남</option>   
+                        </select>
+                    </span>
+                    <p class="required"></p>
+                </div>
+                <div id="bd">
+                    <h4>생년월일</h4>
+                    <div id="bd_yy">
+                        <span>
+                            <input type="text" name = placeholder="출생 년도" pattern="^[0-9]*$" maxlength="4">
+                        </span>
+                        <p class="required"></p>
+                    </div>
+                    <div id="bd_mm">
+                        <span>
+                            <select required>
+                                <option value="월">월</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div id="bd_d">
+                        <span><input type="text" placeholder="일" pattern="^[0-9]*$" maxlength="2"></span>
+                        <p class="required"></p>
+                    </div>
+                </div>
+                <div>
+                    <h4>이메일</h4>
+                    <span><input type="text" name = "email_u" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+$"></span>
+                    <p class="required" hidden></p>
+                </div>
+                <div>
+                    <h4>주소</h4>
+                    <span><input type="text" name = "addr_u"></span>
+                    <p class="required"></p>
+                </div>
+            </div>
+
+            <div id="verification">
+                <div>
+                    <h4>전화번호</h4>
+                    <div class="wbtn">
+                        <span class="wbutton"><input type="text" name = "number_u" pattern="(010)-\d{3,4}-\d{4}" placeholder="000-0000-0000" required></span>
+                        <a href="" class="btna"><span class="btn">인증번호</span></a>
+                        <p class="required"></p>
+                    </div>
+                </div>
+                <div>
+                    <h4>인증번호</h4>
+                    <span><input type="text" required></span>
+                    <p class="required"></p>
+                </div>
+            </div>
+
+            <div id="confirm">
+                <button type = "submit" class="confirmbtn"><span id="confirmspan">회원 가입</span></button>
+            </div>
+        </form>
+    </div>
+    <div id="footer">
+        <p>@Carrot Doctor Team <br> jfekjfkejkfjekfk|fefefeeffef | fwfwefefefefe | fefegegegege |
+            fewgaegegege<br><br><br></p>
+    </div>
+
+</body>
+
+
+</html>

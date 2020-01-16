@@ -1,0 +1,62 @@
+@charset "utf-8";
+
+/*헤더*/
+	#headerWrap{width: 100%; height: 94px; background: none; transistion: background .3s ease; z-index: 10; position: absolute;}
+	#headerWrap.on { background:rgb(255,224,157);}
+	#headerWrap a img{float: left; width: 151px; height: 34px; margin-top: 30px; margin-left: 30px;}
+	#headerWrap .menu{float: left; position: relative; margin-top: 25px; margin-left: 45px;}
+	#headerWrap .menu>ul>li{float: left; margin-right: 50px;}
+	#headerWrap .menu > ul > li > a { color:orange; font-size:18pt; line-height:55px;}
+	#headerWrap .menuDepth{margin-top: 20px;}
+	#headerWrap .menuDepth ul>li>a{color: white; font-size: 12pt; padding-top: 15px;}
+	
+	/*인사말*/
+	.headMenu{position: relative; top: 90px; left: 0; right: 0; z-index: 5;
+    		  border-top: 1px solid #e6e3df; background: #fff;}
+    .headMenu ul{overflow: hidden; float: left; padding: 34px 0;}
+    .headMenu ul li{float: left;}
+    .headMenu ul li + li { margin-left: 32px;}
+    .headMenu h1{float: left; height: 64px; margin: 12px 48px 0 32px; font-size: 16pt;
+   				 color: #333; font-weight: 450; line-height: 64px; color: orange;}
+   	#headerWrap .bgDepth {top: 94px; background: rgb(255,224,157);}
+   	.helloWrap{position: relative; width: 1000px; margin: 0 auto; padding-bottom: 130px; margin-top: 130px;}
+   	.helloWrap h1{padding: 59px 0 58px; font-weight: 100; font-size: 30px; line-height: 40px;}
+    .helloWrap h1 span{display: block; padding-bottom: 13px; font-size: 16px; color:orange; font-weight: 450;}
+    .helloWrap .helloView{background: linear-gradient(to right, rgba(235, 178, 169, 0.8),  rgba(255, 255, 255, 0)),
+   									  url("../image/hello.jpg") no-repeat center;
+						  background-size: 1000px 302px; height: 302px; padding: 84px 0 0 40px;}
+	.helloWrap .helloView h2 {margin-bottom: 15px; text-indent: -2px; font-size: 30px;
+    						 line-height: 1.2; font-weight: 100; color: white;}
+    .helloWrap .helloView p{line-height: 22px; color: rgba(255,255,255,0.8);}		
+    .helloDetail{position: relative; margin: 32px 0 40px;}	
+    .helloDetail p{margin-top: 3px;}
+    
+    
+    /*사이트소개*/
+   	.siteinfoWrap{position: relative; width: 1000px; margin: 0 auto; padding-bottom: 130px; margin-top: 130px;}
+   	.siteinfoWrap h1{padding: 59px 0 58px; font-weight: 100; font-size: 30px; line-height: 40px;}
+    .siteinfoWrap h1 span{display: block; padding-bottom: 13px; font-size: 16px; color:orange; font-weight: 450;}
+    .siteinfoWrap .infoTap{margin-bottom: 48px;}
+	.siteinfoWrap .infoTap ul{display: table; height: 48px; overflow: hidden; width: 100%; table-layout: fixed; border-left: 1px solid #e6e3df; }
+	.siteinfoWrap .infoTap li{display: table-cell; height: 48px; vertical-align: top;}
+	.siteinfoWrap .infoTap li.on a{color: #FFE09D; border-bottom-color: transparent; border-top: 1px solid #FFE09D; }
+	.siteinfoWrap .infoTap li a{display: block; position: relative; height: 48px; padding: 12px 0; border-top: 1px solid #e6e3df;
+				  border-bottom: 1px solid #FFE09D; line-height: 22px; text-align: center; color: #666; vertical-align: top;}
+	.siteinfoWrap .infoTap li.on a:before{content: ''; display: block; position: absolute; top: 0; left: 0;
+							bottom: -1px; width: 1px; background: #FFE09D;}
+	.siteinfoWrap .infoTap li.on a:after{content: ''; display: block; position: absolute; top: 0; right: 0;
+							bottom: -1px; width: 1px; background: #FFE09D;}
+	.siteinfoWrap .infoTap li a:after{content: ''; display: block; position: absolute; top: 0; right: 0; bottom: 0; width: 1px; background:#e6e3df;}
+	.siteinfoWrap .tapView{display: none;}	
+	.siteinfoWrap .indiinfoView{background: linear-gradient(to right, rgba(108, 127, 61, 0.8),  rgba(255, 255, 255, 0)),
+   									  url("../image/indi_info_img.jpg") no-repeat center;
+						  background-size: 1000px 302px; height: 302px; padding: 84px 0 0 40px;}
+	.siteinfoWrap .docinfoView{background: linear-gradient(to right, rgba(120, 139, 181, 0.8),  rgba(255, 255, 255, 0)),
+   									  url("../image/doc_info_img.jpg") no-repeat center;
+						  background-size: 1000px 302px; height: 302px; padding: 84px 0 0 40px;}
+	
+	
+    
+    
+    
+    
