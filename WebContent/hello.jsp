@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+
 </head>
 <body>
 
@@ -25,7 +26,18 @@
 	
 	<div class="helloWrap">
 		<h1><span>인사말</span>당근병원에 오신것을 환영합니다.</h1>
+		<div class="helloView">
+			<h2>The Hospital near You</h2>
+			<p>당신 근처의 병원</p>
+		</div>
+		<div class="helloDetail">
+			<p>대충 당근병원좋다는글~~~~</p>
+		</div>
 	</div>
+	
 
 </body>
 </html>
+
+
+
