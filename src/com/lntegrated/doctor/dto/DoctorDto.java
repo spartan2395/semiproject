@@ -23,6 +23,7 @@ public class DoctorDto {
 		this.number_d = number_d;
 		this.addr_d = addr_d;
 		this.medical_d = medical_d;
+		this.email_d = email_d;
 		this.grade_d = grade_d;
 		this.department = department;
 	}

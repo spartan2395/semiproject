@@ -7,13 +7,13 @@
 		FROM DOCTOR_TB
 	</select>
 	<!-- 회원 정보 -->
-	<select id="doctor_info">
+	<select id="doctor_info" parameterType="String" resultType="doctordto">
 		SELECT ID_D,PW_D,NAME_D,GENDER_D,NUMBER_D,ADDR_D,MEDICAL_D,EMAIL_D,GRADE_D,DEPARTMENT
-		FROM DOCTOR_TB WHERE ID_D = #{ID_D}
+		FROM DOCTOR_TB WHERE ID_D = #{id_d}
 	</select>
 	<!-- 회원 가입 -->
 	<insert id="doctor_insert" parameterType="doctordto">
-		INSERT INTO DOCTOR_TB VALUES(#{id_d},#{pw_d},#{name_d},#{gender_d},#{number_d},#{addr_d},#{medical_d},#{email_d},#{gender_d},#{department},'L')
+		INSERT INTO DOCTOR_TB VALUES(#{id_d},#{pw_d},#{name_d},#{gender_d},#{number_d},#{addr_d},#{medical_d},#{email_d},#{grade_d},#{department},'L')
 	</insert>
 	<!-- 회원 수정 -->
 	<update id="doctor_update" parameterType="doctordto">
