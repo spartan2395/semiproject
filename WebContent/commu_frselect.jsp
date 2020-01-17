@@ -18,7 +18,13 @@
 						  float: left; line-height: 1.3; border-top: 1px solid #7e7e7e; background-color: #f9f9f9;
 						  padding: 37px 27px 30px; word-break: break-all;}
 	.frboardselectWrap .meminfo{float: left; width: 100%; height: 35px; border-top: 1px solid #e3e3e3; border-bottom: 1px solid #e3e3e3;}
-	.frboardselectWrap .meminfo span{float: left; margin-left: 27px; height: 100%; font-size: 13px; }
+	.frboardselectWrap .meminfo span{float: left; margin-left: 27px; height: 100%; font-size: 13px;}
+	.frboardselectWrap .meminfo .sysinfo{float: right;}
+	.frboardselectWrap .meminfo .sysinfo p{float: left; font-size: 12px; color: #aaa; margin-right: 25px; line-height: 1; margin-top: 10px;}
+	.frboardselectWrap .meminfo .sysinfo p img{margin-right: 4px; vertical-align: middle; margin-bottom: 2px;}
+	.frboardselectWrap .meminfo .sysinfo p.last{margin-right: 27px;}
+	.frboardselectWrap .text{float: left; width: 1000px; margin-top: 40px; margin-left: 27px; font-size: 16px;
+   							 color: #333; line-height: 26px;margin-bottom: 40px; word-break: break-all; display: block;}
 	
 </style>
 </head>
@@ -39,7 +45,20 @@
 		<h2>글제목 넣어주세요</h2>
 		<div class="meminfo">
 			<span>아이디자리</span>
-		
+			<div class="sysinfo">
+				<p>
+					<img alt="조회수" src="image/eye_new.png">
+					조회수자리
+				</p>
+				<p class="last">
+					<img alt="작성시간" src="image/sub_date_new.png">
+					시간자리
+				</p>
+			</div>
+		</div>
+		<div class="text">
+			<p>글내용</p>
+			
 		</div>
 		
 		
