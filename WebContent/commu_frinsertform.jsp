@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src= "/semi_prj/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <style type="text/css">
@@ -30,7 +31,8 @@
 	
 	<div class="frboardinsertWrap">
 		<h1><span>자유게시판</span>새 글을 작성해 주세요</h1>
-			<form action="" method="post">
+			<form action="BoardFrServlet" method="post">
+				<input type = "hidden" name = "command" value = "insertres"/>
 				<table>
 					<colgroup>
 						<col width="192px">
@@ -38,7 +40,7 @@
 					</colgroup>	
 						<tr>
 							<th>ID</th>
-							<td>아무개</td>
+							<td><input type = "text" name = "id_u" value = "788" readonly="readonly"/></td>
 						</tr>
 						<tr>
 							<th>제목</th>
@@ -46,7 +48,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea rows="0" cols="0" name="content"></textarea></td>
+							<td><textarea id = "editor_ck" name="content"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="right">
@@ -59,6 +61,10 @@
 				</table>			
 			</form>
 	</div>
+	<script>
+		CKEDITOR.replace('editor_ck', {
+		});
+	</script>
 	
 	
 

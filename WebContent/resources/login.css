@@ -82,10 +82,11 @@ input{
 
 .logincell{
     vertical-align: middle;
-    background-color: #f14a3b;
+    background-color: gray;
     text-align: center;
     width: fit-content;
     height: fit-content;
+    
 }
 
 .loginbtn{
@@ -95,7 +96,7 @@ input{
     color: white;
     width: 100px;
     height: 100px;
-    cursor: pointer;
+    
 }
 
 .register{

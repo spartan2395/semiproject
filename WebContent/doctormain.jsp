@@ -22,6 +22,7 @@
 	
 	<div class="mainVisual">
 		<div class="left" style="width: 50%; height:100%; left: 0%;">
+			<span id="left2" style=""></span>
 		</div>
 		<div class="right" style="width: 50%; height:100px; left: 50%">
 		</div>

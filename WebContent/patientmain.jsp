@@ -23,14 +23,9 @@
 </head>
 <body>
 
-
-
-
 	<div class="wrap">
 		<%@include file="form/header.jsp" %>
 
-
-  	
 	   <div class="mainVisual">
 	      <div class="left">
 	      	<span id="left2" style="width: 1300px; height: 840px;"></span>
@@ -66,7 +61,7 @@
 	         </div>
 	         <div class="textview">
 	            <a href="#">
-	               <h2>가까운 병원 찾기</h2>
+	               <h2>예약하기</h2>
 	            </a>
 	            <a href="#">
 	               <h2>왕진신청</h2>
