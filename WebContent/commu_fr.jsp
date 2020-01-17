@@ -23,6 +23,7 @@
 <%
 	BoardFrDao dao = new BoardFrDao();
 	List<BoardFrDto> list=dao.boardFrList();
+	
 %>
 <body>
 	<%@ include file="form/header.jsp" %>
@@ -64,11 +65,11 @@
 				for(int i=0;i<list.size();i++){
 %>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td><%=list.get(i).getBoard_no() %></td>
+						<td><a href="commu_fr_detail.jsp?no=<%=list.get(i).getBoard_no() %>"><%=list.get(i).getTitle()  %></a></td>
+						<td><%=list.get(i).getId_u()  %></td>
+						<td><%=list.get(i).getRegdate() %></td>
+						<td><%=list.get(i).getViews()  %></td>
 					</tr>
 <%
 				}
@@ -76,7 +77,7 @@
 %>
 			<tr>
 				<td colspan="5" align="right">
-					<button onclick="location.href='BoardFrServlet?command=insert'">글쓰기</button>
+					<button onclick="location.href='BoardFrServlet?command=insertform'">글쓰기</button>
 				</td>
 			</tr>
 				</tbody>		
