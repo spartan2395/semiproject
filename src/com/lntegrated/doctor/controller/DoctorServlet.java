@@ -75,6 +75,11 @@ public class DoctorServlet extends HttpServlet {
 					response.getWriter().println(0);
 				}
 				break;
+			case "test" : 
+				String id = request.getParameter("id");
+				String email = request.getParameter("email");
+				
+				System.out.println(id+","+email);
 		}
 	}
 
