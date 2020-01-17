@@ -25,7 +25,7 @@ public class NoticeServlet extends HttpServlet {
    
     public NoticeServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        dao = new NoticeDao();
     }
 
 	

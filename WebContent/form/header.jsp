@@ -82,7 +82,7 @@ function menuHeader(){
 					<div class="menuDepth" style="display: none;">
 						<ul>
 							<li>
-								<a href="#">공지사항</a>
+								<a href="NoticeServlet?command=list">공지사항</a>
 							</li>
 							<li>
 								<a href="#">1:1 문의</a>

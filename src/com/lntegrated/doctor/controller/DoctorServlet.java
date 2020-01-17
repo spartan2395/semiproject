@@ -47,7 +47,7 @@ public class DoctorServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		
 		String command = request.getParameter("command");
-		
+		DoctorDto dto = null;
 		switch(command) {
 			case "insert" :
 				String grade = "";
@@ -67,19 +67,24 @@ public class DoctorServlet extends HttpServlet {
 				}
 			break;
 			case "idchk" : 
-				DoctorDto dto = null;
-						dto = dao.doctorInfo(request.getParameter("id").replace(" ", ""));
+					dto = dao.doctorInfo(request.getParameter("id").replace(" ", ""));
 				if(dto != null) {
 					response.getWriter().println(1);	
 				}else {
 					response.getWriter().println(0);
 				}
+			break;
+			
+			case "login":
+				dto = dao.doctorLogin(request.getParameter("id"), request.getParameter("pw"));
+				System.out.println("servelt: "+request.getParameter("id")+ request.getParameter("pw"));
+				if (dto != null) {
+					response.getWriter().println("");
+				} else {
+					System.out.println("dto null");
+					response.getWriter().println("아이디와 패스워드를 확인해 주세요");
+				}
 				break;
-			case "test" : 
-				String id = request.getParameter("id");
-				String email = request.getParameter("email");
-				
-				System.out.println(id+","+email);
 		}
 	}
 
