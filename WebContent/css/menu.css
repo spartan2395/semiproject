@@ -10,14 +10,16 @@
 	#headerWrap .menuDepth{margin-top: 20px;}
 	#headerWrap .menuDepth ul>li>a{color: white; font-size: 12pt; padding-top: 15px;}
 	
-	/*인사말*/
+	
+	/*menu header*/
 	.headMenu{position: relative; top: 90px; left: 0; right: 0; z-index: 5;
     		  border-top: 1px solid #e6e3df; background: #fff;}
     .headMenu ul{overflow: hidden; float: left; padding: 34px 0;}
     .headMenu ul li{float: left;}
     .headMenu ul li + li { margin-left: 32px;}
-    .headMenu h1{float: left; height: 64px; margin: 12px 48px 0 32px; font-size: 16pt;
+    .headMenu h1{float: left; height: 64px; margin: 12px 48px 0 230px; font-size: 16pt;
    				 color: #333; font-weight: 450; line-height: 64px; color: orange;}
+	/*인사말*/
    	#headerWrap .bgDepth {top: 94px; background: rgb(255,224,157);}
    	.helloWrap{position: relative; width: 1000px; margin: 0 auto; padding-bottom: 130px; margin-top: 130px;}
    	.helloWrap h1{padding: 59px 0 58px; font-weight: 100; font-size: 30px; line-height: 40px;}
