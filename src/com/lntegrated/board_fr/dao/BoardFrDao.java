@@ -9,7 +9,7 @@ import com.lntegrated.board_fr.dto.BoardFrDto;
 
 public class BoardFrDao extends SqlConfig{
 	private SqlSession session = null;
-	private String namespace = "";
+	private String namespace = "com.board_fr.mapper.";
 	//�Խñ� ��ü ����Ʈ
 	public List<BoardFrDto> boardFrList(){
 		List<BoardFrDto> list = null;
@@ -60,6 +60,7 @@ public class BoardFrDao extends SqlConfig{
 			}
 		}catch(Exception e) {
 			System.out.println("Board_Fr_Insert ERROR");
+			e.printStackTrace();
 		}finally {
 			session.close();
 		}
