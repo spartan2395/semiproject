@@ -7,19 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
 
-	#headerWrap{width: 100%; height: 94px; background: none; transistion: background .3s ease; z-index: 10; position: absolute;}
-	#headerWrap.on { background:rgb(255,224,157);}
-	#headerWrap a img{float: left; width: 151px; height: 34px; margin-top: 30px; margin-left: 30px;}
-	#headerWrap .menu{float: left; position: relative; margin-top: 25px; margin-left: 45px;}
-	#headerWrap .menu>ul>li{float: left; margin-right: 50px;}
-	#headerWrap .menu > ul > li > a { color:orange; font-size:18pt; line-height:55px;}
-	#headerWrap .menuDepth{margin-top: 20px;}
-	#headerWrap .menuDepth ul>li>a{color: white; font-size: 12pt; padding-top: 15px;}
-	
-
-</style>
 <script type="text/javascript">
 
 $(function(){
