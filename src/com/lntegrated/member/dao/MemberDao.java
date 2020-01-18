@@ -1,7 +1,10 @@
 package com.lntegrated.member.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.Integrated.db.SqlConfig;
@@ -10,6 +13,23 @@ import com.lntegrated.member.dto.MemberDto;
 public class MemberDao extends SqlConfig{
 	SqlSession session = null;
 	String namespace = "com.lntegrated.member.";
+	
+	public MemberDto memberlogin(String id_u, String pw_u) {
+		MemberDto dto = null;
+		Map<String, String> m = new HashMap<String, String>();
+		m.put("id_u",id_u);
+		m.put("pw_u",pw_u);
+		try {
+			session = getSessionFactory("member/member_config.xml").openSession();
+			dto = session.selectOne(namespace+"memberlogin",m);
+		} catch (Exception e) {
+			System.out.println("memberLogin ERROR");
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return dto;
+	}
 	//ȸ�� ����Ʈ ( Ȥ�� ���� �߰� )
 	public List<MemberDto> memberList(){
 		List<MemberDto> list = new ArrayList<MemberDto>();
@@ -30,7 +50,6 @@ public class MemberDao extends SqlConfig{
 			session = getSessionFactory("member/member_config.xml").openSession();
 			dto = session.selectOne(namespace+"memberinfo",id_u);
 		}catch(Exception e) {
-			e.printStackTrace();
 			System.out.println("Member_Info ERROR");
 		}finally {
 			session.close();
@@ -48,7 +67,6 @@ public class MemberDao extends SqlConfig{
 			}
 		}catch(Exception e) {
 			System.out.println("Member_Insert ERROR");
-			e.printStackTrace();
 		}finally {
 			session.close();
 		}

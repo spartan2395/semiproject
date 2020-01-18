@@ -1,11 +1,18 @@
 package com.lntegrated.board_fr.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.lntegrated.board_fr.dao.BoardFrDao;
+import com.lntegrated.board_fr.dto.BoardFrDto;
 
 /**
  * Servlet implementation class BoardFrServlet
@@ -28,6 +35,35 @@ public class BoardFrServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
+		
+		String command = request.getParameter("command");
+		BoardFrDao dao = new BoardFrDao();
+		
+		
+		if(command.equals("boardlist")) {
+			List<BoardFrDto> list = dao.boardFrList();
+			request.setAttribute("list", list);
+			
+			dispatch("commu_fr.jsp", request, response);
+		}
+		else if(command.equals("insertform")) {
+			dispatch("commu_frinsertform.jsp", request, response);
+		}
+		else if(command.equals("insertres")) {
+			String id_u = request.getParameter("id_u");
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			BoardFrDto dto = new BoardFrDto(id_u, title, content);
+			
+			int res = dao.boardInsert(dto);
+			if(res > 0) {
+				jsResponse("작성되었습니다.", "commu_fr.jsp", response);
+			}
+			else {
+				jsResponse("작성 실패", "commu_fr.jsp", response);
+			}
+		}
+		
 	}
 
 	/**
@@ -39,5 +75,16 @@ public class BoardFrServlet extends HttpServlet {
 		
 		doGet(request, response);
 	}
-
+	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatch = request.getRequestDispatcher(url);
+		dispatch.forward(request, response);
+	}
+	public void jsResponse(String msg, String url, HttpServletResponse response) throws IOException {
+		String s = "<script type = 'text/javascript'>"
+					+ "alert('" + msg + "');"
+					+ "location.href = '"+url+"';"
+					+ "</script>";
+		PrintWriter out = response.getWriter();
+		out.println(s);
+	}
 }
