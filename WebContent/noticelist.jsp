@@ -78,8 +78,9 @@
 					<td><%=list.get(i).getNt_seq() %></td>		
 					<td><%=list.get(i).getId_d() %></td>		
 					<td><%=list.get(i).getMedical_d() %></td>		
-					<td><a href="NoticeServlet?command=one&Nt_seq<%=list.get(i).getNt_seq() %>"><%=list.get(i).getTitle() %></a></td>		
+					<td><a href="NoticeServlet?command=one&nt_seq=<%=list.get(i).getNt_seq() %>"><%=list.get(i).getTitle() %></a></td>		
 					<td><%=list.get(i).getRegdate() %></td>	
+				</tr>
 					
 <%
 		}
