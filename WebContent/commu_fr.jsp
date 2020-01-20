@@ -32,7 +32,7 @@
 		<h1>커뮤니티</h1>
 		<ul>
 			<li><a href="">자유게시판</a></li>
-			<li><a href="">약제정보공유</a></li>
+			<li><a href="BoardFrServlet?command=">약제정보공유</a></li>
 		</ul>
 	</div>
 	
