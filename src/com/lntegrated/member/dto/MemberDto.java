@@ -10,7 +10,7 @@ public class MemberDto {
 	private String email_u;
 	private String activation;
 	
-	//¸¶ÀÌÆäÀÌÁö Á¤º¸
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public MemberDto(String id_u , String pw_u, String name_u, String gender_u,
 			String number_u,String addr_u,String email_u,String activation) {
 		this.id_u = id_u;
@@ -22,7 +22,7 @@ public class MemberDto {
 		this.email_u = email_u;
 		this.activation = activation;
 	}
-	// È¸¿ø °¡ÀÔ AND Á¤º¸ ¼öÁ¤
+	// È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ AND ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public MemberDto(String id_u,String pw_u,String name_u,String gender_u,
 			String number_u,String addr_u,String email_u) {
 		this.id_u = id_u;
