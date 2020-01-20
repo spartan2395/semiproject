@@ -14,14 +14,15 @@
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <style type="text/css">
-	.frboardWrap{width: 1000px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.frboardWrap{width: 1100px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
 	.frboardWrap h1{padding: 59px 0 30px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 	.board_search_wrap {float: right; margin-right: 29px; padding-bottom: 10px;position: relative;}
 	.word_input input {width: 169px; height: 38px; line-height: 38px; background-color: #fff; border: 1px solid #e3e3e3;
     				   padding: 0 29px 0 20px; float: left;}
 	.word_input span.btn {position: absolute; right: 8px; top: 8px; height: 21px;}
 	.word_input span.btn img {float: left;}
-	
+	.frboardList table{width: 100%; margin-top: 56px; text-align: center; font-size: 16px; font-weight: 300; 
+					   border-top: 1px solid #9c836a; border-bottom: 1px solid #c6b5a4; }
 	
 </style>
 </head>
