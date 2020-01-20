@@ -46,6 +46,14 @@ public class BoardFrServlet extends HttpServlet {
 			
 			dispatch("commu_fr.jsp", request, response);
 		}
+		else if(command.equals("detail")) {
+			int board_no = Integer.parseInt(request.getParameter("board_no"));
+			BoardFrDto dto = dao.boardFrInfo(board_no);
+			request.setAttribute("dto", dto);
+			
+			dispatch("commu_frselect.jsp", request, response);
+			
+		}
 		else if(command.equals("insertform")) {
 			dispatch("commu_frinsertform.jsp", request, response);
 		}

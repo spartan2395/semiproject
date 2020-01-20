@@ -46,10 +46,10 @@ public class NoticeServlet extends HttpServlet {
 			int nt_seq = Integer.parseInt(request.getParameter("nt_seq"));
 			NoticeDto dto = dao.notice_Info(nt_seq);
 			request.setAttribute("dto", dto);
-			dispatch("noticeInfo.jsp", request, response);
+			dispatch("notice_info.jsp", request, response);
 			
 		}else if(command.equals("writeform")) {
-			response.sendRedirect("notice_write.jsp");
+			dispatch("notice_write.jsp", request, response);
 			
 		}else if(command.equals("write")) {
 			String id_d = request.getParameter("writer");
@@ -66,7 +66,7 @@ public class NoticeServlet extends HttpServlet {
 			}
 			
 		}else if(command.equals("updateform")) {
-			int nt_seq = Integer.parseInt(request.getParameter("ne_seq"));
+			int nt_seq = Integer.parseInt(request.getParameter("nt_seq"));
 			NoticeDto dto = dao.notice_Info(nt_seq);
 			request.setAttribute("dto", dto);
 			dispatch("notice_update.jsp", request, response);
