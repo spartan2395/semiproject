@@ -50,7 +50,7 @@
 		
 		<ul>
 			<li><a href="">자유게시판</a></li>
-			<li><a href="">약제정보공유</a></li>
+			<li><a href="BoardFrServlet?command=">약제정보공유</a></li>
 		</ul>
 	</div>
 	
@@ -84,7 +84,7 @@
 %>
 					<tr>
 						<td><%=list.get(i).getBoard_no() %></td>
-						<td><a href="BoardFrServlet?command=select&board_no=<%=list.get(i).getBoard_no() %>"><%=list.get(i).getTitle()  %></a></td>
+						<td><a href="BoardFrServlet?command=detail&board_no=<%=list.get(i).getBoard_no() %>"><%=list.get(i).getTitle()  %></a></td>
 						<td><%=list.get(i).getId_u()  %></td>
 						<td><%=list.get(i).getRegdate() %></td>
 						<td><%=list.get(i).getViews()  %></td>
