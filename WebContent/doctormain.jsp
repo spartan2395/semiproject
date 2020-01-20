@@ -9,7 +9,9 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
+
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/main.js">
 
 	
 <script type="text/javascript">
@@ -21,16 +23,17 @@
 	<%@ include file="form/header.jsp" %>
 	
 	<div class="mainVisual">
-		<div class="left" style="width: 50%; height:100%; left: 0%;">
-			<span id="left2" style=""></span>
+		<div class="left" >
+			<span id="left2" style="width:1280px; height: 840px;"></span>
 		</div>
-		<div class="right" style="width: 50%; height:100px; left: 50%">
+		<div class="right" style="width: 50%; height:840px; left: 50%">
+			<span id="right2" style="width: 1280px; height: 840px; left: -100%"></span>
 		</div>
 	</div>
 	
-	<div class="main" style="height: 100%;">
+	<div class="main" ">
 		<div class="left">
-			<div class="textbox" style="top: 221.5px;">
+			<div class="textbox" >
 				<p>내 병원 정보</p>
 			</div>
 <!--		<div class="textview">
@@ -43,7 +46,7 @@
 			</div>		-->
 		</div>
 		<div class="right">
-			<div class="textbox" style="top: 221.5px;">
+			<div class="textbox" ">
 				<p>예약 확인</p>
 			</div>
 			<div class="textview">
