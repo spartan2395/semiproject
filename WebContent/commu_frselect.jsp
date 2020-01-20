@@ -42,22 +42,22 @@
 	<div class="frboardselectWrap">
 		<h1>자유게시판</h1>
 		
-		<h2>글제목 넣어주세요</h2>
+		<h2>${dto.title }</h2>
 		<div class="meminfo">
-			<span>아이디자리</span>
+			<span>${dto.id_u }</span>
 			<div class="sysinfo">
 				<p>
 					<img alt="조회수" src="image/eye_new.png">
-					조회수자리
+					${dto.views }
 				</p>
 				<p class="last">
 					<img alt="작성시간" src="image/sub_date_new.png">
-					시간자리
+					${dto.regdate }
 				</p>
 			</div>
 		</div>
 		<div class="text">
-			<p>글내용</p>
+			<p>${dto.content }</p>
 			
 		</div>
 		
