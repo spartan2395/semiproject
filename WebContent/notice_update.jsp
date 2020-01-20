@@ -51,98 +51,59 @@
 		<h1>고객센터</h1>
 
 		<ul>
-
 			<li><a href="noticelist.jsp">공지사항</a></li>
-
 			<li><a href="#">1:1 문의</a></li>
-
 			<li><a href="#">FAQ</a></li>
-
 		</ul>
 
 	</div>
 
-	
 
 	<div class="noticeboardupdateWrap">
-
 		<h1>공지사항 수정</h1>
-
 			<form action="NoticeServlet" method="post">
-
 			<input type="hidden" name="command" value="update"/>
-
 			<input type="hidden" name="nt_seq" value="<%=dto.getNt_seq()%>">
-
 				<table border="1">
 
 					<colgroup>
 
 						<col width="192px">
-
 						<col width="*">
 
 					</colgroup>
-
 						<tr>
-
 						<th>작성자</th>
-
 						<td><input type="text" name="writer" value="<%=dto.getId_d()%>"> </td>
-
 					</tr>
-
 					<tr>
-
 						<th>병원이름</th>
-
 						<td><input type="text" name="medical" value="<%=dto.getMedical_d()%>"> </td>
-
 					</tr>
-
 					<tr>
-
 						<th>제목</th>
-
 						<td><input type="text" name="title" value="<%=dto.getTitle()%>"></td>
-
 					</tr>
-
 					<tr>
-
 						<th>내용</th>
-
 						<td><textarea id = "editor_ck" rows="10" cols="60" name="content"><%= dto.getContent() %></textarea> </td>
-
 					</tr>	
-
 					<tr>
-
 						<td colspan="2">
-
 							<input type="submit" value="update">
-
 							<input type="button" value="back" onclick="location.href='NoticeServlet?command=list'">
-
 						</td>
-
 					</tr>
-
-							
 
 				</table>
 
-			
-
 			</form>
-
 	</div>
 	<script>
 		CKEDITOR.replace('editor_ck', {
 		});
 	</script>
 
- 
 
 </body>
 
