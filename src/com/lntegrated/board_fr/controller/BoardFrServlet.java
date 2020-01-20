@@ -54,7 +54,7 @@ public class BoardFrServlet extends HttpServlet {
 			dispatch("commu_frselect.jsp", request, response);
 		}
 		else if(command.equals("insertform")) {
-			dispatch("commu_frinsertform.jsp", request, response);
+			dispatch("commu_frinsert.jsp", request, response);
 		}
 		else if(command.equals("insertres")) {
 			String id_u = request.getParameter("id_u");
