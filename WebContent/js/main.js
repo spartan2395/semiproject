@@ -27,7 +27,7 @@ $(function(){
 				//$(this).addclass('on').siblings().addClass('off');
 				$('.left >.textview').stop().slideDown('fast');
 				$('.mainVisual  >div').eq(idx).addClass('show').stop().animate({'left' : '0', 'width' : '100%'},900).find('>span')
-				.stop().animate({'left':0},900);
+				.stop().animate({'left':'0'},900);
 				$('.right >.textbox').hide();
 				
 			},function(){

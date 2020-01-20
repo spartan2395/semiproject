@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	
-	<div class="main" ">
+	<div class="main" >
 		<div class="left">
 			<div class="textbox" >
 				<p>내 병원 정보</p>

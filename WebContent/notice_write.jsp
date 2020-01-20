@@ -8,12 +8,11 @@
 <title>Insert title here</title>
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src= "/semi_prj/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.noticeboardinsertWrap{width: 1000px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.noticeboardinsertWrap{width: 1000px; height:100% margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
 	.noticeboardinsertWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 </style>
 
@@ -43,11 +42,11 @@
 					</colgroup>	
 					<tr>
 						<th>작성자</th>
-						<td><input type="text" name="writer" value = "nexon" readonly = "readonly"> </td>
+						<td><input type="text" name="writer"> </td>
 					</tr>
 					<tr>
 						<th>병원이름</th>
-						<td><input type="text" name="medical" value = "영원한등대" readonly = "readonly"> </td>
+						<td><input type="text" name="medical"> </td>
 					</tr>
 					<tr>
 						<th>제목</th>
@@ -55,7 +54,7 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea id = "editor_ck" rows="10" cols="60" name="content"></textarea> </td>
+						<td><textarea rows="10" cols="60" name="content"></textarea> </td>
 					</tr>
 					<tr>
 						<td colspan="2" align="right">
@@ -67,11 +66,6 @@
 			</form>
 	
 	</div>
-	
-	<script>
-		CKEDITOR.replace('editor_ck', {
-		});
-	</script>
 	
 	
 </body>

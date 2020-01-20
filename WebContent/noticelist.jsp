@@ -23,14 +23,14 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.noticeboardWrap{width: 1000px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.noticeboardWrap{width: 1000px; height:100%;  margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
 	.noticeboardWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 </style>
 
 </head>
 <%
-	NoticeDao dao = new NoticeDao();
-	List<NoticeDto> list = dao.notice_List();
+
+	List<NoticeDto> list = (List<NoticeDto>)request.getAttribute("list");
 %>
 <body>
 
@@ -64,7 +64,7 @@
 				</tr>
 				
 <%
-	if(list.size() == 0) {
+	if(list == null || list.size() == 0) {
 %>		
 				<tr>
 					<td colspan="5" >---------작성된 글이 없습니다.---------</td>
@@ -80,7 +80,6 @@
 					<td><%=list.get(i).getMedical_d() %></td>		
 					<td><a href="NoticeServlet?command=one&nt_seq=<%=list.get(i).getNt_seq() %>"><%=list.get(i).getTitle() %></a></td>		
 					<td><%=list.get(i).getRegdate() %></td>	
-				</tr>
 					
 <%
 		}
