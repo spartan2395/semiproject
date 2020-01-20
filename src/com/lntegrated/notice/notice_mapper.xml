@@ -20,8 +20,8 @@
   
   <!-- 공지사항 수정 -->
   <update id="notice_update" parameterType="noticedto">
-  	UPDATE NOTICE SET TITLE = #{title} , CONTENT = #{content} , REGDATE = #{regdate} , VIEWS = #{views}
-  	WHERE ID_D = #{id_d}
+  	UPDATE NOTICE SET TITLE = #{title} , CONTENT = #{content}
+  	WHERE NT_SEQ = #{nt_seq}
   </update>
   
   <update id = "notice_views_update" parameterType="String">
