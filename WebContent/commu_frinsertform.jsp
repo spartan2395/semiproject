@@ -44,11 +44,11 @@
 						</tr>
 						<tr>
 							<th>제목</th>
-							<td><input type="text" name="title"></td>
+							<td><input type="text" name="title" required="required"></td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea id = "editor_ck" name="content"></textarea></td>
+							<td><textarea id = "editor_ck" name="content" required="required"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="right">
