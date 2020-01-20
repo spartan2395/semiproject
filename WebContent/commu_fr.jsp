@@ -15,14 +15,13 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <style type="text/css">
 	.frboardWrap{width: 1000px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
-	.frboardWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
-	.board_search_wrap {float: right;margin-right: 29px; padding-top: 100px; padding-right: 140px;}
+	.frboardWrap h1{padding: 59px 0 30px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
+	.board_search_wrap {float: right; margin-right: 29px; padding-bottom: 10px;position: relative;}
 	.word_input input {width: 169px; height: 38px; line-height: 38px; background-color: #fff; border: 1px solid #e3e3e3;
     				   padding: 0 29px 0 20px; float: left;}
-	.word_input span.btn {position: absolute;right: 8px; top: 8px;height: 21px;}
+	.word_input span.btn {position: absolute; right: 8px; top: 8px; height: 21px;}
 	.word_input span.btn img {float: left;}
-	.headMenu .head_search {float: right; padding: 0 30px 0 10px; font-size: 13px; color: #333;height: 38px; line-height: 38px; border: 1px solid #e3e3e3;
-   								border-right: 0; min-width: 67px;position: relative; }
+	
 	
 </style>
 </head>
@@ -37,25 +36,22 @@
 	<div class="headMenu">
 		<h1>커뮤니티</h1>
 		
-		<div class="board_search_wrap">
-   			<span class="word_input" style="margin-top:0;">
-        		<input type="text" name="search_text">
-        		<span class="btn"><a href="#a"><img src="image/search_btn.png" alt=""></a></span>
-    		</span>
-   			<span class="head_search" style="margin-top:0;">
-      			 제목
-    		</span>
-  
-		</div>
 		
 		<ul>
 			<li><a href="">자유게시판</a></li>
-			<li><a href="BoardFrServlet?command=">약제정보공유</a></li>
+			<li><a href="">병원정보공유</a></li>
 		</ul>
 	</div>
 	
 	<div class="frboardWrap">
 		<h1>자유게시판</h1>
+		<div class="board_search_wrap">
+   			<span class="word_input" style="margin-top:0;">
+        		<input type="text" name="search_text" placeholder="제목으로검색">
+        		<span class="btn"><a href="#a"><img src="image/search_btn.png" alt=""></a></span>
+    		</span>
+  
+		</div>
 		
 		<div class="frboardList">
 			<table>
@@ -84,7 +80,7 @@
 %>
 					<tr>
 						<td><%=list.get(i).getBoard_no() %></td>
-						<td><a href="BoardFrServlet?command=detail&board_no=<%=list.get(i).getBoard_no() %>"><%=list.get(i).getTitle()  %></a></td>
+						<td><a href="BoardFrServlet?command=select&board_no=<%=list.get(i).getBoard_no() %>"><%=list.get(i).getTitle()  %></a></td>
 						<td><%=list.get(i).getId_u()  %></td>
 						<td><%=list.get(i).getRegdate() %></td>
 						<td><%=list.get(i).getViews()  %></td>
