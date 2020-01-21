@@ -22,31 +22,43 @@
 	.word_input span.btn {position: absolute; right: 8px; top: 8px; height: 21px;}
 	.word_input span.btn img {float: left;}
 	.frboardList table{width: 100%; margin-top: 56px; text-align: center; font-size: 16px; font-weight: 300; 
+	.frboardList table{width: 100%; margin-top: 56px; text-align: center; font-size: 16px; font-weight: 300;
     				   border-top: 1px solid #9c836a; border-bottom: 1px solid #c6b5a4;}
     .frboardList table th{position: relative; height: 60px; font-weight: 300; color: #9c836a;}
 	/* .frboardList table thead th:before {display: block; content: ''; position: absolute; top: 23px; 
+	/* .frboardList table thead th:before {display: block; content: ''; position: absolute; top: 23px;
 						  right: 0px; height: 16px; width: 1px; background-color: #e6e3df;} */
 	div.frboardList table tbody tr:first-child{border-top: 1px solid #e6e3df;}
 	div.frboardList table tbody tr {border-top: 1px solid #f4f2ef; height: 60px;}
 	.frboardWrap table button{border: 1px solid #c6b5a4; padding: 9px 15px 9px 15px; color: #c6b5a4;}
 	.frboardWrap .paginate{margin-top: 60px; text-align: center;}
 	.frboardWrap .paginate a{display: inline-block; width: 24px; height: 24px; padding: 0 3px; font-size: 14px; color: #999; 
+	.frboardWrap .paginate a{display: inline-block; width: 24px; height: 24px; padding: 0 3px; font-size: 14px; color: #999;
 							 font-weight: 300; line-height: 23px; vertical-align: top; box-sizing: unset;}
 	.frboardWrap .paginate a.direction{background: url(image/btn_paging.png) center no-repeat; text-indent: -9999px;}
 	.frboardWrap .paginate a.direction{background-position: 0 0;}
 	.frboardWrap .paginate a.direction:nth-of-type(2){background-position: 0 -24px; margin-right: 10px;}
 	.frboardWrap .paginate a.next{background-position: 0 -48px; margin-left: 10px;}
 	.frboardWrap .paginate a.direction:last-of-type{background-position: 0 -74px; margin-left: 0;}
+
+	.frboardWrap{width: 1000px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.frboardWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
+
+
+
 </style>
 </head>
 <%
 	BoardFrDao dao = new BoardFrDao();
 	List<BoardFrDto> list=dao.boardFrList();
 	
+	List<BoardFrDto> list = dao.boardFrList();
+
 %>
 <body>
 	<%@ include file="form/header.jsp" %>
 	
+
 	<div class="headMenu">
 		<h1>커뮤니티</h1>
 		
@@ -54,6 +66,7 @@
 		<ul>
 			<li><a href="">자유게시판</a></li>
 			<li><a href="">병원정보공유</a></li>
+			<li><a href="">약제정보공유</a></li>
 		</ul>
 	</div>
 	
