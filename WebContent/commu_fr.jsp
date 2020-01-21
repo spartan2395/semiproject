@@ -107,21 +107,20 @@
 %>
 					<tr>
 						<td><%=list.get(i).getBoard_no() %></td>
-						<td><a href="BoardFrServlet?command=select&board_no=<%=list.get(i).getBoard_no() %>"><%=list.get(i).getTitle()  %></a></td>
 						<td><%=list.get(i).getId_u()  %></td>
 						<td><%=list.get(i).getRegdate() %></td>
 						<td><%=list.get(i).getViews()  %></td>
 					</tr>
 <%
 				}
-			}	
+			}
 %>
 			<tr>
 				<td colspan="5" align="right">
 					<button onclick="location.href='BoardFrServlet?command=insertform'">글쓰기</button>
 				</td>
 			</tr>
-				</tbody>		
+				</tbody>
 			</table>
 		</div>
 		<div class="paginate">
@@ -131,11 +130,8 @@
 			<a href="" class="direction next"></a>
 			<a href="" class="direction next"></a>
 		</div>
-		
+
 	</div>
 
 </body>
 </html>
-
-
-
