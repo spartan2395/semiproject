@@ -35,15 +35,14 @@ window.onload = function() {
 				})
 	}
 
-// 로그인 버튼 색 변환 활성화
 	var idpwchk = document.getElementsByClassName("idpw");
 	idpwchk[0].addEventListener("input", login);
 	idpwchk[1].addEventListener("input", login);
 
-
-// 로그인 비동기 통신
+	// 로그인 비동기 통신
 	var cell = document.getElementsByClassName("logincell")[0];
-	cell.addEventListener("click", function() {
+	cell.addEventListener("click", function(event) {
+		event.stopPropagation();
 		var grade = document.getElementById("formtag").getAttribute("action");
 		$.ajax({
 			url : grade,
@@ -52,35 +51,31 @@ window.onload = function() {
 				"id" : $("#id").val(),
 				"pw" : $("#pw").val()
 			},
-			dataType : "json",
+			dataType : "text",
 			type : "post",
 			async : true,
 
 			success : function(data) {
-				$("#error").html(data.result);
-				if(data.id==undefined){
-
-				} else {
-					alert(data.id);
-					var info = JSON.stringify(data);
-					alert("info :" + info);
-					sessionStorage.setItem("data",info);
-					if(grade=="DoctorServlet"){
-						window.location.href="doctormain.jsp";
+				$("#error").html(data);
+				if (data == "") {
+					alert(data);
+					if (grade == "MemberServlet") {
+						window.location.href = "patientmain.jsp";
 					} else {
-						window.location.href="patientmain.jsp";
+						window.location.href = "doctormain.jsp";
 					}
-					
 				}
 			},
 			error : function() {
 				alert("fail");
 			}
 		})
+	}, {
+		onece : true
 	})
 }
 
-// 로그인 버튼 색 변환 활성화(함수)
+// 로그인 버튼 색 변환 활성화
 function login() {
 	var cell = document.getElementsByClassName("logincell")[0];
 	var id = document.getElementById("id").value;
@@ -97,3 +92,18 @@ function login() {
 		cell.setAttribute("title", "notready");
 	}
 }
+
+function onSignIn(googleUser) {
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log("Image URL: " + profile.getImageUrl());
+    console.log("Email: " + profile.getEmail());
+	
+    // The ID token you need to pass to your backend:
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);  
+ }
