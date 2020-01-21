@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.noticeboardupdateWrap{width: 1000px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.noticeboardupdateWrap{width: 1000px; height:100%; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
 	.noticeboardupdateWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 </style>
 
@@ -34,7 +34,7 @@
 	<div class="noticeboardupdateWrap">
 		<h1>공지사항 수정</h1>
 			<form action="NoticeServlet" method="post">
-			<input type="hidden" name="command" value="upeate"/>
+			<input type="hidden" name="command" value="update"/>
 			<input type="hidden" name="nt_seq" value="<%=dto.getNt_seq()%>">
 				<table border="1">
 					<colgroup>
