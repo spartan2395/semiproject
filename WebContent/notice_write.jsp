@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src= "/semi_prj/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
@@ -54,7 +55,7 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea rows="10" cols="60" name="content"></textarea> </td>
+						<td><textarea id = "editor_ck" rows="10" cols="60" name="content"></textarea> </td>
 					</tr>
 					<tr>
 						<td colspan="2" align="right">
@@ -66,6 +67,10 @@
 			</form>
 	
 	</div>
+	<script>
+		CKEDITOR.replace('editor_ck', {
+		});
+	</script>
 	
 	
 </body>
