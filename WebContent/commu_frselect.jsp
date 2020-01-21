@@ -18,13 +18,33 @@
 						  float: left; line-height: 1.3; border-top: 1px solid #7e7e7e; background-color: #f9f9f9;
 						  padding: 37px 27px 30px; word-break: break-all;}
 	.frboardselectWrap .meminfo{float: left; width: 100%; height: 35px; border-top: 1px solid #e3e3e3; border-bottom: 1px solid #e3e3e3;}
-	.frboardselectWrap .meminfo span{float: left; margin-left: 27px; height: 100%; font-size: 13px;}
+	.frboardselectWrap .meminfo span{float: left; margin-left: 27px; height: 100%; font-size: 13px; margin-top: 7px;}
 	.frboardselectWrap .meminfo .sysinfo{float: right;}
 	.frboardselectWrap .meminfo .sysinfo p{float: left; font-size: 12px; color: #aaa; margin-right: 25px; line-height: 1; margin-top: 10px;}
 	.frboardselectWrap .meminfo .sysinfo p img{margin-right: 4px; vertical-align: middle; margin-bottom: 2px;}
 	.frboardselectWrap .meminfo .sysinfo p.last{margin-right: 27px;}
 	.frboardselectWrap .text{float: left; width: 1000px; margin-top: 40px; margin-left: 27px; font-size: 16px;
    							 color: #333; line-height: 26px;margin-bottom: 40px; word-break: break-all; display: block;}
+<<<<<<< HEAD
+	.frboardselectWrap .text>button{border: 1px solid orange; background-color: rgba(0,0,0,0);color: orange; padding:20px; position: relative; left: 400px; top: 90px;}
+	.frboardselectWrap .text>button:hover{background-color: orange;color: white;}
+	.btn_group button{border: 1px solid orange; background-color: rgba(0,0,0,0); color: orange; padding: 5px; position:relative; top: 90px;}
+	.btn_group button:hover{background-color: orange; color: white;}
+	.reply_wrap{float: left; width: 100%; position: relative; top: 110px;}
+	.reply_title{float: left; width: 100%; height: 44px; 
+				 border-top: 1px solid #e3e3e3;background-color: #f9f9f9;line-height: 45px; padding: 10px 0;}
+	.reply_title h2 {float: left;margin-left: 27px;font-size: 16px;color: #333333;}
+	.reply_title h2 span {font-size: 16px; color: #f68400; margin-left: 5px;}
+	.reply_wrap .reply_ul{float: left; width: 100%;}
+	.reply_wrap .bottom_reply{float: left; margin-top: 40px; width: 100%; height: 205px; background-color: #e8eaee;
+   							  border: 1px solid #dcdde1;}
+   	.reply_wrap .bottom_reply .txar {float: left;padding: 20px; width: 868px;height: 90px; margin-top: 10px;
+    								 margin-left: 10px;background-color: #fff; resize: none; overflow: hidden; overflow-y: auto;}
+	.reply_wrap .btn01_g{min-width: 53px; font-size: 16px; color: #fff !important; text-align: center; background-color: #747a86;
+						 border-radius: 2px; padding: 9px 17px 9px 17px; border: 1px solid #747a86; display: inline-block; line-height: 1; float: right;
+						 position: relative; top: 10px; right: 10px;}
+=======
+>>>>>>> 이수정
 	
 </style>
 </head>

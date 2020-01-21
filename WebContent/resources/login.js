@@ -35,14 +35,15 @@ window.onload = function() {
 				})
 	}
 
+// 로그인 버튼 색 변환 활성화
 	var idpwchk = document.getElementsByClassName("idpw");
 	idpwchk[0].addEventListener("input", login);
 	idpwchk[1].addEventListener("input", login);
 
-	// 로그인 비동기 통신
+
+// 로그인 비동기 통신
 	var cell = document.getElementsByClassName("logincell")[0];
-	cell.addEventListener("click", function(event) {
-		event.stopPropagation();
+	cell.addEventListener("click", function() {
 		var grade = document.getElementById("formtag").getAttribute("action");
 		$.ajax({
 			url : grade,
@@ -51,31 +52,35 @@ window.onload = function() {
 				"id" : $("#id").val(),
 				"pw" : $("#pw").val()
 			},
-			dataType : "text",
+			dataType : "json",
 			type : "post",
 			async : true,
 
 			success : function(data) {
-				$("#error").html(data);
-				if (data == "") {
-					alert(data);
-					if (grade == "MemberServlet") {
-						window.location.href = "patientmain.jsp";
+				$("#error").html(data.result);
+				if(data.id==undefined){
+
+				} else {
+					alert(data.id);
+					var info = JSON.stringify(data);
+					alert("info :" + info);
+					sessionStorage.setItem("data",info);
+					if(grade=="DoctorServlet"){
+						window.location.href="doctormain.jsp";
 					} else {
-						window.location.href = "doctormain.jsp";
+						window.location.href="patientmain.jsp";
 					}
+					
 				}
 			},
 			error : function() {
 				alert("fail");
 			}
 		})
-	}, {
-		onece : true
 	})
 }
 
-// 로그인 버튼 색 변환 활성화
+// 로그인 버튼 색 변환 활성화(함수)
 function login() {
 	var cell = document.getElementsByClassName("logincell")[0];
 	var id = document.getElementById("id").value;
