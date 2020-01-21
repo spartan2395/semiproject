@@ -21,18 +21,15 @@
     				   padding: 0 29px 0 20px; float: left;}
 	.word_input span.btn {position: absolute; right: 8px; top: 8px; height: 21px;}
 	.word_input span.btn img {float: left;}
-	.frboardList table{width: 100%; margin-top: 56px; text-align: center; font-size: 16px; font-weight: 300; 
 	.frboardList table{width: 100%; margin-top: 56px; text-align: center; font-size: 16px; font-weight: 300;
     				   border-top: 1px solid #9c836a; border-bottom: 1px solid #c6b5a4;}
     .frboardList table th{position: relative; height: 60px; font-weight: 300; color: #9c836a;}
-	/* .frboardList table thead th:before {display: block; content: ''; position: absolute; top: 23px; 
 	/* .frboardList table thead th:before {display: block; content: ''; position: absolute; top: 23px;
 						  right: 0px; height: 16px; width: 1px; background-color: #e6e3df;} */
 	div.frboardList table tbody tr:first-child{border-top: 1px solid #e6e3df;}
 	div.frboardList table tbody tr {border-top: 1px solid #f4f2ef; height: 60px;}
 	.frboardWrap table button{border: 1px solid #c6b5a4; padding: 9px 15px 9px 15px; color: #c6b5a4;}
 	.frboardWrap .paginate{margin-top: 60px; text-align: center;}
-	.frboardWrap .paginate a{display: inline-block; width: 24px; height: 24px; padding: 0 3px; font-size: 14px; color: #999; 
 	.frboardWrap .paginate a{display: inline-block; width: 24px; height: 24px; padding: 0 3px; font-size: 14px; color: #999;
 							 font-weight: 300; line-height: 23px; vertical-align: top; box-sizing: unset;}
 	.frboardWrap .paginate a.direction{background: url(image/btn_paging.png) center no-repeat; text-indent: -9999px;}
@@ -50,42 +47,29 @@
 </head>
 <%
 	BoardFrDao dao = new BoardFrDao();
-	List<BoardFrDto> list=dao.boardFrList();
-	
 	List<BoardFrDto> list = dao.boardFrList();
 
 %>
 <body>
 	<%@ include file="form/header.jsp" %>
-	
 
 	<div class="headMenu">
 		<h1>커뮤니티</h1>
-		
-		
 		<ul>
 			<li><a href="">자유게시판</a></li>
-			<li><a href="">병원정보공유</a></li>
 			<li><a href="">약제정보공유</a></li>
 		</ul>
 	</div>
-	
+
 	<div class="frboardWrap">
 		<h1>자유게시판</h1>
-		<div class="board_search_wrap">
-   			<span class="word_input" style="margin-top:0;">
-        		<input type="text" name="search_text" placeholder="제목으로검색">
-        		<span class="btn"><a href="#a"><img src="image/search_btn.png" alt=""></a></span>
-    		</span>
-  
-		</div>
-		
+
 		<div class="frboardList">
 			<table>
 				<colgroup>
 					<col width="*">
 					<col width="192px">
-				</colgroup>	
+				</colgroup>
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -98,15 +82,16 @@
 				<tbody>
 <%
 			if(list.size()==0){
-%>				
-			<tr><th colspan="5">=====첫번째 글을 작성해 주세요^^=====</th></tr>	
-				
+%>
+			<tr><th colspan="5">=====첫번째 글을 작성해 주세요^^=====</th></tr>
+
 <%
 			} else {
 				for(int i=0;i<list.size();i++){
 %>
 					<tr>
 						<td><%=list.get(i).getBoard_no() %></td>
+						<td><a href="commu_fr_detail.jsp?no=<%=list.get(i).getBoard_no() %>"><%=list.get(i).getTitle()  %></a></td>
 						<td><%=list.get(i).getId_u()  %></td>
 						<td><%=list.get(i).getRegdate() %></td>
 						<td><%=list.get(i).getViews()  %></td>
