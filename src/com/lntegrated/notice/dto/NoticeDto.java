@@ -36,12 +36,13 @@ public class NoticeDto {
 		this.title = title;
 		this.content = content;
 	}
-
-	public NoticeDto(int nt_seq, String title, String content) {
+	
+	public NoticeDto(int nt_seq,String title , String content) {
 		this.nt_seq = nt_seq;
 		this.title = title;
 		this.content = content;
 	}
+
 	public int getNt_seq() {
 		return nt_seq;
 	}

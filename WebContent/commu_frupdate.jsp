@@ -41,15 +41,15 @@
 					</colgroup>	
 						<tr>
 							<th>ID</th>
-							<td><input type = "text" name = "id_u" value = "788" readonly="readonly"/></td>
+							<td><input type = "text" name = "id_u" value = "${dto.id_u }" readonly="readonly"/></td>
 						</tr>
 						<tr>
 							<th>제목</th>
-							<td><input type="text" name="title" required="required" value="" ></td>
+							<td><input type="text" name="title" required="required" value="${dto.title }" ></td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea id = "editor_ck" name="content" required="required">내용불러와주세요</textarea></td>
+							<td><textarea id = "editor_ck" name="content" required="required">${dto.content }</textarea></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="right">

@@ -25,7 +25,7 @@
 		<h1>커뮤니티</h1>
 		<ul>
 			<li><a href="">자유게시판</a></li>
-			<li><a href="">병원정보공유</a></li>
+			<li><a href="">약제정보공유</a></li>
 		</ul>
 	</div>
 	
@@ -44,11 +44,11 @@
 						</tr>
 						<tr>
 							<th>제목</th>
-							<td><input type="text" name="title" required="required"></td>
+							<td><input type="text" name="title"></td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea id = "editor_ck" name="content" required="required"></textarea></td>
+							<td><textarea id = "editor_ck" name="content"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="right">

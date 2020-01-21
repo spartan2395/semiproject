@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<<<<<<< HEAD
 <script type="text/javascript" src="js/main.js">
 
 	
@@ -21,6 +22,9 @@
 	}
 	
 </script>
+=======
+<script type="text/javascript" src="js/main.js"></script>
+>>>>>>> 이수정
 </head>
 <body>
 	<%@ include file="form/header.jsp" %>
@@ -30,12 +34,12 @@
 		<div class="left" >
 			<span id="left2" style="width:1280px; height: 840px;"></span>
 		</div>
-		<div class="right" style="width: 50%; height:840px; left: 50%">
+		<div class="right" >
 			<span id="right2" style="width: 1280px; height: 840px; left: -100%"></span>
 		</div>
 	</div>
 	
-	<div class="main" ">
+	<div class="main" >
 		<div class="left">
 			<div class="textbox" >
 				<p>내 병원 정보</p>
@@ -50,7 +54,7 @@
 			</div>
 		</div>
 		<div class="right">
-			<div class="textbox" ">
+			<div class="textbox" >
 				<p>예약 확인</p>
 			</div>
 			<div class="textview">
