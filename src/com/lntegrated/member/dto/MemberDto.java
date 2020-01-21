@@ -9,10 +9,11 @@ public class MemberDto {
 	private String addr_u;
 	private String email_u;
 	private String activation;
+	private String bd_u;
 	
 	//���������� ����
 	public MemberDto(String id_u , String pw_u, String name_u, String gender_u,
-			String number_u,String addr_u,String email_u,String activation) {
+			String number_u,String addr_u,String email_u,String activation,String bd_u) {
 		this.id_u = id_u;
 		this.pw_u = pw_u;
 		this.name_u = name_u;
@@ -21,10 +22,11 @@ public class MemberDto {
 		this.addr_u = addr_u;
 		this.email_u = email_u;
 		this.activation = activation;
+		this.bd_u = bd_u;
 	}
 	// ȸ�� ���� AND ���� ����
 	public MemberDto(String id_u,String pw_u,String name_u,String gender_u,
-			String number_u,String addr_u,String email_u) {
+			String number_u,String addr_u,String email_u,String bd_u) {
 		this.id_u = id_u;
 		this.pw_u = pw_u;
 		this.name_u = name_u;
@@ -32,6 +34,7 @@ public class MemberDto {
 		this.number_u = number_u;
 		this.addr_u = addr_u;
 		this.email_u = email_u;
+		this.bd_u = bd_u;
 	}
 	public MemberDto(String id_u,String activation) {
 		this.id_u = id_u;
@@ -85,6 +88,13 @@ public class MemberDto {
 	public void setActivation(String activation) {
 		this.activation = activation;
 	}
+	public String getBd_u() {
+		return bd_u;
+	}
+	public void setBd_u(String bd_u) {
+		this.bd_u = bd_u;
+	}
+	
 	
 	
 }
