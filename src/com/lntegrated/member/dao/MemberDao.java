@@ -19,9 +19,13 @@ public class MemberDao extends SqlConfig{
 		Map<String, String> m = new HashMap<String, String>();
 		m.put("id_u",id_u);
 		m.put("pw_u",pw_u);
+		System.out.println("Member dao"+id_u+pw_u);
+		System.out.println("map id: "+m.get("id_u"));
+		System.out.println("map pw: "+m.get("pw_u"));
 		try {
 			session = getSessionFactory("member/member_config.xml").openSession();
-			dto = session.selectOne(namespace+"memberlogin",m);
+			dto = session.selectOne(namespace+"member_login",m);
+			System.out.println(dto);
 		} catch (Exception e) {
 			System.out.println("memberLogin ERROR");
 			e.printStackTrace();
