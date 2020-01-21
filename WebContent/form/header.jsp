@@ -94,10 +94,10 @@ function menuHeader(){
 								<a href="NoticeServlet?command=list">공지사항</a>
 							</li>
 							<li>
-								<a href="#">1:1 문의</a>
+								<a href="InquiryServlet?command=list">1:1 문의</a>
 							</li>
 							<li>
-								<a href="#">FAQ</a>
+								<a href="FAQ.jsp">FAQ</a>
 							</li>
 						</ul>
 					</div>

@@ -11,8 +11,8 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.inquiryuodateWrap{width: 1000px; height:100%; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
-	.inquiryuodateWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
+	.inquiryupdateWrap{width: 1000px; height:100%; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.inquiryupdateWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 </style>
 </head>
 <% InquiryDto dto = (InquiryDto)request.getAttribute("dto"); %>
@@ -23,13 +23,13 @@
 		<ul>
 			<li><a href="NoticeServlet?command=list">공지사항</a></li>
 			<li><a href="InquiryServlet?command=list">1:1 문의</a></li>
-			<li><a href="#">FAQ</a></li>
+			<li><a href="FAQ.jsp">FAQ</a></li>
 		</ul>
 	</div>
-	<div class="inquiryuodateWrap">
+	<div class="inquiryupdateWrap">
 		<h1>1:1문의 수정</h1>
 			<form action="InquiryServlet" method="post">
-			<input type="hidden" name="command" value="udpate"/>
+			<input type="hidden" name="command" value="update"/>
 			<input type="hidden" name="no" value="<%=dto.getBoard_no() %>"/>
 				<table border="1">
 					<colgroup>
@@ -49,7 +49,7 @@
 							<td><textarea rows="10" cols="60" name="content"><%=dto.getContent() %></textarea> </td>
 						</tr>
 						<tr>
-							<td colspan="2" align="right">
+							<td colspan="4" align="right">
 							<input type="submit" value="수정"/>
 							<input type="button" value="목록" onclick="location.href='InquiryServlet?command=list'"> 
 							</td>
