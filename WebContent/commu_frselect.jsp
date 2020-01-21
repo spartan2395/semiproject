@@ -8,13 +8,30 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#btnReply").click(function() {
+		$.ajax({
+			method: "POST",
+			url: "CommentServlet?command=insert",
+			data: {board_no:"board_no", "content":$("#textReply").val() },
+			
+			success: function(data) {
+				alert("댓글성공");
+				
+			}
+		});
+	});
+});
+
+</script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <style type="text/css">
 
-	.frboardselectWrap{width: 1000px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.frboardselectWrap{width: 1100px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
 	.frboardselectWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
-	.frboardselectWrap h2{position: relative; width: 100%; font-size: 24px; color: #333; font-weight: 400;
+	.frboardselectWrap>h2{position: relative; width: 100%; font-size: 24px; color: #333; font-weight: 400;
 						  float: left; line-height: 1.3; border-top: 1px solid #7e7e7e; background-color: #f9f9f9;
 						  padding: 37px 27px 30px; word-break: break-all;}
 	.frboardselectWrap .meminfo{float: left; width: 100%; height: 35px; border-top: 1px solid #e3e3e3; border-bottom: 1px solid #e3e3e3;}
@@ -25,7 +42,6 @@
 	.frboardselectWrap .meminfo .sysinfo p.last{margin-right: 27px;}
 	.frboardselectWrap .text{float: left; width: 1000px; margin-top: 40px; margin-left: 27px; font-size: 16px;
    							 color: #333; line-height: 26px;margin-bottom: 40px; word-break: break-all; display: block;}
-<<<<<<< HEAD
 	.frboardselectWrap .text>button{border: 1px solid orange; background-color: rgba(0,0,0,0);color: orange; padding:20px; position: relative; left: 400px; top: 90px;}
 	.frboardselectWrap .text>button:hover{background-color: orange;color: white;}
 	.btn_group button{border: 1px solid orange; background-color: rgba(0,0,0,0); color: orange; padding: 5px; position:relative; top: 90px;}
@@ -43,8 +59,6 @@
 	.reply_wrap .btn01_g{min-width: 53px; font-size: 16px; color: #fff !important; text-align: center; background-color: #747a86;
 						 border-radius: 2px; padding: 9px 17px 9px 17px; border: 1px solid #747a86; display: inline-block; line-height: 1; float: right;
 						 position: relative; top: 10px; right: 10px;}
-=======
->>>>>>> 이수정
 	
 </style>
 </head>
@@ -55,32 +69,48 @@
 		<h1>커뮤니티</h1>
 		<ul>
 			<li><a href="">자유게시판</a></li>
-			<li><a href="">약제정보공유</a></li>
+			<li><a href="">병원정보공유</a></li>
 		</ul>
 	</div>
 	
 	<div class="frboardselectWrap">
 		<h1>자유게시판</h1>
 		
-		<h2>글제목 넣어주세요</h2>
+		<h2>${dto.title }</h2>
 		<div class="meminfo">
-			<span>아이디자리</span>
+			<span>${dto.id_u }</span>
 			<div class="sysinfo">
 				<p>
 					<img alt="조회수" src="image/eye_new.png">
-					조회수자리
+					${dto.views }
 				</p>
 				<p class="last">
 					<img alt="작성시간" src="image/sub_date_new.png">
-					시간자리
+					${dto.regdate }
 				</p>
 			</div>
 		</div>
 		<div class="text">
-			<p>글내용</p>
-			
+			<p>${dto.content }</p>
+			<button>목록</button>
 		</div>
-		
+		<div class="btn_group" align="right">
+			<button>수정</button>
+			<button>삭제</button>
+		</div>
+		<div class="reply_wrap">
+			<div class="reply_title">
+				<h2>댓글 <span>댓글개수</span></h2>
+			</div>
+			<ul class="reply_ul">
+				
+			</ul>
+			<div class="bottom_reply">
+				<textarea id = "textReply" rows="10" cols="30" class="txar" name="comment"></textarea>
+				<span><button type = "button" id = "btnReply">등록</button></span>
+			</div>
+				
+		</div>
 		
 	</div>
 
