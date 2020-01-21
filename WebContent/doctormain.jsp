@@ -15,13 +15,17 @@
 
 	
 <script type="text/javascript">
-	
+	window.onload = function () {
+		var data = JSON.parse(sessionStorage.getItem("data"));
+		alert(data.id);
+	}
 	
 </script>
 </head>
 <body>
 	<%@ include file="form/header.jsp" %>
 	
+
 	<div class="mainVisual">
 		<div class="left" >
 			<span id="left2" style="width:1280px; height: 840px;"></span>
@@ -36,14 +40,14 @@
 			<div class="textbox" >
 				<p>내 병원 정보</p>
 			</div>
-<!--		<div class="textview">
+			<div class="textview">
 				<a href="hos_info.jsp">
 					<h2>병원 정보</h2>
 				</a>
 				<a href="hos_update.jsp">
 					<h2>정보 수정</h2>
 				</a>
-			</div>		-->
+			</div>
 		</div>
 		<div class="right">
 			<div class="textbox" ">
