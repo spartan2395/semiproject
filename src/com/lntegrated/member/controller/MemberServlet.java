@@ -2,8 +2,7 @@ package com.lntegrated.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+
 import java.util.Properties;
 import java.util.Random;
 
