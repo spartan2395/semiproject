@@ -68,7 +68,7 @@ public class NoticeServlet extends HttpServlet {
 		}else if(command.equals("updateform")) {
 			int nt_seq = Integer.parseInt(request.getParameter("nt_seq"));
 			NoticeDto dto = dao.notice_Info(nt_seq);
-			System.out.println(dto.getId_d());
+			//System.out.println(dto.getId_d());
 			request.setAttribute("dto", dto);
 			dispatch("notice_update.jsp", request, response);
 			

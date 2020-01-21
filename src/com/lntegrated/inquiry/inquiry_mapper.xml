@@ -10,7 +10,7 @@
 	<select id = "inquiry_info" parameterType="int" resultType="inquirydto">
 		SELECT BOARD_NO,ID_U,TITLE,CONTENT,REGDATE,ANS_CHK FROM INQUIRY WHERE BOARD_NO = #{board_no}
 	</select>
-	<!-- 문의글 상세내용 -->
+	<!-- 문의글 작성 -->
 	<insert id = "inquiry_insert" parameterType="inquirydto">
 		INSERT INTO INQUIRY VALUES(BOARD_INQ_SEQ.NEXTVAL,#{id_u},#{title},#{content},SYSDATE,'N')
 	</insert>

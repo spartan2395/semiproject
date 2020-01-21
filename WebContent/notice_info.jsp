@@ -23,8 +23,8 @@
 	<div class="headMenu">
 		<h1>고객센터</h1>
 		<ul>
-			<li><a href="noticelist.jsp">공지사항</a></li>
-			<li><a href="#">1:1 문의</a></li>
+			<li><a href="NoticeServlet?command=list">공지사항</a></li>
+			<li><a href="InquiryServlet?command=list">1:1 문의</a></li>
 			<li><a href="#">FAQ</a></li>
 		</ul>
 	</div>
@@ -33,14 +33,13 @@
 		<h1>공지사항</h1>
 			<table border="1">
 				<colgroup>
-						<col width="192px">
-						<col width="*">
-					</colgroup>
+					<col width="192px">
+					<col width="*">
+				</colgroup>
 				<tr>
 					<th>병원이름</th>
 					<td><%=dto.getMedical_d() %></td>
 				</tr>
-				<tr>
 				<tr>
 					<th>병원이름</th>
 					<td><%=dto.getName_d() %></td>
@@ -58,6 +57,8 @@
 						<input type="button" value="수정" onclick="location.href='NoticeServlet?command=updateform&nt_seq=<%=dto.getNt_seq()%>'"/>
 						<input type="button" value="삭제" onclick="location.href='NoticeServlet?command=delete&nt_seq=<%=dto.getNt_seq()%>'"/>
 						<input type="button" value="목록" onclick="location.href='NoticeServlet?command=list'">
+					</td>
+				</tr>
 			</table>
 	
 	</div>

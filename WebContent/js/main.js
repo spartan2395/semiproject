@@ -6,8 +6,12 @@ $(function(){
 	   $('#headerWrap .menu').hover(function(){
 	      $('#headerWrap').addClass('on');
 	      //$('#headerWrap .menuDepth').not($(this).next('.menuDepth')).stop().hide();
-	      $('.menuDepth').show();
-	      $('#headerWrap .bgDepth').show();
+	      $('#headerWrap .menuDepth').not($(this).next('.menuDepth')).stop().hide();
+	      $('.menuDepth').stop().slideDown('fast');
+	      $('#headerWrap .bgDepth').stop().slideDown('fast');
+			
+	      //$('.menuDepth').show();
+	      //$('#headerWrap .bgDepth').show();
 	      
 	   });
 	   
