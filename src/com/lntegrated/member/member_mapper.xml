@@ -13,7 +13,7 @@
 	<!-- 로그인 정보 -->
 	<select id="member_login" parameterType="map" resultType="memberdto">
 		SELECT ID_U,PW_U,NAME_U,GENDER_U,NUMBER_U,ADDR_U,EMAIL_U,ACTIVATION FROM USER_TB
-		WHERE ID_U = #{ID_U} AND PW_D = #{PW_U}
+		WHERE ID_U = #{id_u} AND PW_U = #{pw_u}
 	</select>
 	
 	<!-- 회원가입 -->
