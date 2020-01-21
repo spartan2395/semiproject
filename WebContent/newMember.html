@@ -21,20 +21,21 @@
     </div>
     
     <div class="container">
-        <form action="MemberServlet" method="post">
+        <form action="MemberServlet" method="post" id="form">
+        <input type="hidden" name="command" value="register">
             <div id="idpw">
                 <div id="id">
                     <h4>아이디</h4>
                     <div class="wbtn">
                         <span class="wbutton"><input type="text" required name="id" class ="chk" title="notready"></span>
                         <a onclick = "idchk()" class="btna"><span class="btn">아이디 확인</span></a>
-                        <p class="required"></p>
+                        <p class="required" id="iderror"></p>
                     </div>
                 </div>
 
                 <div>
                     <h4>비밀번호</h4>
-                    <span><input type="text" pattern="^[a-zA-Z0-9]{8,16}" placeholder="8자리 이상 16자리 이하 숫자와 알파벳" class ="chk" id="pw" title="notready" required></span>
+                    <span><input type="text" placeholder="8자리 이상 16자리 이하 숫자와 알파벳" class ="chk" id="pw" title="notready" required></span>
                     <p class="required"></p>
                 </div>
                 <div>
@@ -47,13 +48,13 @@
             <div id="who">
                 <div>
                     <h4>이름</h4>
-                    <span><input type="text" required pattern="^[가-힣]*${2,}" name="name" title="notready"></span>
+                    <span><input type="text" required name="name" title="notready"></span>
                     <p class="required"></p>
                 </div>
                 <div>
                     <h4>성별</h4>
                     <span id="span1">
-                        <select required>
+                        <select name="gender" required>
                             <option value="여">여</option>
                             <option value="남">남</option>   
                         </select>
@@ -64,13 +65,13 @@
                     <h4>생년월일</h4>
                     <div id="bd_yy">
                         <span>
-                            <input type="text" placeholder="출생 년도" pattern="^[0-9]*$" maxlength="4" class="bd">
+                            <input type="text" placeholder="출생 년도" maxlength="4" class="bd" title="notready" name="bd_yy">
                         </span>
 <!--                         <p class="required"></p> -->
                     </div>
                     <div id="bd_mm">
                         <span>
-                            <select required class="bd">
+                            <select required class="bd" title="notready" name="bd_mm">
                                 <option value="" selected>월</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -89,41 +90,42 @@
                         <!-- <p class="required"></p> -->
                     </div>
                     <div id="bd_d">
-                        <span><input type="text" placeholder="일" pattern="^[0-9]*$" maxlength="2" class="bd"></span>
+                        <span><input type="number" placeholder="일" maxlength="2" max="31" class="bd" title="notready" name="bd_d"></span>
                         <!-- <p class="required"></p> -->
                     </div>
                      <p class="required" id="bderror"></p>
                 </div>
                 <div>
-                    <h4>이메일</h4>
-                    <span><input type="text" name = "email" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+$"></span>
+                    <h4>전화번호</h4>
+                     <span><input type="tel" pattern="(010)-\d{3,4}-\d{4}" placeholder="010-0000-0000" required></span>
+                 
                     <p class="required"></p>
                 </div>
                 <div>
                     <h4>주소</h4>
-                    <span><input type="text" ></span>
+                    <span><input type="text" readonly onclick="goPopup()" id="juso"></span>
                     <p class="required"></p>
                 </div>
             </div>
 
             <div id="verification">
                 <div>
-                    <h4>전화번호</h4>
+                    <h4>이메일</h4>
                     <div class="wbtn">
-                        <span class="wbutton"><input type="text" pattern="(010)-\d{3,4}-\d{4}" placeholder="000-0000-0000" required></span>
-                        <a href="" class="btna"><span class="btn">인증번호</span></a>
-                        <p class="required"></p>
+                          <span  class="wbutton"><input type="email" name = "email" title="notready" ></span>
+                        <a class="btna"><span class="btn">인증하기</span></a>
+                        <p class="required" id="emailerror"></p>
                     </div>
                 </div>
                 <div>
-                    <h4>인증번호</h4>
-                    <span><input type="text" pattern="[0-9]{4}" title="notready" class ="chk" required></span>
+                    <h4>인증코드</h4>
+                    <span><input type="text" maxlength="10" title="notready" class ="chk" id="code" required></span>
                     <p class="required"></p>
                 </div>
             </div>
 
             <div id="confirm">
-                <button class="confirmbtn"><span id="confirmspan">회원 가입</span></button>
+                <input type="submit" class="confirmbtn" value="회원 가입">
             </div>
         </form>
     </div>

@@ -71,6 +71,8 @@ select:required:focus{
     text-align: center;
     padding-top: 10px;
     margin-left: 10px;
+    cursor : pointer;
+    color : white;
 }
 
 .btna:visited, .btna:link, .btna:active{
@@ -95,6 +97,8 @@ select:required:focus{
     height: 50px;
     background-color: #75adc7;
     border: solid 1px #263e63;
+    cursor: pointer;
+    outline: none;
 }
 
 .required{

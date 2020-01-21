@@ -59,13 +59,13 @@ public class InquiryServlet extends HttpServlet {
 				jsResponse("ㅜㅜ", "InquiryServlet?command=write", response);
 			}
 		}else if(command.equals("updateform")) {
-			int no = Integer.parseInt("no");
+			int no = Integer.parseInt(request.getParameter("no"));
 			InquiryDto dto = dao.inquiryInfo(no);
 			request.setAttribute("dto", dto);
 			dispatch("inquiry_update.jsp", request, response);
 			
 		}else if(command.equals("update")) {
-			int no = Integer.parseInt("no");
+			int no = Integer.parseInt(request.getParameter("no"));
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			

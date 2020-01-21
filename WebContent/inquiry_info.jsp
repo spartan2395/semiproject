@@ -26,11 +26,11 @@
 		<ul>
 			<li><a href="NoticeServlet?command=list">공지사항</a></li>
 			<li><a href="InquiryServlet?command=list">1:1 문의</a></li>
-			<li><a href="#">FAQ</a></li>
+			<li><a href="FAQ.jsp">FAQ</a></li>
 		</ul>
 	</div>
 	
-	<div class="inquiryboardWrap">
+	<div class="inquiryinfoWrap">
 		<h1>1:1문의</h1>
 			<table border="1">
 				<colgroup>
@@ -51,7 +51,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="button" value="수정" onclick="location.href='InquiryServlet?command=updateform&no='<%=dto.getBoard_no()%>">
+						<input type="button" value="수정" onclick="location.href='InquiryServlet?command=updateform&no=<%=dto.getBoard_no()%>'">
 						<input type="button" value="답글작성" onclick="location.href='InquiryServlet?command=answer'">
 						<input type="button" value="목록" onclick="location.href='InquiryServlet?command=list'">
 					</td>
