@@ -59,18 +59,18 @@
 					</li>
 					<li class="article hide">
 						<div class="aco_li">
-							<a class="trigger">자주묻는질문2</a>
+							<a class="trigger">자주묻는질문3</a>
 						</div>
 						<div class="aco_view" style="display: none;">
-							<p>자주답변하는답변2</p>
+							<p>자주답변하는답변3</p>
 						</div>
 					</li>
 					<li class="article hide">
 						<div class="aco_li">
-							<a class="trigger">자주묻는질문2</a>
+							<a class="trigger">자주묻는질문4</a>
 						</div>
 						<div class="aco_view" style="display: none;">
-							<p>자주답변하는답변2</p>
+							<p>자주답변하는답변4</p>
 						</div>
 					</li>
 				</ul>
