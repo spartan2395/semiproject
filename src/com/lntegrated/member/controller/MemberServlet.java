@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import com.lntegrated.member.dao.MemberDao;
 import com.lntegrated.member.dto.MemberDto;
 
@@ -47,13 +49,37 @@ public class MemberServlet extends HttpServlet {
 		MemberDto dto = null;
 		switch(command) {
 		case "login" :
+			JSONObject obj = new JSONObject();
 			dto = dao.memberlogin(request.getParameter("id"), request.getParameter("pw"));
+			System.out.println("Member servelt: "+request.getParameter("id")+ request.getParameter("pw"));
+			
 			if (dto != null) {
-				response.getWriter().println("");
+				System.out.println("dto okok");
+				obj.clear();
+				obj.put("id", dto.getId_u());
+				obj.put("name", dto.getPw_u());
+				obj.put("gender", dto.getGender_u());
+				obj.put("number", dto.getNumber_u());
+				obj.put("addr", dto.getAddr_u());
+				obj.put("email",dto.getEmail_u());
+				obj.put("result", "");
+				response.getWriter().print(obj);
 			} else {
-				response.getWriter().println("아이디와 패스워드를 확인해 주세요");
+				System.out.println("dto null");
+				obj.clear();
+				obj.put("result", "아이디와 비밀번호를 확인해 주세요");
+				response.getWriter().print(obj);
 			}
 			break;
+		case "idchk":
+			System.out.println(request.getParameter("id"));
+			dto = dao.memberInfo(request.getParameter("id").replace(" ", ""));
+			
+			if(dto != null) {
+				response.getWriter().println(1);
+			} else {
+				response.getWriter().println(0);
+			}
 		}
 	}
 

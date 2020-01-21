@@ -30,7 +30,6 @@ public class NoticeDao extends SqlConfig{
 			session = getSessionFactory("notice/notice_config.xml").openSession();
 			dto = session.selectOne(namespase+"notice_info", nt_seq);
 		}catch(Exception e) {
-			e.printStackTrace();
 			System.out.println("Notice_Info ERROR");
 		}finally {
 			session.close();
@@ -64,6 +63,7 @@ public class NoticeDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Notice_Update ERROR");
 		}finally {
 			
