@@ -43,7 +43,7 @@
 
 
 
-	.frboardList table{width: 100%; margin-top: 56px; text-align: center; font-size: 16px; font-weight: 300; 
+	.frboardList table{width: 100%; margin-top: 56px; text-align: center; font-size: 16px; font-weight: 300;
 					   border-top: 1px solid #9c836a; border-bottom: 1px solid #c6b5a4; }
 	
 </style>
