@@ -46,7 +46,7 @@ public class BoardFrServlet extends HttpServlet {
 			
 			dispatch("commu_fr.jsp", request, response);
 		}
-		else if(command.equals("detail")) {
+		else if(command.equals("select")) {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
 			BoardFrDto dto = dao.boardFrInfo(board_no);
 			request.setAttribute("dto", dto);
@@ -65,10 +65,30 @@ public class BoardFrServlet extends HttpServlet {
 			
 			int res = dao.boardInsert(dto);
 			if(res > 0) {
-				jsResponse("작성되었습니다.", "commu_fr.jsp", response);
+				jsResponse("작성되었습니다.", "BoardFrServlet?command=boardlist", response);
 			}
 			else {
-				jsResponse("작성 실패", "commu_fr.jsp", response);
+				jsResponse("작성 실패", "BoardFrServlet?command=boardlist", response);
+			}
+		}
+		else if(command.equals("updateform")) {
+			dispatch("commu_frupdate", request, response);
+		}
+		else if(command.equals("updateres")) {
+			int board_no = Integer.parseInt(request.getParameter("board_no"));
+			String id_u = request.getParameter("id_u");
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			
+			
+			BoardFrDto dto = new BoardFrDto(board_no, id_u, title, content);
+			
+			int res = dao.boardUpdateInfo(dto);
+			if(res >0) {
+				jsResponse("수정되었습니다.", "BoardFrServlet?command=boardlist", response);
+			}
+			else {
+				jsResponse("수정 실패", "BoardFrServlet?command=boardlist", response);
 			}
 		}
 		
