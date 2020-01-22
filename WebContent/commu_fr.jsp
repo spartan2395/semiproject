@@ -94,7 +94,9 @@
 %>
 					<tr>
 						<td><%=list.get(i).getBoard_no() %></td>
+
 						<td><a href="BoardFrServlet?command=select&board_no=<%=list.get(i).getBoard_no() %>"><%=list.get(i).getTitle()  %></a></td>
+
 						<td><%=list.get(i).getId_u()  %></td>
 						<td><%=list.get(i).getRegdate() %></td>
 						<td><%=list.get(i).getViews()  %></td>
