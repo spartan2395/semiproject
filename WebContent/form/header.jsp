@@ -8,6 +8,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+
+<link rel="stylesheet" type="text/css" href="css/menu.css">
+<style type="text/css"></style>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/main.js">
+
 <script type="text/javascript">
 
 $(function(){
@@ -41,8 +48,10 @@ function menuHeader(){
 });
 	
 
+
 </script>
 </head>
+
 <body>
 	
 	<header id="headerWrap">
@@ -69,7 +78,7 @@ function menuHeader(){
 					<div class="menuDepth" style="display: none; ">
 						<ul>
 							<li>
-								<a href="#">자유게시판</a>
+								<a href="">자유게시판</a>
 							</li>
 							<li>
 								<a href="#">병원정보공유</a>
@@ -95,7 +104,7 @@ function menuHeader(){
 				</li>
 			</ul>		
 		</nav>
-		<div class="bgDepth" style="display: none; height: 200px; padding-top: 0px; margin-top: 0px; 
+		<div class="bgDepth" style="display: none; height: 230px; padding-top: 0px; margin-top: 0px; 
 		padding-bottom: 0px; margin-bottom: 0px;">
 		</div>
 	</header>

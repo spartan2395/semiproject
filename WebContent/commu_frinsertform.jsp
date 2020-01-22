@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src= "/semi_prj/ckeditor/ckeditor.js"></script>
+
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <style type="text/css">
@@ -25,7 +26,7 @@
 		<h1>커뮤니티</h1>
 		<ul>
 			<li><a href="">자유게시판</a></li>
-			<li><a href="">약제정보공유</a></li>
+			<li><a href="">병원정보공유</a></li>
 		</ul>
 	</div>
 	
@@ -53,7 +54,7 @@
 						<tr>
 							<td colspan="2" align="right">
 								<input type="submit" value="작성">	
-								<input type="button" value="취소" onclick="">	
+								<input type="button" value="취소" onclick="location.href = 'BoardFrSerlvet?command=boardlist'">	
 							</td>
 						</tr>
 				

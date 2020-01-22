@@ -1,4 +1,4 @@
-package com.lntegrated.comments.controller;
+package com.lntegrated.board_sh.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CommentServelt
+ * Servlet implementation class BoardShServlet
  */
-@WebServlet("/CommentServelt")
-public class CommentServelt extends HttpServlet {
+@WebServlet("/BoardShServlet")
+public class BoardShServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommentServelt() {
+    public BoardShServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,6 +28,7 @@ public class CommentServelt extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
+		doPost(request, response);
 	}
 
 	/**
@@ -35,8 +36,8 @@ public class CommentServelt extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=utf-8");
-		doGet(request, response);
+		response.setContentType("text/html;charset=utf-8");		
+		
 	}
 
 }

@@ -14,7 +14,8 @@ public class NoticeDto {
 	private String grade_d;
 	private String department;
 	
-	//°øÁö»çÇ× °Ë»ö
+	
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	public NoticeDto(int nt_seq,String id_d,String title, String content,
 			Date regdate,int views, String name_d, String medical_d , String grade_d,String department) {
 		this.nt_seq = nt_seq;
@@ -28,9 +29,10 @@ public class NoticeDto {
 		this.grade_d = grade_d;
 		this.department = department;
 	}
-	//°øÁö»çÇ× µî·Ï AND ¼öÁ¤
-	public NoticeDto(String id_d,String title ,String content) {
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ AND ï¿½ï¿½ï¿½ï¿½
+	public NoticeDto(String id_d,String medical_d,String title ,String content) {
 		this.id_d = id_d;
+		this.medical_d = medical_d;
 		this.title = title;
 		this.content = content;
 	}
