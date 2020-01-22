@@ -74,7 +74,7 @@ public class BoardFrServlet extends HttpServlet {
 			}
 		}
 		else if(command.equals("updateform")) {
-			dispatch("commu_frupdate", request, response);
+			dispatch("commu_frupdate.jsp", request, response);
 		}
 		else if(command.equals("updateres")) {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
@@ -93,6 +93,20 @@ public class BoardFrServlet extends HttpServlet {
 				jsResponse("수정 실패", "BoardFrServlet?command=boardlist", response);
 			}
 		}
+
+		else if(command.equals("delete")) {
+			int board_no = Integer.parseInt(request.getParameter("board_no"));
+
+			int res = dao.boardDelete(board_no);
+
+			if(res >0) {
+				jsResponse("삭제되었습니다.", "BoardFrServlet?command=boardlist", response);
+			}
+			else {
+				jsResponse("삭제 실패", "BoardFrServlet?command=boardlist", response);
+			}
+		}
+
 
 	}
 

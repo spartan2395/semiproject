@@ -9,16 +9,17 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+
 $(function(){
 	$("#btnReply").click(function() {
 		$.ajax({
 			method: "POST",
-			url: "CommentServlet?command=insert",
-			data: {board_no:"board_no", "content":$("#textReply").val() },
-			
+			url: "CommentServlet",
+			data: {"command":"insert" ,"board_no":$("input[id=board_no]").val() , "content":$("#textReply").val() },
+
 			success: function(data) {
 				alert("댓글성공");
-				
+				location.href = "BoardFrServlet?command=select&board_no="+$("input[id=board_no]").val();
 			}
 		});
 	});
@@ -47,7 +48,7 @@ $(function(){
 	.btn_group button{border: 1px solid orange; background-color: rgba(0,0,0,0); color: orange; padding: 5px; position:relative; top: 90px;}
 	.btn_group button:hover{background-color: orange; color: white;}
 	.reply_wrap{float: left; width: 100%; position: relative; top: 110px;}
-	.reply_title{float: left; width: 100%; height: 44px; 
+	.reply_title{float: left; width: 100%; height: 44px;
 				 border-top: 1px solid #e3e3e3;background-color: #f9f9f9;line-height: 45px; padding: 10px 0;}
 	.reply_title h2 {float: left;margin-left: 27px;font-size: 16px;color: #333333;}
 	.reply_title h2 span {font-size: 16px; color: #f68400; margin-left: 5px;}
@@ -59,23 +60,23 @@ $(function(){
 	.reply_wrap .btn01_g{min-width: 53px; font-size: 16px; color: #fff !important; text-align: center; background-color: #747a86;
 						 border-radius: 2px; padding: 9px 17px 9px 17px; border: 1px solid #747a86; display: inline-block; line-height: 1; float: right;
 						 position: relative; top: 10px; right: 10px;}
-	
+
 </style>
 </head>
 <body>
 	<%@ include file="form/header.jsp" %>
-	
+
 	<div class="headMenu">
 		<h1>커뮤니티</h1>
 		<ul>
 			<li><a href="">자유게시판</a></li>
-			<li><a href="">병원정보공유</a></li>
+			<li><a href="infoshare.jsp">병원정보공유</a></li>
 		</ul>
 	</div>
-	
+
 	<div class="frboardselectWrap">
 		<h1>자유게시판</h1>
-		
+
 		<h2>${dto.title }</h2>
 		<div class="meminfo">
 			<span>${dto.id_u }</span>
@@ -90,28 +91,34 @@ $(function(){
 				</p>
 			</div>
 		</div>
+		<input type="hidden" id = "board_no" value = "${dto.board_no}">
 		<div class="text">
 			<p>${dto.content }</p>
 			<button>목록</button>
 		</div>
 		<div class="btn_group" align="right">
-			<button>수정</button>
-			<button>삭제</button>
+
+			<button type = "button" onclick="location.href = 'BoardFrServlet?command=updateform'">수정</button>
+			<button type = "button" onclick = "location.href = 'BoardFrServlet?command=delete&board_no=${dto.board_no }'">삭제</button>
+
 		</div>
 		<div class="reply_wrap">
 			<div class="reply_title">
 				<h2>댓글 <span>댓글개수</span></h2>
 			</div>
 			<ul class="reply_ul">
-				
+				<li>
+					<p>${commList.id_u }</p>
+					<p>${commList.content_a }</p>
+				</li>
 			</ul>
 			<div class="bottom_reply">
 				<textarea id = "textReply" rows="10" cols="30" class="txar" name="comment"></textarea>
 				<span><button type = "button" id = "btnReply">등록</button></span>
 			</div>
-				
+
 		</div>
-		
+
 	</div>
 
 </body>
