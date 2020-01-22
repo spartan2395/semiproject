@@ -57,7 +57,7 @@ public class BoardFrServlet extends HttpServlet {
 		}
 
 		else if(command.equals("insertform")) {
-			dispatch("commu_frinsertform.jsp", request, response);
+			dispatch("commu_frinsert.jsp", request, response);
 		}
 		else if(command.equals("insertres")) {
 			String id_u = request.getParameter("id_u");
@@ -92,10 +92,6 @@ public class BoardFrServlet extends HttpServlet {
 			else {
 				jsResponse("수정 실패", "BoardFrServlet?command=boardlist", response);
 			}
-		}
-		else if(command.equals("delete")) {
-			int board_no = Integer.parseInt(request.getParameter("board_no"));
-			
 		}
 
 	}
