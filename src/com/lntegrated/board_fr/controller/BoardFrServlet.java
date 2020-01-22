@@ -93,11 +93,12 @@ public class BoardFrServlet extends HttpServlet {
 				jsResponse("수정 실패", "BoardFrServlet?command=boardlist", response);
 			}
 		}
+
 		else if(command.equals("delete")) {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
-			
+
 			int res = dao.boardDelete(board_no);
-			
+
 			if(res >0) {
 				jsResponse("삭제되었습니다.", "BoardFrServlet?command=boardlist", response);
 			}
@@ -105,6 +106,7 @@ public class BoardFrServlet extends HttpServlet {
 				jsResponse("삭제 실패", "BoardFrServlet?command=boardlist", response);
 			}
 		}
+
 
 	}
 
