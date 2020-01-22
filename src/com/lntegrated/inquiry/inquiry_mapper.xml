@@ -4,13 +4,13 @@
 	<!-- 문의 게시판 리스트  -->
 	<select id = "inquiry_list" resultType="inquirydto">
 		SELECT BOARD_NO,ID_U,TITLE,CONTENT,REGDATE,ANS_CHK FROM INQUIRY
-		
+		ORDER BY DESC
 	</select>
 	<!-- 문의 게시글 정보 -->
 	<select id = "inquiry_info" parameterType="int" resultType="inquirydto">
 		SELECT BOARD_NO,ID_U,TITLE,CONTENT,REGDATE,ANS_CHK FROM INQUIRY WHERE BOARD_NO = #{board_no}
 	</select>
-	<!-- 문의글 작성 -->
+	<!-- 문의글 상세내용 -->
 	<insert id = "inquiry_insert" parameterType="inquirydto">
 		INSERT INTO INQUIRY VALUES(BOARD_INQ_SEQ.NEXTVAL,#{id_u},#{title},#{content},SYSDATE,'N')
 	</insert>
@@ -22,5 +22,4 @@
 	<update id="inquiry_update_chk" parameterType="int">
 		UPDATE INQUIRY SET ANS_CHK = 'Y' WHERE BOARD_NO = #{board_no}
 	</update>
-	
-	</mapper>
+</mapper>

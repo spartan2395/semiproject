@@ -26,7 +26,7 @@
 		<h1>커뮤니티</h1>
 		<ul>
 			<li><a href="">자유게시판</a></li>
-			<li><a href="">약제정보공유</a></li>
+			<li><a href="">병원정보공유</a></li>
 		</ul>
 	</div>
 	
@@ -54,7 +54,7 @@
 						<tr>
 							<td colspan="2" align="right">
 								<input type="submit" value="작성">	
-								<input type="button" value="취소" onclick="">	
+								<input type="button" value="취소" onclick="location.href = 'BoardFrSerlvet?command=boardlist'">	
 							</td>
 						</tr>
 				
