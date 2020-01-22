@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
@@ -22,6 +23,7 @@ public class DoctorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     PrintWriter out = null;
     DoctorDao dao = null;
+    HttpSession session = null;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -76,13 +78,30 @@ public class DoctorServlet extends HttpServlet {
 			break;
 			
 			case "login":
+				JSONObject obj = new JSONObject();
 				dto = dao.doctorLogin(request.getParameter("id"), request.getParameter("pw"));
 				System.out.println("servelt: "+request.getParameter("id")+ request.getParameter("pw"));
+				
 				if (dto != null) {
-					response.getWriter().println("");
+					System.out.println("dto okok");
+					obj.clear();
+					obj.put("id", dto.getId_d());
+					obj.put("name", dto.getName_d());
+					obj.put("gender",dto.getGender_d());
+					obj.put("number", dto.getNumber_d());
+					obj.put("addr", dto.getAddr_d());
+					obj.put("medial", dto.getMedical_d());
+					obj.put("email", dto.getEmail_d());
+					obj.put("grade", dto.getGrade_d());
+					obj.put("department", dto.getDepartment());
+					
+					obj.put("result", "");
+					response.getWriter().print(obj);
 				} else {
 					System.out.println("dto null");
-					response.getWriter().println("아이디와 패스워드를 확인해 주세요");
+					obj.clear();
+					obj.put("result", "아이디와 비밀번호를 확인해 주세요");
+					response.getWriter().print(obj);
 				}
 				break;
 		}
