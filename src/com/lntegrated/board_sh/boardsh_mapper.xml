@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boardsh.mapper">
+<select id = "board_sh_list" resultType="boardshdto">
+	SELECT BOARD_SH_NO , ID_U , TITLE , CONTENT , MEDICAL_NAME,
+	REGDATE, VIEWS FROM BOARD_SH ORDER BY BOARD_SH_NO
+</select>
+
+<select id = "board_sh_info" parameterType="int" resultType="boardshdto">
+	SELECT BOARD_SH_NO , ID_U,TITLE,CONTENT,MEDICAL_NAME,REGDATE,VIEWS FROM BOARD_SH WHERE
+	BOARD_SH_NO = #{no}
+</select>
+
+<insert id="board_sh_insert" parameterType="boardshdto">
+	INSERT INTO BOARD_SH VALUES(BOARD_SH_SEQ.NEXTVAL,#{id_u},#{title},#{content},#{medical_name},SYSDATE,0)
+</insert>
+<!-- 조회수 증가 -->
+<update id = "board_sh_update_view" parameterType="int">
+	UPDATE BOARD_SH SET VIEWS = VIEWS+1 WHERE BOARD_SH_NO = #{no}
+</update>
+<!-- 내용 수정 -->
+<update id = "board_sh_update_write" parameterType="boardshdto">
+	UPDATE BOARD_SH SET TITLE = #{title} , CONTENT = #{content} , MEDICAL_NAME = #{medical_name}
+	WHERE BOARD_SH_NO = #{board_sh_no}
+</update>
+<delete id = "board_sh_delete" parameterType="int">
+	DELETE FROM BOARD_SH WHERE BOARD_SH_NO = #{no}
+</delete>
+</mapper>
