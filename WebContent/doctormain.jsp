@@ -11,7 +11,6 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-<<<<<<< HEAD
 <script type="text/javascript" src="js/main.js">
 
 	
@@ -22,9 +21,6 @@
 	}
 	
 </script>
-=======
-<script type="text/javascript" src="js/main.js"></script>
->>>>>>> 이수정
 </head>
 <body>
 	<%@ include file="form/header.jsp" %>
