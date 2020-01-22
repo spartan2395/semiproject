@@ -92,11 +92,11 @@ $(function(){
 		</div>
 		<div class="text">
 			<p>${dto.content }</p>
-			<button>목록</button>
+			<button type = "button" onclick="location.href = 'BoardFrServlet?command=boardlist'">목록</button>
 		</div>
 		<div class="btn_group" align="right">
-			<button>수정</button>
-			<button>삭제</button>
+			<button type = "button" onclick="location.href = 'BoardFrServlet?command=updateform'">수정</button>
+			<button type = "button" onclick = "location.href = 'BoardFrServlet?command=delete'">삭제</button>
 		</div>
 		<div class="reply_wrap">
 			<div class="reply_title">
