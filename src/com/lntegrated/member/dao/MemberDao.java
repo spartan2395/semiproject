@@ -14,14 +14,40 @@ public class MemberDao extends SqlConfig{
 	SqlSession session = null;
 	String namespace = "com.lntegrated.member.";
 	
+	public boolean emailchk(String email_u) {
+		boolean chk = false;
+		List<MemberDto> list = new ArrayList<MemberDto>();
+		
+		try {
+			session = getSessionFactory("member/member_config.xml").openSession();
+			list = session.selectList(namespace+"member_email",email_u);
+			if (list.size()>0) {
+				chk = false;	// 이미 사용중인 이메일 
+			} else {
+				chk = true;		// 사용 가능한 이메일 
+			}
+		} catch (Exception e) {
+			System.out.println("email check error");
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return chk;
+	}
+	
 	public MemberDto memberlogin(String id_u, String pw_u) {
 		MemberDto dto = null;
 		Map<String, String> m = new HashMap<String, String>();
 		m.put("id_u",id_u);
 		m.put("pw_u",pw_u);
+		System.out.println("Member dao"+id_u+pw_u);
+		System.out.println("map id: "+m.get("id_u"));
+		System.out.println("map pw: "+m.get("pw_u"));
 		try {
 			session = getSessionFactory("member/member_config.xml").openSession();
-			dto = session.selectOne(namespace+"memberlogin",m);
+			dto = session.selectOne(namespace+"member_login",m);
+			System.out.println(dto);
 		} catch (Exception e) {
 			System.out.println("memberLogin ERROR");
 			e.printStackTrace();

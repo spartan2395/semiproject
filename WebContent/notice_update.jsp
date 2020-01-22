@@ -8,11 +8,12 @@
 <title>Insert title here</title>
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src= "/semi_prj/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.noticeboardupdateWrap{width: 1000px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.noticeboardupdateWrap{width: 1000px; height:100%; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
 	.noticeboardupdateWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 </style>
 
@@ -26,15 +27,15 @@
 		<h1>고객센터</h1>
 		<ul>
 			<li><a href="noticelist.jsp">공지사항</a></li>
-			<li><a href="#">1:1 문의</a></li>
-			<li><a href="#">FAQ</a></li>
+			<li><a href="InquiryServlet?command=list">1:1 문의</a></li>
+			<li><a href="FAQ.jsp">FAQ</a></li>
 		</ul>
 	</div>
 	
 	<div class="noticeboardupdateWrap">
 		<h1>공지사항 수정</h1>
 			<form action="NoticeServlet" method="post">
-			<input type="hidden" name="command" value="upeate"/>
+			<input type="hidden" name="command" value="update"/>
 			<input type="hidden" name="nt_seq" value="<%=dto.getNt_seq()%>">
 				<table border="1">
 					<colgroup>
@@ -55,7 +56,7 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea rows="10" cols="60" name="content"><%= dto.getContent() %></textarea> </td>
+						<td><textarea id = "editor_ck" rows="10" cols="60" name="content"><%= dto.getContent() %></textarea> </td>
 					</tr>	
 					<tr>
 						<td colspan="2">
@@ -68,6 +69,10 @@
 			
 			</form>
 	</div>
+	<script>
+		CKEDITOR.replace('editor_ck', {
+		});
+	</script>
 
 </body>
 </html>
