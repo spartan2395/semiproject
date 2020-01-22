@@ -84,7 +84,7 @@
 				</thead>
 				<tbody>
 <%
-			if(list.size()==0){
+			if(list == null || list.size()==0){
 %>
 			<tr><th colspan="5">=====첫번째 글을 작성해 주세요^^=====</th></tr>
 
@@ -94,7 +94,7 @@
 %>
 					<tr>
 						<td><%=list.get(i).getBoard_no() %></td>
-						<td><a href="commu_frselect.jsp?no=<%=list.get(i).getBoard_no() %>"><%=list.get(i).getTitle()  %></a></td>
+						<td><a href="BoardFrServlet?command=select&board_no=<%=list.get(i).getBoard_no() %>"><%=list.get(i).getTitle()  %></a></td>
 						<td><%=list.get(i).getId_u()  %></td>
 						<td><%=list.get(i).getRegdate() %></td>
 						<td><%=list.get(i).getViews()  %></td>

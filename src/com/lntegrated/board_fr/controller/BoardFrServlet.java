@@ -93,6 +93,10 @@ public class BoardFrServlet extends HttpServlet {
 				jsResponse("수정 실패", "BoardFrServlet?command=boardlist", response);
 			}
 		}
+		else if(command.equals("delete")) {
+			int board_no = Integer.parseInt(request.getParameter("board_no"));
+			
+		}
 
 	}
 
