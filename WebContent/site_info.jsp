@@ -7,11 +7,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/menu.css?after">
+<link rel="stylesheet" type="text/css" href="css/menu.css">
 <link rel="stylesheet" type="text/css" href="css/reset.css">
-
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-
+<style type="text/css">
+	.siteinfoWrap .infoTap{margin-bottom: 48px;}
+	.infoTap ul{display: table; height: 48px; overflow: hidden; width: 100%; table-layout: fixed; border-left: 1px solid #e6e3df; }
+	.infoTap li{display: table-cell; height: 48px; vertical-align: top;}
+	.infoTap li.on a{color: #FFE09D; border-bottom-color: transparent; border-top: 1px solid #FFE09D; }
+	.infoTap li a{display: block; position: relative; height: 48px; padding: 12px 0; border-top: 1px solid #e6e3df;
+				  border-bottom: 1px solid #FFE09D; line-height: 22px; text-align: center; color: #666; vertical-align: top;}
+	.infoTap li.on a:before{content: ''; display: block; position: absolute; top: 0; left: 0;
+							bottom: -1px; width: 1px; background: #FFE09D;}
+	.infoTap li.on a:after{content: ''; display: block; position: absolute; top: 0; right: 0;
+							bottom: -1px; width: 1px; background: #FFE09D;}
+	.infoTap li a:after{content: ''; display: block; position: absolute; top: 0; right: 0; bottom: 0; width: 1px; background:#e6e3df;}
+	.tapView{display: none;}	
+	.siteinfoWrap .indiinfoView{background: linear-gradient(to right, rgba(108, 127, 61, 0.8),  rgba(255, 255, 255, 0)),
+   									  url("image/indi_info_img.jpg") no-repeat center;
+						  background-size: 1000px 302px; height: 302px; padding: 84px 0 0 40px;}
+	
+	
+</style>
 <script type="text/javascript">
 
 $(function(){
@@ -24,6 +41,7 @@ $(function(){
 					var idx = $(this).parent().index();
 					$(this).parent().addClass('on').siblings().removeClass('on');
 					$(this).closest('.infoTap').siblings('.tapView').eq(idx).show().siblings('.tapView').hide();
+					$(this).closest('.infoTap').siblings('.tapView').eq(idx).find('.slick-slider').slick('reinit');
 					return false;
 				}
 			});		
@@ -70,7 +88,6 @@ $(function(){
 		</div>
 		<!-- 의사 -->
 		<div class="tapView">
-			<div class="docinfoView"></div>
 			의사
 		</div>
 	</div>
