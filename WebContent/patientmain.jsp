@@ -25,10 +25,10 @@
 
 	   <div class="mainVisual">
 	      <div class="left">
-	      	<span id="left2" style="width: 1249px; height: 840px;"></span>
+	      	<span id="left2" style="width: 1280px; height: 840px;"></span>
 	      </div>
 	      <div class="right" style="width: 50%; height:840px; left: 50%">
-	      	<span id="right2" style="width: 1249px; height: 840px; left: -100%;"></span>
+	      	<span id="right2" style="width: 1280px; height: 840px; left: -100%;"></span>
 	      </div>
 	   </div>
 	   
@@ -38,7 +38,7 @@
 	            <p>마이페이지</p>
 	         </div>
 	         <div class="textview">
-	            <a href="#">
+	            <a href="calendarServlet?command=schedual&id_u=UID">
 	               <h2>예약확인</h2>
 	            </a>
 	            <a href="#">

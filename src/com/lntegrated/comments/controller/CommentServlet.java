@@ -44,7 +44,22 @@ public class CommentServlet extends HttpServlet {
 			List<CommDto> commList = dao.commList(board_no);
 			
 			request.setAttribute("commList", commList);
-			dispatch("BoardFrServlet?command=", request, response);
+			dispatch("commu_frselect.jsp", request, response);
+		}
+		else if(command.equals("insert")) {
+			
+			int board_no = Integer.parseInt(request.getParameter("board_no"));
+			System.out.println(board_no);
+			String content_a = request.getParameter("content");
+			System.out.println(content_a);
+			String id_u = "788";
+			
+			CommDto dto = new CommDto(board_no, content_a, id_u);
+			
+			int res = dao.commInsert(dto);
+			if(res >0) {
+				jsResponse("댓글 작성", "BoardFrServlet?command=select&board_no="+board_no, response);
+			}
 		}
 	}
 

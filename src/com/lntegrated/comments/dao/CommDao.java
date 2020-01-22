@@ -18,6 +18,7 @@ public class CommDao extends SqlConfig{
 		try {
 			session = getSessionFactory("comments/comm_config.xml").openSession();
 			list = session.selectList(namespace+"comm_list",board_no);
+			System.out.println(list);
 		}catch(Exception e) {
 			System.out.println("Comments_list ERROR");
 		}finally {
@@ -35,6 +36,7 @@ public class CommDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Comment_Insert ERROR");
 		}finally {
 			session.close();

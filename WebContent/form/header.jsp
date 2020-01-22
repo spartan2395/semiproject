@@ -10,10 +10,7 @@
 
 
 <link rel="stylesheet" type="text/css" href="css/menu.css">
-<style type="text/css">
-	.hiuser {width: 300px; height: 50px; float: right;}
-	.hiuser h4{color: white; padding-top: 10px; padding-left: 20px;}
-</style>
+<style type="text/css"></style>
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/main.js">
@@ -97,21 +94,16 @@ function menuHeader(){
 								<a href="NoticeServlet?command=list">공지사항</a>
 							</li>
 							<li>
-								<a href="InquiryServlet?command=list">1:1 문의</a>
+								<a href="#">1:1 문의</a>
 							</li>
 							<li>
-								<a href="FAQ.jsp">FAQ</a>
+								<a href="#">FAQ</a>
 							</li>
 						</ul>
 					</div>
 				</li>
-			</ul>	
-			
+			</ul>		
 		</nav>
-			<div class="hiuser">
-			<h4>안녕하세요 000님 당근병원입니다.</h4>
-			</div>	
-		
 		<div class="bgDepth" style="display: none; height: 230px; padding-top: 0px; margin-top: 0px; 
 		padding-bottom: 0px; margin-bottom: 0px;">
 		</div>
