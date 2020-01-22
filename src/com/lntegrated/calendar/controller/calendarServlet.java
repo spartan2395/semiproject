@@ -33,12 +33,12 @@ public class calendarServlet extends HttpServlet {
 		String command = request.getParameter("command");
 		ClinicDao cdao = new ClinicDao();
 		TeleDao tdao = new TeleDao();
-		System.out.println("<" + command +">");
+		
 		if(command.equals("schedual")) {
 			String id_u = request.getParameter("id_u");
 			List<ClinicDto> clist = cdao.clinicMemberList(id_u);
 			List<TeleDto>  tlist = tdao.teleInfoList(id_u);
-			System.out.println(clist.size());
+
 			request.setAttribute("clist", clist);
 			request.setAttribute("tlist", tlist);
 			

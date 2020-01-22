@@ -50,6 +50,31 @@
 	}
 
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$.ajax({
+			type:"post",
+			url:"countajax.do",
+			data: "id=kh&yyyyMMdd="+yyyyMMdd,
+			dataType: "json",
+			async:false,    //동기
+			success: function(msg) {
+				var count = msg.calcount;
+				cdate.after("<div class='cpreview'>" +count+"</div>");
+			},
+			error: function () {
+				alert("통신실패")
+			}		
+		},function() { 
+		$(".cpreview").remove();
+	
+	});
+	
+});
+
+
+</script>
 </head>
 <body>
 	<%

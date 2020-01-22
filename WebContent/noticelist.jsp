@@ -29,8 +29,9 @@
 
 </head>
 <%
-	NoticeDao dao = new NoticeDao();
-	List<NoticeDto> list = dao.notice_List();
+	//NoticeDao dao = new NoticeDao();
+//	List<NoticeDto> list = dao.notice_List();
+	List<NoticeDto> list = (List<NoticeDto>)request.getAttribute("list");
 %>
 <body>
 
@@ -64,7 +65,7 @@
 				</tr>
 				
 <%
-	if(list.size() == 0) {
+	if(list == null || list.size() == 0) {
 %>		
 				<tr>
 					<td colspan="5" >---------작성된 글이 없습니다.---------</td>
@@ -78,7 +79,7 @@
 					<td><%=list.get(i).getNt_seq() %></td>		
 					<td><%=list.get(i).getId_d() %></td>		
 					<td><%=list.get(i).getMedical_d() %></td>		
-					<td><a href="NoticeServlet?command=one&Nt_seq<%=list.get(i).getNt_seq() %>"><%=list.get(i).getTitle() %></a></td>		
+					<td><a href="NoticeServlet?command=one&nt_seq=<%=list.get(i).getNt_seq() %>"><%=list.get(i).getTitle() %></a></td>	
 					<td><%=list.get(i).getRegdate() %></td>	
 					
 <%

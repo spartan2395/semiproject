@@ -10,42 +10,22 @@
 
 
 <link rel="stylesheet" type="text/css" href="css/menu.css">
-<style type="text/css"></style>
+<style type="text/css">
+	#headerWrap{width: 100%; height: 94px; background: none; transistion: background .3s ease; z-index: 10; position: absolute;}
+	#headerWrap.on { background:rgb(255,224,157);}
+	#headerWrap a img{float: left; width: 151px; height: 34px; margin-top: 30px; margin-left: 3%;}
+	#headerWrap .menu{float: left; position: relative; margin-top: 25px; margin-left: 45px;}
+	#headerWrap .menu>ul>li{float: left; margin-right: 50px;}
+	#headerWrap .menu > ul > li > a { color:orange; font-size:18pt; line-height:55px;}
+	#headerWrap .menuDepth{margin-top: 20px;}
+	#headerWrap .menuDepth ul>li>a{color: white; font-size: 12pt; padding-top: 15px;}
+
+</style>
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/main.js">
 
-<script type="text/javascript">
 
-$(function(){
-	menuHeader();
-
-
-function menuHeader(){
-	$('#headerWrap .menu>ul>li>a').hover(function(){
-		$(this).parent().addClass('on');
-		$('#headerWrap').addClass('on');
-		$('#headerWrap .menuDepth').not($(this).next('.menuDepth')).stop().hide();
-		//$(this).next('.menuDepth').stop().slideDown('fast');
-		$('.menuDepth').stop().slideDown('fast');
-		$('#headerWrap .bgDepth').stop().slideDown('fast');
-		
-	});
-	
-	$('#headerWrap .menu').mouseleave(function(){
-		gnbNone();
-	});
-	
-	function gnbNone(){
-		$('#headerWrap .menu > ul > li').removeClass('on');
-		$('#headerWrap .menuDepth').stop().slideUp('fast');
-		// $('#headerWrap .menuDepth').hide();
-		$('#headerWrap .bgDepth').stop().slideUp('fast');
-		$('#headerWrap').removeClass('on');
-	}
-	
-}
-});
 	
 
 
