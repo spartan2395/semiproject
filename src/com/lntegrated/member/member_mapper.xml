@@ -2,29 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lntegrated.member">
 	
-	<select id="memberList" >
-		SELECT ID_U,PW_U,NAME_U,GENDER_U,NUMBER_U,ADDR_U,EMAIL_U,ACTIVATION FROM USER_TB
+	<select id="memberList" resultType="memberdto">
+		SELECT ID_U,PW_U,NAME_U,GENDER_U,BD_U,NUMBER_U,ADDR_U,EMAIL_U,ACTIVATION FROM USER_TB
+	</select>
+	<select id="member_email" parameterType="String" resultType="memberdto">
+		SELECT ID_U,PW_U,NAME_U,GENDER_U,BD_U,NUMBER_U,ADDR_U,EMAIL_U,ACTIVATION FROM USER_TB
+		WHERE EMAIL_U = #{email_u}
 	</select>
 	<!-- 마이페이지 정보 -->
 	<select id="memberinfo" parameterType="String" resultType="memberdto">
-		SELECT ID_U,PW_U,NAME_U,GENDER_U,NUMBER_U,ADDR_U,EMAIL_U,ACTIVATION FROM USER_TB
+		SELECT ID_U,PW_U,NAME_U,GENDER_U,BD_U,NUMBER_U,ADDR_U,EMAIL_U,ACTIVATION FROM USER_TB
 		WHERE ID_U = #{ID_U}
 	</select>
 	<!-- 로그인 정보 -->
 	<select id="member_login" parameterType="map" resultType="memberdto">
-		SELECT ID_U,PW_U,NAME_U,GENDER_U,NUMBER_U,ADDR_U,EMAIL_U,ACTIVATION FROM USER_TB
-		WHERE ID_U = #{ID_U} AND PW_D = #{PW_U}
+		SELECT ID_U,PW_U,NAME_U,GENDER_U,BD_U,NUMBER_U,ADDR_U,EMAIL_U,ACTIVATION FROM USER_TB
+		WHERE ID_U = #{id_u} AND PW_U = #{pw_u}
 	</select>
 	
 	<!-- 회원가입 -->
 	<insert id ="member_insert" parameterType="memberdto">
-		INSERT INTO USER_TB VALUES(#{id_u},#{pw_u},#{name_u},#{gender_u},#{number_u},#{addr_u},#{email_u},'L')
+		INSERT INTO USER_TB VALUES(#{id_u},#{pw_u},#{name_u},#{gender_u},#{number_u},#{addr_u},#{email_u},'L',#{bd_u})
 	</insert>
 	
 	<!-- 정보 수정 -->
 	<update id = "member_update" parameterType="memberdto">
 		UPDATE USER_TB SET PW_U = #{pw_u} , NAME_U = #{name_u} , GENDER_U = #{gender_u} , NUMBER_U = #{number_u},
-		ADDR_U = #{addr_u} , EMAIL_U = #{email_u}  WHERE ID_U = #{id_u}
+		ADDR_U = #{addr_u} , EMAIL_U = #{email_u}, BD_U = #{bd_u}  WHERE ID_U = #{id_u}
 	</update>
 	
 	<!-- 회원 탈퇴 -->

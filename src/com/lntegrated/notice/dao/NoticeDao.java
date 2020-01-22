@@ -16,6 +16,7 @@ public class NoticeDao extends SqlConfig{
 			session = getSessionFactory("notice/notice_config.xml").openSession();
 			list = session.selectList(namespase+"notice_list");
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Notice_List ERROR");
 		}finally {
 			session.close();
@@ -45,6 +46,7 @@ public class NoticeDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Notice_Insert ERROR");
 		}finally {
 			session.close();
@@ -61,6 +63,7 @@ public class NoticeDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Notice_Update ERROR");
 		}finally {
 			
