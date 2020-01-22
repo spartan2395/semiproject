@@ -15,11 +15,15 @@ public class TeleDto {
 	private int chat_no;
 	private String checkd;
 	private String disease;
-	private Date reserv_date;
-	//¿¹¾à °Ë»ö
+	private String reserv_date;
+	
+	public TeleDto() {
+		
+	}
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	public TeleDto(int tel_seq,String id_u,String name_u,String number_u,String id_d,String name_d,
 			String number_d,String medical_d,String department,int chat_no,String checkd,String disease,
-			Date reserv_date) {
+			String reserv_date) {
 		this.tel_seq = tel_seq;
 		this.id_d = id_d;
 		this.id_u = id_u;
@@ -34,15 +38,15 @@ public class TeleDto {
 		this.disease = disease;
 		this.reserv_date = reserv_date;
 	}
-	//¿¹¾à ½ÅÃ»
-	public TeleDto(String id_u , String id_d ,String disease, Date reserv_date) {
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»
+	public TeleDto(String id_u , String id_d ,String disease, String reserv_date) {
 		this.id_u = id_u;
 		this.id_d = id_d;
 		this.disease = disease;
 		this.reserv_date = reserv_date;
 	}
-	//¿¹¾à ÀÏÀÚ º¯°æ
-	public TeleDto(int tel_seq , Date reserv_date) {
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	public TeleDto(int tel_seq , String reserv_date) {
 		this.tel_seq = tel_seq;
 		this.reserv_date = reserv_date;
 	}
@@ -118,10 +122,10 @@ public class TeleDto {
 	public void setDisease(String disease) {
 		this.disease = disease;
 	}
-	public Date getReserv_date() {
+	public String getReserv_date() {
 		return reserv_date;
 	}
-	public void setReserv_date(Date reserv_date) {
+	public void setReserv_date(String reserv_date) {
 		this.reserv_date = reserv_date;
 	}
 }

@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="resources/login.css">
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="261347811871-g4ri915lfl53tn24smcrch9r9fcr7dtm.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <title>loginpage</title>
 </head>
 <script type='text/javascript' src="resources/login.js"></script>
 <script type='text/javascript' src="js/jquery-3.4.1.min.js"></script>
-
+  
 <body>
 	<div class="frame">
 		<div class="header">
@@ -47,13 +52,30 @@
 					</table>
 				</form>
 			</div>
+			
 			<div class="snsLogin">
-				<a href=""><img src="resources/imgs/facebook.png" alt="facebook"
-					class="snsicon" id="facebook"></a> <a href=""><img
-					src="resources/imgs/naver.svg" alt="naver" class="snsicon"
-					id="naver"></a> <a href=""><img
-					src="resources/imgs/Google.png" alt="Google" class="snsicon"
-					id="google"></a>
+			
+			<div id="fb-root"></div>
+			<script async defer crossorigin="anonymous" 
+				src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v5.0&appId=1037762969925712&autoLogAppEvents=1"></script>
+			<div class="fb-login-button snsicon" data-width="" data-size="large" 
+				data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false"></div><br>
+				
+				<div id="naver_id_login" class = "snsicon">...</div>
+					<script type="text/javascript">
+			  			var naver_id_login = new naver_id_login("6N3ocZZKTbiCebMiHesM", "http://localhost:8787/semi_prj/naver_collback.html");
+			  			var state = naver_id_login.getUniqState();
+			  			naver_id_login.setButton("white", 2,40);
+			 	 		naver_id_login.setDomain("http://localhost:8787/semi_prj/login.html");
+			  			naver_id_login.setState(state);
+			  			naver_id_login.setPopup();
+			  			naver_id_login.init_naver_id_login();
+		 		 	</script>
+				<!-- <a href=""><img src="resources/imgs/naver.svg" alt="naver" 
+					class="snsicon" id="naver"></a> 
+				 -->
+				<a class = "snsicon g-signin2" data-onsuccess="onSignIn"><img	src="resources/imgs/Google.png" alt="Google" 
+					 id="google"></a>
 			</div>
 			<div class="register">
 				<a href="newMember.html" id="register">회원 가입</a>

@@ -10,7 +10,7 @@ public class MemberDto {
 	private String email_u;
 	private String activation;
 	
-	//¸¶ÀÌÆäÀÌÁö Á¤º¸
+	//SELECT ë“±ë“±
 	public MemberDto(String id_u , String pw_u, String name_u, String gender_u,
 			String number_u,String addr_u,String email_u,String activation) {
 		this.id_u = id_u;
@@ -22,7 +22,7 @@ public class MemberDto {
 		this.email_u = email_u;
 		this.activation = activation;
 	}
-	// È¸¿ø °¡ÀÔ AND Á¤º¸ ¼öÁ¤
+	//INSERT
 	public MemberDto(String id_u,String pw_u,String name_u,String gender_u,
 			String number_u,String addr_u,String email_u) {
 		this.id_u = id_u;
@@ -33,6 +33,7 @@ public class MemberDto {
 		this.addr_u = addr_u;
 		this.email_u = email_u;
 	}
+	//ê³„ì • í™œì„±í™” ìœ ë¬´
 	public MemberDto(String id_u,String activation) {
 		this.id_u = id_u;
 		this.activation = activation;

@@ -41,8 +41,8 @@ $(function(){
 	<div class="headMenu">
 		<h1>사이트소개</h1>
 		<ul>
-			<li><a href="">인사말</a></li>
-			<li><a href="">당근병원소개</a></li>
+			<li><a href="hello.jsp">인사말</a></li>
+			<li><a href="site_info.jsp">당근병원소개</a></li>
 		</ul>
 	</div>
 	
