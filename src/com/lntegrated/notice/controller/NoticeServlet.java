@@ -44,6 +44,7 @@ public class NoticeServlet extends HttpServlet {
 			
 		}else if(command.equals("one")) {
 			int nt_seq = Integer.parseInt(request.getParameter("nt_seq"));
+		
 			NoticeDto dto = dao.notice_Info(nt_seq);
 			request.setAttribute("dto", dto);
 			dispatch("notice_info.jsp", request, response);

@@ -1,5 +1,6 @@
 package com.lntegrated.doctor.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,10 +8,33 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import com.Integrated.db.SqlConfig;
 import com.lntegrated.doctor.dto.DoctorDto;
+import com.lntegrated.member.dto.MemberDto;
 
 public class DoctorDao extends SqlConfig{
 	String namespace = "com.lntegerated.doctor_mapper.";
 	SqlSession session = null;
+	
+	public boolean emailchk(String email_d) {
+		boolean chk = false;
+		List<DoctorDto> list = new ArrayList<DoctorDto>();
+		
+		try {
+			session = getSessionFactory("doctor/doctor_config.xml").openSession();
+			list = session.selectList(namespace+"doctor_email",email_d);
+			if (list.size()>0) {
+				chk = false;	// 이미 사용중인 이메일 
+			} else {
+				chk = true;		// 사용 가능한 이메일 
+			}
+		} catch (Exception e) {
+			System.out.println("email check error");
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return chk;
+	}
 	
 	// login
 	public DoctorDto doctorLogin(String id_d, String pw_d){
