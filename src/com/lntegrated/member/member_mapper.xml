@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lntegrated.member">
 
+	<!-- 이메일 확인 -->
+
+
 	<select id="memberList" resultType="memberdto">
 		SELECT ID_U,PW_U,NAME_U,GENDER_U,BD_U,NUMBER_U,ADDR_U,EMAIL_U,ACTIVATION FROM USER_TB
 	</select>
-
-	<!-- 이메일 확인 -->
-
 	<select id="member_email" parameterType="String" resultType="memberdto">
 		SELECT ID_U,PW_U,NAME_U,GENDER_U,BD_U,NUMBER_U,ADDR_U,EMAIL_U,ACTIVATION FROM USER_TB
 		WHERE EMAIL_U = #{email_u}

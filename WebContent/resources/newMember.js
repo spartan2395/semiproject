@@ -1,5 +1,6 @@
 window.onload = function () {
 
+
 var grade = document.getElementsByTagName("form")[0].getAttribute("action");
 
 // 유효성 검사(의사 환자 공통)
@@ -244,7 +245,6 @@ document.getElementById("pw").addEventListener("focusout", function () {
 document.getElementById("pwchk").addEventListener("focusout", function () {
 	var pw = document.getElementById("pw").value;
 	var pwchk = document.getElementById("pwchk").value;
-
     if(pw!=pwchk){
         this.parentElement.parentElement.lastElementChild.innerHTML="비밀번호가 일치하지 않습니다."
     } else if (this.value==""){
@@ -269,6 +269,7 @@ document.getElementsByName("id")[0].addEventListener("focusout", function () {
         this.parentElement.parentElement.lastElementChild.innerHTML=""
     }
 })
+
 
 // 이름 유효성 검사
 document.getElementsByName("name")[0].addEventListener("focusout", function () {
