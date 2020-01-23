@@ -2,6 +2,8 @@ package com.lntegrated.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Properties;
 import java.util.Random;
 
@@ -51,11 +53,43 @@ public class MemberServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		
 		String command = request.getParameter("command");
+		System.out.println("command=====================>"+command);
 		MemberDto dto = null;
 		PrintWriter out = response.getWriter();
 		
 		switch(command) {
+		 // 회원 가입 
+		case "register":/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+			String bday = request.getParameter("bd_yy")+"/"+request.getParameter("bd_mm")+"/"+request.getParameter("bd_d");
+			dto = new MemberDto(
+					request.getParameter("id"), 
+					request.getParameter("pw"), 
+					request.getParameter("name"), 
+					request.getParameter("gender"), 
+					request.getParameter("tel"), 
+					request.getParameter("addr"), 
+					request.getParameter("email"),
+					bday);
+
+			int res = dao.memberinsert(dto);
+			
+			if (res>0) {
+				System.out.println("insert successed");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("patientmain.jsp");
+				dispatcher.forward(request, response);
+				
+			} else {
+				System.out.println("REGISTER FAIL");
+				out.println("\n" + 
+						"<script type='text/javascript'>\n" + 
+						"    alert(\"회원가입에 실패하였습니다. \")\n"
+						+ "history.back();" + 
+						"</script>");
+				
+			}
+			break;
 		
+			// 로그인 
 		case "login" :/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 			JSONObject obj = new JSONObject();
 			dto = dao.memberlogin(request.getParameter("id"), request.getParameter("pw"));
@@ -107,16 +141,18 @@ public class MemberServlet extends HttpServlet {
 		case "emailcodesend":/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 			String email = request.getParameter("email");
 			
-			String host = "smtp.naver.com";
-			String user = "sarah69000";
-			String password = "wldo95061";
+			String host = "smtp.gmail.com";
+			String user = "zzz0qq";
+			String password = "lanyou12";
 			
 			String to_email = email;
 			
 			Properties props = new Properties();
+			props.put("mail.smtp.starttls.enable","true");
 			props.put("mail.smtp.host", host);
 			props.put("mail.smtp.port", 587);
 			props.put("mail.smtp.auth", "true");
+	
 			
 			StringBuffer temp =new StringBuffer();
             Random rnd = new Random();
@@ -183,7 +219,6 @@ public class MemberServlet extends HttpServlet {
 			System.out.println("inputcode:"+inputCode);
 			if (inputCode.equals(code)) {
 				System.out.println("일치!!");
-				saveKeyChk.invalidate();
 				out.println(0);	// 코드 일치 
 				
 			} else {
@@ -192,31 +227,8 @@ public class MemberServlet extends HttpServlet {
 			}
 			
 			 break;
-		case "register":/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-			String bday = request.getParameter("bd_yy")+"/"+request.getParameter("bd_mm")+"/"+request.getParameter("bd_d");
-			dto = new MemberDto(
-					request.getParameter("id"), 
-					request.getParameter("pw"), 
-					request.getParameter("name"), 
-					request.getParameter("gender"), 
-					request.getParameter("number"), 
-					request.getParameter("addr"), 
-					request.getParameter("email"),
-					bday);
-			int res = dao.memberinsert(dto);
-			if (res>0) {
-				System.out.println("insert successed");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("patientmain.jsp");
-				
-			} else {
-				System.out.println("REGISTER FAIL");
-				out.println("\n" + 
-						"<script type='text/javascript'>\n" + 
-						"    alert(\"회원가입에 실패하였습니다. \")\n"
-						+ "history.back();" + 
-						"</script>");
-				
-			}
+			 
+	
 		}
 	}
 
