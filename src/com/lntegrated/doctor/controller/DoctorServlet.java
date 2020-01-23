@@ -36,13 +36,6 @@ public class DoctorServlet extends HttpServlet {
     PrintWriter out = null;
     DoctorDao dao = null;
     HttpSession session = null;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DoctorServlet() {
-    	dao = new DoctorDao();
-
-    }
 
 	/**
 	 * @see HttpServlet#HttpServlet()
