@@ -8,10 +8,10 @@
 	</select>
 	<!-- 댓글 작성 -->
 	<insert id = "comm_insert" parameterType="commdto">
-		INSERT INTO COMMENTS VALUES(#{board_no},#{content_a},SYSDATE,#{id_u})
+		INSERT INTO COMMENTS VALUES(#{board_no},#{content_a},'SYSDATE',#{id_u})
 	</insert>
 	<!-- 댓글 수정 -->
-	<update id = "comm_update" parameterType="commdto">
+	<update id = "comm_update" parameterType="dto">
 		UPDATE COMMENTS SET CONTENT_A WHERE BOARD_NO = #{board_no} AND ID_U = #{id_u}
 	</update>
 	<!-- 댓글 삭제 -->

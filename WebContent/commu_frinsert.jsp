@@ -57,7 +57,7 @@
 				</div>
 				<div class="btn_wrap">
 					<button>취소</button>
-					<button>등록</button>
+					<button type="submit">등록</button>
 				</div>
 							
 			</form>

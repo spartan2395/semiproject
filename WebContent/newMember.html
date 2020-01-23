@@ -19,7 +19,7 @@
                 style="width: 250px; margin-top: 20px;"></a>
         <p style="font-weight: 900; font-size: larger; color: #263e63; margin : 20px 0 20px 0;">회원가입(개인)</p>
     </div>
-    
+
     <div class="container">
         <form action="MemberServlet" method="post" id="form">
         <input type="hidden" name="command" value="register">
@@ -56,7 +56,7 @@
                     <span id="span1">
                         <select name="gender" required>
                             <option value="F">여</option>
-                            <option value="M">남</option>   
+                            <option value="M">남</option>
                         </select>
                     </span>
                     <p class="required"></p>
@@ -90,20 +90,26 @@
                         <!-- <p class="required"></p> -->
                     </div>
                     <div id="bd_d">
+
                         <span><input type="number" placeholder="일" maxlength="2" min="1" max="31" class="bd" title="notready" name="bd_d"></span>
+
                         <!-- <p class="required"></p> -->
                     </div>
                      <p class="required" id="bderror"></p>
                 </div>
                 <div>
                     <h4>전화번호</h4>
+
                      <span><input type="tel" placeholder="010-0000-0000" name="tel" id="tel" required title="notready"></span>
-                 
+
+
                     <p class="required"></p>
                 </div>
                 <div>
                     <h4>주소</h4>
+
                     <span><input type="text" readonly onclick="goPopup()" id="juso" name="addr" title="notready"></span>
+
                     <p class="required"></p>
                 </div>
             </div>
@@ -112,20 +118,26 @@
                 <div>
                     <h4>이메일</h4>
                     <div class="wbtn">
+
                           <span  class="wbutton"><input type="email" name = "email" title="notready" class ="chk" ></span>
+
                         <a class="btna"><span class="btn">인증하기</span></a>
                         <p class="required" id="emailerror"></p>
                     </div>
                 </div>
                 <div>
                     <h4>인증코드</h4>
+
                     <span><input type="text" maxlength="10" title="notready" id="code" required></span>
+
                     <p class="required"></p>
                 </div>
             </div>
 
             <div id="confirm">
+
                 <button type="submit" class="confirmbtn"><span id="confirmspan">회원 가입</span></button>
+
             </div>
         </form>
     </div>

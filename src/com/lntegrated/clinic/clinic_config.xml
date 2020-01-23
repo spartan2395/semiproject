@@ -3,7 +3,7 @@
 <configuration>
 	<properties resource="com/Integrated/db/db.propertis"></properties>
 	<typeAliases>
-		<typeAlias type="com.lntegrated.clinic.dto.ClinicDto" alias="clinicdto"/>
+		<typeAlias type="com.lntegerater.clinic.dto.ClinecDto" alias="clinicdto"/>
 	</typeAliases>
 	<environments default="development">
     <environment id="development">
