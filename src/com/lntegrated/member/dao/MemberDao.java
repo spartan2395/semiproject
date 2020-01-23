@@ -86,12 +86,22 @@ public class MemberDao extends SqlConfig{
 	public int memberinsert(MemberDto dto) {
 		int res = 0;
 		try {
+			System.out.println("???");
 			session = getSessionFactory("member/member_config.xml").openSession();
+			System.out.println("id_u: "+dto.getId_u());
+			System.out.println("pw_u: "+dto.getPw_u());
+			System.out.println("name_u: "+dto.getName_u());
+			System.out.println("gender_u: "+dto.getGender_u());
+			System.out.println("number_u: "+dto.getNumber_u());
+			System.out.println("addr_u: "+dto.getAddr_u());
+			System.out.println("bd_u: "+dto.getBd_u());
 			res = session.insert(namespace+"member_insert", dto);
+			System.out.println(res);
 			if(res > 0) {
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Member_Insert ERROR");
 		}finally {
 			session.close();
