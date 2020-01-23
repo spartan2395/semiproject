@@ -2,7 +2,6 @@ package com.lntegrated.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.util.Properties;
 import java.util.Random;
 

@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src= "/semi_prj/ckeditor/ckeditor.js"></script>
-
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <style type="text/css">
