@@ -17,6 +17,7 @@ public class InquiryDao extends SqlConfig{
 			session = getSessionFactory("inquiry/inquiry_config.xml").openSession();
 			list = session.selectList(namespace+"inquiry_list");
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Inquiry_List ERROR");
 		}finally {
 			session.close();
@@ -46,6 +47,7 @@ public class InquiryDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Inquiry_insert ERROR");
 		}finally {
 			session.close();

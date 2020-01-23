@@ -24,19 +24,6 @@ public class TeleDao extends SqlConfig{
 		return list;
 	}
 	
-	public List<TeleDto> teleInfoList(String id_u){
-		List<TeleDto> list = null;
-		try {
-			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
-			list = session.selectList(namespace+"tele_list_info", id_u);
-		}catch(Exception e) {
-			System.out.println("Telemedicine_info ERROR");
-		}finally {
-			session.close();
-		}
-		return list;
-	}
-	
 	public TeleDto teleInfo(int tel_seq){
 		TeleDto dto = null;
 		try {

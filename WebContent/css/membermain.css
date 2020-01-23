@@ -1,34 +1,37 @@
 
-	
-	/*환자 메인 css*/    
+
+	/*환자 메인 css*/
+
    .mainVisual{overflow: hidden; position: relative; width:100%; height:840px; margin-right: 64px;}
-   .mainVisual>.left{background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url("../resources/imgs/member_left1.png") no-repeat center bottom; background-size: cover; 
+   .mainVisual>.left{background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url("../resources/imgs/member_left1.png") no-repeat center bottom; background-size: cover;
    					width: 50%; height:840px; left: 0%;}
-   .mainVisual>.right{background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url("../resources/imgs/member_right1.png") no-repeat center bottom; background-size: cover;	
-   					width: 50%; height:840px; left: 50%;}    						
-  
+   .mainVisual>.right{background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url("../resources/imgs/member_right1.png") no-repeat center bottom; background-size: cover;
+   					width: 50%; height:840px; left: 50%;}
+
    .mainVisual >div{position: absolute; top: 0; background-size: cover;}
    .mainVisual >div span{visibility: hidden; opacity: 0; position: absolute;}
-  
+
    .main{display: table; position: absolute; top: 0; left: 0; z-index: 2; width: 100%; height: 840px;}
    .main>div{display: table-cell; position: relative;}
    .main >.right {width: 50%; height:840px; left: 0; right: 0;}
    .main >.left {width: 50%; height:840px; left: 0; }
-   
+
+
    .textbox{position: absolute; bottom: 53%; left: 60px; right: 60px; min-height:  150px; z-index: 1; }
    .textview{display: none; position: absolute;  bottom: 1px; left: 0; right: 0; z-index: 1; background: rgb(255,255,204);}
-   .textview>a{text-decoration: none; color: #FE8633; display: block; position: relative; min-height: 100px; 
-				padding: 28px 90px 20px 32px; border-bottom: 1px solid #FE8633; box-sizing: border-box;}				
+   .textview>a{text-decoration: none; color: #FE8633; display: block; position: relative; min-height: 100px;
+				padding: 28px 90px 20px 32px; border-bottom: 1px solid #FE8633; box-sizing: border-box;}
    .textbox>p{font-family: NANUMBARUNGOTHIC; font-size: 60px; color: white;  }
-   
+
    .mainVisual .left >span {position: absolute; background: url('../resources/imgs/member_left1.png') no-repeat center bottom; background-size:cover; display: inline-block; }
   .mainVisual .right >span {position: absolute; background: url('../resources/imgs/member_right1.png') no-repeat center bottom; background-size:cover; display: inline-block; }
-  
+
+
    .mainVisual >div.show  {z-index: 1;}
    .mainVisual >div.show >span {visibility: visible; opacity: 1; transform : scale(1.03);}
-  	
-  
-   
+
+
+
    @font-face {
       font-family: "서울남산 장체L";
       src:url("font/서울남산 장체L.ttf") format("truetype");
@@ -41,4 +44,3 @@
       font-style: normal;
       font-weight: normal;
    }
-   

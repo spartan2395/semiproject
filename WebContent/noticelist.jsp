@@ -23,14 +23,13 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.noticeboardWrap{width: 1000px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.noticeboardWrap{width: 1000px; height:100%;  margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
 	.noticeboardWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 </style>
 
 </head>
 <%
-	//NoticeDao dao = new NoticeDao();
-//	List<NoticeDto> list = dao.notice_List();
+
 	List<NoticeDto> list = (List<NoticeDto>)request.getAttribute("list");
 %>
 <body>
@@ -40,12 +39,12 @@
 	<div class="headMenu">
 		<h1>고객센터</h1>
 		<ul>
-			<li><a href="noticelist.jsp">공지사항</a></li>
-			<li><a href="#">1:1 문의</a></li>
-			<li><a href="#">FAQ</a></li>
+			<li><a href="NoticeServlet?command=list">공지사항</a></li>
+			<li><a href="InquiryServlet?command=list">1:1 문의</a></li>
+			<li><a href="FAQ.jsp">FAQ</a></li>
 		</ul>
 	</div>
-	
+
 	<div class="noticeboardWrap">
 		<h1>공지사항</h1>
 		<div>
@@ -55,7 +54,7 @@
 				<col width="100px"/>
 				<col width="300px"/>
 				<col width="100px"/>
-				
+
 				<tr>
 					<th>번호</th>
 					<th>작성자</th>
@@ -63,30 +62,32 @@
 					<th>제목</th>
 					<th>날짜</th>
 				</tr>
-				
+
 <%
 	if(list == null || list.size() == 0) {
-%>		
+%>
 				<tr>
 					<td colspan="5" >---------작성된 글이 없습니다.---------</td>
-				</tr>	
+				</tr>
 <%
 	}else{
-		
+
 		for(int i = 0; i <list.size(); i++) {
-%>		
+%>
 				<tr>
-					<td><%=list.get(i).getNt_seq() %></td>		
-					<td><%=list.get(i).getId_d() %></td>		
-					<td><%=list.get(i).getMedical_d() %></td>		
-					<td><a href="NoticeServlet?command=one&nt_seq=<%=list.get(i).getNt_seq() %>"><%=list.get(i).getTitle() %></a></td>	
-					<td><%=list.get(i).getRegdate() %></td>	
-					
+					<td><%=list.get(i).getNt_seq() %></td>
+					<td><%=list.get(i).getId_d() %></td>
+					<td><%=list.get(i).getMedical_d() %></td>
+
+					<td><a href="NoticeServlet?command=one&nt_seq=<%=list.get(i).getNt_seq() %>"><%=list.get(i).getTitle() %></a></td>
+
+					<td><%=list.get(i).getRegdate() %></td>
+
 <%
 		}
-		
+
 	}
-%>		
+%>
 				<tr>
 					<td colspan="5" align="right">
 						<button onclick="location.href='NoticeServlet?command=writeform'">글쓰기</button>
@@ -95,6 +96,6 @@
 			</table>
 		</div>
 	</div>
-	
+
 </body>
 </html>
