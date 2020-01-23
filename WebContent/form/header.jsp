@@ -14,7 +14,6 @@
 
 	.hiuser {width: 300px; height: 50px; float: right;}
 	.hiuser h4{color: white; padding-top: 10px; padding-left: 20px;}
-
 </style>
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
@@ -84,8 +83,8 @@
 			<h4>안녕하세요 000님 당근병원입니다.</h4>
 			</div>
 
-		<div class="bgDepth" style="display: none; height: 230px; padding-top: 0px; margin-top: 0px;
-		padding-bottom: 0px; margin-bottom: 0px;">
+		<div class="bgDepth" style="display: none; height: 230px; padding-top: 0px; margin-top: 0px;">
+
 		</div>
 	</header>
 
