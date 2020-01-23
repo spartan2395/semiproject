@@ -5,14 +5,16 @@
 	<!-- 의사테이블에서 필요한 컬럼 : 의사 이름 / 직장 주소 / 직책  -->
 	<!-- 공지사항 목록 -->
   <select id = "notice_list" resultType="noticedto">
-  	SELECT NT_SEQ, ID_D, TITLE, CONTENT , REGDATE , VIEWS , NAME_D ,MEDICAL_D , GRADE_D , DEPARTMENT 
+
+  	SELECT NT_SEQ, ID_D, TITLE, CONTENT, REGDATE,VIEWS, NAME_D, MEDICAL_D, GRADE_D, DEPARTMENT
   	FROM NOTICE JOIN DOCTOR_TB USING(ID_D)
-  	
+
   </select>
   <!-- 공지사항 내용 -->
   <select id="notice_info" parameterType="int" resultType="noticedto">
-  	SELECT NT_SEQ, ID_D, TITLE, CONTENT , REGDATE , VIEWS , NAME_D ,MEDICAL_D , GRADE_D , DEPARTMENT 
-  	FROM NOTICE JOIN DOCTOR_TB USING(ID_D) WHERE NT_SEQ = #{nt_seq}
+
+  	SELECT NT_SEQ, ID_D, TITLE, CONTENT, REGDATE,VIEWS, NAME_D, MEDICAL_D, GRADE_D, DEPARTMENT FROM NOTICE JOIN DOCTOR_TB USING(ID_D) WHERE NT_SEQ = #{nt_seq}
+
   </select>
   <!-- 공지사항 작성 -->
   <insert id="notice_insert" parameterType="noticedto">
@@ -24,7 +26,7 @@
   	UPDATE NOTICE SET TITLE = #{title} , CONTENT = #{content}
   	WHERE NT_SEQ = #{nt_seq}
   </update>
-  
+
   <update id = "notice_views_update" parameterType="String">
   	UPDATE NOTICE SET VIEWS = VIEWS+1 WHERE ID_D = #{id_d}
   </update>
