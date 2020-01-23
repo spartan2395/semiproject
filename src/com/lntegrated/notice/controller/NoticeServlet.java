@@ -44,9 +44,10 @@ public class NoticeServlet extends HttpServlet {
 			
 		}else if(command.equals("one")) {
 			int nt_seq = Integer.parseInt(request.getParameter("nt_seq"));
+		
 			NoticeDto dto = dao.notice_Info(nt_seq);
 			request.setAttribute("dto", dto);
-			dispatch("noticeInfo.jsp", request, response);
+			dispatch("notice_info.jsp", request, response);
 			
 		}else if(command.equals("writeform")) {
 			response.sendRedirect("notice_write.jsp");
@@ -66,8 +67,9 @@ public class NoticeServlet extends HttpServlet {
 			}
 			
 		}else if(command.equals("updateform")) {
-			int nt_seq = Integer.parseInt(request.getParameter("ne_seq"));
+			int nt_seq = Integer.parseInt(request.getParameter("nt_seq"));
 			NoticeDto dto = dao.notice_Info(nt_seq);
+			//System.out.println(dto.getId_d());
 			request.setAttribute("dto", dto);
 			dispatch("notice_update.jsp", request, response);
 			
@@ -76,18 +78,25 @@ public class NoticeServlet extends HttpServlet {
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			
-			NoticeDto dto = new NoticeDto(null, null, title, content);
+			NoticeDto dto = new NoticeDto(nt_seq,title,content);
 			int res = dao.notice_update(dto);
 			
 			if(res > 0) {
 				jsResponse("수정성공", "NoticeServlet?command=list", response);
 			}else {
-				jsResponse("ㅜㅜ", "NoticeServlet?command=one"+nt_seq, response);
+				jsResponse("ㅜㅜ", "NoticeServlet?command=one&nt_seq="+nt_seq, response);
 				
 			}
 			
 		}else if(command.equals("delete")) {
+			int nt_seq = Integer.parseInt(request.getParameter("nt_seq"));
 			
+			int res = dao.notice_delete(nt_seq);
+			if(res >0) {
+				jsResponse("삭제성공!", "NoticeServlet?command=list", response);
+			}else {
+				jsResponse("ㅜㅜ","NoticeServlet?command=one&nt_seq="+nt_seq , response);
+			}
 		}
 			
 		
