@@ -64,7 +64,6 @@ public class NoticeDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
-
 			e.printStackTrace();
 			System.out.println("Notice_Update ERROR");
 		}finally {

@@ -20,7 +20,6 @@
 		var data = JSON.parse(sessionStorage.getItem("data"));
 		alert(data.id);
 	}
-
 </script>
 
 <script type="text/javascript" src="js/main.js"></script>
@@ -29,11 +28,9 @@
 <body>
 	<%@ include file="form/header.jsp" %>
 
-
 	<div class="mainVisual">
 		<div class="left" style="width: 50%; height:100%; left: 0%;">
 		</div>
-
 		<div class="right" >
 			<span id="right2" style="width: 1280px; height: 840px; left: -100%"></span>
 		</div>
@@ -46,6 +43,9 @@
 
 	<div class="main" style="height: 100%;">
 
+
+
+	<div class="main" >
 		<div class="left">
 			<div class="textbox" style="top: 221.5px;">
 				<p>내 병원 정보</p>
@@ -63,6 +63,7 @@
 
 			<div class="textbox" style="top: 221.5px;">
 
+			<div class="textbox" >
 				<p>예약 확인</p>
 			</div>
 			<div class="textview">
@@ -78,7 +79,7 @@
 			</div>
 		</div>
 	</div>
-
+</div>
 
 
 </body>
