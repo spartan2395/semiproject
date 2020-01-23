@@ -8,13 +8,12 @@ public class ClinicDto {
 	private String name_u;
 	private String name_d;
 	private String disease;
-	private String reserv_date;
+	private Date reserv_date;
 	private String category;
 	private String checkd;
-	private String medical_d;
-	//È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+	//È¯ÀÚ ¿¹¾à ¸®½ºÆ®
 	public ClinicDto(String id_u,String id_d , String name_u, String name_d,
-			String disease, String reserv_date , String category , String checkd) {
+			String disease, Date reserv_date , String category , String checkd) {
 		this.id_u = id_u;
 		this.id_d = id_d;
 		this.name_u = name_u;
@@ -25,10 +24,7 @@ public class ClinicDto {
 		this.checkd = checkd;
 	}
 	
-	public ClinicDto() {
-		
-	}
-	public ClinicDto(String id_u,String id_d,String disease,String reserv_date , String category , String checkd) {
+	public ClinicDto(String id_u,String id_d,String disease,Date reserv_date , String category , String checkd) {
 		this.id_u = id_u;
 		this.id_d = id_d;
 		this.disease = disease;
@@ -77,11 +73,11 @@ public class ClinicDto {
 		this.disease = disease;
 	}
 
-	public String getReserv_date() {
+	public Date getReserv_date() {
 		return reserv_date;
 	}
 
-	public void setReserv_date(String reserv_date) {
+	public void setReserv_date(Date reserv_date) {
 		this.reserv_date = reserv_date;
 	}
 
@@ -100,14 +96,5 @@ public class ClinicDto {
 	public void setCheckd(String checkd) {
 		this.checkd = checkd;
 	}
-
-	public String getMedical_d() {
-		return medical_d;
-	}
-
-	public void setMedical_d(String medical_d) {
-		this.medical_d = medical_d;
-	}
-	
 	
 }

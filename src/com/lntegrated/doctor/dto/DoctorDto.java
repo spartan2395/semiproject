@@ -8,14 +8,15 @@ public class DoctorDto {
 	private String gender_d;
 	private String number_d;
 	private String addr_d;
-	private String medical_d;
+	private String medical_d; 
 	private String email_d;
 	private String grade_d;
 	private String department;
+	private String bd_d;
 	
 	//�ǻ� ���� �˻� AND ���� AND ȸ�� ����
 	public DoctorDto(String id_d, String pw_d, String name_d,String number_d,String gender_d,
-			String addr_d,String medical_d,String email_d,String grade_d,String department) {
+			String addr_d,String medical_d,String email_d,String grade_d,String department, String bd_d) {
 		this.id_d = id_d;
 		this.pw_d = pw_d;
 		this.name_d = name_d;
@@ -26,6 +27,7 @@ public class DoctorDto {
 		this.email_d = email_d;
 		this.grade_d = grade_d;
 		this.department = department;
+		this.bd_d = bd_d;
 	}
 
 	public String getId_d() {
@@ -107,4 +109,13 @@ public class DoctorDto {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
+
+	public String getBd_d() {
+		return bd_d;
+	}
+
+	public void setBd_d(String bd_d) {
+		this.bd_d = bd_d;
+	}
+	
 }

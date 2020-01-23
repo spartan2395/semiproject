@@ -12,10 +12,23 @@
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <style type="text/css">
-	.frboardupdateWrap{width: 1000px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.frboardupdateWrap{width: 1100px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
 	.frboardupdateWrap h1{padding: 59px 0 58px; font-weight: 100; font-size: 30px; line-height: 40px;}
     .frboardupdateWrap h1 span{display: block; padding-bottom: 13px; font-size: 16px; color:orange; font-weight: 450;}
-
+	.frboardupdateWrap .boardtitle{width: 100%; height: 60px; float: left; background-color: #f9f9f9;
+								   border-top: 1px solid #7e7e7e;}
+	.frboardupdateWrap .board_title_input{width: 874px;height: 32px;border: 1px solid #e6e6e6;line-height: 32px;
+    					padding-left: 13px; font-size: 16px; color: #666666; margin-top: 13px; margin-left: 27px;}							   
+	.frboardupdateWrap .boardcontent{position: relative;border: 1px solid #e3e3e3; border-left: none; 
+									   height: 550px; float:left; background-color: #fff;
+   									   border-right: none; background-color: #ffffff; margin: 0 auto; width: 100%; }
+	.frboardupdateWrap .btn_wrap{width: 100%;float: left;margin-top: 20px;text-align: center; height: 42px;
+    								padding-bottom: 180px; }
+    .frboardupdateWrap .btn_wrap button:nth-of-type(2){min-width: 53px; font-size: 16px; color: #fff; text-align: center;
+   					 background-color: #747a86; border-radius: 2px;padding: 12px 16px 12px 16px;border: 1px solid #747a86;display: inline-block; line-height: 1;}			
+    .frboardupdateWrap .btn_wrap button:nth-of-type(1){min-width: 53px;font-size: 16px;color: #fff;text-align: center; background-color: orange;
+    				border-radius: 2px;padding: 12px 16px 12px 16px; border: 1px solid orange;display: inline-block; line-height: 1;}
+	
 </style>
 </head>
 <body>
@@ -35,39 +48,25 @@
 			<form action="BoardFrServlet" method="post">
 				<input type = "hidden" name = "command" />
 				<input type = "hidden" name = "board_no" />
-				<table>
-					<colgroup>
-						<col width="192px">
-						<col width="*">
-					</colgroup>	
-						<tr>
-							<th>ID</th>
-							<td><input type = "text" name = "id_u" value = "${dto.id_u }" readonly="readonly"/></td>
-						</tr>
-						<tr>
-							<th>제목</th>
-							<td><input type="text" name="title" required="required" value="${dto.title }" ></td>
-						</tr>
-						<tr>
-							<th>내용</th>
-							<td><textarea id = "editor_ck" name="content" required="required">${dto.content }</textarea></td>
-						</tr>
-						<tr>
-							<td colspan="2" align="right">
-								<input type="submit" value="수정완료">	
-								<input type="button" value="취소" onclick="">	
-							</td>
-						</tr>
-				
-				
-				</table>			
+				<input type="hidden" name="id_u" value="${dto.id_u }">
+				<div class="boardtitle">
+					<input type="text" name="title" required="required" value="${dto.title }" class="board_title_input">
+				</div>
+				<div class="boardcontent">
+					<textarea rows="9" cols="40" class="editWindow" name="content" id="editor_ck" style="display: none;">${dto.content }</textarea>
+				</div>
+				<div class="btn_wrap">
+					<button type="submit">수정완료</button>
+					<button>취소</button>
+				</div>
+							
 			</form>
 	</div>
 	<script>
 		CKEDITOR.replace('editor_ck', {
+			height: 450
 		});
 	</script>
-	
 
 </body>
 </html>

@@ -4,15 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src= "/semi_prj/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.noticeboardinsertWrap{width: 1000px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.noticeboardinsertWrap{width: 1000px; height:100% margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
 	.noticeboardinsertWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 </style>
 
@@ -20,14 +21,14 @@
 <% NoticeDto dto = (NoticeDto)request.getAttribute("dto"); %>
 <body>
 
-<%@ include file="form/header.jsp" %>
-	
+<%@ include file="./form/header.jsp" %>
+
 	<div class="headMenu">
 		<h1>고객센터</h1>
 		<ul>
-			<li><a href="noticelist.jsp">공지사항</a></li>
-			<li><a href="#">1:1 문의</a></li>
-			<li><a href="#">FAQ</a></li>
+			<li><a href="NoticeServlet?command=list">공지사항</a></li>
+			<li><a href="InquiryServlet?command=list">1:1 문의</a></li>
+			<li><a href="FAQ.jsp">FAQ</a></li>
 		</ul>
 	</div>
 	
@@ -54,18 +55,22 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea rows="10" cols="60" name="content"></textarea> </td>
+						<td><textarea id = "editor_ck" rows="10" cols="60" name="content"></textarea> </td>
 					</tr>
 					<tr>
 						<td colspan="2" align="right">
 							<input type="submit" value="write"/>
-							<input type="button" value="back" onclick="location.href='noticelist.jsp'"/>
+							<input type="button" value="back" onclick="location.href='NoticeServlet?command=list'"/>
 				</table>
 			
 			
 			</form>
 	
 	</div>
+	<script>
+		CKEDITOR.replace('editor_ck', {
+		});
+	</script>
 	
 	
 </body>
