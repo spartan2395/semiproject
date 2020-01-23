@@ -12,6 +12,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	$("#btnReply").click(function() {
+		$.ajax({
+			method: "POST",
+			url: "CommentServlet?command=insert",
+			data: {board_no:"board_no", "content":$("#textReply").val() },
+
+			success: function(data) {
+				alert("댓글성공");
+
+			}
+		});
+	});
+});
+
+</script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <style type="text/css">
@@ -70,7 +88,8 @@
 		<h1>커뮤니티</h1>
 		<ul>
 			<li><a href="">자유게시판</a></li>
-			<li><a href="">약제정보공유</a></li>
+
+			<li><a href="">병원정보공유</a></li>
 		</ul>
 	</div>
 
@@ -78,6 +97,8 @@
 		<h1>자유게시판</h1>
 
 		<h2>글제목 넣어주세요</h2>
+
+		<h2>${dto.title }</h2>
 		<div class="meminfo">
 
 			<span><img alt="" src="image/happycarrot.png">${dto.id_u }</span>
@@ -96,13 +117,13 @@
 		<div class="text">
 			<p>글내용</p>
 
+			<p>${dto.content }</p>
+			<button type = "button" onclick="location.href = 'BoardFrServlet?command=boardlist'">목록</button>
 		</div>
 
 		<div class="btn_group" align="right">
-
 			<button type = "button" onclick="location.href = 'BoardFrServlet?command=updateform'">수정</button>
-			<button type = "button" onclick = "location.href = 'BoardFrServlet?command=delete&board_no=${dto.board_no }'">삭제</button>
-
+			<button type = "button" onclick = "location.href = 'BoardFrServlet?command=delete'">삭제</button>
 		</div>
 		<div class="reply_wrap">
 			<div class="reply_title">
@@ -130,6 +151,7 @@
 						}
 					}
 %>
+
 			</ul>
 			<div class="bottom_reply">
 				<textarea id = "textReply" rows="10" cols="30" class="txar" name="comment"></textarea>
@@ -137,8 +159,6 @@
 			</div>
 
 		</div>
-
-
 	</div>
 
 </body>

@@ -20,7 +20,7 @@ import com.lntegrated.board_fr.dto.BoardFrDto;
 @WebServlet("/BoardFrServlet")
 public class BoardFrServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -35,15 +35,15 @@ public class BoardFrServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		
+
 		String command = request.getParameter("command");
 		BoardFrDao dao = new BoardFrDao();
-		
-		
+
+
 		if(command.equals("boardlist")) {
 			List<BoardFrDto> list = dao.boardFrList();
 			request.setAttribute("list", list);
-			
+
 			dispatch("commu_fr.jsp", request, response);
 		}
 		else if(command.equals("insertform")) {
@@ -54,16 +54,41 @@ public class BoardFrServlet extends HttpServlet {
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			BoardFrDto dto = new BoardFrDto(id_u, title, content);
-			
+
 			int res = dao.boardInsert(dto);
 			if(res > 0) {
-				jsResponse("작성되었습니다.", "commu_fr.jsp", response);
+
+				jsResponse("작성되었습니다.", "BoardFrServlet?command=boardlist", response);
 			}
 			else {
-				jsResponse("작성 실패", "commu_fr.jsp", response);
+				jsResponse("작성 실패", "BoardFrServlet?command=boardlist", response);
 			}
 		}
-		
+		else if(command.equals("updateform")) {
+			dispatch("commu_frupdate", request, response);
+		}
+		else if(command.equals("updateres")) {
+			int board_no = Integer.parseInt(request.getParameter("board_no"));
+			String id_u = request.getParameter("id_u");
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+
+
+			BoardFrDto dto = new BoardFrDto(board_no, id_u, title, content);
+
+			int res = dao.boardUpdateInfo(dto);
+			if(res >0) {
+				jsResponse("수정되었습니다.", "BoardFrServlet?command=boardlist", response);
+			}
+			else {
+				jsResponse("수정 실패", "BoardFrServlet?command=boardlist", response);
+			}
+		}
+		else if(command.equals("delete")) {
+			int board_no = Integer.parseInt(request.getParameter("board_no"));
+
+		}
+
 	}
 
 	/**
@@ -72,7 +97,7 @@ public class BoardFrServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		
+
 		doGet(request, response);
 	}
 	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
