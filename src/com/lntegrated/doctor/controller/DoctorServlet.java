@@ -161,6 +161,8 @@ public class DoctorServlet extends HttpServlet {
 					out.println(1);	// 이미 사용 중인 이메일
 				} else {
 					out.println(0);
+			break;
+
 				}
 				break;
 
