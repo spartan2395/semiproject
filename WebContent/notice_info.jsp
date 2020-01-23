@@ -28,7 +28,7 @@
 			<li><a href="FAQ.jsp">FAQ</a></li>
 		</ul>
 	</div>
-	
+
 	<div class="noticeinfoboardWrap">
 		<h1>공지사항</h1>
 			<table border="1">
@@ -54,13 +54,15 @@
 				</tr>
 				<tr>
 					<td colspan="2">
+
 						<input type="button" value="수정" onclick="location.href='NoticeServlet?command=updateform&nt_seq=<%=dto.getNt_seq()%>'"/>
 						<input type="button" value="삭제" onclick="location.href='NoticeServlet?command=delete&nt_seq=<%=dto.getNt_seq()%>'"/>
+
 						<input type="button" value="목록" onclick="location.href='NoticeServlet?command=list'">
 					</td>
 				</tr>
 			</table>
-	
+
 	</div>
 
 
