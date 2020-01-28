@@ -13,6 +13,7 @@ public class DoctorDto {
 	private String grade_d;
 	private String department;
 	private String bd_d;
+	private String activation;
 	
 	//�ǻ� ���� �˻� AND ���� AND ȸ�� ����
 	public DoctorDto(String id_d, String pw_d, String name_d,String number_d,String gender_d,
@@ -28,6 +29,27 @@ public class DoctorDto {
 		this.grade_d = grade_d;
 		this.department = department;
 		this.bd_d = bd_d;
+	}
+
+	public DoctorDto(String id_d, String pw_d, String name_d, String gender_d, String number_d, String addr_d,
+			String medical_d, String email_d, String grade_d, String department, String bd_d, String activation) {
+		super();
+		this.id_d = id_d;
+		this.pw_d = pw_d;
+		this.name_d = name_d;
+		this.gender_d = gender_d;
+		this.number_d = number_d;
+		this.addr_d = addr_d;
+		this.medical_d = medical_d;
+		this.email_d = email_d;
+		this.grade_d = grade_d;
+		this.department = department;
+		this.bd_d = bd_d;
+		this.activation = activation;
+	}
+
+	public DoctorDto() {
+		super();
 	}
 
 	public String getId_d() {
@@ -117,5 +139,15 @@ public class DoctorDto {
 	public void setBd_d(String bd_d) {
 		this.bd_d = bd_d;
 	}
+
+	public String getActivation() {
+		return activation;
+	}
+
+	public void setActivation(String activation) {
+		this.activation = activation;
+	}
+	
+	
 	
 }

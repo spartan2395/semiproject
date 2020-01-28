@@ -51,13 +51,13 @@ public class DoctorServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 
 		String command = request.getParameter("command");
-		System.out.println("command=====================>"+command);
+		System.out.println("command==================^___^===>"+command);
 		DoctorDto dto = null;
 		PrintWriter out = response.getWriter();
 		switch(command) {
 			case "update" :/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-			
 			{	String bday = request.getParameter("bd_yy")+"/"+request.getParameter("bd_mm")+"/"+request.getParameter("bd_d");
+			System.out.println(bday);
 				dto = new DoctorDto(
 						request.getParameter("id"),
 						request.getParameter("pw"),
@@ -71,13 +71,13 @@ public class DoctorServlet extends HttpServlet {
 						request.getParameter("department"),
 						bday);
 				int res = dao.update(dto);
-				
+				System.out.println(res);
 				if(res>0) {
 					System.out.println("update successed");
 					HttpSession session = request.getSession();
 					out.println("\n" + 
 							"<script type='text/javascript'>\n" + 
-							"    alert(\"회원가입에 성공하였습니다. 다시 로그인 해주세요\")\n"
+							"    alert(\"정보수정에 성공하였습니다. 다시 로그인 해주세요\")\n"
 							+ "location.href='login.html'"+
 							"</script>");
 					

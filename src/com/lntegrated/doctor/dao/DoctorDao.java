@@ -106,13 +106,19 @@ public class DoctorDao extends SqlConfig{
 	//ȸ�� ���� ����
 	public int update(DoctorDto dto) {
 		int res = 0;
+
 		try {
+
+			System.out.println("zero");
 			session = getSessionFactory("doctor/doctor_config.xml").openSession();
+			System.out.println("one");
 			res = session.update(namespace+"doctor_update", dto);
+			System.out.println("two");
 			if(res > 0) {
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Doctor_update ERROR");
 		}finally {
 			session.close();
