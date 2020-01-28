@@ -36,6 +36,12 @@ public class MemberDto {
 		this.email_u = email_u;
 		this.bd_u = bd_u;
 	}
+	
+	
+	public MemberDto() {
+		super();
+	}
+	
 	public MemberDto(String id_u,String activation) {
 		this.id_u = id_u;
 		this.activation = activation;

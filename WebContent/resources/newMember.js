@@ -57,6 +57,7 @@ document.getElementById("pwchk").addEventListener("focusout", function () {
     	this.parentElement.parentElement.lastElementChild.innerHTML="필수 요소입니다."
     } else {
         this.setAttribute("title","ready");
+        this.parentElement.parentElement.lastElementChild.innerHTML=""
     }
 })
 
@@ -205,18 +206,24 @@ document.querySelector("form").addEventListener("submit",function (event) {
         var status = chkfinal[i].getAttribute("title");
         var name = chkfinal[i].getAttribute("name");
         console.log( name + ":    "+status);
-        if (status!="ready"){
+        if (status=="notready"){
             this.focus();
             event.preventDefault();
         }
     }
 })
 
+// delete 
+document.getElementById("delete").addEventListener("click", function(event){
+	document.getElementsByName("command")[0].setAttribute("value","delete");
+	event.preventDefault();
+	document.querySelector("form").submit();
+})
 
-// 유효성 검사(의사 환자 공통)
-// ---------------------------------------------------------------------------------
-// 유효성 검사(의사만)
-// ---------------------------------------------------------------------------------
+
+
+// 유효성 검사(의사 환자 공통) ------------------------------------------------------------
+// 유효성 검사(의사만) ------------------------------------------------------------------
 
 var doc = document.getElementsByClassName("doc")
 for (var i = 0 ; i < doc.length ; i++){
@@ -230,6 +237,15 @@ for (var i = 0 ; i < doc.length ; i++){
 			this.parentElement.parentElement.lastElementChild.innerHTML=""
 		}
 })
+}
+
+// 회원 정보 수정
+var input = document.getElementsByTagName("input");
+for(var i = 0 ; i < input.length ; i++){
+	if(input[i].getAttribute("readonly")!=null){
+		input[i].parentElement.setAttribute("style","background-color:gray;");
+		input[i].setAttribute("style","background-color:gray;");
+	}
 }
 }
 
@@ -273,4 +289,6 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 	juso.value=roadFullAddr;
 	juso.setAttribute("title","ready");
 }
+
+
 

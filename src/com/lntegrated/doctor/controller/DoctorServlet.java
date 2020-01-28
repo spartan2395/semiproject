@@ -26,9 +26,6 @@ import org.json.simple.JSONObject;
 import com.lntegrated.doctor.dao.DoctorDao;
 import com.lntegrated.doctor.dto.DoctorDto;
 
-/**
- * Servlet implementation class DoctorServlet
- */
 @WebServlet("/DoctorServlet")
 public class DoctorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,18 +34,11 @@ public class DoctorServlet extends HttpServlet {
     DoctorDao dao = null;
     HttpSession session = null;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public DoctorServlet() {
 		dao = new DoctorDao();
 
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -56,9 +46,6 @@ public class DoctorServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
@@ -68,10 +55,46 @@ public class DoctorServlet extends HttpServlet {
 		DoctorDto dto = null;
 		PrintWriter out = response.getWriter();
 		switch(command) {
-
+			case "update" :/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+			
+			{	String bday = request.getParameter("bd_yy")+"/"+request.getParameter("bd_mm")+"/"+request.getParameter("bd_d");
+				dto = new DoctorDto(
+						request.getParameter("id"),
+						request.getParameter("pw"),
+						request.getParameter("name"),
+						request.getParameter("tel"),
+						request.getParameter("gender"),
+						request.getParameter("addr"),
+						request.getParameter("medical"),
+						request.getParameter("email"),
+						"D",
+						request.getParameter("department"),
+						bday);
+				int res = dao.update(dto);
+				
+				if(res>0) {
+					System.out.println("update successed");
+					HttpSession session = request.getSession();
+					out.println("\n" + 
+							"<script type='text/javascript'>\n" + 
+							"    alert(\"회원가입에 성공하였습니다. 다시 로그인 해주세요\")\n"
+							+ "location.href='login.html'"+
+							"</script>");
+					
+					session.invalidate();
+				}else {
+					out.println("\n" + 
+							"<script type='text/javascript'>\n" + 
+							"    alert(\"정보 수정에 실패하였습니다. \")\n"
+							+ "history.back();" + 
+							"</script>");
+				}
+			}
+			break;
+			
 				// 회원 가입
 			case "register" :/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-				String bday = request.getParameter("bd_yy")+"/"+request.getParameter("bd_mm")+"/"+request.getParameter("bd_d");
+			{	String bday = request.getParameter("bd_yy")+"/"+request.getParameter("bd_mm")+"/"+request.getParameter("bd_d");
 				int res = dao.insert(
 						new DoctorDto(
 								request.getParameter("id"),
@@ -88,10 +111,6 @@ public class DoctorServlet extends HttpServlet {
 
 				if(res > 0) {
 					System.out.println("insert successed");
-					HttpSession session = request.getSession() ;
-					System.out.println(session.getAttribute("key"));
-					session.removeAttribute("key");
-
 					RequestDispatcher dispatcher = request.getRequestDispatcher("doctormain.jsp");
 					dispatcher.forward(request, response);
 
@@ -103,28 +122,29 @@ public class DoctorServlet extends HttpServlet {
 							+ "history.back();" +
 							"</script>");
 				}
+			}
 				break;
 
 				// 로그인
 			case "login": /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-				JSONObject obj = new JSONObject();
+			{	JSONObject obj = new JSONObject();
 				dto = dao.doctorLogin(request.getParameter("id"), request.getParameter("pw"));
 				System.out.println("servelt: "+request.getParameter("id")+ request.getParameter("pw"));
 
-				if (dto != null) {
+				if (dto != null&& dto.getActivation().equals("L")) {
 					System.out.println("dto okok");
 					obj.clear();
-					obj.put("id", dto.getId_d());
-					obj.put("name", dto.getName_d());
-					obj.put("gender",dto.getGender_d());
-					obj.put("number", dto.getNumber_d());
-					obj.put("addr", dto.getAddr_d());
-					obj.put("medial", dto.getMedical_d());
-					obj.put("email", dto.getEmail_d());
-					obj.put("grade", dto.getGrade_d());
-					obj.put("department", dto.getDepartment());
-
 					obj.put("result", "");
+					
+					System.out.println("bday:====="+dto.getBd_d());
+					String[] bd = dto.getBd_d().split("/");
+					
+					HttpSession session = request.getSession();
+					session.setAttribute("dto", dto);
+					session.setAttribute("bd_yy", bd[0]);
+					session.setAttribute("bd_mm", bd[1]);
+					session.setAttribute("bd_d", bd[2]);
+					
 					response.getWriter().print(obj);
 				} else {
 					System.out.println("dto null");
@@ -132,16 +152,18 @@ public class DoctorServlet extends HttpServlet {
 					obj.put("result", "아이디와 비밀번호를 확인해 주세요");
 					response.getWriter().print(obj);
 				}
+			}
 				break;
 
 				// 아이디 중복 체크
 			case "idchk" : /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-					dto = dao.doctorInfo(request.getParameter("id").replace(" ", ""));
+			{		dto = dao.doctorInfo(request.getParameter("id").replace(" ", ""));
 				if(dto != null) {
 					response.getWriter().println(1);
 				}else {
 					response.getWriter().println(0);
 				}
+			}
 				break;
 
 			case "emailchk":/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/

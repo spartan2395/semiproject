@@ -56,9 +56,79 @@ public class MemberServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		switch(command) {
+		case "delete":/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+		{
+			String bday = request.getParameter("bd_yy")+"/"+request.getParameter("bd_mm")+"/"+request.getParameter("bd_d");
+			dto = new MemberDto(
+					request.getParameter("id"), 
+					request.getParameter("pw"), 
+					request.getParameter("name"), 
+					request.getParameter("gender"), 
+					request.getParameter("tel"), 
+					request.getParameter("addr"), 
+					request.getParameter("email"),
+					bday);
+			System.out.println(dto.getPw_u());
+			boolean result = dao.memberdeletePw(dto.getPw_u(), dto.getId_u());
+			System.out.println(result);
+			if(dto.getPw_u()==null||result==false) {
+				out.print("<script type='text/javascript'>\n" + 
+						"    alert(\"패스워드를 확인해 주세요 \")\n"
+						+ "history.back();"+
+						"</script>");
+			} else {
+				int res = dao.memberdelete(dto.getId_u());
+				if(res>0) {
+					out.print("<script type='text/javascript'>\n" + 
+							"    alert(\"탈퇴가 완료되었습니다. \")\n"
+							+ "location.href='login.html'"+
+							"</script>");
+				} else {
+					out.print("<script type='text/javascript'>\n" + 
+							"    alert(\"탈퇴 실패. \")\n"+
+							"</script>");
+				}
+			}
+		}
+			break;
+		
+		case "update":/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+		{	String bday = request.getParameter("bd_yy")+"/"+request.getParameter("bd_mm")+"/"+request.getParameter("bd_d");
+			dto = new MemberDto(
+					request.getParameter("id"), 
+					request.getParameter("pw"), 
+					request.getParameter("name"), 
+					request.getParameter("gender"), 
+					request.getParameter("tel"), 
+					request.getParameter("addr"), 
+					request.getParameter("email"),
+					bday);
+			
+			int res = dao.memberupdate(dto);
+			
+			if (res >0) {
+				System.out.println("update successed");
+				HttpSession session = request.getSession();
+				out.println("\n" + 
+						"<script type='text/javascript'>\n" + 
+						"    alert(\"회원가입에 성공하였습니다. \n 다시 로그인 해주세요\")\n"
+						+ "location.href='login.html'"+
+						"</script>");
+				
+				session.invalidate();
+			}else {
+				out.println("\n" + 
+						"<script type='text/javascript'>\n" + 
+						"    alert(\"정보 수정에 실패하였습니다. \")\n"
+						+ "history.back();" + 
+						"</script>");
+			}
+		}
+			break;
+			 
 		 // 회원 가입 
 		case "register":/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-			String bday = request.getParameter("bd_yy")+"/"+request.getParameter("bd_mm")+"/"+request.getParameter("bd_d");
+		{	String bday = request.getParameter("bd_yy")+"/"+request.getParameter("bd_mm")+"/"+request.getParameter("bd_d");
 			dto = new MemberDto(
 					request.getParameter("id"), 
 					request.getParameter("pw"), 
@@ -85,24 +155,28 @@ public class MemberServlet extends HttpServlet {
 						"</script>");
 				
 			}
+		}
 			break;
 		
 			// 로그인 
 		case "login" :/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-			JSONObject obj = new JSONObject();
+		{	JSONObject obj = new JSONObject();
 			dto = dao.memberlogin(request.getParameter("id"), request.getParameter("pw"));
 			System.out.println("Member servelt: "+request.getParameter("id")+ request.getParameter("pw"));
-			
-			if (dto != null) {
+			if (dto != null && dto.getActivation().equals("L")) {
 				System.out.println("dto okok");
 				obj.clear();
-				obj.put("id", dto.getId_u());
-				obj.put("name", dto.getPw_u());
-				obj.put("gender", dto.getGender_u());
-				obj.put("number", dto.getNumber_u());
-				obj.put("addr", dto.getAddr_u());
-				obj.put("email",dto.getEmail_u());
 				obj.put("result", "");
+				
+				System.out.println("bday:====="+dto.getBd_u());
+				String[] bd = dto.getBd_u().split("/");
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("dto", dto);
+				session.setAttribute("bd_yy", bd[0]);
+				session.setAttribute("bd_mm", bd[1]);
+				session.setAttribute("bd_d", bd[2]);
+				
 				response.getWriter().print(obj);
 			} else {
 				System.out.println("dto null");
@@ -110,10 +184,11 @@ public class MemberServlet extends HttpServlet {
 				obj.put("result", "아이디와 비밀번호를 확인해 주세요");
 				response.getWriter().print(obj);
 			}
+		}
 			break;
 			
 		case "idchk":/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-			System.out.println(request.getParameter("id"));
+		{	System.out.println(request.getParameter("id"));
 			dto = dao.memberInfo(request.getParameter("id").replace(" ", ""));
 			
 			if(dto != null) {
@@ -121,8 +196,10 @@ public class MemberServlet extends HttpServlet {
 			} else {
 				out.println(0);
 			}
+		}
 			break;
-			
+
+			// 이메일 발송 & 인증 코드 확인 
 		case "emailchk":/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 			String email_u = request.getParameter("email");
 			boolean chk = dao.emailchk(email_u);
@@ -225,7 +302,6 @@ public class MemberServlet extends HttpServlet {
 			}
 			
 			 break;
-			 
 	
 		}
 	}
