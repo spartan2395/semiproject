@@ -3,18 +3,34 @@
 <mapper namespace="com.tele.mapper">
 	<!-- 예약 리스트 출력 -->
   <select id = "tele_list" parameterType="String" resultType="teledto">
-	 SELECT TEL_SEQ,ID_U,NAME_U,NUMBER_U,ID_D,NAME_D,NUMBER_D,MEDICAL_D,DEPARTMENT,CHAT_NO,CHECKD,DISEASE,RESERV_DATE FROM
-  	TELEMEDICINE JOIN USER_TB USING(ID_U) JOIN DOCTOR_TB USING(ID_D) WHERE ID_D = #{id_d}
+	SELECT TEL_SEQ,ID_U,NAME_U,NUMBER_U,ID_D,NAME_D,NUMBER_D,MEDICAL_D,DEPARTMENT,CHAT_NO,CHECKD,DISEASE,RESERV_DATE
+	FROM TELEMEDICINE
+	JOIN USER_TB USING(ID_U)
+	JOIN DOCTOR_TB USING(ID_D)
+  	WHERE ID_D = #{id_d} AND TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS') <![CDATA[<=]]>TO_CHAR(RESERV_DATE,'YYYYMMDDHH24MISS')
+  </select>
+  <!-- 진단서 업로드 리스트 -->
+  <select id = "tele_upload_list" parameterType="String" resultType="teledto">
+	SELECT TEL_SEQ,ID_U,NAME_U,NUMBER_U,ID_D,NAME_D,NUMBER_D,MEDICAL_D,DEPARTMENT,CHAT_NO,CHECKD,DISEASE,RESERV_DATE
+	FROM TELEMEDICINE
+	JOIN USER_TB USING(ID_U)
+	JOIN DOCTOR_TB USING(ID_D)
+  	WHERE ID_D = #{id_d} AND TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')<![CDATA[>]]> TO_CHAR(RESERV_DATE,'YYYYMMDDHH24MISS')
+  </select>
+  <!-- 환자 -->
+  <select id = "tele_list_info" parameterType="String" resultType="teledto">
+  	SELECT * FROM TELEMEDICINE JOIN USER_TB USING(ID_U) JOIN DOCTOR_TB USING(ID_D) WHERE ID_U = #{id_u}
   </select>
   <!-- 예약 상세 정보 -->
   <select id = "tele_info" parameterType="int" resultType="teledto">
   	SELECT TEL_SEQ,ID_U,NAME_U,NUMBER_U,ID_D,NAME_D,NUMBER_D,MEDICAL_D,DEPARTMENT,CHAT_NO,CHECKD,DISEASE,RESERV_DATE FROM
   	TELEMEDICINE JOIN USER_TB USING(ID_U) JOIN DOCTOR_TB USING(ID_D) WHERE TEL_SEQ = #{tel_seq}
   </select>
-  <!-- 예약 상세 정보  id-u -->
+
   <select id = "tele_memberinfo" parameterType="String" resultType="teledto">
   	SELECT TEL_SEQ,ID_U,NAME_U,NUMBER_U,ID_D,NAME_D,NUMBER_D,MEDICAL_D,DEPARTMENT,CHAT_NO,CHECKD,DISEASE,RESERV_DATE FROM
-  	TELEMEDICINE JOIN USER_TB USING(ID_U) JOIN DOCTOR_TB USING(ID_D) WHERE ID_U = #{id_u}
+  	TELEMEDICINE JOIN USER_TB USING(ID_U) JOIN DOCTOR_TB USING(ID_D) WHERE ID_U=#{id_u}
+
   </select>
   <!-- 예약 신청 -->
   <insert id = "tele_insert" parameterType="teledto">

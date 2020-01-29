@@ -2,6 +2,8 @@ package com.lntegrated.board_fr.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lntegrated.board_fr.dao.BoardFrDao;
+import com.lntegrated.board_fr.dao.Pagemaker;
 import com.lntegrated.board_fr.dto.BoardFrDto;
+import com.lntegrated.comments.dao.CommDao;
+import com.lntegrated.comments.dto.CommDto;
 
 /**
  * Servlet implementation class BoardFrServlet
@@ -21,17 +26,7 @@ import com.lntegrated.board_fr.dto.BoardFrDto;
 public class BoardFrServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BoardFrServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
@@ -42,12 +37,38 @@ public class BoardFrServlet extends HttpServlet {
 
 		if(command.equals("boardlist")) {
 			List<BoardFrDto> list = dao.boardFrList();
+			Pagemaker pagemaker = new Pagemaker();
+			String pagenum = request.getParameter("pagenum");
+			int cpagenum = Integer.parseInt(pagenum);
+
+			pagemaker.setTotalcount(list.size());
+			pagemaker.setPagenum(cpagenum-1);
+			pagemaker.setCurrentblock(cpagenum);
+			pagemaker.setLastblock(pagemaker.getTotalcount());
+			
+			pagemaker.prevnext(cpagenum);
+			pagemaker.setStartPage(pagemaker.getCurrentblock());
+			pagemaker.setEndPage(pagemaker.getLastblock(), pagemaker.getCurrentblock());
+			
 			request.setAttribute("list", list);
+			request.setAttribute("page", pagemaker);
 
 			dispatch("commu_fr.jsp", request, response);
 		}
+
+		
+		else if(command.equals("select")) {
+			int board_no = Integer.parseInt(request.getParameter("board_no"));
+			dao.boardUpadteViews(board_no);
+			BoardFrDto dto = dao.boardFrInfo(board_no);
+			request.setAttribute("dto", dto);
+
+			dispatch("commu_frselect.jsp", request, response);
+
+		}
+
 		else if(command.equals("insertform")) {
-			dispatch("commu_frinsertform.jsp", request, response);
+			dispatch("commu_frinsert.jsp", request, response);
 		}
 		else if(command.equals("insertres")) {
 			String id_u = request.getParameter("id_u");
@@ -57,7 +78,6 @@ public class BoardFrServlet extends HttpServlet {
 
 			int res = dao.boardInsert(dto);
 			if(res > 0) {
-
 				jsResponse("작성되었습니다.", "BoardFrServlet?command=boardlist", response);
 			}
 			else {
@@ -65,7 +85,7 @@ public class BoardFrServlet extends HttpServlet {
 			}
 		}
 		else if(command.equals("updateform")) {
-			dispatch("commu_frupdate", request, response);
+			dispatch("commu_frupdate.jsp", request, response);
 		}
 		else if(command.equals("updateres")) {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
@@ -84,16 +104,33 @@ public class BoardFrServlet extends HttpServlet {
 				jsResponse("수정 실패", "BoardFrServlet?command=boardlist", response);
 			}
 		}
+
 		else if(command.equals("delete")) {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
-
+			CommDao commdao = new CommDao();
+			CommDto commdto = new CommDto(board_no, "788");
+			int childres = commdao.commDelete(commdto);
+			
+			int res = dao.boardDelete(board_no);
+			
+			if(res >0) {
+				if(childres>0) {
+					jsResponse("삭제되었습니다.", "BoardFrServlet?command=boardlist", response);
+				}
+			}
+			else {
+				jsResponse("삭제 실패", "BoardFrServlet?command=boardlist", response);
+			}
+		} else if(command.equals("search")) {
+			String title_search = request.getParameter("search_qtext");
+			List<BoardFrDto> searchlist = dao.boardFrSearchList(title_search);
+					
 		}
+
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");

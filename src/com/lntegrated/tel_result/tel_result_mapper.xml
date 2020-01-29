@@ -13,6 +13,6 @@
   	</select>
   	<!-- 진단서 작성 -->
 	<insert id = "tel_result_insert" parameterType="telresultdto">
-		INSERT INTO TEL_RESULT(#{tel_seq},#{dx_name},#{dx_content},#{pupose},#{remarks},SYSDATE)
+		INSERT INTO TEL_RESULT(#{tel_seq},#{dx_name},#{dx_content},#{purpose},#{remarks},SYSDATE,'Y')
 	</insert>
 </mapper>
