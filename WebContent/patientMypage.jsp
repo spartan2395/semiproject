@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<% response.setContentType("text/html; charset=UTF-8"); %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,29 +13,30 @@
     <link rel="stylesheet" href="resources/newMember.css" type="text/css">
     <link rel="icon" href="resources/imgs/carrot.png" type="image/x-icon">
 
-    <title>당근 병원 - 당신 근처의 병원</title>
+    <title>당근 병원 - 내정보 수정 </title>
 </head>
-<script type='text/javascript' src="resources/newMember.js" charset="utf-8"></script>
+<script type='text/javascript' src="resources/newMember.js"></script>
 <script type='text/javascript' src="js/jquery-3.4.1.min.js"></script>
 
 <body>
     <div id="content">
         <a href=""><img src="resources/imgs/carrotlogopractice.png" alt="logo"
                 style="width: 250px; margin-top: 20px;"></a>
-        <p style="font-weight: 900; font-size: larger; color: #263e63; margin : 20px 0 20px 0;">회원가입(개인)</p>
+        <p style="font-weight: 900; font-size: larger; color: #263e63; margin : 20px 0 20px 0;">내정보 수정 </p>
     </div>
     
     <div class="container">
         <form action="MemberServlet" method="post" id="form">
-        <input type="hidden" name="command" value="register">
+        <input type="hidden" name="command" value="update">
             <div id="idpw">
                 <div id="id">
                     <h4>아이디</h4>
                     <div class="wbtn">
-                        <span class="wbutton"><input type="text" required name="id" class ="chk" title="notready"></span>
-                        <a onclick = "idchk()" class="btna"><span class="btn">아이디 확인</span></a>
-                        <p class="required" id="iderror"></p>
+                        <span><input type="text" required name="id" class ="chk" readonly value=${dto.id_u}></span>
+                        <a onclick = "idchk()" class="btna" style="display:none"><span class="btn">아이디 확인</span></a>
+                            <p class="required" hidden="hidden"></p>
                     </div>
+                
                 </div>
 
                 <div>
@@ -48,63 +54,49 @@
             <div id="who">
                 <div>
                     <h4>이름</h4>
-                    <span><input type="text" required name="name" title="notready"></span>
-                    <p class="required"></p>
+                    <span><input type="text" required name="name" title="ready" readonly value=${dto.name_u}></span>
+                     <p class="required" hidden="hidden"></p>
                 </div>
                 <div>
                     <h4>성별</h4>
-                    <span id="span1">
+                    <span>
                         <select name="gender" required>
                             <option value="F">여</option>
                             <option value="M">남</option>   
                         </select>
                     </span>
-                    <p class="required"></p>
                 </div>
                 <div id="bd">
                     <h4>생년월일</h4>
                     <div id="bd_yy">
                         <span>
-                            <input type="text" placeholder="출생 년도" maxlength="4" class="bd" title="notready" name="bd_yy">
+                            <input type="text" class="bd" readonly name="bd_yy" value=${bd_yy} >
                         </span>
 <!--                         <p class="required"></p> -->
                     </div>
                     <div id="bd_mm">
                         <span>
-                            <select required class="bd" title="notready" name="bd_mm">
-                                <option value="" selected>월</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                            </select>
+                            <input type="text"class="bd" readonly name="bd_mm" value=${bd_mm} >
+                              
                         </span>
                         <!-- <p class="required"></p> -->
                     </div>
                     <div id="bd_d">
-                        <span><input type="number" placeholder="일" maxlength="2" min="1" max="31" class="bd" title="notready" name="bd_d"></span>
+                        <span><input type="text" class="bd" name="bd_d" readonly value=${bd_d}></span>
                         <!-- <p class="required"></p> -->
                     </div>
-                     <p class="required" id="bderror"></p>
+                     <p class="required" id="bderror" hidden="hidden"></p>
                 </div>
                 <div>
                     <h4>전화번호</h4>
-                     <span><input type="tel" placeholder="010-0000-0000" name="tel" id="tel" required title="notready"></span>
+                     <span><input type="tel" name="tel" id="tel" required title="ready" value=${dto.number_u} ></span>
                  
-                    <p class="required"></p>
+                    <p class="required" hidden="hidden"></p>
                 </div>
                 <div>
                     <h4>주소</h4>
-                    <span><input type="text" readonly onclick="goPopup()" id="juso" name="addr" title="notready"></span>
-                    <p class="required"></p>
+                    <span><input type="text" onclick="goPopup()" id="juso" name="addr" title="ready" value=${dto.addr_u}></span>
+                    <p class="required" hidden="hidden"></p>
                 </div>
             </div>
 
@@ -112,20 +104,23 @@
                 <div>
                     <h4>이메일</h4>
                     <div class="wbtn">
-                          <span  class="wbutton"><input type="email" name = "email" title="notready" class ="chk" ></span>
-                        <a class="btna"><span class="btn">인증하기</span></a>
-                        <p class="required" id="emailerror"></p>
+                          <span ><input type="email" name = "email" class ="chk" readonly value=${dto.email_u}></span>
+                        <a class="btna" style="display:none" ><span class="btn">인증하기</span></a>
+                        <p class="required" id="emailerror" hidden="hidden"></p>
                     </div>
                 </div>
-                <div>
+                <div style="display:none">
                     <h4>인증코드</h4>
-                    <span><input type="text" maxlength="10" title="notready" id="code" required></span>
+                    <span><input type="text" maxlength="10" title="ready" id="code" required readonly></span>
                     <p class="required"></p>
                 </div>
             </div>
 
             <div id="confirm">
-                <button type="submit" class="confirmbtn"><span id="confirmspan">회원 가입</span></button>
+                <button type="submit" class="confirmbtn"><span id="confirmspan">정보 수정</span></button>
+            </div>
+            <div id="delete">
+            	<p style="font-style: italic; color: gray;">회원 탈퇴는 <a style="color:red;" href="" id="delete">여기</a>를 클릭 해주세요</p>
             </div>
         </form>
     </div>

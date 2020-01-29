@@ -29,6 +29,7 @@ public class TelResultDao extends SqlConfig{
 			session = getSessionFactory("tel_result/tel_result_config.xml").openSession();
 			dto = session.selectOne(namespace+"tel_result_info",tel_seq);
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Tel_Result_Info ERROR");
 		}finally {
 			session.close();

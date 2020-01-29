@@ -23,7 +23,7 @@ public class BoardFrDao extends SqlConfig{
 		}
 		return list;
 	}
-	//�Խñ� ����˻�
+	//제목으로 검색 list
 	public List<BoardFrDto> boardFrSearchList(String title){
 		List<BoardFrDto> list = null;
 		try {
@@ -108,6 +108,7 @@ public class BoardFrDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Board_Delete ERROR");
 		}finally {
 			session.close();
