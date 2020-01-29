@@ -38,7 +38,7 @@
 	            <p>마이페이지</p>
 	         </div>
 	         <div class="textview">
-	            <a href="#">
+	            <a href="calendarServlet?command=scheldual&id_u=UID">
 	               <h2>예약확인</h2>
 	            </a>
 	            <a href="#">

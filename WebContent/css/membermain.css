@@ -23,8 +23,8 @@
 				padding: 28px 90px 20px 32px; border-bottom: 1px solid #FE8633; box-sizing: border-box;}
    .textbox>p{font-family: NANUMBARUNGOTHIC; font-size: 60px; color: white;  }
 
-   .mainVisual .left >span {position: absolute; background: url('../resources/imgs/member_left1.png') no-repeat center bottom; background-size:cover; display: inline-block; }
-  .mainVisual .right >span {position: absolute; background: url('../resources/imgs/member_right1.png') no-repeat center bottom; background-size:cover; display: inline-block; }
+   .mainVisual .left >span {position: absolute; background: url('') no-repeat center bottom; background-size:cover; display: inline-block; }
+  .mainVisual .right >span {position: absolute; background: url('') no-repeat center bottom; background-size:cover; display: inline-block; }
 
 
    .mainVisual >div.show  {z-index: 1;}
