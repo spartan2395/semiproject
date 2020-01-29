@@ -9,7 +9,7 @@ public class BoardFrDto {
 	private String content;
 	private Date regdate;
 	private int views;
-	//°Ô½Ã±Û ¸®½ºÆ® °Ë»ö
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ë»ï¿½
 	public BoardFrDto(int board_no, String id_u, String title , String content,
 			Date regdate, int views) {
 		this.board_no = board_no;
@@ -20,14 +20,14 @@ public class BoardFrDto {
 		this.views = views;
 	}
 	
-	//°Ô½Ã±Û ÀÛ¼º
+	//ï¿½Ô½Ã±ï¿½ ï¿½Û¼ï¿½
 	public BoardFrDto(String id_u,String title, String content) {
 		this.id_u = id_u;
 		this.title = title;
 		this.content = content;
 	}
 	
-	//°Ô½Ã±Û ³»¿ë¼öÁ¤
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public BoardFrDto(int board_no,String id_u,String title,String content) {
 		this.board_no = board_no;
 		this.title = title;

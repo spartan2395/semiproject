@@ -45,6 +45,7 @@ window.onload = function() {
 	var cell = document.getElementsByClassName("logincell")[0];
 	cell.addEventListener("click", function() {
 		var grade = document.getElementById("formtag").getAttribute("action");
+		if(cell.getAttribute("title")=="ready"){
 		$.ajax({
 			url : grade,
 			data : {
@@ -56,20 +57,16 @@ window.onload = function() {
 			type : "post",
 			async : true,
 
-			success : function(data) {
-				$("#error").html(data.result);
-				if(data.id==undefined){
-
-				} else {
-					alert(data.id);
-					var info = JSON.stringify(data);
-					alert("info :" + info);
-					sessionStorage.setItem("data",info);
+			success : function(obj) {
+				$("#error").html(obj.result);
+				if(obj.result==""){
 					if(grade=="DoctorServlet"){
 						window.location.href="doctormain.jsp";
 					} else {
 						window.location.href="patientmain.jsp";
 					}
+				} else {
+					
 					
 				}
 			},
@@ -77,6 +74,9 @@ window.onload = function() {
 				alert("fail");
 			}
 		})
+		} else{
+			alert("wrong!!")
+		}
 	})
 }
 

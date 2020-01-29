@@ -18,7 +18,7 @@
 	</select>
 	<!-- 로그인 정보 -->
 	<select id="doctor_login" parameterType="map" resultType="doctordto">
-		SELECT ID_D,PW_D,NAME_D,GENDER_D,NUMBER_D,ADDR_D,MEDICAL_D,EMAIL_D,GRADE_D,DEPARTMENT, BD_D
+		SELECT ID_D,PW_D,NAME_D,GENDER_D,NUMBER_D,ADDR_D,MEDICAL_D,EMAIL_D,GRADE_D,DEPARTMENT, BD_D, ACTIVATION
 		FROM DOCTOR_TB WHERE ID_D = #{id_d} AND PW_D = #{pw_d}
 	</select>
 	<!-- 회원 가입 -->
@@ -34,4 +34,8 @@
 	<update id="doctor_delete" parameterType="String">
 		UPDATE DOCTOR_TB SET ACTIVATION = 'D' WHERE ID_D = #{id_d}
 	</update>
+	<!-- 의사 탈퇴전 비밀 번호확인 -->
+	<select id="doctor_delete_pwchk" parameterType="String" resultType="String">
+		SELECT PW_D FROM DOCTOR_TB WHERE ID_D = #{ID_D}
+	</select>
 </mapper>

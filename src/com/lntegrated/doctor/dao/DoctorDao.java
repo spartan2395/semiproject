@@ -106,13 +106,19 @@ public class DoctorDao extends SqlConfig{
 	//ȸ�� ���� ����
 	public int update(DoctorDto dto) {
 		int res = 0;
+
 		try {
+
+			System.out.println("zero");
 			session = getSessionFactory("doctor/doctor_config.xml").openSession();
+			System.out.println("one");
 			res = session.update(namespace+"doctor_update", dto);
+			System.out.println("two");
 			if(res > 0) {
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Doctor_update ERROR");
 		}finally {
 			session.close();
@@ -134,5 +140,23 @@ public class DoctorDao extends SqlConfig{
 			session.close();
 		}
 		return res;
+	}
+	
+	public boolean doctordeletePw(String pw_d, String id_d) {
+		boolean result =false;
+		String res = null;
+		try {
+			session= getSessionFactory("doctor/doctor_config.xml").openSession();
+			res = session.selectOne(namespace+"doctor_delete_pwchk",id_d);
+			if(res.equals(pw_d)){
+				result=true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Doctor_Delete_Chk ERROR");
+		} finally {
+			session.close();
+		}
+		return result;
 	}
 }
