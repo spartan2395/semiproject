@@ -12,6 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style type="text/css">
 
 #calendar {
@@ -50,9 +51,11 @@
 	line-height: 40px;
 	border-radius: 40px 40px 40px 1px;
 }
-	.calendarWrap{width: 1000px; height:100%; margin: 0 auto; padding: 0 80px 160px; margin-bottom: 130px;}
-	.calendarWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
-
+	.calendarWrap{width: 1100px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.calendarWrap h1{padding: 59px 0 30px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
+	.calendarWrap .btn input{min-width: 53px;font-size: 16px;color: #fff;text-align: center; background-color: orange; cursor: pointer;
+    				border-radius: 2px;padding: 12px 16px 12px 16px; border: 1px solid orange;display: inline-block; margin: 10px 10px 10px 10px;}
+	
 </style>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -80,7 +83,7 @@
 	});
 </script>
 <link href = "css/reset.css" rel="stylesheet" type="text/css"/>
-<link href = "css/membermain.css" rel="stylesheet" type="text/css"/>
+<link href = "css/menu.css" rel="stylesheet" type="text/css"/>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/main.js">
@@ -131,18 +134,27 @@
 	%>
 	<%@ include file="form/header.jsp" %>
 	
+	<div class="headMenu">
+		<h1>예약 확인</h1>
+		<ul>
+			<li><a href="calendarServlet?command=doc_schedule&id_d=nexon">예약 일정</a></li>
+			<li><a href="">원격 진료</a></li>
+			<li><a href="">환자 관리</a></li>
+		</ul>
+	</div>
+	
 	<div class="calendarWrap">
-		<h1 style="width: 50%;">예약확인</h1>
-		<div style="float: left margin-top: 14%; margin-left: 39%;">
-		<input type="button" value="진단서출력 " onclick="location.href='medicalreport.jsp'" style="width: 30%; float:right;">
+		<h1 style="width: 50%;">예약일정</h1>
+		<div class="btn">
+		<input type="button" value="진단서업로드" onclick="location.href='TeleServlet?command=resultupload&id_d=nexon'">
 		</div>
 		<table id="calendar" >
 			<caption>
-				<a href="calendarServlet?command=schedual&year=<%=year - 1%>&month<%=month%>&id_u=UID">◁◁</a>
-				<a href="calendarServlet?command=schedual&year=<%=year%>&month=<%=month - 1%>&id_u=UID">◁</a>
+				<a href="calendarServlet?command=schedual&year=<%=year - 1%>&month<%=month%>&id_d=nexon">◁◁</a>
+				<a href="calendarServlet?command=schedual&year=<%=year%>&month=<%=month - 1%>&id_d=nexon">◁</a>
 				<span class="Y"><%=year%></span>년 <span class="M"><%=month%></span>월
-				<a href="calendarServlet?command=schedual&year=<%=year%>&month=<%=month + 1%>&id_u=UID">▷</a>
-				<a href="calendarServlet?command=schedual&year=<%=year + 1%>&month<%=month%>&id_u=UID">▷▷</a>
+				<a href="calendarServlet?command=schedual&year=<%=year%>&month=<%=month + 1%>&id_d=nexon">▷</a>
+				<a href="calendarServlet?command=schedual&year=<%=year + 1%>&month<%=month%>&id_d=nexon">▷▷</a>
 			</caption>
 	
 			<tr>
@@ -165,7 +177,7 @@
 				%>
 				<td><a class="countview" href=""><%=i%></a>
 					<div class="clist">
-						<%=Util.getCalView(month,i,clist,tlist)%>
+						<p><%=Util.getCalView(month,i,clist,tlist)%></p>
 					</div></td>
 				<%
 					if ((dayOfWeek - 1 + i) % 7 == 0) {
@@ -182,7 +194,6 @@
 			</tr>
 		</table>
 	</div>
-	<%@ include file="./form/footer.jsp" %>
 
 </body>
 </html>

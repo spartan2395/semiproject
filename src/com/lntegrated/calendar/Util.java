@@ -1,9 +1,7 @@
 package com.lntegrated.calendar;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
 import java.util.List;
-
 
 import com.lntegrated.clinic.dto.ClinicDto;
 import com.lntegrated.telemedicine.dto.TeleDto;
@@ -57,8 +55,9 @@ public class Util {
 	}
 	
 	
-	public static String getCalView(int i, List<ClinicDto> clist , List<TeleDto> tlist) {
+	public static String getCalView(int month, int i, List<ClinicDto> clist , List<TeleDto> tlist) {
 		String d = isTwo(i+"");
+		String m = isTwo(month+"");
 		String res = "";
 //		ClinicDto cdt = new ClinicDto();
 //		String stringcDate = String.valueOf(cdt.getReserv_date());
@@ -66,21 +65,32 @@ public class Util {
 //		TeleDto tdt = new TeleDto();
 //		String StringtDate = String.valueOf(tdt.getReserv_date());
 //		System.out.println(StringtDate);
-		for(ClinicDto dto : clist) {	
-			if(String.valueOf(dto.getReserv_date()).substring(8,10).equals(d)) {
-				if(dto.getMedical_d() != null) {
-					res+="<p>" + dto.getMedical_d() + "</p>";
+		SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd");
+		if(clist != null) {
+			for(ClinicDto dto : clist) {	
+				System.out.println(m);
+				System.out.println(df.format(dto.getReserv_date()));
+				if(String.valueOf(df.format(dto.getReserv_date())).substring(5,7).equals(m) &&
+						String.valueOf(df.format(dto.getReserv_date())).substring(8,10).equals(d)) 
+				{
+					if(dto.getMedical_d() != null) {
+						res+="<p>" + dto.getMedical_d() + "</p>";
+					}
 				}
 			}
 		}
-		for(TeleDto dto : tlist) {
-			if(String.valueOf(dto.getReserv_date()).substring(8,10).equals(d)) {
-				if(dto.getMedical_d() != null) {
-					res+="<p>" + dto.getMedical_d() + "</p>";
+		if(tlist != null) {
+			for(TeleDto dto : tlist) {
+				if(String.valueOf(df.format(dto.getReserv_date())).substring(5,7).equals(m) &&
+						String.valueOf(df.format(dto.getReserv_date())).substring(8,10).equals(d)) 
+				{
+					if(dto.getMedical_d() != null) {
+						res+="<p>" + dto.getMedical_d() + "</p>";
+					}
 				}
 			}
 		}
-		return res;
+				return res;
 	}
 	
 

@@ -17,6 +17,6 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="com/lntegrated/notice/tel_result_mapper.xml"/>
+    <mapper resource="com/lntegrated/tel_result/tel_result_mapper.xml"/>
   </mappers>
 </configuration>

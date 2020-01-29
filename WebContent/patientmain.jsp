@@ -10,16 +10,15 @@
 <link href = "css/reset.css" rel="stylesheet" type="text/css"/>
 <link href = "css/membermain.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
-	
+
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/main.js">
-   
+
 
 </script>
 </head>
 <body>
-
 	 <div class="mainVisual">
          <div class="left">
             <span id="left2" style="width: 1249px; height: 840px;"></span>
@@ -28,7 +27,7 @@
             <span id="right2" style="width: 1249px; height: 840px; left: -100%;"></span>
          </div>
       </div>
-      
+
       <div class="main" >
          <div class="left">
             <div class="textbox">
@@ -70,7 +69,7 @@
    <footer>
    	<p>여기 푸터</p>
    </footer>
-   
+
 
 </body>
 </html>
