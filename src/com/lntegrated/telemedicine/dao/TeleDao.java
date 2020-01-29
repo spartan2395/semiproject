@@ -10,7 +10,7 @@ public class TeleDao extends SqlConfig{
 	SqlSession session = null;
 	String namespace = "com.tele.mapper.";
 	int res = 0;
-	//���� ����Ʈ
+	//의사예약리스트
 	public List<TeleDto> teleList(String id_d){
 		List<TeleDto> list = null;
 		try {
@@ -23,7 +23,33 @@ public class TeleDao extends SqlConfig{
 		}
 		return list;
 	}
+	public List<TeleDto> teleUploadList(String id_d){
+		List<TeleDto> list = null;
+		try {
+			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
+			list = session.selectList(namespace+"tele_upload_list", id_d);
+		}catch(Exception e) {
+			System.out.println("Telemedicine_upload_list ERROR");
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+	// 환자예약리스트
+	public List<TeleDto> teleInfoList(String id_u){
+		List<TeleDto> list = null;
+		try {
+			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
+			list = session.selectList(namespace+"tele_list_info", id_u);
+		}catch(Exception e) {
+			System.out.println("Telemedicine_info ERROR");
+		}finally {
+			session.close();
+		}
+		return list;
+	}
 	
+	// 예약상세정보
 	public TeleDto teleInfo(int tel_seq){
 		TeleDto dto = null;
 		try {

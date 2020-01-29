@@ -12,9 +12,10 @@ public class TelResultDto {
 	private String purpose;
 	private String remarks;
 	private Date iss_date;
+	private String checkd;
 	
 	public TelResultDto(int tel_seq,String id_u,String id_d,Date reserv_date,
-			String dx_name,String dx_content,String purpose,String remarks,Date iss_date) {
+			String dx_name,String dx_content,String purpose,String remarks,Date iss_date,String checkd) {
 		this.tel_seq = tel_seq;
 		this.id_d = id_d;
 		this.id_u = id_u;
@@ -24,6 +25,7 @@ public class TelResultDto {
 		this.purpose = purpose;
 		this.remarks = remarks;
 		this.iss_date = iss_date;
+		this.checkd=checkd;
 	}
 	
 	public TelResultDto(int tel_seq,String dx_name, String dx_content, String purpose, String remarks) {
@@ -104,5 +106,12 @@ public class TelResultDto {
 
 	public void setIss_date(Date iss_date) {
 		this.iss_date = iss_date;
+	}
+	
+	public String getCheckd() {
+		return checkd;
+	}
+	public void setCheckd(String checkd) {
+		this.checkd=checkd;
 	}
 }
