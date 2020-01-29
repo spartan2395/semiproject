@@ -32,8 +32,8 @@
 				<div id="id">
 					<h4>아이디</h4>
 					<div class="wbtn">
-						<span><input type="text" required name="id"
-							class="chk" readonly value=${dto.id_d }></span> 
+						<span><input type="text" required
+							class="chk" readonly name="id" value=${dto.id_d }></span> 
 							<a onclick="idchk()" class="btna" style="display:none"><span class="btn">아이디 확인</span></a>
 						<p class="required" id="iderror" hidden="hidden"></p>
 					</div>

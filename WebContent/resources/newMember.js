@@ -200,7 +200,7 @@ code.addEventListener("focusout",function () {
 
 // submit
 document.querySelector("form").addEventListener("submit",function (event) {
-	console.log("submit"+grade);
+	console.log("submit===>"+grade);
     var chkfinal = document.getElementsByTagName("input");
     for(var i = 1 ; i<chkfinal.length; i++){
         var status = chkfinal[i].getAttribute("title");

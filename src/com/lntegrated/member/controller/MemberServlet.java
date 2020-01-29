@@ -111,7 +111,7 @@ public class MemberServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				out.println("\n" + 
 						"<script type='text/javascript'>\n" + 
-						"    alert(\"회원가입에 성공하였습니다. \n 다시 로그인 해주세요\")\n"
+						"    alert(\"정보 수정에 성공하였습니다. 다시 로그인 해주세요\")\n"
 						+ "location.href='login.html'"+
 						"</script>");
 				

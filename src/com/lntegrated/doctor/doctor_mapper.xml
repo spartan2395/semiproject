@@ -34,4 +34,8 @@
 	<update id="doctor_delete" parameterType="String">
 		UPDATE DOCTOR_TB SET ACTIVATION = 'D' WHERE ID_D = #{id_d}
 	</update>
+	<!-- 의사 탈퇴전 비밀 번호확인 -->
+	<select id="doctor_delete_pwchk" parameterType="String" resultType="String">
+		SELECT PW_D FROM DOCTOR_TB WHERE ID_D = #{ID_D}
+	</select>
 </mapper>

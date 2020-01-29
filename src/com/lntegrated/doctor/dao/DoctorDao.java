@@ -141,4 +141,22 @@ public class DoctorDao extends SqlConfig{
 		}
 		return res;
 	}
+	
+	public boolean doctordeletePw(String pw_d, String id_d) {
+		boolean result =false;
+		String res = null;
+		try {
+			session= getSessionFactory("doctor/doctor_config.xml").openSession();
+			res = session.selectOne(namespace+"doctor_delete_pwchk",id_d);
+			if(res.equals(pw_d)){
+				result=true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Doctor_Delete_Chk ERROR");
+		} finally {
+			session.close();
+		}
+		return result;
+	}
 }
