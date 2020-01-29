@@ -12,7 +12,7 @@ import com.lntegrated.clinic.dto.ClinicDto;
 
 public class ClinicDao extends SqlConfig{
 	SqlSession session = null;
-	String namespace = "clinic_mapper.";
+	String namespace = "com.lntegrated.clinic.mapper.";
 	//�ǻ翡�� �����̵Ǿ� �ִ� �մԵ� ����Ʈ 
 	public List<ClinicDto> clinicList(String id_d) {
 		List<ClinicDto> list = new ArrayList<ClinicDto>();
@@ -26,6 +26,21 @@ public class ClinicDao extends SqlConfig{
 		}
 		return list;
 	}
+	
+	public List<ClinicDto> clinicMemberList(String id_u) {
+		List<ClinicDto> list = null;
+		
+		try {
+			session = getSessionFactory("clinic/clinic_config.xml").openSession();
+			list = session.selectList(namespace+"clinic_memberinfo", id_u);
+		}catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("ClinicmemberInfo ERROR");
+		}finally {
+			session.close();
+		}
+		return list;
+	}
 	//������ �� ����
 	public ClinicDto clinicMemberInfo(String id_u) {
 		ClinicDto dto = null;
@@ -34,6 +49,7 @@ public class ClinicDao extends SqlConfig{
 			session = getSessionFactory("clinic/clinic_config.xml").openSession();
 			dto = session.selectOne(namespace+"clinic_memberinfo", id_u);
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("ClinicmemberInfo ERROR");
 		}finally {
 			session.close();

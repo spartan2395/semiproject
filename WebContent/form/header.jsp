@@ -1,7 +1,13 @@
+<%@page import="com.lntegrated.doctor.dto.DoctorDto"%>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="net.sf.json.JSON"%>
+<%@page import="com.lntegrated.member.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("UTF-8");%>
-<% response.setContentType("text/html; charset=UTF-8");%>
+<% response.setContentType("text/html; charset=UTF-8");
+%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,9 +86,10 @@
 
 		</nav>
 			<div class="hiuser">
-			<h4>안녕하세요 000님 당근병원입니다.</h4>
+			
+			<h4>안녕하세요 <c:catch> ${dto.name_u}</c:catch> <c:catch> ${dto.name_d } </c:catch> 님 당근병원입니다.</h4>
+		
 			</div>
-
 		<div class="bgDepth" style="display: none; height: 230px; padding-top: 0px; margin-top: 0px;">
 
 		</div>
