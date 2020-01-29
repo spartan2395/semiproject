@@ -23,6 +23,7 @@ public class TeleDao extends SqlConfig{
 		}
 		return list;
 	}
+
 	public List<TeleDto> teleUploadList(String id_d){
 		List<TeleDto> list = null;
 		try {
@@ -36,11 +37,13 @@ public class TeleDao extends SqlConfig{
 		return list;
 	}
 	// 환자예약리스트
+
 	public List<TeleDto> teleInfoList(String id_u){
 		List<TeleDto> list = null;
 		try {
 			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
 			list = session.selectList(namespace+"tele_list_info", id_u);
+
 		}catch(Exception e) {
 			System.out.println("Telemedicine_info ERROR");
 		}finally {
@@ -48,8 +51,10 @@ public class TeleDao extends SqlConfig{
 		}
 		return list;
 	}
-	
+
+
 	// 예약상세정보
+
 	public TeleDto teleInfo(int tel_seq){
 		TeleDto dto = null;
 		try {
@@ -62,7 +67,7 @@ public class TeleDao extends SqlConfig{
 		}
 		return dto;
 	}
-	
+
 	public int teleInsert(TeleDto dto) {
 		res = 0;
 		try {
@@ -78,7 +83,7 @@ public class TeleDao extends SqlConfig{
 		}
 		return res;
 	}
-	
+
 	public int teleUpdateInfo(TeleDto dto) {
 		res = 0;
 		try {
@@ -94,7 +99,7 @@ public class TeleDao extends SqlConfig{
 		}
 		return res;
 	}
-	
+
 	public int teleUpdateChk(int tel_seq) {
 		res = 0;
 		try {

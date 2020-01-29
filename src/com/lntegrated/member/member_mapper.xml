@@ -28,12 +28,17 @@
 	
 	<!-- 정보 수정 -->
 	<update id = "member_update" parameterType="memberdto">
-		UPDATE USER_TB SET PW_U = #{pw_u} , NAME_U = #{name_u} , GENDER_U = #{gender_u} , NUMBER_U = #{number_u},
-		ADDR_U = #{addr_u} , EMAIL_U = #{email_u}, BD_U = #{bd_u}  WHERE ID_U = #{id_u}
+		UPDATE USER_TB SET PW_U = #{pw_u} , NUMBER_U = #{number_u},
+		ADDR_U = #{addr_u} WHERE ID_U = #{id_u}
 	</update>
 	
 	<!-- 회원 탈퇴 -->
 	<update id = "member_delete" parameterType="String">
-		UPDATE USER_TB SET CHECKD = 'D' WHERE ID_U = #{ID_U}
+		UPDATE USER_TB SET ACTIVATION = 'D' WHERE ID_U = #{ID_U}
 	</update>
+	
+	<!-- 회원 탈퇴전 비밀 번호확인 -->
+	<select id="member_delete_pwchk" parameterType="String" resultType="String">
+		SELECT PW_U FROM USER_TB WHERE ID_U = #{ID_U}
+	</select>
 </mapper>

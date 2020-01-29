@@ -113,11 +113,19 @@ public class MemberDao extends SqlConfig{
 		int res = 0;
 		try {
 			session = getSessionFactory("member/member_config.xml").openSession();
-			res = session.update(namespace+"update", dto);
+			System.out.println("id_u: "+dto.getId_u());
+			System.out.println("pw_u: "+dto.getPw_u());
+			System.out.println("name_u: "+dto.getName_u());
+			System.out.println("gender_u: "+dto.getGender_u());
+			System.out.println("number_u: "+dto.getNumber_u());
+			System.out.println("addr_u: "+dto.getAddr_u());
+			System.out.println("bd_u: "+dto.getBd_u());
+			res = session.update(namespace+"member_update", dto);
 			if(res > 0) {
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Member_Update ERROR");
 		}finally {
 			session.close();
@@ -134,10 +142,31 @@ public class MemberDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Member_Delete ERROR");
 		}finally {
 			session.close();
 		}
 		return res;
+	}
+	
+	public boolean memberdeletePw(String pw_u, String id_u) {
+		boolean result = false;
+		String res = null;
+		try {
+			session = getSessionFactory("member/member_config.xml").openSession();
+			res = session.selectOne(namespace+"member_delete_pwchk",id_u);
+			System.out.println("res="+res);
+			System.out.println("pw_u="+pw_u);
+			if (res.equals(pw_u)) {
+			result=true;
+			}
+		} catch (Exception e) {
+			System.out.println("Member_Delete_Chk ERROR");
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return result;
 	}
 }
