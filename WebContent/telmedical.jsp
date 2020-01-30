@@ -11,18 +11,28 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.videochatWrap{width: 80%; height:100% margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
-	.videochatWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
+	.telmediWrap{width: 1100px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.telmediWrap h1{padding: 59px 0 30px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 	
 </style>
 
 </head>
 <body>
 <%@ include file="./form/header.jsp" %>
-	<div class="videochatWrap">
-		<h1>원격진료</h1>
-			<div class="video" style="background: red; widows:80%; height: 70%"></div>
+	<div class="headMenu">
+		<h1>예약 확인</h1>
+		<ul>
+			<li><a href="calendarServlet?command=doc_schedule&id_d=nexon">예약 일정</a></li>
+			<li><a href="">원격 진료</a></li>
+			<li><a href="">환자 관리</a></li>
+		</ul>
 	</div>
+	<div class="telmediWrap">
+		<h1>원격 진료</h1>
+	
+	
+	</div>
+	
 	
 <%@ include file="./form/footer.jsp" %>
 </body>

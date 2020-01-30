@@ -33,6 +33,7 @@ public class TeleResultServlet extends HttpServlet {
 		
 		if(command.equals("insert")) {
 			int tel_seq = Integer.parseInt(request.getParameter("tel_seq"));
+			System.out.println(tel_seq);
 			String dx_name = request.getParameter("dx_name");
 			String dx_content = request.getParameter("dx_content");
 			String purpose = request.getParameter("purpose");
@@ -42,7 +43,7 @@ public class TeleResultServlet extends HttpServlet {
 			
 			int res = dao.relResultInsert(dto);
 			if(res>0) {
-				jsResponse("업로드 성공", "", response);
+				jsResponse("업로드 성공", "TeleServlet?command=resultupload&id_d=nexon", response);
 			}
 		
 		}
