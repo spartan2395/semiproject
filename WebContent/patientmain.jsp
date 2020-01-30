@@ -30,14 +30,7 @@
 	      	<span id="right2" style="width: 1249px; height: 840px; left: -100%;"></span>
 	      </div>
 	   </div>
-	 <div class="mainVisual">
-         <div class="left">
-            <span id="left2" style="width: 1249px; height: 840px;"></span>
-         </div>
-         <div class="right" >
-            <span id="right2" style="width: 1249px; height: 840px; left: -100%;"></span>
-         </div>
-      </div>
+	 
 
       <div class="main" >
          <div class="left">
@@ -77,9 +70,7 @@
          </div>
       </div>
    </div>
-   <footer>
-   	<p>여기 푸터</p>
-   </footer>
+   <%@ include file="./form/footer.jsp" %>
 
 
 </body>
