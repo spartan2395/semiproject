@@ -7,7 +7,7 @@
 	FROM TELEMEDICINE
 	JOIN USER_TB USING(ID_U)
 	JOIN DOCTOR_TB USING(ID_D)
-  	WHERE ID_D = #{id_d} AND TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS') <![CDATA[<=]]>TO_CHAR(RESERV_DATE,'YYYYMMDDHH24MISS')
+  	WHERE ID_D = #{id_d} AND TO_CHAR(SYSDATE,'YYYYMMDDHH') <![CDATA[<=]]>TO_CHAR(RESERV_DATE,'YYYYMMDDHH')
   </select>
   <!-- 진단서 업로드 리스트 -->
   <select id = "tele_upload_list" parameterType="String" resultType="teledto">
