@@ -8,7 +8,7 @@ import com.lntegrated.tel_result.dto.TelResultDto;
 
 public class TelResultDao extends SqlConfig{
 	private SqlSession session = null;
-	private String namespace = "com.lntegrated.telresult";
+	private String namespace = "com.lntegrated.telresult.";
 	//ȯ�� �˻�(���ܱ��)
 	public List<TelResultDto> telResultList(String id_u){
 		List<TelResultDto> list = null;
@@ -46,6 +46,7 @@ public class TelResultDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Tel_Result_Insert ERROR");
 		}finally {
 			session.close();
