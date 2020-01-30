@@ -19,6 +19,17 @@
 </script>
 </head>
 <body>
+	<div class="wrap">
+		<%@include file="form/header.jsp" %>
+
+	   <div class="mainVisual">
+	      <div class="left">
+	      	<span id="left2" style="width: 1249px; height: 840px;"></span>
+	      </div>
+	      <div class="right" style="width: 50%; height:840px; left: 50%">
+	      	<span id="right2" style="width: 1249px; height: 840px; left: -100%;"></span>
+	      </div>
+	   </div>
 	 <div class="mainVisual">
          <div class="left">
             <span id="left2" style="width: 1249px; height: 840px;"></span>
