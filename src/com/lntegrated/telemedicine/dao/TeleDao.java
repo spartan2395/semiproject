@@ -1,5 +1,6 @@
 package com.lntegrated.telemedicine.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
@@ -25,7 +26,7 @@ public class TeleDao extends SqlConfig{
 	}
 
 	public List<TeleDto> teleUploadList(String id_d){
-		List<TeleDto> list = null;
+		List<TeleDto> list = new ArrayList<TeleDto>();
 		try {
 			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
 			list = session.selectList(namespace+"tele_upload_list", id_d);

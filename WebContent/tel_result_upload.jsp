@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 <style type="text/css">
 	
-	.contentWrap{width: 1100px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.contentWrap{width: 1100px; height:694px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
 	.contentWrap h1{padding: 59px 0 30px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 	.contentWrap .nonreserve{background-color: lightgray; width: 200px; height: 250px; float: left;}
 	.contentWrap .nonreserve>div:nth-of-type(1) {height: 30px; border-bottom: 1px solid gray; text-align: center; padding-top: 5px;}
@@ -44,25 +44,29 @@
 </style>
 <script type="text/javascript">
 $(function(){
-	$('.nonreserve>div>ul>li').click(function(){
-		$('.uploadform').css('display','');
-		$('.basic').css('display','none');
-		var telseq = $(this).attr('name');
-		$.ajax({
-			method: "POST",
-			url: "TeleServlet",
-			data: {"command":"select","tel_seq":telseq},
-			
-			success: function(data){
-				
-			},
-			error : function() {
-				alert("정보를 불러오는데 실패하였습니다.");
-			}
-			
-		});
-	});
-});	
+	   $('.nonreserve>div>ul>li').click(function(){
+	      $('.uploadform').css('display','');
+	      $('.basic').css('display','none');
+	      var telseq = $(this).attr('name');
+	      $.ajax({
+	         method: "POST",
+	         url: "TeleServlet",
+	         data: {"command":"select","tel_seq":telseq},
+	         dataType: "json",
+	         async: true,
+	         success: function(data){
+	            $('#reserv_date_input').val(data.reserv_date);
+	            $('#name_u_input').val(data.name_u);
+	            $('#tel_seq').val(data.tel_seq);
+	            
+	         },
+	         error : function() {
+	            alert("정보를 불러오는데 실패하였습니다.");
+	         }
+	         
+	      });
+	   });
+	});   
 
 </script>
 
@@ -70,7 +74,7 @@ $(function(){
 <% List<TeleDto> list = (List<TeleDto>)request.getAttribute("list"); 
 	//List<TelResultDto> resultlist = new 
 TelResultDao resultdao = new TelResultDao();
-	System.out.println(list);
+	//System.out.println(list);
 %>
 <body>
 	<%@ include file="form/header.jsp" %>
@@ -78,7 +82,7 @@ TelResultDao resultdao = new TelResultDao();
 	<div class="headMenu">
 		<h1>예약 확인</h1>
 		<ul>
-			<li><a href="">예약 일정</a></li>
+			<li><a href="calendarServlet?command=doc_schedule&id_d=nexon">예약 일정</a></li>
 			<li><a href="">원격 진료</a></li>
 			<li><a href="">환자 관리</a></li>
 		</ul>
@@ -99,14 +103,14 @@ TelResultDao resultdao = new TelResultDao();
 				<ul>	<!-- onclick 이벤트 ajax로 만들어야 할까요 -->
 <%
 						for(int i=0;i<list.size();i++){
-							TelResultDto resultdto = resultdao.telResultInfo(list.get(i).getTel_seq());
-							if(resultdto==null){
+						//	TelResultDto resultdto = resultdao.telResultInfo(list.get(i).getTel_seq());
+						//	if(resultdto==null){
 %>					
 					<li name="<%=list.get(i).getTel_seq() %>">
 						<%=list.get(i).getName_u() %>
 					</li>
 <%
-							}
+						//	}
 						}
 					}	
 %>
@@ -118,14 +122,14 @@ TelResultDao resultdao = new TelResultDao();
 		</div>
 		
 		<div class="uploadform" style="display: none;">
-			<form action="">
-				<input type="hidden" name="tel_seq" value="">
-				<input type="hidden" name="id_u" value="788">
+			<form action="TeleResultServlet" method="post">
+				<input type="hidden" name="command" value="insert">
+				<input type="hidden" name="tel_seq" id="tel_seq" value="">
 				<div class="resulthead"> 
 					진료일자
-					<input type="text" id="reserv_date_input" value="진료일자" readonly="readonly"><br>
+					<input type="text" id="reserv_date_input" value="" readonly="readonly"><br>
 					환자이름
-					<input type="text" id="name_u_input" value="환자이름" readonly="readonly">
+					<input type="text" id="name_u_input" value="" readonly="readonly">
 					의사아이디
 					<input type="text" id="id_d_input" value="nexon" readonly="readonly">
 				</div>	
@@ -144,7 +148,7 @@ TelResultDao resultdao = new TelResultDao();
 	
 	
 	
-	
+<%@ include file="./form/footer.jsp" %>	
 
 </body>
 </html>

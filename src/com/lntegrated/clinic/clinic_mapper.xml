@@ -4,17 +4,17 @@
 	<!-- 의사에게 진료예약되어있는 사람들의 리스트 -->
 	<select id="clinic_list" parameterType="String" resultType="clinicdto">
 	  	SELECT NAME_U,NAME_D,DISEASE,RESERV_DATE,CATEGORY,CHECKD FROM 
-	  	CLINIC JOIN USER_TB USING ID_U JOIN DOCTOR_TB USING(ID_D) WHERE ID_D = #{ID_U}
+	  	CLINIC JOIN USER_TB USING ID_U JOIN DOCTOR_TB USING(ID_D) WHERE ID_D = #{id_d}
 	  	ORDER BY RESERV_DATE ASC
 	</select>
 	<!--왕진/통원 진료 예약 -->
 	<insert id = "clinic_insert" parameterType="clinicdto">
-		INSERT INTO CLINIC VALUES(#{ID_U},#{ID_D},#{DISEASE},#{RESERV_DATE},#{CATEGORY},'N')
+		INSERT INTO CLINIC VALUES(#{id_u},#{id_d},#{disease},#{reserv_date},#{category},'N')
 	</insert>
 	<!-- 예약자 정보 -->
 	<select id = "clinic_memberinfo" parameterType="String" resultType="clinicdto">
 		SELECT ID_U,ID_D,DISEASE,RESERV_DATE,CATEGORY,CHECKD,MEDICAL_D FROM CLINIC JOIN USER_TB USING(ID_U) JOIN DOCTOR_TB 
-		USING (ID_D) WHERE ID_U = #{id_u}
+		USING (ID_D) WHERE ID_U = #{id_u} AND CHECKD = 'Y'
 	</select>
 	
 	<!-- 신청 승인 -->

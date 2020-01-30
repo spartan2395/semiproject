@@ -1,3 +1,4 @@
+<%@page import="com.lntegrated.clinic.dto.ClinicDto"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,6 +19,7 @@
 </style>
 
 </head>
+<%ClinicDto dto = (ClinicDto)request.getAttribute("dto"); %>
 <body>
 
 
@@ -35,10 +37,14 @@
 	<div class="appointmentwriteWrap">
 		<h1>예약하기</h1>
 		<form action="HosSelected" method="post">
-			<input type="hidden" name="command" value="insertclinic">
+			<input type="hidden" name="command" value="write">
 			<table border="1">
 				<col width="60px;"/>
 				<col width="200px;"/>
+				<tr>
+					<th>병원명</th>
+					<td><input type="text" name="medical_d" value="영원한등대" readonly="readonly"></td>
+				</tr>
 				<tr>
 					<th>예약자명</th>
 					<td><input type="text" name="name_u"> </td>
@@ -80,8 +86,12 @@
 						<option ><%=i %></option>
 <%
 						}
-%>
+%>S
 					</select>시
+					<select name="minute">
+						<option>00</option>
+						<option>30</option>
+					</select>분
 					
 				</tr>
 				<tr>
