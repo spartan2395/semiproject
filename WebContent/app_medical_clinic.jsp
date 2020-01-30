@@ -19,7 +19,7 @@
 	.medical_name{width: 50%; height: 5%;  margin-left: 11%; position:  absolute; }
 	#appointment {width: 30px; height: 50px;margin-left: 75%; margin-bottom: 6px;  }
 	#appointment > img {width: 200px; height: 50px;position: relative; z-index: 1; }
-	#appointment >span {position: absolute; z-index: 9999; top: 33.5%; left: 81%; color: white; letter-spacing: 2px; }
+	#appointment >span {position: absolute; z-index: 9999; top: 23.5%; left: 58%; width: 200px; color: white; letter-spacing: 2px; font-weight: bold; font-size: 20px;}
 	.photo {width: 40%; height:50%; margin-left:1%; margin-top:2%; margin-right:1%; background: pink; float: left;  }
 	.info{ width: 57%; height:50%; background: rgb(255,255,204); left:50%; margin-top:2%;  float: left; }
 	.addr {width: 98%; height: 5%; background: orange; margin-top: 1%; margin-left: 1%; float: left;}
@@ -46,7 +46,7 @@
 			<h2>여기에 병원이름 넣고싶음</h2>
 		</div>
 		<div>
-			<button id="appointment" value="진료예약" style="z-index:1; position: relative;">
+			<button id="appointment" value="진료예약" style="z-index:1; position: relative;" onclick="location.href='HosSelected?command=insertclinicform&id'">
 				<img alt="진료예약" src="./resources/imgs/appointment.svg" />
 				<span style="z-index: 999; position: absolute;">진료예약</span>
 			</button>

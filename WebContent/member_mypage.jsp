@@ -133,7 +133,7 @@
 	
 	<div class="calendarWrap">
 		<h1 style="width: 50%;">예약확인</h1>
-		<div style="float: left margin-top: 14%; margin-left: 39%;">
+		<div style="float: left margin-top: 14%; margin-left: 39%; height: 50px;">
 		<input type="button" value="진단서출력 " onclick="location.href='medicalreport.jsp'" style="width: 30%; float:right;">
 		</div>
 		<table id="calendar" >

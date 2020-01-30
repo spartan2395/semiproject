@@ -54,6 +54,16 @@ public class calendarServlet extends HttpServlet {
 			System.out.println(yyyymmdd);
 			
 			
+		}else if(command.equals("doc_schedule")) {
+			String id_d = request.getParameter("id_d");
+			List<TeleDto> tlist = tdao.teleList(id_d);
+			List<ClinicDto> clist = cdao.clinicList(id_d);
+			
+			request.setAttribute("clist", clist);
+			request.setAttribute("tlist", tlist);
+			
+			
+			dispatch("doc_schedule.jsp", request, response);
 		}
 		
 	}
