@@ -39,8 +39,8 @@
 	<div class="headMenu">
 		<h1>커뮤니티</h1>
 		<ul>
-			<li><a href="">자유게시판</a></li>
-			<li><a href="">병원정보공유</a></li>
+			<li><a href="BoardFrServlet?command=boardlist">자유게시판</a></li>
+			<li><a href="BoardShServlet?command=boardlist">병원정보공유</a></li>
 		</ul>
 	</div>
 	

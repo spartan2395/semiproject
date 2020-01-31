@@ -30,7 +30,7 @@
   	
   	<!-- 조회수 증가 -->
   	<update id = "board_update_views" parameterType="int">
-  		UPDATE BOARD_FR SET COUNT = COUNT+1 WHERE BOARD_NO =  #{board_no}
+  		UPDATE BOARD_FR SET VIEWS = VIEWS+1 WHERE BOARD_NO =  #{board_no}
   	</update>
   	
   	<!-- 게시글 삭제 -->

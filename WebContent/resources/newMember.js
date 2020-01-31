@@ -114,7 +114,7 @@ document.getElementById("tel").addEventListener("focusout",function () {
 	}
 })
 
-// 이메일 중복 검사
+// 이메일 유효성 검사
 document.getElementsByName("email")[0].addEventListener("focusout", function () {
     var pattern = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
     var val = this.value;
@@ -127,26 +127,7 @@ document.getElementsByName("email")[0].addEventListener("focusout", function () 
     } else {
     	
         var ptag =  this.parentElement.parentElement.lastElementChild;
-        ptag.innerHTML ="";
-        	alert(grade);
-        $.ajax({
-        	url: grade,
-        	data :{"command":"emailchk","email":$("input[name=email]").val()},
-        	dataType:"text",
-        	type:"post",
-        	success:function(data){
-        		if(data>0){
-        			ptag.innerHTML="이미 사용 중인 이메일 입니다.";
-        			$("input[name=email]").attr("title","notready");
-        		} else {
-        			ptag.innerHTML="인증하기를 눌러주세요";
-        			$("input[name=email]").attr("title","ready");
-        		}
-        	},
-        	error: function(data){
-        		alert("이메일 통신 오류");
-        	}
-        })
+        ptag.innerHTML ="인증하기를 눌러주세요";
     }
 })
 
@@ -155,19 +136,36 @@ document.getElementsByClassName("btna")[1].addEventListener("click", function(){
 var emailp = document.getElementById("emailerror");
    var ready = document.getElementsByName("email")[0].getAttribute("title");
    emailp.innerHTML="";
-   if(ready =="ready"){
-	   $.ajax({
-		   url:grade,
-		   data :{"command":"emailcodesend","email":$("input[name=email]").val()},
-		   dataType:"text",
-		   type:"post",
-		   success:function(data){
-			   emailp.innerHTML=data;
-		   }
-	   })
-   } else {
-	   emailp.innerHTML="이메일을 확인해 주세요";
-   }
+   $.ajax({
+   	url: grade,
+   	data :{"command":"emailchk","email":$("input[name=email]").val()},
+   	dataType:"text",
+   	type:"post",
+   	success:function(data){
+        emailp.innerHTML ="";
+   		alert(data);
+   		if(data>0){
+   			emailp.innerHTML="이미 사용 중인 이메일 입니다.";
+   			$("input[name=email]").attr("title","notready");
+   		} else {
+   			emailp.innerHTML="코드를 입력해 주세요";
+   			$("input[name=email]").attr("title","ready");
+   		 $.ajax({
+  		   url:grade,
+  		   data :{"command":"emailcodesend","email":$("input[name=email]").val()},
+  		   dataType:"text",
+  		   type:"post",
+  		   success:function(data){
+  			   alert(data);
+  			   emailp.innerHTML=data;
+  		   }
+  	   })
+   		}
+   	},
+   	error: function(data){
+   		alert("이메일 통신 오류");
+   	}
+   })
    
 })
 
@@ -213,7 +211,8 @@ document.querySelector("form").addEventListener("submit",function (event) {
     }
 })
 
-// delete 
+
+// delete
 document.getElementById("delete").addEventListener("click", function(event){
 	document.getElementsByName("command")[0].setAttribute("value","delete");
 	event.preventDefault();
@@ -223,7 +222,8 @@ document.getElementById("delete").addEventListener("click", function(event){
 
 
 // 유효성 검사(의사 환자 공통) ------------------------------------------------------------
-// 유효성 검사(의사만) ------------------------------------------------------------------
+// 유효성 검사(의사만)
+// ------------------------------------------------------------------
 
 var doc = document.getElementsByClassName("doc")
 for (var i = 0 ; i < doc.length ; i++){
@@ -231,7 +231,8 @@ for (var i = 0 ; i < doc.length ; i++){
 	var val = this.value;
 		var val = this.value;
 		if (val==""){
-	    	this.parentElement.parentElement.lastElementChild.innerHTML="필수 요소입니다."
+	    	this.parentElement.parentElement.lastElementChild.innerHTML="필수 요소입니다.";
+	    	this.setAttribute("title","notready");
 	    } else {
 			this.setAttribute("title","ready");
 			this.parentElement.parentElement.lastElementChild.innerHTML=""
@@ -249,7 +250,8 @@ for(var i = 0 ; i < input.length ; i++){
 }
 }
 
-//아이디 중복 검사 ---------------------------------------------------------------------------------
+// 아이디 중복 검사
+// ---------------------------------------------------------------------------------
 
 function idchk(){
 	var grade = document.getElementsByTagName("form")[0].getAttribute("action");

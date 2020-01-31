@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lntegrated.board_sh_comm.mapper">
+  	<!-- 해당 글의 댓글 검색 -->
+  	<select id = "board_sh_comm_list" parameterType="int" resultType="boardshcommdto">
+  	 	SELECT BOARD_SH_NO , CONTENT_A_SH ,REGDATE_A_SH , ID_U FROM COMM_SH WHERE BOARD_SH_NO = #{no}
+  	</select>
+  	<!-- 댓글 입력 -->
+  	<insert id = "board_sh_comm_insert" parameterType="boardshcommdto">
+  		INSERT INTO COMM_SH VALUES(#{boardshno},#{content},SYSDATE,#{id_u})
+  	</insert>
+  	<!-- 댓글 수정 -->
+  	<update id = "board_sh_comm_update" parameterType="board_sh_commdto">
+  		UPDATE COMM_SH SET CONTENT_A_SH = #{content} WHERE ID_U = #{id_u} AND REGDATE = #{regdate}
+  		AND  BOARD_SH_NO = #{boardshno}
+  	</update>
+  	
+  	<delete id = "board_sh_comm_delete" parameterType="board_sh_commdto">
+ 		DELETE FROM COMM_SH WHERE BOARD_SH_NO = #{boardshno} AND ID_U = #{id_u} AND REGDATE = #{regdate}
+  	</delete>
+</mapper>

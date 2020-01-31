@@ -79,8 +79,8 @@ $(function(){
 </script>
 </head>
 <%
-	BoardFrDao dao = new BoardFrDao();
-	List<BoardFrDto> list=dao.boardFrList();
+	// BoardFrDao dao = new BoardFrDao();
+	List<BoardFrDto> list= (List<BoardFrDto>)request.getAttribute("list");
 	SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd");
 	
 %>
@@ -92,8 +92,8 @@ $(function(){
 		
 		
 		<ul>
-			<li><a href="BoardFrServlet?command=boardlist&pagenum=1">자유게시판</a></li>
-			<li><a href="">병원정보공유</a></li>
+			<li><a href="BoardFrServlet?command=boardlist">자유게시판</a></li>
+			<li><a href="BoardShServlet?command=boardlist">병원정보공유</a></li>
 		</ul>
 	</div>
 	
@@ -171,9 +171,7 @@ $(function(){
 		<div class="paginate">
 			<a href="" class="direction prev"></a>
 			<a href="" class="direction prev"></a>
-			<c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}" var="idx">
-                        <a style="text-decoration: none;" href="javascript:page(${idx});">${idx}</a>
-            </c:forEach>
+            <a href="">1</a>
 			<a href="" class="direction next"></a>
 			<a href="" class="direction next"></a>
 		</div>

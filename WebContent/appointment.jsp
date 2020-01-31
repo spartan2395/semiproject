@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/search.js"></script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
@@ -48,7 +49,7 @@
 			<li><a href="#">원격신청</a></li>
 		</ul>
 		<div class="search">
-			<input type="text" name="search_input" placeholder="병원이름, 진료과목 등을 검색해보세요.">
+			<input id="searchInput" type="text" name="search_input" placeholder="병원이름, 진료과목 등을 검색해보세요.">
 			<button id="search_button">
 				<img class="search_icon" alt="search" src="./image/search_icon.svg"> 
 			</button>
