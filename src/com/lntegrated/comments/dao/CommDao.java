@@ -35,6 +35,7 @@ public class CommDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Comment_Insert ERROR");
 		}finally {
 			session.close();
@@ -75,6 +76,23 @@ public class CommDao extends SqlConfig{
 		}finally {
 			session.close();
 		}
+		return res;
+	}
+	public int commAllDelete(CommDto dto) {
+		int res=0;
+		String board_no = String.valueOf(dto.getBoard_no());
+		try {
+			session = getSessionFactory("comments/comm_config.xml").openSession();
+			res = session.update(namespace+"comm_all_delete", board_no);
+			if(res > 0) {
+				session.commit();
+			}
+		}catch(Exception e) {
+			System.out.println("Comment_All_Delete ERROR");
+		}finally {
+			session.close();
+		}	
+		
 		return res;
 	}
 }
