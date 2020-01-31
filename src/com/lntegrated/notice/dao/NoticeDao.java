@@ -1,6 +1,7 @@
 package com.lntegrated.notice.dao;
 
 import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.Integrated.db.SqlConfig;
@@ -81,6 +82,7 @@ public class NoticeDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Notice_Update_view ERROR");
 		}finally {
 			session.close();

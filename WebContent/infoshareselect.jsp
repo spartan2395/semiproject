@@ -1,7 +1,9 @@
+<%@page import="com.lntegrated.board_sh.dto.BoardShDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,6 +49,9 @@
 
 </style>
 </head>
+<%
+	BoardShDto dto = (BoardShDto)request.getAttribute("dto");
+%>
 <body>
 
 	<%@ include file="form/header.jsp" %>
@@ -54,35 +59,35 @@
 	<div class="headMenu">
 		<h1>커뮤니티</h1>
 		<ul>
-			<li><a href="">자유게시판</a></li>
-			<li><a href="">병원정보공유</a></li>
+			<li><a href="BoardFrServlet?command=boardlist">자유게시판</a></li>
+			<li><a href="BoardShServlet?command=boardlist">병원정보공유</a></li>
 		</ul>
 	</div>
 	
 	<div class="infoselectWrap">
 		<h1>병원정보공유</h1>
 		
-		<h2><span>[병원이름]</span>제목</h2>
+		<h2><span>[<%=dto.getMedical_name() %>]</span><%=dto.getTitle() %></h2>
 		<div class="meminfo">
-			<span><img alt="" src="image/doctorcarrot.png">아이디</span>
+			<span><img alt="" src="image/doctorcarrot.png"><%=dto.getId_u() %></span>
 			<div class="sysinfo">
 				<p>
 					<img alt="조회수" src="image/eye_new.png">
-					조회수
+					<%=dto.getViews() %>
 				</p>
 				<p class="last">
 					<img alt="작성시간" src="image/sub_date_new.png">
-					작성시간
+					<fmt:formatDate value="${dto.regdate }" pattern="yyyy.MM.dd a hh:mm"/>
 				</p>
 			</div>
 		</div>
 		<div class="text">
-			<p>내용</p>
-			<button>목록</button>
+			<p><%=dto.getContent() %></p>
+			<button onclick="location.href='BoardShServlet?command=boardlist'">목록</button>
 		</div>
 		<div class="btn_group" align="right">
-			<button>수정</button>
-			<button>삭제</button>
+			<button onclick="location.href = 'BoardShServlet?command=update&board_sh_no=<%=dto.getBoard_sh_no() %>'">수정</button>
+			<button onclick="location.href = 'BoardFrServlet?command=delete&board_sh_no=<%=dto.getBoard_sh_no() %>&id_u=<%=dto.getId_u()%>'">삭제</button>
 		</div>
 		<div class="reply_wrap">
 			<div class="reply_title">

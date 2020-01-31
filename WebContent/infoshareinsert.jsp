@@ -44,16 +44,17 @@
 	<div class="headMenu">
 		<h1>커뮤니티</h1>
 		<ul>
-			<li><a href="">자유게시판</a></li>
-			<li><a href="">병원정보공유</a></li>
+			<li><a href="BoardFrServlet?command=boardlist">자유게시판</a></li>
+			<li><a href="BoardShServlet?command=boardlist">병원정보공유</a></li>
 		</ul>
 	</div>
 	
 	<div class="infoboardinsertWrap">
 		<h1><span>병원정보공유</span>새 글을 작성해 주세요</h1>
 		
-		<form action="">
-			<input type="hidden">	<!-- id를 가져와야 할거 같아요 -->
+		<form action="BoardShServlet" method="post">
+			<input type="hidden" name="command" value="insertres">
+			<input type="hidden" name="id_u" value="788">
 			<div class="boardtitle">
 				<input type="text" name="hostitle" class="hos_name_input" placeholder="병원이름" required="required">
 				<input type="text" name="title" class="board_title_input" placeholder="제목을 입력해주세요." required="required">
@@ -63,7 +64,7 @@
 			</div>
 			<div class="btn_wrap">
 				<button>취소</button>
-				<button>등록</button>
+				<button type="submit">등록</button>
 			</div>
 		</form>
 		
