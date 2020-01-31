@@ -143,7 +143,12 @@ public class MemberServlet extends HttpServlet {
 			
 			if (res>0) {
 				System.out.println("insert successed");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("patientmain.jsp");
+				out.println("\n" + 
+						"<script type='text/javascript'>\n" + 
+						"    alert(\"회원가입에 성공하였습니다. 로그인 해주세요 \")\n"
+						+ "history.back();" + 
+						"</script>");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("login.html");
 				dispatcher.forward(request, response);
 				
 			} else {
@@ -202,11 +207,11 @@ public class MemberServlet extends HttpServlet {
 			// 이메일 발송 & 인증 코드 확인 
 		case "emailchk":/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 			String email_u = request.getParameter("email");
-			boolean chk = dao.emailchk(email_u);
+			boolean chk = dao.emailchk(email_u);	// 메일 중복 확인
 			System.out.println(email_u);
 			System.out.println(chk);
 			
-			if(chk=false) {
+			if(chk==false) {
 				out.println(1);	// 이미 사용 중인 이메일 
 			} else {
 				out.println(0);
