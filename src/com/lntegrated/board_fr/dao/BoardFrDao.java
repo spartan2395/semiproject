@@ -92,6 +92,7 @@ public class BoardFrDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Board_Update_Views ERROR");
 		}finally {
 			session.close();
