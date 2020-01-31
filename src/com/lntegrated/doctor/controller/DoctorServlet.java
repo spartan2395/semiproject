@@ -177,12 +177,12 @@ public class DoctorServlet extends HttpServlet {
 			break;
 
 		case "emailchk":/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-			String email_u = request.getParameter("email");
-			boolean chk = dao.emailchk(email_u);
-			System.out.println(email_u);
+			String email_d = request.getParameter("email");
+			boolean chk = dao.emailchk(email_d);
+			System.out.println(email_d);
 			System.out.println(chk);
 
-			if (chk = false) {
+			if (chk == false) {
 				out.println(1); // 이미 사용 중인 이메일
 			} else {
 				out.println(0);

@@ -21,6 +21,16 @@ $(function(){
 		      $('#headerWrap').stop().removeClass('on');
 	   });
 	   
+	   $(window).scroll(function() {
+	 		var scrollT = $(window).scrollTop();
+	 		if(scrollT > 30) {
+	 			$("body").addClass('mainHeaderBg');
+	 		}else{
+	 			$("body").removeClass('mainHeaderBg');
+	 		}
+	 	});
+	 	
+	   
 	};
 	 	
 	 	function mainvisual() {
@@ -59,6 +69,15 @@ $(function(){
 			
 	   
 	}
-	
+	 	$(document).ready().scroll(function() {
+	 		var scrollT = $(window).scrollTop();
+	 		if(scrollT > 94) {
+	 			$(body).addClass('mainHeaderBg');
+	 		}else{
+	 			$(body).removeClass('mainHeaderBg');
+	 		}
+	 	});
+	 	
 
 	});
+
