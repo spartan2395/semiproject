@@ -3,7 +3,7 @@
 <mapper namespace="com.boardsh.mapper">
 <select id = "board_sh_list" resultType="boardshdto">
 	SELECT BOARD_SH_NO , ID_U , TITLE , CONTENT , MEDICAL_NAME,
-	REGDATE, VIEWS FROM BOARD_SH ORDER BY BOARD_SH_NO
+	REGDATE, VIEWS FROM BOARD_SH ORDER BY BOARD_SH_NO DESC
 </select>
 
 <select id = "board_sh_info" parameterType="int" resultType="boardshdto">

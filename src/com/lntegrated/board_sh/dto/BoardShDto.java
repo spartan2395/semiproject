@@ -32,9 +32,10 @@ public class BoardShDto {
 	}
 	
 	//update
-	public BoardShDto(int board_sh_no , String title, String content , String medical_name) {
+	public BoardShDto(int board_sh_no ,String id_u ,String title, String content , String medical_name) {
 		this.board_sh_no = board_sh_no;
 		this.title = title;
+		this.id_u=id_u;
 		this.content = content;
 		this.medical_name = medical_name;
 	}

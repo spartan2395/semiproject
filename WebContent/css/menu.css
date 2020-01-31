@@ -36,7 +36,6 @@
     .helloDetail{position: relative; margin: 32px 0 40px;}
     .helloDetail p{margin-top: 3px;}
 
-
     /*사이트소개*/
    	.siteinfoWrap{position: relative; width: 1000px; margin: 0 auto; padding-bottom: 130px; margin-top: 130px;}
    	.siteinfoWrap h1{padding: 59px 0 58px; font-weight: 100; font-size: 30px; line-height: 40px;}
@@ -52,7 +51,7 @@
 	.siteinfoWrap .infoTap li.on a:after{content: ''; display: block; position: absolute; top: 0; right: 0;
 							bottom: -1px; width: 1px; background: #FFE09D;}
 	.siteinfoWrap .infoTap li a:after{content: ''; display: block; position: absolute; top: 0; right: 0; bottom: 0; width: 1px; background:#e6e3df;}
-	.siteinfoWrap .tapView{display: none;}
+	.siteinfoWrap .tapView{display: none;}	
 	.siteinfoWrap .indiinfoView{background: linear-gradient(to right, rgba(108, 127, 61, 0.8),  rgba(255, 255, 255, 0)),
    									  url("../image/indi_info_img.jpg") no-repeat center;
 						  background-size: 1000px 302px; height: 302px; padding: 84px 0 0 40px;}

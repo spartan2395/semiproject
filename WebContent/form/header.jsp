@@ -41,27 +41,27 @@
 		<nav class="menu">
 			<ul>
 				<li>
-					<a href="#">사이트소개</a>
+					<a href="hello.jsp">사이트소개</a>
 					<div class="menuDepth" style="display: none;">
 							<ul>
 								<li>
-									<a href="#">인사말</a>
+									<a href="hello.jsp">인사말</a>
 								</li>
 								<li>
-									<a href="#">당근병원 소개</a>
+									<a href="site_info.jsp">당근병원 소개</a>
 								</li>
 							</ul>
 					</div>
 				</li>
 				<li>
-					<a href="#">커뮤니티</a>
+					<a href="BoardFrServlet?command=boardlist">커뮤니티</a>
 					<div class="menuDepth" style="display: none; ">
 						<ul>
 							<li>
-								<a href="">자유게시판</a>
+								<a href="BoardFrServlet?command=boardlist">자유게시판</a>
 							</li>
 							<li>
-								<a href="#">병원정보공유</a>
+								<a href="BoardShServlet?command=boardlist">병원정보공유</a>
 							</li>
 						</ul>
 					</div>
