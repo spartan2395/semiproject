@@ -1,3 +1,4 @@
+<%@page import="com.lntegrated.board_sh.dto.BoardShDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -27,40 +28,43 @@
    									   border-right: none; background-color: #ffffff; margin: 0 auto; width: 100%; }
 	.infoboardupdateWrap .btn_wrap{width: 100%;float: left;margin-top: 20px;text-align: center; height: 42px;
     								padding-bottom: 180px; }
-    .infoboardupdateWrap .btn_wrap button:nth-of-type(2){min-width: 53px; font-size: 16px; color: #fff; text-align: center;
+    .infoboardupdateWrap .btn_wrap input{min-width: 53px; font-size: 16px; color: #fff; text-align: center; cursor:pointer;
    					 background-color: #747a86; border-radius: 2px;padding: 12px 16px 12px 16px;border: 1px solid #747a86;display: inline-block; line-height: 1;}			
     .infoboardupdateWrap .btn_wrap button:nth-of-type(1){min-width: 53px;font-size: 16px;color: #fff;text-align: center; background-color: orange;
     				border-radius: 2px;padding: 12px 16px 12px 16px; border: 1px solid orange;display: inline-block; line-height: 1;}
 	
 </style>
 </head>
+<%
+	BoardShDto dto = (BoardShDto)request.getAttribute("dto");
+%>
 <body>
 <%@ include file="form/header.jsp" %>
 	
 	<div class="headMenu">
 		<h1>커뮤니티</h1>
 		<ul>
-			<li><a href="">자유게시판</a></li>
-			<li><a href="">병원정보공유</a></li>
+			<li><a href="BoardFrServlet?command=boardlist">자유게시판</a></li>
+			<li><a href="BoardShServlet?command=boardlist">병원정보공유</a></li>
 		</ul>
 	</div>
 	
 	<div class="infoboardupdateWrap">
 		<h1><span>병원정보공유</span>수정하는 중입니다.</h1>
-		<form action="BoardFrServlet" method="post">
-			<input type = "hidden" name = "command" />
-			<input type = "hidden" name = "" /><!-- 게시글번호 -->
+		<form action="BoardShServlet" method="post">
+			<input type = "hidden" name = "command" value="updateres"/>
+			<input type = "hidden" name = "board_sh_no" value="<%=dto.getBoard_sh_no() %>" />
 			<input type="hidden" name="id_u" value="${dto.id_u }">
 			<div class="boardtitle">
-				<input type="text" name="hostitle" class="hos_name_input" required="required" value="">
-				<input type="text" name="title" class="board_title_input" required="required" value="">
+				<input type="text" name="hostitle" class="hos_name_input" required="required" value="<%=dto.getMedical_name()%>">
+				<input type="text" name="title" class="board_title_input" required="required" value="<%=dto.getTitle()%>">
 			</div>
 			<div class="boardcontent">
-				<textarea class="editWindow" name="content" id="editor_ck" rows="9" cols="40" style="display: none;"></textarea>
+				<textarea class="editWindow" name="content" id="editor_ck" rows="9" cols="40" style="display: none;"><%=dto.getContent() %></textarea>
 			</div>
 			<div class="btn_wrap">
 					<button type="submit">수정완료</button>
-					<button>취소</button>
+					<input onclick="location.href='BoardShServlet?command=select&board_sh_no=<%=dto.getBoard_sh_no() %>'" type="button" value="취소">
 				</div>
 		</form>
 	</div>

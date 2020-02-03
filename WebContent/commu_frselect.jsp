@@ -51,8 +51,8 @@ $(function(){
    							 color: #333; line-height: 26px;margin-bottom: 40px; word-break: break-all; display: block;}
 	.frboardselectWrap .text>button{border: 1px solid orange; background-color: rgba(0,0,0,0);color: orange; padding:20px; position: relative; left: 400px; top: 90px;}
 	.frboardselectWrap .text>button:hover{background-color: orange;color: white;}
-	.btn_group button{border: 1px solid orange; background-color: rgba(0,0,0,0); color: orange; padding: 5px; position:relative; top: 90px;}
-	.btn_group button:hover{background-color: orange; color: white;}
+	.btn_group input{border: 1px solid orange; background-color: rgba(0,0,0,0); color: orange; padding: 5px; position:relative; top: 90px;}
+	.btn_group input:hover{background-color: orange; color: white;}
 	.reply_wrap{float: left; width: 100%; position: relative; top: 110px;}
 	.reply_title{float: left; width: 100%; height: 44px; 
 				 border-top: 1px solid #e3e3e3;background-color: #f9f9f9;line-height: 45px; padding: 10px 0;}
@@ -78,8 +78,9 @@ $(function(){
 </head>
 <%
 BoardFrDto dto =(BoardFrDto)request.getAttribute("dto");
-CommDao dao = new CommDao();
-List<CommDto> list =dao.commList(dto.getBoard_no());
+//CommDao dao = new CommDao();
+//List<CommDto> list =dao.commList(dto.getBoard_no());
+List<CommDto> list = (List<CommDto>)request.getAttribute("list");
 
 %>
 <body>
@@ -88,8 +89,8 @@ List<CommDto> list =dao.commList(dto.getBoard_no());
 	<div class="headMenu">
 		<h1>커뮤니티</h1>
 		<ul>
-			<li><a href="">자유게시판</a></li>
-			<li><a href="infoshare.jsp">병원정보공유</a></li>
+			<li><a href="BoardFrServlet?command=boardlist">자유게시판</a></li>
+			<li><a href="iBoardShServlet?command=boardlist">병원정보공유</a></li>
 		</ul>
 	</div>
 
@@ -113,12 +114,12 @@ List<CommDto> list =dao.commList(dto.getBoard_no());
 		<input type="hidden" id = "board_no" value = "${dto.board_no}">
 		<div class="text">
 			<p>${dto.content }</p>
-			<button onclick="location.href='BoardFrServlet?command=boardlist&board_no=${dto.board_no}'">목록</button>
+			<button onclick="location.href='BoardFrServlet?command=boardlist'">목록</button>
 		</div>
 		<div class="btn_group" align="right">
 
-			<button type = "button" onclick="location.href = 'BoardFrServlet?command=updateform'">수정</button>
-			<button type = "button" onclick = "location.href = 'BoardFrServlet?command=delete&board_no=${dto.board_no }'">삭제</button>
+			<input type = "button" onclick="location.href = 'BoardFrServlet?command=updateform&board_no=${dto.board_no }'" value="수정">
+			<input type = "button" onclick ="location.href = 'BoardFrServlet?command=delete&board_no=${dto.board_no }'" value="삭제">
 
 		</div>
 		<div class="reply_wrap">

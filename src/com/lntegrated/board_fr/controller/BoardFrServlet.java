@@ -37,21 +37,25 @@ public class BoardFrServlet extends HttpServlet {
 
 		if(command.equals("boardlist")) {
 			List<BoardFrDto> list = dao.boardFrList();
-			Pagemaker pagemaker = new Pagemaker();
-			String pagenum = request.getParameter("pagenum");
-			int cpagenum = Integer.parseInt(pagenum);
-
-			pagemaker.setTotalcount(list.size());
-			pagemaker.setPagenum(cpagenum-1);
-			pagemaker.setCurrentblock(cpagenum);
-			pagemaker.setLastblock(pagemaker.getTotalcount());
 			
-			pagemaker.prevnext(cpagenum);
-			pagemaker.setStartPage(pagemaker.getCurrentblock());
-			pagemaker.setEndPage(pagemaker.getLastblock(), pagemaker.getCurrentblock());
-			
+//			Pagemaker pagemaker = new Pagemaker();
+//			String pagenum = request.getParameter("pagenum");
+//			if(pagenum==null) {
+//				pagenum=""+1;
+//			}
+//			int cpagenum = Integer.parseInt(pagenum);
+//
+//			pagemaker.setTotalcount(list.size());
+//			pagemaker.setPagenum(cpagenum-1);
+//			pagemaker.setCurrentblock(cpagenum);
+//			pagemaker.setLastblock(pagemaker.getTotalcount());
+//			
+//			pagemaker.prevnext(cpagenum);
+//			pagemaker.setStartPage(pagemaker.getCurrentblock());
+//			pagemaker.setEndPage(pagemaker.getLastblock(), pagemaker.getCurrentblock());
+//			
 			request.setAttribute("list", list);
-			request.setAttribute("page", pagemaker);
+//			request.setAttribute("page", pagemaker);
 
 			dispatch("commu_fr.jsp", request, response);
 		}
@@ -61,7 +65,10 @@ public class BoardFrServlet extends HttpServlet {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
 			dao.boardUpadteViews(board_no);
 			BoardFrDto dto = dao.boardFrInfo(board_no);
+			CommDao cdao = new CommDao();
+			List<CommDto> list =cdao.commList(board_no);
 			request.setAttribute("dto", dto);
+			request.setAttribute("list", list);
 
 			dispatch("commu_frselect.jsp", request, response);
 
@@ -75,6 +82,7 @@ public class BoardFrServlet extends HttpServlet {
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			BoardFrDto dto = new BoardFrDto(id_u, title, content);
+			// int board_no = dto.getBoard_no();->0
 
 			int res = dao.boardInsert(dto);
 			if(res > 0) {
@@ -85,6 +93,9 @@ public class BoardFrServlet extends HttpServlet {
 			}
 		}
 		else if(command.equals("updateform")) {
+			int board_no = Integer.parseInt(request.getParameter("board_no"));
+			BoardFrDto dto = dao.boardFrInfo(board_no);
+			request.setAttribute("dto", dto);
 			dispatch("commu_frupdate.jsp", request, response);
 		}
 		else if(command.equals("updateres")) {
@@ -98,7 +109,7 @@ public class BoardFrServlet extends HttpServlet {
 
 			int res = dao.boardUpdateInfo(dto);
 			if(res >0) {
-				jsResponse("수정되었습니다.", "BoardFrServlet?command=boardlist", response);
+				jsResponse("수정되었습니다.", "BoardFrServlet?command=select&board_no="+board_no, response);
 			}
 			else {
 				jsResponse("수정 실패", "BoardFrServlet?command=boardlist", response);
@@ -108,13 +119,15 @@ public class BoardFrServlet extends HttpServlet {
 		else if(command.equals("delete")) {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
 			CommDao commdao = new CommDao();
-			CommDto commdto = new CommDto(board_no, "788");
-			int childres = commdao.commDelete(commdto);
+			CommDto commdto = new CommDto(board_no);
+			int childres = commdao.commAllDelete(commdto);
 			
 			int res = dao.boardDelete(board_no);
 			
 			if(res >0) {
 				if(childres>0) {
+					jsResponse("삭제되었습니다.", "BoardFrServlet?command=boardlist", response);
+				}else {
 					jsResponse("삭제되었습니다.", "BoardFrServlet?command=boardlist", response);
 				}
 			}

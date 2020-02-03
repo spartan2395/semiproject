@@ -11,11 +11,11 @@
   	</insert>
   	<!-- 댓글 수정 -->
   	<update id = "board_sh_comm_update" parameterType="board_sh_commdto">
-  		UPDATE COMM_SH SET CONTENT_A_SH = #{content} WHERE ID_U = #{id_u} AND REGDATE = #{regdate}
+  		UPDATE COMM_SH SET CONTENT_A_SH = #{content} WHERE ID_U = #{id_u} AND REGDATE_A_SH = #{regdate}
   		AND  BOARD_SH_NO = #{boardshno}
   	</update>
   	
   	<delete id = "board_sh_comm_delete" parameterType="board_sh_commdto">
- 		DELETE FROM COMM_SH WHERE BOARD_SH_NO = #{boardshno} AND ID_U = #{id_u} AND REGDATE = #{regdate}
+ 		DELETE FROM COMM_SH WHERE BOARD_SH_NO = #{boardshno} AND ID_U = #{id_u} AND REGDATE_A_SH = #{regdate}
   	</delete>
 </mapper>

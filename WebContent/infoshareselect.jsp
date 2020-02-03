@@ -1,7 +1,12 @@
+<%@page import="com.lntegrated.board_sh_comm.dto.BoardShCommDto"%>
+<%@page import="java.util.List"%>
+<%@page import="com.lntegrated.board_sh_comm.dao.BoardShCommDao"%>
+<%@page import="com.lntegrated.board_sh.dto.BoardShDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +51,30 @@
 						 position: relative; top: 10px; right: 10px;}
 
 </style>
+<script type="text/javascript">
+
+$(function(){
+	$("#btnReply").click(function() {
+		$.ajax({
+			method: "POST",
+			url: "BoardShCommServlet",
+			data: {"command":"insert" ,"board_no":$("input[id=board_sh_no]").val() , "content":$("#textReply").val() },
+
+			success: function(data) {
+				alert("댓글성공");
+				location.href = "BoardShServlet?command=select&board_sh_no="+$("input[id=board_sh_no]").val();
+			}
+		});
+	});	
+});
+
+</script>
 </head>
+<%
+	BoardShDto dto = (BoardShDto)request.getAttribute("dto");
+	BoardShCommDao dao = new BoardShCommDao();
+	List<BoardShCommDto> list = dao.selectList(dto.getBoard_sh_no());
+%>
 <body>
 
 	<%@ include file="form/header.jsp" %>
@@ -54,46 +82,63 @@
 	<div class="headMenu">
 		<h1>커뮤니티</h1>
 		<ul>
-			<li><a href="">자유게시판</a></li>
-			<li><a href="">병원정보공유</a></li>
+			<li><a href="BoardFrServlet?command=boardlist">자유게시판</a></li>
+			<li><a href="BoardShServlet?command=boardlist">병원정보공유</a></li>
 		</ul>
 	</div>
 	
 	<div class="infoselectWrap">
 		<h1>병원정보공유</h1>
 		
-		<h2><span>[병원이름]</span>제목</h2>
+		<h2><span>[<%=dto.getMedical_name() %>]</span><%=dto.getTitle() %></h2>
 		<div class="meminfo">
-			<span><img alt="" src="image/doctorcarrot.png">아이디</span>
+			<span><img alt="" src="image/doctorcarrot.png"><%=dto.getId_u() %></span>
 			<div class="sysinfo">
 				<p>
 					<img alt="조회수" src="image/eye_new.png">
-					조회수
+					<%=dto.getViews() %>
 				</p>
 				<p class="last">
 					<img alt="작성시간" src="image/sub_date_new.png">
-					작성시간
+					<fmt:formatDate value="${dto.regdate }" pattern="yyyy.MM.dd a hh:mm"/>
 				</p>
 			</div>
 		</div>
+		<input type="hidden" id="board_sh_no" value="<%=dto.getBoard_sh_no() %>">
 		<div class="text">
-			<p>내용</p>
-			<button>목록</button>
+			<p><%=dto.getContent() %></p>
+			<button onclick="location.href='BoardShServlet?command=boardlist'">목록</button>
 		</div>
 		<div class="btn_group" align="right">
-			<button>수정</button>
-			<button>삭제</button>
+			<button onclick="location.href = 'BoardShServlet?command=update&board_sh_no=<%=dto.getBoard_sh_no() %>'">수정</button>
+			<button onclick="location.href = 'BoardFrServlet?command=delete&board_sh_no=<%=dto.getBoard_sh_no() %>&id_u=<%=dto.getId_u()%>'">삭제</button>
 		</div>
 		<div class="reply_wrap">
 			<div class="reply_title">
-				<h2>댓글 <span>댓글개수</span></h2>
+				<h2>댓글 <span><%=list.size() %></span></h2>
 			</div>
 			<ul class="reply_ul">
-			
+<%	
+					if(list.size()>0){
+						for(int i=0;i<list.size();i++){
+%>				
+				<li>
+					<div class="reply">
+						<p><%=list.get(i).getId_u() %><span><%=list.get(i).getRegdate() %></span></p>
+						<div class="reply_text">
+							<%=list.get(i).getContent() %>
+						</div>					
+					</div>
+				</li>
+					
+<%
+						}
+					}
+%>			
 			</ul>
 			<div class="bottom_reply">
-				<textarea rows="10" cols="30" class="txar" name="comment"></textarea>
-				<span><a class="btn01_g" href="">등록</a></span>
+				<textarea id="textReply" rows="10" cols="30" class="txar" name="comment"></textarea>
+				<span><button type = "button" id = "btnReply" class="btn01_g">등록</button></span>
 			</div>
 			
 		</div>

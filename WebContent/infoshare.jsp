@@ -1,3 +1,9 @@
+<%@page import="com.lntegrated.board_sh_comm.dto.BoardShCommDto"%>
+<%@page import="com.lntegrated.board_sh_comm.dao.BoardShCommDao"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.lntegrated.board_sh.dto.BoardShDto"%>
+<%@page import="java.util.List"%>
+<%@page import="com.lntegrated.board_sh.dao.BoardShDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
@@ -23,9 +29,12 @@
                    border-top: 1px solid #9c836a; border-bottom: 1px solid #c6b5a4;}
     .infoshareList table th{position: relative; height: 60px; font-weight: 300; color: #9c836a;}
    div.infoshareList table tbody tr:first-child{border-top: 1px solid #e6e3df;}
-   div.infoshareList table tbody tr td:first-child{text-align: left; padding-left: 10px;}
+   div.infoshareList table tbody tr td:first-child{text-align: left; padding-left: 10px; cursor: pointer;}
    div.infoshareList table tbody tr {border-top: 1px solid #f4f2ef; height: 60px;}
-   .infoboardWrap table button{border: 1px solid #c6b5a4; padding: 9px 15px 9px 15px; color: #c6b5a4; position: relative; left: 850px;}
+   div.infoshareList table tbody tr:hover{background-color: #f4f2ef;}
+   div.infoshareList table tfoot tr {border-top: 1px solid #f4f2ef; height: 60px;}
+   .infoboardWrap table button{border: 1px solid #c6b5a4; padding: 9px 15px 9px 15px; color: #c6b5a4; position: relative;}
+   .infoboardWrap table button:hover{background-color: #c6b5a4; color: white; }
    .infoboardWrap .paginate{margin-top: 60px; text-align: center;}
    .infoboardWrap .paginate a{display: inline-block; width: 24px; height: 24px; padding: 0 3px; font-size: 14px; color: #999; 
                       font-weight: 300; line-height: 23px; vertical-align: top; box-sizing: unset;}
@@ -36,9 +45,19 @@
    .infoboardWrap .paginate a.direction:last-of-type{background-position: 0 -74px; margin-left: 0;}
 	
 	.infoshareList span.hospital{font-size: 16px; margin-right: 5px; float: left; color: orange;}
+	.infoshareList table tbody tr>td>span{font-size: 15px; color: lightgray;}
 	
 </style>
+<script type="text/javascript">
+	function selectone(board_sh_no){
+		location.href="BoardShServlet?command=select&board_sh_no="+board_sh_no;
+	}
+</script>
 </head>
+<%
+	List<BoardShDto> list = (List<BoardShDto>)request.getAttribute("list");
+	SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd");
+%>
 <body>
 
 	<%@ include file="form/header.jsp" %>
@@ -46,8 +65,8 @@
 	<div class="headMenu">
 		<h1>커뮤니티</h1>
 		<ul>
-			<li><a href="">자유게시판</a></li>
-			<li><a href="">병원정보공유</a></li>
+			<li><a href="BoardFrServlet?command=boardlist">자유게시판</a></li>
+			<li><a href="BoardShServlet?command=boardlist">병원정보공유</a></li>
 		</ul>
 	</div>
 	
@@ -77,20 +96,47 @@
 					</tr>
 				</thead>
 				<tbody>
-				<!-- 게시글없을때 쓰는 if문 tr db만든 후에 추가 -->
+<%
+				if(list.size()==0){
+%>					
+				<tr><th colspan="4">=====첫번째 글을 작성해 주세요^^=====</th></tr>
+<%				
+				}else{
+					for(int i=0;i<list.size();i++){
+				
+%>
 				
 				<tr>
-					<td><span class="hospital">[병원이름]</span><a href="">제목</a></td>
-					<td>작성자</td>
-					<td>작성일</td>
-					<td>조회수</td>
-				</tr>
-				<tr>
-					<td colspan="4" align="right">
-						<button>글쓰기</button>
+					<td onclick="selectone(<%=list.get(i).getBoard_sh_no()%>);">
+						<span class="hospital">[<%=list.get(i).getMedical_name() %>]</span>
+						<a href="BoardShServlet?command=select&board_sh_no=<%=list.get(i).getBoard_sh_no() %>"><%=list.get(i).getTitle() %></a>
+<%
+						BoardShCommDao comdao = new BoardShCommDao();
+						List<BoardShCommDto> comlist=comdao.selectList(list.get(i).getBoard_sh_no());
+						if(comlist.size()>0){
+%>	
+						<span>[<%=comlist.size() %>]</span>
+<%
+							}
+%>							
+					
 					</td>
+					<td><%=list.get(i).getId_u() %></td>
+					<td><%=df.format(list.get(i).getRegdate()) %></td>
+					<td><%=list.get(i).getViews() %></td>
 				</tr>
+<%
+					}
+				}
+%>
 				</tbody>
+				<tfoot>		
+					<tr>
+						<td colspan="4" align="right">
+							<button onclick="location.href='BoardShServlet?command=insert'">글쓰기</button>
+						</td>
+					</tr>
+				</tfoot>
 			</table>
 		</div>
 		<div class="paginate">
