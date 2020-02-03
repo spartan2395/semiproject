@@ -137,13 +137,13 @@
 		//달력의 일정표현
 		ClinicDao cdao = new ClinicDao();
 		TeleDao tdao = new TeleDao();
-		DoctorDto dto = (DoctorDto)session.getAttribute("dto");
+		MemberDto dto = (MemberDto)session.getAttribute("dto");
 		List<ClinicDto> clist =null;
 		List<TeleDto> tlist=null;
-		System.out.println("jsp dto.getId_d: "+dto.getId_d());
+		System.out.println("jsp dto.getId_u: "+dto.getId_u());
 		if (dto!=null){
-		clist = cdao.clinicList(dto.getId_d());
-		tlist = tdao.teleList(dto.getId_d());
+		clist = cdao.clinicMemberList(dto.getId_u());
+		tlist = tdao.teleInfoList(dto.getId_u());
 		}
 		else{
 			System.out.println("session expired");
@@ -155,7 +155,7 @@
 		<h1>예약 확인</h1>
 		<ul>
 			<li><a
-				href="calendarServlet?command=doc_schedule&id_d=${dto.id_d }">예약
+				href="calendarServlet?command=patient_schedule&id_u=${dto.id_u }">예약
 					일정</a></li>
 			<li><a href="">원격 진료</a></li>
 			<li><a href="">환자 관리</a></li>
@@ -165,20 +165,20 @@
 	<div class="calendarWrap">
 		<h1 style="width: 50%;">예약일정</h1>
 		<div class="btn">
-			<input type="button" value="진단서업로드"
-				onclick="location.href='TeleServlet?command=resultupload&id_d=${dto.id_d }'">
+			<input type="button" value="진단서다운로드"
+				onclick="location.href='TeleServlet?command=resultupload&id_u=${dto.id_u }">
 		</div>
 		<table id="calendar">
 			<caption>
 				<a
-					href="doc_schedule.jsp?year=<%=year - 1%>&month<%=month%>&id_d=${dto.id_d }">◁◁</a>
+					href="patient_schedule.jsp?year=<%=year - 1%>&month<%=month%>&id_u=${dto.id_u }">◁◁</a>
 				<a
-					href="doc_schedule.jsp?year=<%=year%>&month=<%=month - 1%>&id_d=${dto.id_d }">◁</a>
+					href="patient_schedule.jsp?year=<%=year%>&month=<%=month - 1%>&id_u=${dto.id_u }">◁</a>
 				<span class="Y"><%=year%></span>년 <span class="M"><%=month%></span>월
 				<a
-					href="doc_schedule.jsp?year=<%=year%>&month=<%=month + 1%>&id_d=${dto.id_d }">▷</a>
+					href="patient_schedule.jsp?year=<%=year%>&month=<%=month + 1%>&id_u=${dto.id_u }">▷</a>
 				<a
-					href="doc_schedule.jsp?year=<%=year + 1%>&month<%=month%>&id_d=${dto.id_d }">▷▷</a>
+					href="patient_schedule.jsp?year=<%=year + 1%>&month<%=month%>&id_u=${dto.id_u }">▷▷</a>
 			</caption>
 
 			<tr>
@@ -201,7 +201,7 @@
 				%>
 				<td><a class="countview" href="calenderServlet?command=callist?year<%=year%>?month=<%=month%>?date=<%=i%>" style="color:<%=Util.fontColor(i, dayOfWeek) %>"><%=i%></a>
 					<div class="clist">
-						<%=Util.getCalViewDoc(month, i, clist, tlist)%>
+						<%=Util.getCalViewPatient(month, i, clist, tlist)%>
 					</div></td>
 				<%
 					if ((dayOfWeek - 1 + i) % 7 == 0) {

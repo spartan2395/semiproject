@@ -43,10 +43,13 @@ public class TeleServlet extends HttpServlet {
       response.setContentType("text/html;charset=utf-8");
       
       String command =request.getParameter("command");
+      System.out.println("TeleServlet command=============>"+command);
       TeleDao dao = new TeleDao();
       TelResultDao resultdao = new TelResultDao();
-      if(command.equals("resultupload")) {
-         String id_d = request.getParameter("id_d");
+      
+      
+      if(command.equals("resultupload")) { //=*==*==*==*==*==*==*==*==*==*==*==
+    	  String id_d = request.getParameter("id_d");
          List<TeleDto> list = dao.teleUploadList(id_d);
          List<TeleDto> sendlist = new ArrayList<TeleDto>();
          for(int i=0;i<list.size();i++) {
@@ -56,7 +59,8 @@ public class TeleServlet extends HttpServlet {
          }
          request.setAttribute("list", sendlist);
          dispatch("tel_result_upload.jsp", request, response);
-      } else if(command.equals("select")) {
+         
+      } else if(command.equals("select")) {  //=*==*==*==*==*==*==*==*==*==*==*==
          JSONObject obj = new JSONObject();
          int tel_seq = Integer.parseInt(request.getParameter("tel_seq"));
          TeleDto dto = dao.teleInfo(tel_seq);
@@ -78,7 +82,7 @@ public class TeleServlet extends HttpServlet {
             response.getWriter().println(obj);
          }
          
-      } else if(command.equals("telmedical")) {
+      } else if(command.equals("telmedical")) {  //=*==*==*==*==*==*==*==*==*==*==*==
     	  
       }
       
