@@ -47,7 +47,7 @@ $(function(){
 	   $('.nonreserve>div>ul>li').click(function(){
 	      $('.uploadform').css('display','');
 	      $('.basic').css('display','none');
-	      var telseq = $(this).attr('name');
+	      var telseq = $(this).attr('title');
 	      $.ajax({
 	         method: "POST",
 	         url: "TeleServlet",
@@ -74,7 +74,7 @@ $(function(){
 <% List<TeleDto> list = (List<TeleDto>)request.getAttribute("list"); 
 	//List<TelResultDto> resultlist = new 
 TelResultDao resultdao = new TelResultDao();
-	//System.out.println(list);
+	System.out.println(list); 
 %>
 <body>
 	<%@ include file="form/header.jsp" %>
@@ -94,25 +94,26 @@ TelResultDao resultdao = new TelResultDao();
 			<div>진단서 미업로드 환자</div>
 			<div>
 <%					
-					if(list.size()==0){
+					if(list.size()==0){ 
 %>
 				<span>진단서를 모두 업로드 하셨습니다.</span>	
 <%
-					}else{
+				}else{ 
 %>						
 				<ul>	<!-- onclick 이벤트 ajax로 만들어야 할까요 -->
 <%
-						for(int i=0;i<list.size();i++){
-						//	TelResultDto resultdto = resultdao.telResultInfo(list.get(i).getTel_seq());
-						//	if(resultdto==null){
+						for(int i=0;i<list.size();i++){ 
+							TelResultDto resultdto = resultdao.telResultInfo(list.get(i).getTel_seq());
+							if(resultdto==null){
 %>					
-					<li name="<%=list.get(i).getTel_seq() %>">
+				<li title="<%=list.get(i).getTel_seq() %>">
 						<%=list.get(i).getName_u() %>
+						<%=list.get(i).getReserv_date() %>
 					</li>
 <%
-						//	}
-						}
-					}	
+							}
+				}
+					}	 
 %>
 				</ul>
 			</div>

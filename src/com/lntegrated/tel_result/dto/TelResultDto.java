@@ -35,6 +35,8 @@ public class TelResultDto {
 		this.purpose = purpose;
 		this.remarks = remarks;
 	}
+	
+	
 
 	public int getTel_seq() {
 		return tel_seq;

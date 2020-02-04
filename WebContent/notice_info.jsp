@@ -16,7 +16,7 @@
 	.noticeinfoboardWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 </style>
 </head>
-<% NoticeDto dto = (NoticeDto)request.getAttribute("dto"); %>
+<% NoticeDto list = (NoticeDto)request.getAttribute("dto"); %>
 <body>
 
 <%@ include file="form/header.jsp" %>
@@ -31,40 +31,34 @@
 
 	<div class="noticeinfoboardWrap">
 		<h1>공지사항</h1>
-			<table border="1">
-				<colgroup>
-					<col width="192px">
-					<col width="*">
-				</colgroup>
-				<tr>
-					<th>병원이름</th>
-					<td><%=dto.getMedical_d() %></td>
-				</tr>
-				<tr>
-					<th>병원이름</th>
-					<td><%=dto.getName_d() %></td>
-				</tr>
-				<tr>
-					<th>제목</th>
-					<td><%=dto.getTitle() %></td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td><textarea rows="10" cols="60" readonly="readonly"><%=dto.getContent() %></textarea></td>
-				</tr>
-				<tr>
-					<td colspan="2">
+		<h2><%=list.getTitle() %></h2>
+			<div class="meminfo">
+				<span><img alt="" src="image/happycarrot.png">${dto.id_d }</span>
+				<div class="sysinfo">
+					<p>
+						<img alt="조회수" src="image/eye_new.png">
+						<%=list.getViews() %>
+					</p>
+					<p class="last">
+						<img alt="작성시간" src="image/sub_date_new.png">
+						<fmt:formatDate value="<%=list.getRegdate() %>" pattern="yyyy.MM.dd a hh:mm"/>
+					</p>
+				</div>
+				
+				<div class="text">
+				<p><%=list.getContent() %></p>
+				<button onclick="location.href='NoticeServlet?command=list'">목록</button>
+				</div>
+				
+				<div class="btn_group" align="right">
 
-						<input type="button" value="수정" onclick="location.href='NoticeServlet?command=updateform&nt_seq=<%=dto.getNt_seq()%>'"/>
-						<input type="button" value="삭제" onclick="location.href='NoticeServlet?command=delete&nt_seq=<%=dto.getNt_seq()%>'"/>
+					<button type = "button" onclick="location.href='NoticeServlet?command=updateform&nt_seq=<%=list.getNt_seq()%>&id_d=${dto.id_d }'">수정</button>
+					<button type = "button" onclick = "location.href = 'BoardFrServlet?command=delete&board_no=<%=list.getNt_seq()%>&id_d=${dto.id_d }'">삭제</button>
 
-						<input type="button" value="목록" onclick="location.href='NoticeServlet?command=list'">
-					</td>
-				</tr>
-			</table>
+		</div>
 
 	</div>
-
+	<%@ include file="./form/footer.jsp" %>
 
 </body>
 </html>
