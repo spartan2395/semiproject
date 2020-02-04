@@ -14,10 +14,12 @@ public class TeleDao extends SqlConfig{
 	//의사예약리스트
 	public List<TeleDto> teleList(String id_d){
 		List<TeleDto> list = null;
+		System.out.println("TeleListDao : "+id_d);
 		try {
 			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
 			list = session.selectList(namespace+"tele_list", id_d);
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Telemedicine_list ERROR");
 		}finally {
 			session.close();
@@ -31,6 +33,7 @@ public class TeleDao extends SqlConfig{
 			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
 			list = session.selectList(namespace+"tele_upload_list", id_d);
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Telemedicine_upload_list ERROR");
 		}finally {
 			session.close();
@@ -40,12 +43,13 @@ public class TeleDao extends SqlConfig{
 	// 환자예약리스트
 
 	public List<TeleDto> teleInfoList(String id_u){
+		System.out.println(id_u);
 		List<TeleDto> list = null;
 		try {
 			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
 			list = session.selectList(namespace+"tele_list_info", id_u);
-
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Telemedicine_info ERROR");
 		}finally {
 			session.close();

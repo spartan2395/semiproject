@@ -16,10 +16,13 @@ public class ClinicDao extends SqlConfig{
 	//�ǻ翡�� �����̵Ǿ� �ִ� �մԵ� ����Ʈ 
 	public List<ClinicDto> clinicList(String id_d) {
 		List<ClinicDto> list = new ArrayList<ClinicDto>();
+		System.out.println("ClinicDao : "+id_d);
 		try {
 			session = getSessionFactory("clinic/clinic_config.xml").openSession();
 			list = session.selectList(namespace+"clinic_list", id_d);
+			
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("clinicList ERROR");
 		}finally {
 			session.close();
@@ -29,7 +32,7 @@ public class ClinicDao extends SqlConfig{
 	
 	public List<ClinicDto> clinicMemberList(String id_u) {
 		List<ClinicDto> list = null;
-		
+		System.out.println("ClinicDao : "+id_u);
 		try {
 			session = getSessionFactory("clinic/clinic_config.xml").openSession();
 			list = session.selectList(namespace+"clinic_memberinfo", id_u);
