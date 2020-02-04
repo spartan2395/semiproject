@@ -1,3 +1,5 @@
+<%@page import="com.lntegrated.clinic.dto.ClinicDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%	request.setCharacterEncoding("UTF-8");%>
@@ -20,6 +22,7 @@
 </style>
 
 </head>
+<% List<ClinicDto> list = (List<ClinicDto>)request.getAttribute("list"); %>
 <body>
 <%@ include file="./form/header.jsp" %>
 
@@ -34,7 +37,7 @@
 				<col width="200px;"/>
 				<tr>
 					<th>병원명</th>
-					<td><input type="text" name="medical_d" value="영원한등대" readonly="readonly"></td>
+					<td><input type="text" name="medical_d" value="<%= %>" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<th>예약자명</th>

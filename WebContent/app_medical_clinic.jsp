@@ -60,7 +60,7 @@
 			<h2 id = "hname">여기에 병원이름 넣고싶음</h2>
 		</div>
 		<div>
-			<button id="appointment" value="진료예약" style="z-index:1; position: relative;" onclick="location.href='HosSelected?command=insertclinicform&id'">
+			<button id="appointment" value="진료예약" style="z-index:1; position: relative;" onclick="location.href='HosSelected?command=insertclinicform&id=${dto.id_u}'">
 				<img alt="진료예약" src="./resources/imgs/appointment.svg" />
 				<span style="z-index: 999; position: absolute;">진료예약</span>
 			</button>

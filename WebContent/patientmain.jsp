@@ -60,10 +60,10 @@
                <a href="appointment.jsp">
                   <h2>예약하기</h2>
                </a>
-               <a href="#">
+               <a href="appointment.jsp">
                   <h2>왕진신청</h2>
                </a>
-               <a href="#">
+               <a href="appointment_tel.jsp">
                   <h2>원격진료신청</h2>
                </a>
             </div>

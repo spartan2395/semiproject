@@ -6,6 +6,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +21,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.lntegrated.clinic.dao.ClinicDao;
+import com.lntegrated.clinic.dto.ClinicDto;
 
 /**
  * Servlet implementation class HosSelected
@@ -25,12 +30,13 @@ import com.google.gson.JsonParser;
 @WebServlet("/HosSelected")
 public class ClinicSelected extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private ClinicDao dao;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ClinicSelected() {
         super();
+        dao = new ClinicDao();
         // TODO Auto-generated constructor stub
     }
 
@@ -41,7 +47,7 @@ public class ClinicSelected extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-String command = request.getParameter("command");
+		String command = request.getParameter("command");
 		
 		if(command.equals("nearHos")) {
 			String addr = "http://apis.data.go.kr/B551182/hospInfoService/getHospBasisList?pageNo=1&numOfRows=10&ServiceKey="
@@ -146,8 +152,43 @@ String command = request.getParameter("command");
 			request.setAttribute("hosName", hosname);
 			request.setAttribute("addr", addr);
 			disPatch("app_medical_clinic.jsp", request, response);
+		}if(command.equals("insertclinicform")) {
+			String hosname = request.getParameter("hosName");
+			response.sendRedirect("appointment_insertclinic.jsp");
+			
+		}else if(command.equals("write")) {
+			String id_u = "UID";
+			String id_d = "nexon";
+			String category = request.getParameter("category");
+			String year = request.getParameter("year");
+			String month = request.getParameter("month");
+			String date = request.getParameter("date");
+			String hour = request.getParameter("hour");
+			String minute = request.getParameter("minute");
+			String disease = request.getParameter("disease");
+			
+			String reserv_date = year+"-"+month+"-"+date+" "+hour+":"+minute; 		
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			Date to = null;
+			try {
+				to = df.parse(reserv_date);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			ClinicDto dto = new ClinicDto(id_u, id_d, disease, to, category);
+			
+			int res = dao.clinicinsert(dto);
+			if(res > 0) {
+				jsResponse("예약되었습니다", "app_medical_detail.jsp", response);
+			}else {
+				jsResponse("ㅜㅜ", "app_medical_detail.jsp", response);
+			}
 		}
+		
 	}
+
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -165,5 +206,13 @@ String command = request.getParameter("command");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	private void jsResponse(String msg , String url, HttpServletResponse response) throws IOException {
+		String s = "<script type= 'text/javascript'>"
+				+"alert('"+msg+"');"
+				+"location.href='"+url+"';"
+						+ "</script>";
+		PrintWriter out = response.getWriter();
+		out.print(s);
 	}
 }
