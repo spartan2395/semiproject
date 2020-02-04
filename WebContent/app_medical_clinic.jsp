@@ -5,8 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<%
+	String ykiho = (String)request.getAttribute("ykiho");
+	String hosName = (String)request.getAttribute("hosName");
+	String addr = (String)request.getAttribute("addr");
+	
+	System.out.println(addr);
+%>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src ="js/hospitol.js"></script>
+<script type="text/javascript">
+	window.onload = function(){
+		hospitolinfo("<%=ykiho%>");
+		document.getElementById("hname").innerHTML = "<%=hosName%>";
+		document.getElementsByClassName("addr").innerHTML = "<%=addr%>";
+	}
+</script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
@@ -43,7 +57,7 @@
 	</div>
 	<div class="gg">
 	 <div class="medical_name">
-			<h2>여기에 병원이름 넣고싶음</h2>
+			<h2 id = "hname">여기에 병원이름 넣고싶음</h2>
 		</div>
 		<div>
 			<button id="appointment" value="진료예약" style="z-index:1; position: relative;" onclick="location.href='HosSelected?command=insertclinicform&id'">
@@ -58,11 +72,11 @@
 			<span>병원사진</span>
 		</div>
 		<div class="info">
-			<span> 병원이름 </span>
+			<span id = "hosName"> 병원이름 </span>
 			<br/>
-			<span> 진료시간 </span>
+			<span id = "time">  </span>
 			<br>
-			<span> 병원소개 등등...</span>
+			<span id = "info"> </span>
 			<br>
 		</div>
 		<div class="addr">
