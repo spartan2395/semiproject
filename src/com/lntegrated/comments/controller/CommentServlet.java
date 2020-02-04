@@ -1,7 +1,8 @@
-package com.lntegrated.board_sh_comm.controller;
+package com.lntegrated.comments.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,46 +11,43 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lntegrated.board_sh.dto.BoardShDto;
-import com.lntegrated.board_sh_comm.dao.BoardShCommDao;
-import com.lntegrated.board_sh_comm.dto.BoardShCommDto;
+import com.lntegrated.comments.dao.CommDao;
+import com.lntegrated.comments.dto.CommDto;
 
-
-@WebServlet("/BoardShCommServlet")
-public class BoardShCommServlet extends HttpServlet {
+@WebServlet("/CommentServlet")
+public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+   
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-		doPost(request, response);
+		String command = request.getParameter("command");
+		CommDao dao = new CommDao();
 		
+		if(command.equals("insert")) {
+			
+			int board_no = Integer.parseInt(request.getParameter("board_no"));
+			String content_a = request.getParameter("content");
+			String id_u = "788";
+			
+			CommDto dto = new CommDto(board_no, content_a, id_u);
+//			System.out.println(board_no);
+//			System.out.println(content_a);
+			int res = dao.commInsert(dto);
+//			if(res >0) {
+//				jsResponse("댓글 작성", "BoardFrServlet?command=select&board_no="+board_no, response);
+//			}
+		}
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		
-		String command = request.getParameter("command");
-		BoardShCommDao dao = new BoardShCommDao();
-		
-		if(command.equals("insert")) {
-			int board_sh_no = Integer.parseInt(request.getParameter("board_sh_no"));
-			String content = request.getParameter("content");
-			String id_u="788";
-			
-			System.out.println(content);
-			System.out.println(board_sh_no);
-			
-			BoardShCommDto dto = new BoardShCommDto(board_sh_no, content, id_u);
-			int res = dao.insert(dto);
-			
-
-			
-		}
-		
+		doGet(request, response);
 	}
 	
 	public void dispatch(String url, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

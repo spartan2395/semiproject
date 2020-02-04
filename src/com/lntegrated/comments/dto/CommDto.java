@@ -8,7 +8,7 @@ public class CommDto {
 	private Date regdate_a;
 	private String id_u;
 	
-	//´ñ±Û °Ë»ö
+	//ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	public CommDto(int board_no,String content_a,Date regdate_a,String id_u) {
 		this.board_no = board_no;
 		this.content_a = content_a;
@@ -16,17 +16,22 @@ public class CommDto {
 		this.id_u = id_u;
 	}
 	
-	//´ñ±Û ÀÛ¼º
+	//ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½
 	public CommDto(int board_no, String content_a,String id_u) {
 		this.board_no = board_no;
 		this.content_a = content_a;
 		this.id_u = id_u;
 	}
-	//´ñ±Û ¼öÁ¤
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public CommDto(int board_no , String content_a) {
 		this.board_no = board_no;
 		this.content_a = content_a;
 	}
+	public CommDto(int board_no) {
+		this.board_no = board_no;
+	}
+	
+	
 
 	public int getBoard_no() {
 		return board_no;

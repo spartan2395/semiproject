@@ -8,7 +8,7 @@
 	</select>
 	<!-- 댓글 작성 -->
 	<insert id = "comm_insert" parameterType="commdto">
-		INSERT INTO COMMENTS VALUES(#{board_no},#{content_a},'SYSDATE',#{id_u})
+		INSERT INTO COMMENTS VALUES(#{board_no},#{content_a},SYSDATE,#{id_u})
 	</insert>
 	<!-- 댓글 수정 -->
 	<update id = "comm_update" parameterType="commdto">
@@ -17,5 +17,9 @@
 	<!-- 댓글 삭제 -->
 	<delete id="comm_delete" parameterType="map">
 		DELETE FROM COMMENTS WHERE BOARD_NO = #{board_no} AND ID_U = #{id_u}
+	</delete>
+	<!--게시글 삭제할때 댓글 전체삭제  -->
+	<delete id="comm_all_delete" parameterType="map">
+		DELETE FROM COMMENTS WHERE BOARD_NO = #{board_no}
 	</delete>
 </mapper>
