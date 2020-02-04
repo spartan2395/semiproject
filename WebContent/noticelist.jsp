@@ -2,6 +2,7 @@
 <%@page import="com.lntegrated.notice.dto.NoticeDto"%>
 <%@page import="com.lntegrated.notice.dao.NoticeDao"%>
 <%@page import="java.util.List"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%	request.setCharacterEncoding("UTF-8");%>
@@ -116,11 +117,14 @@
 				</tbody>
 				<tfoot>
 				<tr>
+
 					<td colspan="5" align="right">
-						<button onclick="location.href='NoticeServlet?command=writeform'">글쓰기</button>
+						<c:if test="${not empty id_d}"> <button onclick="location.href='NoticeServlet?command=writeform&id_d=${dto.id_d}'">글쓰기</button></c:if>
 					</td>
 				</tr>
+	
 				</tfoot>
+			
 			</table>
 		</div>
 		<div class="paginate">
@@ -133,6 +137,8 @@
 			<a href="" class="direction next"></a>
 		</div>
 	</div>
-
+	
+	
+<%@ include file="./form/footer.jsp" %>
 </body>
 </html>
