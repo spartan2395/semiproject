@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/search.js"></script>
+
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
@@ -60,10 +61,11 @@
 	<div class="appointmentWrap">
 		
 		<h1>병원목록</h1>
+		<div id="1">
 		<article class="medicalinfo">
 			<a class="medical_link" href="#">
 				<div class="medical_photo">
-					<img alt="병원사진" src="./image/hello.jpg">
+					<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
 				<div class="medical_info">
 					<p class="medical_name">
@@ -75,7 +77,7 @@
 		<article class="medicalinfo">
 			<a class="medical_link" href="#">
 				<div class="medical_photo">
-					<img alt="병원사진" src="./image/hello.jpg">
+					<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
 				<div class="medical_info">
 					<p class="medical_name">
@@ -88,7 +90,20 @@
 		<article class="medicalinfo_3">
 			<a class="medical_link" href="#">
 				<div class="medical_photo">
-					<img alt="병원사진" src="./image/hello.jpg">
+					<img alt="병원사진" src="./image/errorphoth.png">
+				</div>
+				<div class="medical_info">
+					<p class="medical_name">
+						영원한등대
+					</p>
+				</div>
+			</a>
+		</article>
+		</div>
+		<article class="medicalinfo">
+			<a class="medical_link" href="#">
+				<div class="medical_photo">
+				<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
 				<div class="medical_info">
 					<p class="medical_name">
@@ -101,20 +116,7 @@
 		<article class="medicalinfo">
 			<a class="medical_link" href="#">
 				<div class="medical_photo">
-				<img alt="병원사진" src="./image/hello.jpg">
-				</div>
-				<div class="medical_info">
-					<p class="medical_name">
-						영원한등대
-					</p>
-				</div>
-			</a>
-		</article>
-		
-		<article class="medicalinfo">
-			<a class="medical_link" href="#">
-				<div class="medical_photo">
-					<img alt="병원사진" src="./image/hello.jpg">
+					<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
 				<div class="medical_info">
 					<p class="medical_name">
@@ -127,7 +129,7 @@
 		<article class="medicalinfo_3">
 			<a class="medical_link" href="#">
 				<div class="medical_photo">
-					<img alt="병원사진" src="./image/hello.jpg">
+					<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
 				<div class="medical_info">
 					<p class="medical_name">
@@ -140,7 +142,7 @@
 		<article class="medicalinfo">
 			<a class="medical_link" href="#">
 				<div class="medical_photo">
-					<img alt="병원사진" src="./image/hello.jpg">
+					<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
 				<div class="medical_info">
 					<p class="medical_name">
@@ -153,7 +155,7 @@
 		<article class="medicalinfo">
 			<a class="medical_link" href="#">
 				<div class="medical_photo">
-					<img alt="병원사진" src="./image/hello.jpg">
+					<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
 				<div class="medical_info">
 					<p class="medical_name">
@@ -166,7 +168,7 @@
 		<article class="medicalinfo_3">
 			<a class="medical_link" href="#">
 				<div class="medical_photo">
-					<img alt="병원사진" src="./image/hello.jpg">
+					<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
 				<div class="medical_info">
 					<p class="medical_name">
@@ -184,6 +186,8 @@
 			<a href="" class="direction next"></a>
 		</article>
 		
+		<input type="button" value="실험" id="add">
+		
 	</div>
 	
 	<%@ include file="./form/footer.jsp" %>
@@ -191,4 +195,19 @@
 
 
 </body>
+<script type="text/javascript">
+	
+	$('#add').on('click',function() {
+		$('#1').appendchild($('#1'))
+	});
+	
+	function {
+		var div = document.creatElement('div');
+		//var x = document.getElementByClassName('1').length;
+		div.innerHTML = document.getElementById('1').innerHTML;
+		
+		document.getElementById('1').appendchild(div);
+	}
+
+</script>
 </html>

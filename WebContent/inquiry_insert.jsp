@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.inquiryinsertWrap{width: 1000px; height:100% margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.inquiryinsertWrap{width: 1000px; height:100% margin: 0 auto; padding: 0 80px 160px; margin-top: 130px; margin-left: 10%;}
 	.inquiryinsertWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 </style>
 </head>
@@ -34,13 +34,13 @@
 			<input type="hidden" name="command" value="write"/>
 				<table border="1">
 					<colgroup>
-						<col width="192px">
+						<col width="100px">
 						<col width="*">
 					</colgroup>	
 					
 					<tr>
 						<th>작성자</th>
-						<td><input type="text" name="writer"></td>
+						<td><input type="text" name="writer" value="${dto.id_u}" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th>제목</th>
