@@ -8,6 +8,10 @@
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <% response.setContentType("text/html; charset=UTF-8"); %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,10 +58,6 @@
 	}
 </script>
 </head>
-<%
-	List<BoardShDto> list = (List<BoardShDto>)request.getAttribute("list");
-	SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd");
-%>
 <body>
 
 	<%@ include file="form/header.jsp" %>
@@ -96,39 +96,23 @@
 					</tr>
 				</thead>
 				<tbody>
-<%
-				if(list.size()==0){
-%>					
-				<tr><th colspan="4">=====첫번째 글을 작성해 주세요^^=====</th></tr>
-<%				
-				}else{
-					for(int i=0;i<list.size();i++){
-				
-%>
-				
-				<tr>
-					<td onclick="selectone(<%=list.get(i).getBoard_sh_no()%>);">
-						<span class="hospital">[<%=list.get(i).getMedical_name() %>]</span>
-						<a href="BoardShServlet?command=select&board_sh_no=<%=list.get(i).getBoard_sh_no() %>"><%=list.get(i).getTitle() %></a>
-<%
-						BoardShCommDao comdao = new BoardShCommDao();
-						List<BoardShCommDto> comlist=comdao.selectList(list.get(i).getBoard_sh_no());
-						if(comlist.size()>0){
-%>	
-						<span>[<%=comlist.size() %>]</span>
-<%
-							}
-%>							
-					
-					</td>
-					<td><%=list.get(i).getId_u() %></td>
-					<td><%=df.format(list.get(i).getRegdate()) %></td>
-					<td><%=list.get(i).getViews() %></td>
-				</tr>
-<%
-					}
-				}
-%>
+				<c:choose>
+						<c:when test="${empty list}">
+							<tr><th colspan="4">=====첫번째 글을 작성해 주세요^^=====</th></tr>	
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${list}" var="dto">
+								<tr>
+									<td>
+										<span class="hospital">[${dto.medical_name }]</span><a href = "BoardShServlet?command=select&board_sh_no=${dto.board_sh_no }">${dto.title }</a>
+									</td>
+									<td> ${dto.id_u }</td>
+									<td> <fmt:formatDate value="${dto.regdate }" pattern="yyyy.MM.dd"/></td>
+									<td> ${dto.views }</td>				
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 				</tbody>
 				<tfoot>		
 					<tr>
@@ -137,14 +121,23 @@
 						</td>
 					</tr>
 				</tfoot>
+				<tr>
+						<td colspan = "4" align = "center">
+							<c:if test="${pageMaker.prev }">
+								<a href = "BoardShServlet?command=boardlist&page=1">처음</a>
+								<a href = "BoardShServlet?command=boardlist&page=${pageMaker.startPage-1 }">이전</a>
+							</c:if>
+							<c:forEach begin = "${pageMaker.startPage }" end = "${pageMaker.endPage }" var = "pageNum">
+								<a href = '<c:url value = "BoardShServlet?command=boardlist&page=${pageNum }"/>'>${pageNum }</a>
+							</c:forEach>
+							<c:if test = "${pageMaker.next && pageMaker.endPage >0 }">
+								<a href = "BoardShServlet?command=boardlist&page=${pageMaker.endPage+1 }">다음</a>
+								<a href = "BoardShServlet?command=boardlist&page=${pageMaker.tempEndPage }">마지막</a>
+							</c:if>
+						
+						</td>
+					</tr>
 			</table>
-		</div>
-		<div class="paginate">
-			<a href="" class="direction prev"></a>
-			<a href="" class="direction prev"></a>
-			<a href="" class="num active">1</a>
-			<a href="" class="direction next"></a>
-			<a href="" class="direction next"></a>
 		</div>
 		
 	</div>

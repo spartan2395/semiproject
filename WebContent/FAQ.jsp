@@ -31,8 +31,8 @@
 	<div class="headMenu">
 		<h1>고객센터</h1>
 		<ul>
-			<li><a href="NoticeServlet?command=list">공지사항</a></li>
-			<li><a href="InquiryServlet?command=list">1:1 문의</a></li>
+			<li><a href="NoticeServlet?command=boardlist">공지사항</a></li>
+			<li><a href="InquiryServlet?command=boardlist">1:1 문의</a></li>
 			<li><a href="FAQ.jsp">FAQ</a></li>
 		</ul>
 	</div>

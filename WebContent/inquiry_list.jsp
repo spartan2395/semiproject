@@ -3,6 +3,10 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,8 +55,8 @@
 	<div class="headMenu">
 		<h1>고객센터</h1>
 		<ul>
-			<li><a href="NoticeServlet?command=list">공지사항</a></li>
-			<li><a href="InquiryServlet?command=list">1:1 문의</a></li>
+			<li><a href="NoticeServlet?command=boardlist">공지사항</a></li>
+			<li><a href="InquiryServlet?command=boardlist">1:1 문의</a></li>
 			<li><a href="FAQ.jsp">FAQ</a></li>
 		</ul>
 	</div>
@@ -77,27 +81,26 @@
 					</tr>
 				</thead>
 				<tbody>
-<%
-	if(list == null || list.size() ==0) {
-%>
-
-				<tr>
-					<td colspan="4">=====첫번째 글을 작성해 주세요^^=====</td>
-				</tr>			
-<%
-	}else{
-		for(int i =0; i < list.size(); i++) {
-%>	
-				<tr>
-				<td><a href="InquiryServlet?command=one&no=<%=list.get(i).getBoard_no() %>"><%=list.get(i).getTitle() %></a></td>
-					<td><%=list.get(i).getId_u() %></td>
-					<td><%=df.format(list.get(i).getRegdate()) %></td>
-					<td><%=list.get(i).getAns_chk() %></td>
-				</tr>
-<%
-		}
-	}
-%>
+					<c:choose>
+						<c:when test="${empty list}">
+							<tr><th colspan="4">=====첫번째 글을 작성해 주세요^^=====</th></tr>	
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${list}" var="dto">
+								<tr>
+									<td>
+										<a href="InquiryServlet?command=one&no=${dto.board_no }">${dto.title }</a>
+										<c:forEach items="${commList }" var="commList">
+											<span>${fn:length(commList)}</span>	
+										</c:forEach>
+									</td>
+									<td> ${dto.id_u }</td>
+									<td> <fmt:formatDate value="${dto.regdate }" pattern="yyyy.MM.dd"/></td>
+									<td> ${dto.ans_chk }</td>				
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 			</tbody>
 			<tfoot>
 				<tr>
@@ -105,16 +108,24 @@
 						<button onclick="location.href='InquiryServlet?command=writeform'">글쓰기</button>
 					</td>
 				</tr>
+				<tr>
+						<td colspan = "4" align = "center">
+							<c:if test="${pageMaker.prev }">
+								<a href = "InquiryServlet?command=boardlist&page=1">처음</a>
+								<a href = "InquiryServlet?command=boardlist&page=${pageMaker.startPage-1 }">이전</a>
+							</c:if>
+							<c:forEach begin = "${pageMaker.startPage }" end = "${pageMaker.endPage }" var = "pageNum">
+								<a href = '<c:url value = "InquiryServlet?command=boardlist&page=${pageNum }"/>'>${pageNum }</a>
+							</c:forEach>
+							<c:if test = "${pageMaker.next && pageMaker.endPage >0 }">
+								<a href = "InquiryServlet?command=boardlist&page=${pageMaker.endPage+1 }">다음</a>
+								<a href = "InquiryServlet?command=boardlist&page=${pageMaker.tempEndPage }">마지막</a>
+							</c:if>
+						
+						</td>
+					</tr>
 			</tfoot>
 			</table>
-		</div>
-		<div class="paginate">
-			<a href="" class="direction prev"></a>
-			<a href="" class="direction prev"></a>
-            <a href="">1</a>
-			<a href="" class="direction next"></a>
-			<a href="" class="direction next"></a>
-		</div>
 		</div>
 		
 		

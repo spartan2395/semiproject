@@ -16,6 +16,9 @@ public class NoticeDto {
 	
 	
 	//�������� �˻�
+	public NoticeDto() {
+		
+	}
 	public NoticeDto(int nt_seq,String id_d,String title, String content,
 			Date regdate,int views, String name_d, String medical_d , String grade_d,String department) {
 		this.nt_seq = nt_seq;
