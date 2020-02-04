@@ -205,4 +205,18 @@
 
 </body>
 
+<script type="text/javascript">
+
+	$('#add').on('click',function() {
+		$('#1').appendchild($('#1'))
+	});
+
+	function() {
+		var div = document.creatElement('div');
+		//var x = document.getElementByClassName('1').length;
+		div.innerHTML = document.getElementById('1').innerHTML;
+
+		document.getElementById('1').appendchild(div);
+	}
+	</script>
 </html>
