@@ -152,7 +152,7 @@ public class ClinicSelected extends HttpServlet {
 			request.setAttribute("hosName", hosname);
 			request.setAttribute("addr", addr);
 			disPatch("app_medical_clinic.jsp", request, response);
-		}if(command.equals("insertclinicform")) {
+		}else if(command.equals("insertclinicform")) {
 			String hosname = request.getParameter("hosName");
 			response.sendRedirect("appointment_insertclinic.jsp");
 			

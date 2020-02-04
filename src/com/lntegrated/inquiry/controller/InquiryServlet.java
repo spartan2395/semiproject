@@ -83,9 +83,9 @@ public class InquiryServlet extends HttpServlet {
 			int res = dao.inquiryUpdateChk(no);
 			
 			if(res >0) {
-				jsResponse("답변완료", url, response);
+				jsResponse("답변완료", "detail.jsp", response);
 			}else {
-				jsResponse("답변실패", url, response);
+				jsResponse("답변실패", "detail.jsp", response);
 			}
 			
 					

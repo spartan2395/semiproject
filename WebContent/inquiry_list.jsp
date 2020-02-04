@@ -100,11 +100,13 @@
 %>
 			</tbody>
 			<tfoot>
+			
 				<tr>
 					<td colspan="4" align="right">
-						<button onclick="location.href='InquiryServlet?command=writeform'">글쓰기</button>
+						<c:if test="${not empty id_u }"><button onclick="location.href='InquiryServlet?command=writeform&id_u=${dto.id_u}'">글쓰기</button>
 					</td>
 				</tr>
+			</c:if>
 			</tfoot>
 			</table>
 		</div>
