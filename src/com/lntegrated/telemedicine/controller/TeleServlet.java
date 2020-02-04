@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -94,7 +96,18 @@ public class TeleServlet extends HttpServlet {
             response.getWriter().println(obj);
          }
          
-      } else if(command.equals("telmedical")) {  //=*==*==*==*==*==*==*==*==*==*==*
+      } else if(command.equals("telmedical")) {  //=*==*==*==*==*==*==*==*==*==*==* 진료승인된 환자 리스트
+    	  String id_d = request.getParameter("id_d");
+    	  List<TeleDto> list = tdao.teleList(id_d);  // 예약날짜>현재날짜
+    	  List<TeleDto> sendlist = new ArrayList<TeleDto>(); // checkd=y 만 담을 배열
+    	  for(int i=0;i<list.size();i++) {
+    		  if(list.get(i).getCheckd().equals("Y")) {	// && list.get(i).getReserv_date()>=현재날짜
+    			  sendlist.add(list.get(i));
+    			  System.out.println("teleservlet telmedical : "+list.get(i).getCheckd());
+    		  }
+    	  }
+    	  request.setAttribute("list", sendlist);
+    	  dispatch("telmedical.jsp", request, response);
     	  
       }
       
@@ -104,5 +117,22 @@ public class TeleServlet extends HttpServlet {
       RequestDispatcher dispatch = request.getRequestDispatcher(url);
       dispatch.forward(request, response);
    }
+   
+//   private static Date dateCompare(Date a, Date b){
+//	   SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DAY_DATE_FORMAT);
+//	   String dateA = simpleDateFormat.format(a);
+//	   String dateB = simpleDateFormat.format(b);
+//	   Calendar c = Calendar.getInstance();
+//	   c.setTime(a);
+//
+//	   if(dateA.compareTo(dateB) < 0){
+//	      c.add(c.DATE, +7);
+//	      return c.getTime();
+//	   }else{
+//	      return a;
+//	   }
+//	}
+
+
 
 }

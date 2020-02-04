@@ -46,10 +46,10 @@
             <p>예약 확인</p>
          </div>
          <div class="textview">
-            <a href="doc_schedule.jsp">
+            <a href="calendarServlet?command=doc_schedule&id_d=${dto.id_d }">
                <h2>예약 일정</h2>
             </a>
-            <a href="">
+            <a href="TeleServlet?command=telmedical&id_d=${dto.id_d }">
                <h2>원격 진료</h2>
             </a>
             <a href="">
