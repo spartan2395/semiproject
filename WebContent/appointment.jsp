@@ -8,7 +8,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script type="text/javascript" src = "js/hospitol.js"></script>
-<!--  <script type="text/javascript" src="js/search.js"></script> -->
+
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
@@ -68,7 +68,9 @@
 
 		<h1>병원목록</h1>
 
+
 		<!--
+
 
 		<div id="1">
 
