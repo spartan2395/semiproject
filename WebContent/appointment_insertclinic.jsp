@@ -7,6 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%
+	String ykiho = (String)request.getAttribute("ykiho");
+	String hosName = (String)request.getAttribute("hosName");
+	String addr = (String)request.getAttribute("addr");
+	
+	System.out.println(addr);
+%>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src= "/semi_prj/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -29,8 +36,8 @@
 		<h1>예약하기</h1>
 		<ul>
 			<li><a href="appointment.jsp">예약하기</a></li>
-			<li><a href="#">왕진신청</a></li>
-			<li><a href="#">원격신청</a></li>
+			<li><a href="appointment.jsp">왕진신청</a></li>
+			<li><a href="appointment_tel.jsp">원격신청</a></li>
 		</ul>
 	</div>
 	
@@ -43,7 +50,7 @@
 				<col width="200px;"/>
 				<tr>
 					<th>병원명</th>
-					<td><input type="text" name="medical_d" value="영원한등대" readonly="readonly"></td>
+					<td><input type="text" name="medical_d" value="<%=hosName%>" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<th>예약자명</th>
