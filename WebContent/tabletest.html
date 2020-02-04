@@ -1,95 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
 </head>
 <script type='text/javascript' src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+	alert("tabletest!!");
+	var request = new Request();
+	alert("table: "+sessionStorage.getItem("telseq"));
+	var Jsonobj;
+	$.ajax({
+    	method: "POST",
+     	url: "TeleResultServlet",
+     data: {"command":"select","tel_seq":sessionStorage.getItem("telseq")},
+     dataType: "json",
+     async: false,
+     success: function(obj){
+        $("#tel_seq").text(obj.tel_seq);
+        $("#name_u").text(obj.name_u);
+        $("#reserv_date").text(obj.reserv_date);
+        $("#dx_name").text(obj.dx_name);
+        $("#dx_content").text(obj.dx_content);
+        $("#purpose").text(obj.purpose);
+        $("remarks").text(obj.remarks);
+        $("#name_d").text(obj.name_d);
+        $("#medical_d").text(obj.medical_d);
+        $("#iss_date").text(obj.iss_date);
+        Jsonobj=obj;
+        
+     },
+     error : function() {
+        alert("정보를 불러오는데 실패하였습니다.");
+     }
+})
 
 	function print(){
     var content = document.querySelector("table").innerHTML;
+    alert(Jsonobj.tel_seq);
     $.ajax({
         url: "PdfServlet",
         dataType: "text",
         data:{ content,
-        "command":"convertPdf"},
+        "command":"convertPdf","Jsonobj":JSON.stringify(Jsonobj)},
         success:function (result) {
-            console.log(result);
+            
         },
         error:function(){
             alert("fail");
         }
     })
     }
+	
+    function Request() {
+        var requestParam="";
+        
+        this.getParameter = function (param) {
+        	
+            var url = unescape(location.href);
+            alert(location.href);
+        var paramArr = (url.substring(url.indexOf('?')+1,url.length)).split('&');
+
+        for(var i = 0 ; i <paramArr.length ; i++){
+            var temp = paramArr[i].split("=");
+            
+            if(temp[0].toUpperCase()==param.toUpperCase()){
+                requestParam = paramArr[i].split("=")[1];
+                break;
+            }
+        }
+        }
+        return requestParam;
+    }
+
+
+		
 </script>
 <body>
-    <div style="margin: auto; width: 21cm; height: 29xm; text-align: center;"  >  
-<p style="font-size: 40pt; display: block; text-align: center; padding-top: 60px;">진단서</p>
-    <table style="
-        border:2px solid #41bfed; width: 190mm; height: 200mm; table-layout: fixed; border-collapse: collapse; text-align: center; margin: auto;">
-        <tr>
-            <td colspan="2" style="border-right: 2px solid #41bfed; border-bottom: 2px solid #41bfed;">원격 진료 번호</td>
-            <td colspan="6" style="border-bottom: 2px solid #41bfed;"></td>
-  
-        </tr>
-        <tr>
-            <td colspan="2" style="border-right: 2px solid #41bfed; border-bottom: 2px solid #41bfed;">환자 성명</td>
-            <td colspan="6" style="border-bottom: 2px solid #41bfed;"></td>  
-        </tr>
-        <tr>
-            <td colspan="2"style="border-right: 2px solid #41bfed; border-bottom: 2px solid #41bfed;">환자 주소</td>
-            <td colspan="6"style="border-bottom: 2px solid #41bfed;"></td>
-           
-        </tr>
-        <tr>
-            <td colspan="2"style="border-right: 2px solid #41bfed; border-bottom: 2px solid #41bfed;">병명</td>
-            <td colspan="6"style="border-bottom: 2px solid #41bfed;"></td>
-           
-        </tr>
-        <tr >
-            <td colspan="2" rowspan="5"style="border-right: 2px solid #41bfed; border-bottom: 2px solid #41bfed;">진단 내역</td>
-            <td colspan="6" rowspan="5"style="border-bottom: 2px solid #41bfed;"></td>
-        </tr>
-        <tr></tr> <tr></tr> <tr></tr> <tr></tr>
-        <tr>
-            <td colspan="2"style="border-right: 2px solid #41bfed; border-bottom: 2px solid #41bfed;">제출 용도</td>
-            <td colspan="6" style="border-bottom: 2px solid #41bfed;"></td>
-        </tr>
-        <tr >
-            <td colspan="2" rowspan="4" style="border-right: 2px solid #41bfed; border-bottom: 2px solid #41bfed;">비고</td>
-            <td colspan="6" rowspan="4"></td>
-        </tr>
-        <tr></tr> <tr></tr> <tr></tr>
-        <tr>
-            <td colspan="8" style="font-weight: bolder; ">위와 같이 진단함</td>
-        </tr>
-        <tr>
-            <td colspan="2">발행인</td>
-            <td colspan="6"></td>
-        </tr>
-        <tr>
-            <td colspan="2">의료기관</td>
-            <td colspan="6"></td>
-        </tr>
-        <tr>
-            <td colspan="2">의료기관의 주소</td>
-            <td colspan="6"></td>
-        </tr>
-        <tr>
-            <td colspan="2">발행일</td>
-            <td colspan="6"></td>
-        </tr>
-        <tr>
-            <td colspan="2">의사 성명</td>
-            <td colspan="6"></td>
-        </tr>
-    </table>
-    </div>
+	<div
+		style="margin: auto; width: 21cm; height: 29xm; text-align: center;">
+		<p
+			style="font-size: 40pt; display: block; text-align: center; padding-top: 60px;">진단서</p>
+		<table
+			style="border: 0px solid #41bfed; width: 190mm; height: 200mm; table-layout: fixed; border-collapse: collapse; text-align: center; margin: auto;">
+			<tr>
+				<td colspan="2"
+					style="border-right: 0px solid #41bfed; border-bottom: 0px solid #41bfed;">원격
+					진료 번호</td>
+				<td colspan="6" style="border-bottom: 0px solid #41bfed;"
+					id="tel_seq"></td>
+
+			</tr>
+			<tr>
+				<td colspan="2"
+					style="border-right: 0px solid #41bfed; border-bottom: 0px solid #41bfed;">환자
+					성명</td>
+				<td colspan="6" style="border-bottom: 0px solid #41bfed;"
+					id="name_u"></td>
+			</tr>
+			<tr>
+				<td colspan="2"
+					style="border-right: 0px solid #41bfed; border-bottom: 0px solid #41bfed;">진료
+					일자</td>
+				<td colspan="6" style="border-bottom: 0px solid #41bfed;"
+					id="reserv_date"></td>
+
+			</tr>
+			<tr>
+				<td colspan="2"
+					style="border-right: 0px solid #41bfed; border-bottom: 0px solid #41bfed;">병명</td>
+				<td colspan="6" style="border-bottom: 0px solid #41bfed;"
+					id="dx_name"></td>
+
+			</tr>
+			<tr>
+				<td colspan="2" rowspan="5"
+					style="border-right: 0px solid #41bfed; border-bottom: 0px solid #41bfed;">진단
+					내역</td>
+				<td colspan="6" rowspan="5"
+					style="border-bottom: 0px solid #41bfed;" id="dx_content"></td>
+			</tr>
+			<tr></tr>
+			<tr></tr>
+			<tr></tr>
+			<tr></tr>
+			<tr>
+				<td colspan="2"
+					style="border-right: 0px solid #41bfed; border-bottom: 0px solid #41bfed;">제출
+					용도</td>
+				<td colspan="6" style="border-bottom: 0px solid #41bfed;"
+					id="purpose"></td>
+			</tr>
+			<tr>
+				<td colspan="2" rowspan="4"
+					style="border-right: 0px solid #41bfed; border-bottom: 0px solid #41bfed;">비고</td>
+				<td colspan="6" rowspan="4" id="remarks"></td>
+			</tr>
+			<tr></tr>
+			<tr></tr>
+			<tr></tr>
+			<tr>
+				<td colspan="8" style="font-weight: bolder;">위와 같이 진단함</td>
+			</tr>
+			<tr>
+				<td colspan="2">발행인</td>
+				<td colspan="6" id="name_d"></td>
+			</tr>
+			<tr>
+				<td colspan="2">의료기관</td>
+				<td colspan="6" id="medical_d"></td>
+			</tr>
+			<tr>
+				<td colspan="2">발행일</td>
+				<td colspan="6" id="iss_date"></td>
+			</tr>
+			<tr>
+				<td colspan="2">의사 성명</td>
+				<td colspan="6"></td>
+			</tr>
+		</table>
+	</div>
 
 
-<button onclick="print();">진단서 출력</button>
+	<button onclick="print();">진단서 출력</button>
 </body>
 </html>
