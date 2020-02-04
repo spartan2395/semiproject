@@ -8,6 +8,9 @@
 <%	request.setCharacterEncoding("UTF-8");%>
 <%	response.setContentType("text/html; charset=UTF-8");%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -90,30 +93,27 @@
 				</tr>
 				</thead>
 				<tbody>
-<%
-	if(list == null || list.size() == 0) {
-%>
-				<tr>
-					<td colspan="5" >=====첫번째 글을 작성해 주세요^^=====</td>
-				</tr>
-<%
-	}else{
-
-		for(int i = 0; i <list.size(); i++) {
-%>
-				<tr>
-					<td><%=list.get(i).getMedical_d() %></td>
-					<td><a href="NoticeServlet?command=one&nt_seq=<%=list.get(i).getNt_seq() %>"><%=list.get(i).getTitle() %></a></td>
-					<td><%=list.get(i).getId_d() %></td>
-					<td><%=df.format(list.get(i).getRegdate()) %></td>
-					<td><%=list.get(i).getViews() %></td>
-					</tr>
-					
-<%
-		}
-
-	}
-%>
+				<c:choose>
+						<c:when test="${empty list}">
+							<tr><th colspan="5">=====첫번째 글을 작성해 주세요^^=====</th></tr>	
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${list}" var="dto">
+								<tr>
+									<td>[${dto.medical_d }]</td>
+									<td>
+										<a href = "NoticeServlet?command=one&nt_seq=${dto.nt_seq }">${dto.title }</a>
+										<c:forEach items="${commList }" var="commList">
+											<span>${fn:length(commList)}</span>	
+										</c:forEach>
+									</td>
+									<td> ${dto.id_d }</td>
+									<td> <fmt:formatDate value="${dto.regdate }" pattern="yyyy.MM.dd"/></td>
+									<td> ${dto.views }</td>				
+								</tr>
+							</c:forEach>
+						</c:otherwise>	
+					</c:choose>
 				</tbody>
 				<tfoot>
 				<tr>
@@ -122,19 +122,26 @@
 						<c:if test="${not empty id_d}"> <button onclick="location.href='NoticeServlet?command=writeform&id_d=${dto.id_d}'">글쓰기</button></c:if>
 					</td>
 				</tr>
+				<tr>
+						<td colspan = "5" align = "center">
+							<c:if test="${pageMaker.prev }">
+								<a href = "NoticeServlet?command=boardlist&page=1">처음</a>
+								<a href = "NoticeServlet?command=boardlist&page=${pageMaker.startPage-1 }">이전</a>
+							</c:if>
+							<c:forEach begin = "${pageMaker.startPage }" end = "${pageMaker.endPage }" var = "pageNum">
+								<a href = '<c:url value = "NoticeServlet?command=boardlist&page=${pageNum }"/>'>${pageNum }</a>
+							</c:forEach>
+							<c:if test = "${pageMaker.next && pageMaker.endPage >0 }">
+								<a href = "NoticeServlet?command=boardlist&page=${pageMaker.endPage+1 }">다음</a>
+								<a href = "NoticeServlet?command=boardlist&page=${pageMaker.tempEndPage }">마지막</a>
+							</c:if>
+						
+						</td>
+					</tr>
 	
 				</tfoot>
 			
 			</table>
-		</div>
-		<div class="paginate">
-			<a href="" class="direction prev"></a>
-			<a href="" class="direction prev"></a>
-			<c:forEach begin="${page.getStartPage()}" end="${page.getEndPage()}" var="idx">
-                        <a style="text-decoration: none;" href="javascript:page(${idx});">${idx}</a>
-            </c:forEach>
-			<a href="" class="direction next"></a>
-			<a href="" class="direction next"></a>
 		</div>
 	</div>
 	

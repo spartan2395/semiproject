@@ -12,6 +12,9 @@ public class BoardShDto {
 	private int views;
 	
 	//select
+	public BoardShDto() {
+		
+	}
 	public BoardShDto(int board_sh_no , String id_u,String title, String content,
 			String medical_name, Date regdate, int views) {
 		this.board_sh_no = board_sh_no;

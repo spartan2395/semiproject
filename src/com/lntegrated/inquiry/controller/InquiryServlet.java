@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lntegrated.inquiry.dao.InquiryDao;
+import com.lntegrated.inquiry.dto.Criteria;
 import com.lntegrated.inquiry.dto.InquiryDto;
+import com.lntegrated.inquiry.dto.PageMaker;
 
 
 @WebServlet("/InquiryServlet")
@@ -33,9 +35,32 @@ public class InquiryServlet extends HttpServlet {
 		
 		String command = request.getParameter("command");
 		
-		if(command.equals("list")) {
-			List<InquiryDto> list = dao.inquiryList();
+		if(command.equals("boardlist")) {
+			String paramPage = request.getParameter("page");
+			System.out.println(paramPage);
+
+			Criteria cri = new Criteria();
+			
+			
+			if(paramPage==null) {
+				cri.setPage(1);
+				cri.setPageCount(5);
+			} else {
+				int page = Integer.parseInt(paramPage);
+				cri.setPage(page);
+				cri.setPageCount(5);
+			}
+		
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(dao.countBoard());
+			
+			List<InquiryDto> list = dao.inquiryList(cri.getPage(), cri.getPageCount());
+
 			request.setAttribute("list", list);
+			request.setAttribute("pageMaker", pageMaker);
+			
 			dispatch("inquiry_list.jsp", request, response);
 		}else if(command.equals("one")) {
 			int no = Integer.parseInt(request.getParameter("no"));
@@ -54,7 +79,7 @@ public class InquiryServlet extends HttpServlet {
 			InquiryDto dto = new InquiryDto(id_u, title, content);
 			int res = dao.inquiryInsert(dto);
 			if(res >0) {
-				jsResponse("작성성공!", "InquiryServlet?command=list", response);
+				jsResponse("작성성공!", "InquiryServlet?command=boardlist", response);
 			}else {
 				jsResponse("ㅜㅜ", "InquiryServlet?command=write", response);
 			}
@@ -74,7 +99,7 @@ public class InquiryServlet extends HttpServlet {
 			InquiryDto dto = new InquiryDto(no, title, content);
 			int res = dao.inquiryUpdate(dto);
 			if(res > 0) {
-				jsResponse("수정성공!", "InquiryServlet?command=list", response);
+				jsResponse("수정성공!", "InquiryServlet?command=boardlist", response);
 			}else {
 				jsResponse("ㅜㅜ", "InquiryServlet?command=one&no="+no, response);
 			}
@@ -83,9 +108,9 @@ public class InquiryServlet extends HttpServlet {
 			int res = dao.inquiryUpdateChk(no);
 			
 			if(res >0) {
-				jsResponse("답변완료", url, response);
+				jsResponse("답변완료", "InquiryServlet?command=boardlist", response);
 			}else {
-				jsResponse("답변실패", url, response);
+				jsResponse("답변실패", "InquiryServlet?command=boardlist", response);
 			}
 			
 					
