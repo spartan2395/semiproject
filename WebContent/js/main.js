@@ -78,6 +78,11 @@ $(function(){
 	 		}
 	 	});
 	 	
+		// 로그아웃 
+		document.getElementById("logout").addEventListener("click",function () {
+			sessionStorage.clear();
+			window.location.href="login.html";
 
+		})
 	});
 

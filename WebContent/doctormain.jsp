@@ -46,7 +46,7 @@
             <p>예약 확인</p>
          </div>
          <div class="textview">
-            <a href="#">
+            <a href="doc_schedule.jsp">
                <h2>예약 일정</h2>
             </a>
             <a href="">
