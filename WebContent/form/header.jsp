@@ -101,7 +101,7 @@
 
 		</div>
 		<div class="bgDepth"
-			style="display: none; height: 230px; padding-top: 0px; margin-top: 0px;">
+			style="display: none; height: 220px; padding-top: 0px; margin-top: 0px;">
 
 		</div>
 	</header>
