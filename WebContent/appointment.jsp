@@ -9,7 +9,6 @@
 
 <script type="text/javascript" src = "js/hospitol.js"></script>
 
-
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
@@ -17,7 +16,9 @@
 
 	.appointmentWrap{width: 1000px; height:940px;  margin: 0 auto; padding: 0 110px 150px; margin-bottom:10px; margin-top: 100px; border-radius: 10px; border: 1px solid rgb(210,210,210);}
 	.appointmentWrap h1{padding: 30px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
-	.medicalinfo {width: 30%; float: left; margin-right: 20px; margin-bottom: 15px; }
+
+	.medicalinfo {width: 30%; float: left; margin-right: 24px; margin-bottom: 15px; }
+
 	.medicalinfo_3 {width: 217px; float: left; margin-right: 0; margin-bottom: 15px;}
 	.medical_info{width: 217px;height:50px; text-align: center; margin-top: 15px; margin-bottom: 0; font-size: medium; font-weight: bold; }
 	.medical_photo >img{width: 217px; height: 200px; border-radius: 5px;}
@@ -57,8 +58,10 @@
 		</ul>
 		<div class="search">
 			<input id="searchInput" type="text" name="search_input" placeholder="병원이름, 진료과목 등을 검색해보세요.">
+
 			<button id="search_button" onclick = "searchHos()">
 				<img class="search_icon" alt="search" src="./image/search_icon.svg">
+
 			</button>
 		</div>
 	</div>
@@ -67,7 +70,10 @@
 	<div class="appointmentWrap">
 
 		<h1>병원목록</h1>
+
 		<!--
+
+
 		<div id="1">
 		<article class="medicalinfo">
 			<a class="medical_link" onclick = "send(0)">
@@ -185,7 +191,7 @@
 			</a>
 		</article>
 		 -->
-		 <!-- 
+		 <!--
 		<article class="paginate" >
 			<a href="" class="direction prev"></a>
 			<a href="" class="direction prev"></a>
@@ -193,13 +199,20 @@
 			<a href="" class="direction next"></a>
 			<a href="" class="direction next"></a>
 		</article>
+
 		 -->
+
+
+
+
+
 	</div>
-	
+
 	<%@ include file="./form/footer.jsp" %>
 
 
 
 </body>
+
 
 </html>
