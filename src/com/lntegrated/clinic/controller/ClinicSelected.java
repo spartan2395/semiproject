@@ -180,9 +180,9 @@ public class ClinicSelected extends HttpServlet {
 			
 			int res = dao.clinicinsert(dto);
 			if(res > 0) {
-				jsResponse("예약되었습니다", "app_medical_detail.jsp", response);
+				jsResponse("예약되었습니다", "app_medical_clinic.jsp", response);
 			}else {
-				jsResponse("ㅜㅜ", "app_medical_detail.jsp", response);
+				jsResponse("ㅜㅜ", "app_medical_clinic.jsp", response);
 			}
 		}
 		
