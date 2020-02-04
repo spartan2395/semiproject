@@ -59,6 +59,7 @@
 			<input id="searchInput" type="text" name="search_input" placeholder="병원이름, 진료과목 등을 검색해보세요.">
 			<button id="search_button">
 				<img class="search_icon" alt="search" src="./image/search_icon.svg">
+
 			</button>
 		</div>
 	</div>
@@ -66,10 +67,12 @@
 
 	<div class="appointmentWrap">
 
+
 		<h1>병원목록</h1>
 
 
 		<!--
+
 
 
 		<div id="1">
@@ -197,12 +200,15 @@
 			<a href="" class="direction next"></a>
 			<a href="" class="direction next"></a>
 		</article>
+
 	</div>
+
 
 	<%@ include file="./form/footer.jsp" %>
 
 
 
 </body>
+
 
 </html>

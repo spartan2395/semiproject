@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,12 +33,13 @@ import com.lntegrated.clinic.dto.ClinicDto;
 @WebServlet("/HosSelected")
 public class ClinicSelected extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private ClinicDao dao;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ClinicSelected() {
         super();
+        dao = new ClinicDao();
         // TODO Auto-generated constructor stub
     }
 
@@ -46,18 +49,20 @@ public class ClinicSelected extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
+
 		ClinicDao dao = new ClinicDao();
-String command = request.getParameter("command");
-		
+		String command = request.getParameter("command");
+
+
 		if(command.equals("nearHos")) {
 			String addr = "http://apis.data.go.kr/B551182/hospInfoService/getHospBasisList?pageNo=1&numOfRows=10&ServiceKey="
 					+ "ljl6RvnUG45n%2BUQ8%2BtFevuOTaOZ5wZsVmiGT6%2Bm0u5AwUvUUCAK%2FEQFuTYaim5YjRyYNDnWJAWnocoKR9TuBTA%3D%3D"
 					+ "&xPos="+request.getParameter("x")+"&yPos="+request.getParameter("y")+"&radius=100&_type=json";
 			URL url = new URL(addr);
-			
+
 			URLConnection connection = url.openConnection();
 			connection.setRequestProperty("CONTENT-TYPE", "text/html");
-			
+
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
 			String inputLine = "";
 			String buffer = "";
@@ -66,7 +71,7 @@ String command = request.getParameter("command");
 			}
 			System.out.println(buffer);
 			JsonElement obj = null;
-			
+
 			JsonElement element = JsonParser.parseString(buffer);
 			try {
 				JsonObject jsonobj = element.getAsJsonObject().get("response").getAsJsonObject().get("body").getAsJsonObject().get("items").getAsJsonObject().get("item").getAsJsonObject();
@@ -80,20 +85,20 @@ String command = request.getParameter("command");
 					System.out.println("공백");
 				}
 				}finally {
-			
+
 				PrintWriter out = response.getWriter();
 				out.println(obj);
 			}
 		}else if(command.equals("hosinfo")) {
 			String addr = "http://apis.data.go.kr/B551182/medicInsttDetailInfoService/getDetailInfo?ykiho="+request.getParameter("ykiho")+"&ServiceKey=";
-			
+
 			String serviceKey = "ljl6RvnUG45n%2BUQ8%2BtFevuOTaOZ5wZsVmiGT6%2Bm0u5AwUvUUCAK%2FEQFuTYaim5YjRyYNDnWJAWnocoKR9TuBTA%3D%3D";
 			String type = "&_type=json";
 			URL url = new URL(addr+serviceKey+type);
 			URLConnection connection = url.openConnection();
 			connection.setRequestProperty("CONTENT-TYPE", "text/html");
 			PrintWriter out = response.getWriter();
-			
+
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
 			String inputLine = "";
 			String buffer = "";
@@ -115,21 +120,21 @@ String command = request.getParameter("command");
 			}
 		}else if(command.equals("searchcode")) {
 			String addr = "http://apis.data.go.kr/B551182/medicInsttDetailInfoService/getMdlrtSbjectInfoList?ykiho="+request.getParameter("ykiho")+"&ServiceKey=";
-			
+
 			String serviceKey = "ljl6RvnUG45n%2BUQ8%2BtFevuOTaOZ5wZsVmiGT6%2Bm0u5AwUvUUCAK%2FEQFuTYaim5YjRyYNDnWJAWnocoKR9TuBTA%3D%3D";
 			String type = "&_type=json";
 			URL url = new URL(addr+serviceKey+type);
 			URLConnection connection = url.openConnection();
 			connection.setRequestProperty("CONTENT-TYPE", "text/html");
 			PrintWriter out = response.getWriter();
-			
+
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
 			String inputLine = "";
 			String buffer = "";
 			while((inputLine = in.readLine())!= null) {
 				buffer += inputLine.trim();
 			}
-			
+
 			JsonElement element = JsonParser.parseString(buffer);
 			JsonObject jsonarr = null;
 			try {
@@ -155,9 +160,10 @@ String command = request.getParameter("command");
 			request.setAttribute("y", request.getParameter("y"));
 			disPatch("app_medical_clinic.jsp", request, response);
 		}else if(command.equals("insertclinicform")) {
+
 	         String hosname = request.getParameter("hosName");
 	         response.sendRedirect("appointment_insertclinic.jsp");
-	         
+
 	      }else if(command.equals("write")) {
 	         String id_u = "UID";
 	         String id_d = "nexon";
@@ -168,8 +174,8 @@ String command = request.getParameter("command");
 	         String hour = request.getParameter("hour");
 	         String minute = request.getParameter("minute");
 	         String disease = request.getParameter("disease");
-	         
-	         String reserv_date = year+"-"+month+"-"+date+" "+hour+":"+minute;       
+
+	         String reserv_date = year+"-"+month+"-"+date+" "+hour+":"+minute;
 	         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	         Date to = null;
 	         try {
@@ -179,7 +185,7 @@ String command = request.getParameter("command");
 				e.printStackTrace();
 			}
 	         ClinicDto dto = new ClinicDto(id_u, id_d, disease, to, category);
-	         
+
 	         int res = dao.clinicinsert(dto);
 	         if(res > 0) {
 	             jsResponse("예약되었습니다", "app_medical_clinic.jsp", response);
@@ -188,15 +194,15 @@ String command = request.getParameter("command");
 	          }
 	      }else if(command.equals("searchHos")) {
 	    	  String name = request.getParameter("name");
-	    	  
+
 	    	  String addr = "http://apis.data.go.kr/B551182/hospInfoService/getHospBasisList?pageNo=1&numOfRows=10&ServiceKey="
 						+ "ljl6RvnUG45n%2BUQ8%2BtFevuOTaOZ5wZsVmiGT6%2Bm0u5AwUvUUCAK%2FEQFuTYaim5YjRyYNDnWJAWnocoKR9TuBTA%3D%3D"
 						+ "&yadmNm="+name+"&_type=json";
 				URL url = new URL(addr);
 				URLConnection connection = url.openConnection();
-				
+
 				connection.setRequestProperty("CONTENT-TYPE", "text/html");
-				
+
 				BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream(),"utf-8"));
 				String inputLine = "";
 				String buffer = "";
@@ -205,7 +211,7 @@ String command = request.getParameter("command");
 				}
 				System.out.println(buffer);
 				JsonElement obj = null;
-				
+
 				JsonElement element = JsonParser.parseString(buffer);
 				try {
 					JsonObject jsonobj = element.getAsJsonObject().get("response").getAsJsonObject().get("body").getAsJsonObject().get("items").getAsJsonObject().get("item").getAsJsonObject();
@@ -219,12 +225,14 @@ String command = request.getParameter("command");
 						System.out.println("공백");
 					}
 					}finally {
-				
+
 					PrintWriter out = response.getWriter();
 					out.println(obj);
 				}
-	      }
+	   }
 	}
+
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -235,6 +243,7 @@ String command = request.getParameter("command");
 		doGet(request, response);
 	}
 	protected void disPatch(String url,HttpServletRequest request , HttpServletResponse response) {
+
 	      RequestDispatcher dp = request.getRequestDispatcher(url);
 	      try {
 	         dp.forward(request, response);

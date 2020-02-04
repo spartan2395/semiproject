@@ -100,10 +100,21 @@ public class TeleServlet extends HttpServlet {
     	  String id_d = request.getParameter("id_d");
     	  List<TeleDto> list = tdao.teleList(id_d);  // 예약날짜>현재날짜
     	  List<TeleDto> sendlist = new ArrayList<TeleDto>(); // checkd=y 만 담을 배열
+    	  SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
     	  for(int i=0;i<list.size();i++) {
     		  if(list.get(i).getCheckd().equals("Y")) {	// && list.get(i).getReserv_date()>=현재날짜
-    			  sendlist.add(list.get(i));
-    			  System.out.println("teleservlet telmedical : "+list.get(i).getCheckd());
+    			  int reserv_date = Integer.parseInt(df.format(list.get(i).getReserv_date()));
+    			//  Calendar cal = Calendar.getInstance();
+    			//  String today = ""+(cal.get(Calendar.YEAR))+(cal.get(Calendar.MONTH) + 1)+(cal.get(Calendar.DAY_OF_MONTH));
+    			 // int day = cal.get(Calendar.DAY_OF_MONTH);
+    			//  System.out.println(today);
+    			  Date date = new Date();
+    			  int today = Integer.parseInt(df.format(date));
+//    			  System.out.println(reserv_date);
+//    			  System.out.println(today);
+    			  if(reserv_date>=today) {
+    				  sendlist.add(list.get(i));
+    			  }
     		  }
     	  }
     	  request.setAttribute("list", sendlist);

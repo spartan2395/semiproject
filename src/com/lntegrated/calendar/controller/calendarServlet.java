@@ -41,7 +41,7 @@ public class calendarServlet extends HttpServlet {
 					
 		}else if(command.equals("calendar_ajax")) {
 			String yyyymmdd = request.getParameter("yyyyMMdd");
-			String id = "UID";
+			String id = "${dto.id_u}";
 			System.out.println("뭘까..?"+yyyymmdd);
 			
 			
