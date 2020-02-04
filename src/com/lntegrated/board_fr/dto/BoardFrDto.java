@@ -10,6 +10,9 @@ public class BoardFrDto {
 	private Date regdate;
 	private int views;
 	//�Խñ� ����Ʈ �˻�
+	public BoardFrDto() {
+		
+	}
 	public BoardFrDto(int board_no, String id_u, String title , String content,
 			Date regdate, int views) {
 		this.board_no = board_no;

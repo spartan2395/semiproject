@@ -10,12 +10,12 @@
   		INSERT INTO COMM_SH VALUES(#{boardshno},#{content},SYSDATE,#{id_u})
   	</insert>
   	<!-- 댓글 수정 -->
-  	<update id = "board_sh_comm_update" parameterType="board_sh_commdto">
+  	<update id = "board_sh_comm_update" parameterType="boardshcommdto">
   		UPDATE COMM_SH SET CONTENT_A_SH = #{content} WHERE ID_U = #{id_u} AND REGDATE_A_SH = #{regdate}
   		AND  BOARD_SH_NO = #{boardshno}
   	</update>
   	
-  	<delete id = "board_sh_comm_delete" parameterType="board_sh_commdto">
+  	<delete id = "board_sh_comm_delete" parameterType="boardshcommdto">
  		DELETE FROM COMM_SH WHERE BOARD_SH_NO = #{boardshno} AND ID_U = #{id_u} AND REGDATE_A_SH = #{regdate}
   	</delete>
 </mapper>

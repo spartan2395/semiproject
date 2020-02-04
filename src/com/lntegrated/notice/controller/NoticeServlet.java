@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lntegrated.board_fr.dto.BoardFrDto;
+import com.lntegrated.board_fr.dto.Criteria;
+import com.lntegrated.board_fr.dto.PageMaker;
 import com.lntegrated.notice.dao.NoticeDao;
 import com.lntegrated.notice.dto.NoticeDto;
 
@@ -36,11 +39,33 @@ public class NoticeServlet extends HttpServlet {
 		
 		String command = request.getParameter("command");
 		
-		if(command.equals("list")) {
-			List<NoticeDto> list = dao.notice_List();
-			request.setAttribute("list", list);
-			dispatch("noticelist.jsp", request, response);
+		if(command.equals("boardlist")) {
+			String paramPage = request.getParameter("page");
+			System.out.println(paramPage);
+
+			Criteria cri = new Criteria();
 			
+			
+			if(paramPage==null) {
+				cri.setPage(1);
+				cri.setPageCount(5);
+			} else {
+				int page = Integer.parseInt(paramPage);
+				cri.setPage(page);
+				cri.setPageCount(5);
+			}
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(dao.countBoard());
+			
+			List<NoticeDto> list = dao.notice_List(cri.getPage(), cri.getPageCount());
+
+			request.setAttribute("list", list);
+			request.setAttribute("pageMaker", pageMaker);
+			
+			dispatch("noticelist.jsp", request, response);
+		
 			
 		}else if(command.equals("one")) {
 			int nt_seq = Integer.parseInt(request.getParameter("nt_seq"));

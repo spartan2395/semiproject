@@ -1,3 +1,4 @@
+<%@page import="com.lntegrated.board_fr.dto.Criteria"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.lntegrated.comments.dto.CommDto"%>
@@ -10,7 +11,9 @@
     
     <% request.setCharacterEncoding("UTF-8");%>
 <% response.setContentType("text/html; charset=UTF-8");%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,10 +82,7 @@ $(function(){
 </script>
 </head>
 <%
-	// BoardFrDao dao = new BoardFrDao();
-	List<BoardFrDto> list= (List<BoardFrDto>)request.getAttribute("list");
 	SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd");
-	
 %>
 <body>
 	<%@ include file="form/header.jsp" %>
@@ -92,7 +92,7 @@ $(function(){
 		
 		
 		<ul>
-			<li><a href="BoardFrServlet?command=boardlist">자유게시판</a></li>
+			<li><a href="BoardFrServlet?command=boardlist&pagenum=1">자유게시판</a></li>
 			<li><a href="BoardShServlet?command=boardlist">병원정보공유</a></li>
 		</ul>
 	</div>
@@ -125,39 +125,26 @@ $(function(){
 					</tr>
 				</thead>
 				<tbody>
-<%
-			if(list.size()==0){
-%>				
-			<tr><th colspan="4">=====첫번째 글을 작성해 주세요^^=====</th></tr>	
-				
-<%
-			} else {
-				for(int i=0;i<list.size();i++){
-%>
-					<tr>
-						<td onclick="selectone(<%=list.get(i).getBoard_no()%>);">
-							<a href="BoardFrServlet?command=select&board_no=<%=list.get(i).getBoard_no() %>"><%=list.get(i).getTitle()  %></a>
-<%
-							CommDao comdao = new CommDao();
-							List<CommDto> comlist=comdao.commList(list.get(i).getBoard_no());
-							if(comlist.size()>0){
-%>								
-							<span>[<%=comlist.size() %>]</span>	
-<%
-							}
-%>
-						</td>
-						<td><%=list.get(i).getId_u()  %></td>
-
-						<td>
-							<%= df.format(list.get(i).getRegdate()) %>	
-						</td>
-						<td><%=list.get(i).getViews()  %></td>
-					</tr>
-<%
-				}
-			}	
-%>
+					<c:choose>
+						<c:when test="${empty list}">
+							<tr><th colspan="4">=====첫번째 글을 작성해 주세요^^=====</th></tr>	
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${list}" var="dto">
+								<tr>
+									<td>
+										<a href = "BoardFrServlet?command=select&board_no=${dto.board_no }">${dto.title }</a>
+										<c:forEach items="${commList }" var="commList">
+											<span>${fn:length(commList)}</span>	
+										</c:forEach>
+									</td>
+									<td> ${dto.id_u }</td>
+									<td> <fmt:formatDate value="${dto.regdate }" pattern="yyyy.MM.dd"/></td>
+									<td> ${dto.views }</td>				
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 				</tbody>
 				<tfoot>		
 					<tr>
@@ -165,15 +152,24 @@ $(function(){
 							<button onclick="location.href='BoardFrServlet?command=insertform'">글쓰기</button>
 						</td>
 					</tr>
+					<tr>
+						<td colspan = "4" align = "center">
+							<c:if test="${pageMaker.prev }">
+								<a href = "BoardFrServlet?command=boardlist&page=1">처음</a>
+								<a href = "BoardFrServlet?command=boardlist&page=${pageMaker.startPage-1 }">이전</a>
+							</c:if>
+							<c:forEach begin = "${pageMaker.startPage }" end = "${pageMaker.endPage }" var = "pageNum">
+								<a href = '<c:url value = "BoardFrServlet?command=boardlist&page=${pageNum }"/>'>${pageNum }</a>
+							</c:forEach>
+							<c:if test = "${pageMaker.next && pageMaker.endPage >0 }">
+								<a href = "BoardFrServlet?command=boardlist&page=${pageMaker.endPage+1 }">다음</a>
+								<a href = "BoardFrServlet?command=boardlist&page=${pageMaker.tempEndPage }">마지막</a>
+							</c:if>
+						
+						</td>
+					</tr>
 				</tfoot>
 			</table>
-		</div>
-		<div class="paginate">
-			<a href="" class="direction prev"></a>
-			<a href="" class="direction prev"></a>
-            <a href="">1</a>
-			<a href="" class="direction next"></a>
-			<a href="" class="direction next"></a>
 		</div>
 		
 	</div>
