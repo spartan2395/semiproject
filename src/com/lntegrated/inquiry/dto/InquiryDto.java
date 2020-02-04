@@ -10,6 +10,9 @@ public class InquiryDto {
 	private Date regdate;
 	private String ans_chk;
 	
+	public InquiryDto() {
+		
+	}
 	public InquiryDto(int board_no, String id_u,
 			String title,String content , Date regdate,String ans_chk) {
 		this.board_no = board_no;
