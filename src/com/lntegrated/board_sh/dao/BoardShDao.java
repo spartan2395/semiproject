@@ -5,20 +5,27 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.Integrated.db.SqlConfig;
+import com.lntegrated.board_fr.dto.Criteria;
 import com.lntegrated.board_sh.dto.BoardShDto;
 
 public class BoardShDao extends SqlConfig{
 	private SqlSession session = null;
 	private String namespace = "com.boardsh.mapper.";
 	private String config = "board_sh/boardsh_config.xml";
-	public List<BoardShDto> sharing_list(){
+	public List<BoardShDto> sharing_List(int pageNum, int pageCount){
 		List<BoardShDto> list = null;
 		try {
-			session = getSessionFactory(config).openSession();
-			list = session.selectList(namespace+"board_sh_list");
+			
+			Criteria cri = new Criteria();
+			cri.setPage(pageNum);
+			cri.setPageCount(pageCount);
+			
+			session = getSessionFactory("board_sh/boardsh_config.xml").openSession();
+			list = session.selectList(namespace+"board_sh_list", cri);
+			
 		}catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("sharing_List ERROR");
+			System.out.println("Sharing_list ERROR");
 		}finally {
 			session.close();
 		}
@@ -104,6 +111,16 @@ public class BoardShDao extends SqlConfig{
 		}finally {
 			session.close();
 		}
+		return res;
+	}
+	public int countBoard() {
+		
+		SqlSession session = null;
+		int res = 0;
+		
+		session = getSessionFactory("board_sh/boardsh_config.xml").openSession();
+		res = session.selectOne(namespace+"countBoard");
+		
 		return res;
 	}
 }

@@ -9,16 +9,27 @@
 	String ykiho = (String)request.getAttribute("ykiho");
 	String hosName = (String)request.getAttribute("hosName");
 	String addr = (String)request.getAttribute("addr");
-	
+	String x = (String)request.getAttribute("x");
+	String y = (String)request.getAttribute("y");
 	System.out.println(addr);
 %>
+
+<script type="text/javascript" src="js/kakaomaps.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src ="js/hospitol.js"></script>
 <script type="text/javascript">
 	window.onload = function(){
 		hospitolinfo("<%=ykiho%>");
 		document.getElementById("hname").innerHTML = "<%=hosName%>";
-		document.getElementsByClassName("addr").innerHTML = "<%=addr%>";
+		document.getElementById("addr").innerHTML = "<%=addr%>";
+		var x = <%=x%>;
+		var y = <%=y%>;
+		if(x == null){
+			x = <%=x%>;
+			y = <%=y%>;
+		}
+		
+		map(x,y);
 	}
 </script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -50,9 +61,9 @@
 	<div class="headMenu">
 		<h1>진료예약</h1>
 		<ul>
-			<li><a href="#">예약하기</a></li>
-			<li><a href="#">왕진신청</a></li>
-			<li><a href="#">원격신청</a></li>
+			<li><a href="appointment.jsp">예약하기</a></li>
+			<li><a href="appointment.jsp">왕진신청</a></li>
+			<li><a href="appointment_tel.jsp">원격신청</a></li>
 		</ul>
 	</div>
 	<div class="gg">
@@ -60,7 +71,7 @@
 			<h2 id = "hname">여기에 병원이름 넣고싶음</h2>
 		</div>
 		<div>
-			<button id="appointment" value="진료예약" style="z-index:1; position: relative;" onclick="location.href='HosSelected?command=insertclinicform&id'">
+			<button id="appointment" value="진료예약" style="z-index:1; position: relative;" onclick="location.href='HosSelected?command=insertclinicform&id=${dto.id_u}'">
 				<img alt="진료예약" src="./resources/imgs/appointment.svg" />
 				<span style="z-index: 999; position: absolute;">진료예약</span>
 			</button>
@@ -80,11 +91,12 @@
 			<br>
 		</div>
 		<div class="addr">
-			<h3>주소 : 서울시어쩌구</h3>
+			<h3 id = "addr">주소 : 서울시어쩌구</h3>
 		</div>
-		<div class="map">
-			<h2>지도어떻게넣는건지몰라서자리만잡아놈</h2>
+		<div class="map" id = "map">
+			
 		</div>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ccb039f1009ae7fadcb5d4bcf333ef15&libraries=services"></script>
 	</div>
 
  	<%@ include file="./form/footer.jsp" %>

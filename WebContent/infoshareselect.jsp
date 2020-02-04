@@ -58,7 +58,7 @@ $(function(){
 		$.ajax({
 			method: "POST",
 			url: "BoardShCommServlet",
-			data: {"command":"insert" ,"board_no":$("input[id=board_sh_no]").val() , "content":$("#textReply").val() },
+			data: {"command":"insert" ,"board_sh_no":$("input[id=board_sh_no]").val() , "content":$("#textReply").val() },
 
 			success: function(data) {
 				alert("댓글성공");

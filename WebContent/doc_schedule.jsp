@@ -96,6 +96,13 @@
 <script type="text/javascript" src="js/main.js">
 	
 </script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+});
+
+</script>
 
 </head>
 <body>
@@ -157,7 +164,7 @@
 			<li><a
 				href="calendarServlet?command=doc_schedule&id_d=${dto.id_d }">예약
 					일정</a></li>
-			<li><a href="">원격 진료</a></li>
+			<li><a href="TeleServlet?command=telmedical&id_d=${dto.id_d }">원격 진료</a></li>
 			<li><a href="">환자 관리</a></li>
 		</ul>
 	</div>

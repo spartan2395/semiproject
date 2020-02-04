@@ -2,9 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lntegrated.inquiry_mapper">
 	<!-- 문의 게시판 리스트  -->
-	<select id = "inquiry_list" resultType="inquirydto">
-		SELECT BOARD_NO,ID_U,TITLE,CONTENT,REGDATE,ANS_CHK FROM INQUIRY
+	<resultMap type="inquirydto" id="inquirymap">
+		<result property="board_no" column="board_no"/>
+		<result property="id_u" column="id_u"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content" />
+		<result property="regdate" column="regdate" />
+		<result property="ans_chk" column="ans_chk"/>
 		
+	</resultMap>
+	<select id = "inquiry_list" resultMap="inquirymap">
+		<![CDATA[
+		SELECT * FROM (
+		SELECT * FROM (
+		SELECT ROWNUM RNM,BOARD_NO,ID_U,TITLE,CONTENT,REGDATE,ANS_CHK 
+		FROM (SELECT * FROM INQUIRY ORDER BY BOARD_NO DESC)) WHERE RNM <=(#{page}) * #{pageCount} AND RNM > (#{page}-1) * #{pageCount}) WHERE RNM >=#{page}
+		]]>	
+	</select>
+	
+	<select id="countBoard" resultType="int" >
+		SELECT COUNT(*) FROM INQUIRY
 	</select>
 	<!-- 문의 게시글 정보 -->
 	<select id = "inquiry_info" parameterType="int" resultType="inquirydto">

@@ -4,11 +4,30 @@
 	<!-- 의사 테이블 조인 해야함  -->
 	<!-- 의사테이블에서 필요한 컬럼 : 의사 이름 / 직장 주소 / 직책  -->
 	<!-- 공지사항 목록 -->
+	<resultMap type="noticedto" id="noticemap">
+		<result property="nt_seq" column="nt_seq"/>
+		<result property="id_d" column="id_d"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content" />
+		<result property="regdate" column="regdate" />
+		<result property="views" column="views"/>
+		<result property="name_d" column="name_d"/>
+		<result property="medical_d" column="medical_d"/>
+		<result property="grade_d" column="grade_d"/>
+		<result property="department" column="department"/>
+		
+	</resultMap>
   <select id = "notice_list" resultType="noticedto">
-  	SELECT NT_SEQ, ID_D, TITLE, CONTENT , REGDATE , VIEWS , NAME_D ,MEDICAL_D , GRADE_D , DEPARTMENT
-  	FROM NOTICE JOIN DOCTOR_TB USING(ID_D)
-
+  <![CDATA[
+		SELECT * FROM (
+		SELECT * FROM (
+  		SELECT ROWNUM RNM,NT_SEQ, ID_D, TITLE, CONTENT , REGDATE , VIEWS , NAME_D ,MEDICAL_D , GRADE_D , DEPARTMENT
+  		FROM (SELECT * FROM NOTICE JOIN DOCTOR_TB USING(ID_D) ORDER BY NT_SEQ)) WHERE RNM <=(#{page}) * #{pageCount} AND RNM > (#{page}-1) * #{pageCount}) WHERE RNM >=#{page} 
+	]]>	
   </select>
+  <select id="countBoard" resultType="int" >
+		SELECT COUNT(*) FROM NOTICE
+	</select>
   <!-- 공지사항 내용 -->
   <select id="notice_info" parameterType="int" resultType="noticedto">
   	SELECT NT_SEQ, ID_D, TITLE, CONTENT , REGDATE , VIEWS , NAME_D ,MEDICAL_D , GRADE_D , DEPARTMENT

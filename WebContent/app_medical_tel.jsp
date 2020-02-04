@@ -36,9 +36,9 @@
 	<div class="headMenu">
 		<h1>진료예약</h1>
 		<ul>
-			<li><a href="#">예약하기</a></li>
-			<li><a href="#">왕진신청</a></li>
-			<li><a href="#">원격신청</a></li>
+			<li><a href="appointment.jsp">예약하기</a></li>
+			<li><a href="appointment.jsp">왕진신청</a></li>
+			<li><a href="appointment_tel.jsp">원격신청</a></li>
 		</ul>
 	</div>
 	<div class="gg">
