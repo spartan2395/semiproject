@@ -60,12 +60,14 @@ public class InquiryServlet extends HttpServlet {
 			}
 		}else if(command.equals("updateform")) {
 			int no = Integer.parseInt(request.getParameter("no"));
+			String id_u = request.getParameter("id_u");
 			InquiryDto dto = dao.inquiryInfo(no);
 			request.setAttribute("dto", dto);
 			dispatch("inquiry_update.jsp", request, response);
 			
 		}else if(command.equals("update")) {
 			int no = Integer.parseInt(request.getParameter("no"));
+			String id_u = request.getParameter("id_u");
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			
@@ -76,6 +78,17 @@ public class InquiryServlet extends HttpServlet {
 			}else {
 				jsResponse("ㅜㅜ", "InquiryServlet?command=one&no="+no, response);
 			}
+		}else if(command.equals("chk")) {
+			int no = Integer.parseInt(request.getParameter("no"));
+			int res = dao.inquiryUpdateChk(no);
+			
+			if(res >0) {
+				jsResponse("답변완료", url, response);
+			}else {
+				jsResponse("답변실패", url, response);
+			}
+			
+					
 		}
 			
 		
