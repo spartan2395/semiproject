@@ -165,7 +165,7 @@
 				%>
 				<td><a class="countview" href=""><%=i%></a>
 					<div class="clist">
-						<%=Util.getCalView(month,i,clist,tlist)%>
+						<%=Util.getCalViewPatient(month,i,clist,tlist)%>
 					</div></td>
 				<%
 					if ((dayOfWeek - 1 + i) % 7 == 0) {
