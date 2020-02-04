@@ -11,6 +11,16 @@
 <link rel="stylesheet" type="text/css" href="css/main.css?var=1">
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.main .left .textbox>p').click(function(){
+		location.href="hos_info.jsp";
+	});
+});
+</script>
+<style type="text/css">
+	.main .left .textbox>p{cursor: pointer;}
+</style>
 
 </head>
 <body>
