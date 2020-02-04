@@ -1,3 +1,6 @@
+<%@page import="com.lntegrated.board_sh_comm.dto.BoardShCommDto"%>
+<%@page import="java.util.List"%>
+<%@page import="com.lntegrated.board_sh_comm.dao.BoardShCommDao"%>
 <%@page import="com.lntegrated.board_sh.dto.BoardShDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -48,9 +51,29 @@
 						 position: relative; top: 10px; right: 10px;}
 
 </style>
+<script type="text/javascript">
+
+$(function(){
+	$("#btnReply").click(function() {
+		$.ajax({
+			method: "POST",
+			url: "BoardShCommServlet",
+			data: {"command":"insert" ,"board_no":$("input[id=board_sh_no]").val() , "content":$("#textReply").val() },
+
+			success: function(data) {
+				alert("댓글성공");
+				location.href = "BoardShServlet?command=select&board_sh_no="+$("input[id=board_sh_no]").val();
+			}
+		});
+	});	
+});
+
+</script>
 </head>
 <%
 	BoardShDto dto = (BoardShDto)request.getAttribute("dto");
+	BoardShCommDao dao = new BoardShCommDao();
+	List<BoardShCommDto> list = dao.selectList(dto.getBoard_sh_no());
 %>
 <body>
 
@@ -81,6 +104,7 @@
 				</p>
 			</div>
 		</div>
+		<input type="hidden" id="board_sh_no" value="<%=dto.getBoard_sh_no() %>">
 		<div class="text">
 			<p><%=dto.getContent() %></p>
 			<button onclick="location.href='BoardShServlet?command=boardlist'">목록</button>
@@ -91,14 +115,30 @@
 		</div>
 		<div class="reply_wrap">
 			<div class="reply_title">
-				<h2>댓글 <span>댓글개수</span></h2>
+				<h2>댓글 <span><%=list.size() %></span></h2>
 			</div>
 			<ul class="reply_ul">
-			
+<%	
+					if(list.size()>0){
+						for(int i=0;i<list.size();i++){
+%>				
+				<li>
+					<div class="reply">
+						<p><%=list.get(i).getId_u() %><span><%=list.get(i).getRegdate() %></span></p>
+						<div class="reply_text">
+							<%=list.get(i).getContent() %>
+						</div>					
+					</div>
+				</li>
+					
+<%
+						}
+					}
+%>			
 			</ul>
 			<div class="bottom_reply">
-				<textarea rows="10" cols="30" class="txar" name="comment"></textarea>
-				<span><a class="btn01_g" href="">등록</a></span>
+				<textarea id="textReply" rows="10" cols="30" class="txar" name="comment"></textarea>
+				<span><button type = "button" id = "btnReply" class="btn01_g">등록</button></span>
 			</div>
 			
 		</div>

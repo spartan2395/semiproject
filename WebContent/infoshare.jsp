@@ -1,3 +1,5 @@
+<%@page import="com.lntegrated.board_sh_comm.dto.BoardShCommDto"%>
+<%@page import="com.lntegrated.board_sh_comm.dao.BoardShCommDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.lntegrated.board_sh.dto.BoardShDto"%>
 <%@page import="java.util.List"%>
@@ -43,6 +45,7 @@
    .infoboardWrap .paginate a.direction:last-of-type{background-position: 0 -74px; margin-left: 0;}
 	
 	.infoshareList span.hospital{font-size: 16px; margin-right: 5px; float: left; color: orange;}
+	.infoshareList table tbody tr>td>span{font-size: 15px; color: lightgray;}
 	
 </style>
 <script type="text/javascript">
@@ -107,6 +110,16 @@
 					<td onclick="selectone(<%=list.get(i).getBoard_sh_no()%>);">
 						<span class="hospital">[<%=list.get(i).getMedical_name() %>]</span>
 						<a href="BoardShServlet?command=select&board_sh_no=<%=list.get(i).getBoard_sh_no() %>"><%=list.get(i).getTitle() %></a>
+<%
+						BoardShCommDao comdao = new BoardShCommDao();
+						List<BoardShCommDto> comlist=comdao.selectList(list.get(i).getBoard_sh_no());
+						if(comlist.size()>0){
+%>	
+						<span>[<%=comlist.size() %>]</span>
+<%
+							}
+%>							
+					
 					</td>
 					<td><%=list.get(i).getId_u() %></td>
 					<td><%=df.format(list.get(i).getRegdate()) %></td>

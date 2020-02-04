@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="js/search.js"></script>
+
+<script type="text/javascript" src = "js/hospitol.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
@@ -36,7 +37,11 @@
 </style>
 
 
-
+<script type="text/javascript">
+	window.onload = function(){
+		thispos();
+	}
+</script>
 
 </head>
 <body>
@@ -61,9 +66,13 @@
 	<div class="appointmentWrap">
 		
 		<h1>병원목록</h1>
+
+		<!-- 
+
 		<div id="1">
+
 		<article class="medicalinfo">
-			<a class="medical_link" href="#">
+			<a class="medical_link" onclick = "send(0)">
 				<div class="medical_photo">
 					<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
@@ -75,7 +84,7 @@
 			</a>
 		</article>
 		<article class="medicalinfo">
-			<a class="medical_link" href="#">
+			<a class="medical_link" onclick = "send(1)">
 				<div class="medical_photo">
 					<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
@@ -88,7 +97,7 @@
 		</article>
 		
 		<article class="medicalinfo_3">
-			<a class="medical_link" href="#">
+			<a class="medical_link" onclick = "send(2)">
 				<div class="medical_photo">
 					<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
@@ -101,7 +110,7 @@
 		</article>
 		</div>
 		<article class="medicalinfo">
-			<a class="medical_link" href="#">
+			<a class="medical_link" onclick = "send(3)">
 				<div class="medical_photo">
 				<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
@@ -114,7 +123,7 @@
 		</article>
 		
 		<article class="medicalinfo">
-			<a class="medical_link" href="#">
+			<a class="medical_link" onclick = "send(4)">
 				<div class="medical_photo">
 					<img alt="병원사진" src="./image/errorphoth.png">
 				</div>
@@ -177,7 +186,7 @@
 				</div>
 			</a>
 		</article>
-		
+		 -->
 		<article class="paginate" >
 			<a href="" class="direction prev"></a>
 			<a href="" class="direction prev"></a>

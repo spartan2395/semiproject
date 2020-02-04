@@ -36,26 +36,19 @@ public class calendarServlet extends HttpServlet {
 		TeleDao tdao = new TeleDao();
 		HttpSession session = request.getSession();
 		
-		if(command.equals("schedual")) {
-			String id_u = request.getParameter("id_u");
-			List<ClinicDto> clist = cdao.clinicMemberList(id_u);
-			List<TeleDto>  tlist = tdao.teleInfoList(id_u);
-			
-			request.setAttribute("clist", clist);
-			request.setAttribute("tlist", tlist);
-			
-			System.out.println(clist);
-			System.out.println(tlist);
-			dispatch("member_mypage.jsp", request, response);
+		if(command.equals("schedule")) {
+			response.sendRedirect("doc_schedule.jsp");
 					
 		}else if(command.equals("calendar_ajax")) {
 			String yyyymmdd = request.getParameter("yyyyMMdd");
 			String id = "UID";
-			System.out.println(yyyymmdd);
+			System.out.println("뭘까..?"+yyyymmdd);
 			
 			
 		}else if(command.equals("doc_schedule")) {
 			String id_d = request.getParameter("id_d");
+			System.out.println("caldenderServlet doc_schedule id_d: "+id_d);
+			
 			List<TeleDto> tlist = tdao.teleList(id_d);
 			List<ClinicDto> clist = cdao.clinicList(id_d);
 			
@@ -64,6 +57,8 @@ public class calendarServlet extends HttpServlet {
 			
 			
 			dispatch("doc_schedule.jsp", request, response);
+		} else if(command.equals("callist")) {
+			
 		}
 		
 	}

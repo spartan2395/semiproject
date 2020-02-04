@@ -37,6 +37,7 @@ public class BoardFrServlet extends HttpServlet {
 
 		if(command.equals("boardlist")) {
 			List<BoardFrDto> list = dao.boardFrList();
+			
 //			Pagemaker pagemaker = new Pagemaker();
 //			String pagenum = request.getParameter("pagenum");
 //			if(pagenum==null) {
@@ -64,7 +65,10 @@ public class BoardFrServlet extends HttpServlet {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
 			dao.boardUpadteViews(board_no);
 			BoardFrDto dto = dao.boardFrInfo(board_no);
+			CommDao cdao = new CommDao();
+			List<CommDto> list =cdao.commList(board_no);
 			request.setAttribute("dto", dto);
+			request.setAttribute("list", list);
 
 			dispatch("commu_frselect.jsp", request, response);
 
@@ -114,15 +118,16 @@ public class BoardFrServlet extends HttpServlet {
 
 		else if(command.equals("delete")) {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
-			String id_u = request.getParameter("id_u");
 			CommDao commdao = new CommDao();
-			CommDto commdto = new CommDto(board_no, id_u);
-			int childres = commdao.commDelete(commdto);
+			CommDto commdto = new CommDto(board_no);
+			int childres = commdao.commAllDelete(commdto);
 			
 			int res = dao.boardDelete(board_no);
 			
 			if(res >0) {
 				if(childres>0) {
+					jsResponse("삭제되었습니다.", "BoardFrServlet?command=boardlist", response);
+				}else {
 					jsResponse("삭제되었습니다.", "BoardFrServlet?command=boardlist", response);
 				}
 			}
