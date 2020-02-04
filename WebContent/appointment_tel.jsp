@@ -17,9 +17,9 @@
 
 	.appointmentWrap{width: 1000px; height:940px;  margin: 0 auto; padding: 0 110px 150px; margin-bottom:10px; margin-top: 100px; border-radius: 10px; border: 1px solid rgb(210,210,210);}
 	.appointmentWrap h1{padding: 30px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
-	.medicalinfo {width: 30%; float: left; margin-right: 20px; margin-bottom: 15px; }
+	.medicalinfo {width: 30%; float: left; margin-right: 30px; margin-bottom: 15px; }
 	.medicalinfo_3 {width: 217px; float: left; margin-right: 0; margin-bottom: 15px;}
-	.medical_info{width: 217px;height:50px; text-align: center; margin-top: 15px; margin-bottom: 0; font-size: medium; font-weight: bold; }
+	.medical_info{width: 217px; text-align: center; margin-top: 15px; margin-bottom: 0; font-size: medium; font-weight: bold; }
 	.medical_photo >img{width: 217px; height: 200px; border-radius: 5px;}
 
 	.appointmentWrap .paginate{width:100%; float:left; text-align: center;}
@@ -51,13 +51,13 @@
 	<div class="headMenu">
 		<h1>진료예약</h1>
 		<ul>
-			<li><a href="#">예약하기</a></li>
-			<li><a href="#">왕진신청</a></li>
-			<li><a href="#">원격신청</a></li>
+			<li><a href="appointment.jsp">예약하기</a></li>
+			<li><a href="appointment.jsp">왕진신청</a></li>
+			<li><a href="appointment_tel.jsp">원격신청</a></li>
 		</ul>
 		<div class="search">
 			<input id="searchInput" type="text" name="search_input" placeholder="병원이름, 진료과목 등을 검색해보세요.">
-			<button id="search_button" onclick = "searchHos()">
+			<button id="search_button">
 				<img class="search_icon" alt="search" src="./image/search_icon.svg">
 			</button>
 		</div>
@@ -67,8 +67,13 @@
 	<div class="appointmentWrap">
 
 		<h1>병원목록</h1>
+
+
 		<!--
+
+
 		<div id="1">
+
 		<article class="medicalinfo">
 			<a class="medical_link" onclick = "send(0)">
 				<div class="medical_photo">
@@ -185,7 +190,6 @@
 			</a>
 		</article>
 		 -->
-		 <!-- 
 		<article class="paginate" >
 			<a href="" class="direction prev"></a>
 			<a href="" class="direction prev"></a>
@@ -193,9 +197,8 @@
 			<a href="" class="direction next"></a>
 			<a href="" class="direction next"></a>
 		</article>
-		 -->
 	</div>
-	
+
 	<%@ include file="./form/footer.jsp" %>
 
 

@@ -29,8 +29,8 @@
 		<h1>예약하기</h1>
 		<ul>
 			<li><a href="appointment.jsp">예약하기</a></li>
-			<li><a href="#">왕진신청</a></li>
-			<li><a href="#">원격신청</a></li>
+			<li><a href="appointment.jsp">왕진신청</a></li>
+			<li><a href="appointment_tel.jsp">원격신청</a></li>
 		</ul>
 	</div>
 	

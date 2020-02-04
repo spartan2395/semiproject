@@ -29,13 +29,13 @@ function searchNear(x,y){
 				var list = val;
 				for(var i = 0;i<list.length;i++){
 					var str = list[i];
-					if(i != 0 && i%3-1 == 0){
+					if(i != 0 && i%3 == 0){
 						$(".appointmentWrap").append(
 								"<article class='medicalinfo'>" +
 									"<a class='medical_link' onclick='send(\""+i+"\")'>" +
 										"<div class = 'medical_photo'>" +
 											"<img alt ='병원사진' src ='./image/hello.jpg'/>" +
-											"<input type = 'hidden' id = 'addr' name = 'addr'/>"+
+											"<input type = 'hidden' class = 'addr' name = 'addr'/>"+
 										"</div>" +
 										"<div class = 'medical_info'>" +
 											"<p class = 'medical_name'></p></div>"+
@@ -48,16 +48,17 @@ function searchNear(x,y){
 						"<a class = 'medical_link' onclick = 'send(\""+i+"\")'>" +
 								"<div class = 'medical_photo'>" +
 								"<img alt ='병원사진' src ='./image/hello.jpg'/>"+
-								"<input type = 'hidden' id = 'addr' name = 'addr'/>"+
+								"<input type = 'hidden' class = 'addr' name = 'addr'/>"+
 								"</div>" +
 								"<div class = 'medical_info'>" +
 								"<p class = 'medical_name'></p></div></a>" +
 								"</article>"		
 						);
 					}
+					console.log(str.XPos + ", " + str.YPos);
 					$(".medical_name").eq(i).text(list[i].yadmNm);
 					$(".medical_name").eq(i).val(list[i].ykiho);
-					$("#addr").eq(i).val(list[i].addr);
+					$(".addr").eq(i).val(list[i].addr+"&x="+list[i].XPos+"&y="+list[i].YPos);
 				}
 			});
 		},
@@ -107,10 +108,49 @@ function hospitolinfo(ykiho){
 	});
 }
 
+function searchHos(){
+	var name = $("input[name=search_input]").val();
+	var enm = encodeURIComponent(name);
+	$(".appointmentWrap").empty();
+	$.ajax({
+		url:"HosSelected",
+		data:{command:"searchHos",name:enm},
+		method:"post",
+		success:function(data){
+			var pasdata = JSON.parse(data);
+			$.each(pasdata,function(key,val){
+				if(key == "item"){
+					var listdata = val;
+					for(var i=0;i<listdata.length;i++){
+						var str = listdata[i];
+						$(".appointmentWrap").append(
+								"<article class='medicalinfo'>" +
+									"<a class='medical_link' onclick='send(\""+i+"\")'>" +
+										"<div class = 'medical_photo'>" +
+											"<img alt ='병원사진' src ='./image/hello.jpg'/>" +
+											"<input type = 'hidden' class = 'addr' name = 'addr'/>"+
+										"</div>" +
+										"<div class = 'medical_info'>" +
+											"<p class = 'medical_name'></p></div>"+
+									"</a>" +
+								"</article>"		
+						);
+						$(".medical_name").eq(i).text(str.yadmNm);
+						$(".medical_name").eq(i).val(str.ykiho);
+						$(".addr").eq(i).val(str.addr+"&x="+str.XPos+"&y="+str.YPos);
+					}
+				}
+			})
+		},error:function(data){
+			var err = data;
+			console.log("error : "+err);
+		}
+	})
+}
+
 function send(i){
 	var ykiho = $(".medical_name").eq(i).val();
 	var hosname = $(".medical_name").eq(i).text();
-	var addrss = $("input[name=addr]").eq(i).val();
-	var add = $("#addr").eq(i).val();
+	var add = $(".addr").eq(i).val();
 	location.href = "HosSelected?command=medical_clinic&ykiho="+ykiho+"&hosName="+hosname+"&addr="+add;
 }
