@@ -43,11 +43,11 @@
 					</colgroup>	
 					<tr>
 						<th>작성자</th>
-						<td><input type="text" name="writer"> </td>
+						<td><input type="text" name="writer" value="${dto.id_d }" readonly="readonly"> </td>
 					</tr>
 					<tr>
 						<th>병원이름</th>
-						<td><input type="text" name="medical"> </td>
+						<td><input type="text" name="medical" value="${dto.medical_d }" readonly="readonly"> </td>
 					</tr>
 					<tr>
 						<th>제목</th>
@@ -59,8 +59,8 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="right">
-							<input type="submit" value="write"/>
-							<input type="button" value="back" onclick="location.href='NoticeServlet?command=list'"/>
+							<input type="submit" value="작성"/>
+							<input type="button" value="취소" onclick="location.href='NoticeServlet?command=list'"/>
 				</table>
 			
 			
@@ -72,6 +72,6 @@
 		});
 	</script>
 	
-	
+	<%@ include file="./form/footer.jsp" %>
 </body>
 </html>
