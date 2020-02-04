@@ -166,7 +166,7 @@
 		<h1 style="width: 50%;">예약일정</h1>
 		<div class="btn">
 			<input type="button" value="진단서다운로드"
-				onclick="location.href='TeleServlet?command=resultupload&id_u=${dto.id_u }">
+				onclick="location.href='TeleServlet?command=resultdownload&id_u=${dto.id_u }'">
 		</div>
 		<table id="calendar">
 			<caption>

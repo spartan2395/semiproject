@@ -33,6 +33,7 @@ public class TeleDao extends SqlConfig{
 			session = getSessionFactory("telemedicine/tele_config.xml").openSession();
 			list = session.selectList(namespace+"tele_upload_list", id_d);
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Telemedicine_upload_list ERROR");
 		}finally {
 			session.close();

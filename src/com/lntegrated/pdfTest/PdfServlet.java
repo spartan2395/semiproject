@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import com.itextpdf.text.DocumentException;
 
 @WebServlet("/PdfServlet")
@@ -34,10 +38,26 @@ public class PdfServlet extends HttpServlet {
 		System.out.println("PdfServlet-command=============>"+command);
 		
 		if(command.equals("convertPdf")) {
-			String content = request.getParameter("content");
+			String Jsonobj = request.getParameter("Jsonobj");
+			System.out.println(Jsonobj);
+			JSONParser parser = new JSONParser();
+			
+			JSONObject obj = null;
+			
+			try {
+				obj = (JSONObject) parser.parse(Jsonobj);
+				System.out.println(obj.get("tel_seq"));
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
+			
+			
 			ConvertHTMLToPDF convert = new ConvertHTMLToPDF();
 			try {
-				convert.convertPdf(content);
+				convert.convertPdf(obj);
 			} catch (DocumentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
