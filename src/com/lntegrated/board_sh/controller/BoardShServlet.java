@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lntegrated.board_sh.dao.BoardShDao;
 import com.lntegrated.board_sh.dto.BoardShDto;
+import com.lntegrated.board_sh.dto.Criteria;
+import com.lntegrated.board_sh.dto.PageMaker;
 
 
 @WebServlet("/BoardShServlet")
@@ -33,9 +35,33 @@ public class BoardShServlet extends HttpServlet {
 		BoardShDao dao = new BoardShDao();
 		
 		if(command.equals("boardlist")) {
-			List<BoardShDto> list = dao.sharing_list();
+			String paramPage = request.getParameter("page");
+			System.out.println(paramPage);
+
+			Criteria cri = new Criteria();
+			
+			
+			if(paramPage==null) {
+				cri.setPage(1);
+				cri.setPageCount(5);
+			} else {
+				int page = Integer.parseInt(paramPage);
+				cri.setPage(page);
+				cri.setPageCount(5);
+			}
+		
+			
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(dao.countBoard());
+			
+			List<BoardShDto> list = dao.sharing_List(cri.getPage(), cri.getPageCount());
+
 			request.setAttribute("list", list);
-			dispatch("infoshare.jsp",request,response);
+			request.setAttribute("pageMaker", pageMaker);
+			
+			dispatch("infoshare.jsp", request, response);
+		
 		}else if(command.equals("insert")) {
 			response.sendRedirect("infoshareinsert.jsp");
 		}else if(command.equals("insertres")) {

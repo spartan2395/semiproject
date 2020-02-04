@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.lntegrated.board_fr.dao.BoardFrDao;
 import com.lntegrated.board_fr.dao.Pagemaker;
 import com.lntegrated.board_fr.dto.BoardFrDto;
+import com.lntegrated.board_fr.dto.Criteria;
+import com.lntegrated.board_fr.dto.PageMaker;
 import com.lntegrated.comments.dao.CommDao;
 import com.lntegrated.comments.dto.CommDto;
 
@@ -35,32 +37,38 @@ public class BoardFrServlet extends HttpServlet {
 		BoardFrDao dao = new BoardFrDao();
 
 
-		if(command.equals("boardlist")) {
-			List<BoardFrDto> list = dao.boardFrList();
-			
-//			Pagemaker pagemaker = new Pagemaker();
-//			String pagenum = request.getParameter("pagenum");
-//			if(pagenum==null) {
-//				pagenum=""+1;
-//			}
-//			int cpagenum = Integer.parseInt(pagenum);
-//
-//			pagemaker.setTotalcount(list.size());
-//			pagemaker.setPagenum(cpagenum-1);
-//			pagemaker.setCurrentblock(cpagenum);
-//			pagemaker.setLastblock(pagemaker.getTotalcount());
-//			
-//			pagemaker.prevnext(cpagenum);
-//			pagemaker.setStartPage(pagemaker.getCurrentblock());
-//			pagemaker.setEndPage(pagemaker.getLastblock(), pagemaker.getCurrentblock());
-//			
-			request.setAttribute("list", list);
-//			request.setAttribute("page", pagemaker);
-
-			dispatch("commu_fr.jsp", request, response);
-		}
-
 		
+
+			if(command.equals("boardlist")) {
+				String paramPage = request.getParameter("page");
+				System.out.println(paramPage);
+
+				Criteria cri = new Criteria();
+				
+				
+				if(paramPage==null) {
+					cri.setPage(1);
+					cri.setPageCount(5);
+				} else {
+					int page = Integer.parseInt(paramPage);
+					cri.setPage(page);
+					cri.setPageCount(5);
+				}
+			
+				
+				PageMaker pageMaker = new PageMaker();
+				pageMaker.setCri(cri);
+				pageMaker.setTotalCount(dao.countBoard());
+				
+				List<BoardFrDto> list = dao.boardFrList(cri.getPage(), cri.getPageCount());
+
+				request.setAttribute("list", list);
+				request.setAttribute("pageMaker", pageMaker);
+				
+				dispatch("commu_fr.jsp", request, response);
+			}
+
+			
 		else if(command.equals("select")) {
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
 			dao.boardUpadteViews(board_no);

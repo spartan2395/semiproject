@@ -5,17 +5,22 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.Integrated.db.SqlConfig;
+import com.lntegrated.board_fr.dto.Criteria;
 import com.lntegrated.inquiry.dto.InquiryDto;
 
 public class InquiryDao extends SqlConfig{
 	private SqlSession session = null;
 	private String namespace = "com.lntegrated.inquiry_mapper.";
 	
-	public List<InquiryDto> inquiryList(){
+	public List<InquiryDto> inquiryList(int pageNum, int pageCount){
 		List<InquiryDto> list = null;
 		try {
+			Criteria cri = new Criteria();
+			cri.setPage(pageNum);
+			cri.setPageCount(pageCount);
+			
 			session = getSessionFactory("inquiry/inquiry_config.xml").openSession();
-			list = session.selectList(namespace+"inquiry_list");
+			list = session.selectList(namespace+"inquiry_list", cri);
 		}catch(Exception e) {
 			e.printStackTrace();
 			System.out.println("Inquiry_List ERROR");
@@ -83,6 +88,16 @@ public class InquiryDao extends SqlConfig{
 		}finally {
 			session.close();
 		}
+		return res;
+	}
+	public int countBoard() {
+		
+		SqlSession session = null;
+		int res = 0;
+		
+		session = getSessionFactory("inquiry/inquiry_config.xml").openSession();
+		res = session.selectOne(namespace+"countBoard");
+		
 		return res;
 	}
 }

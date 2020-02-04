@@ -65,7 +65,7 @@
 			dataType : "json",
 			async : false, //동기
 			success : function(msg) {
-				
+
 			//	var count = msg.calcount;
 			//	cdate.after("<div class='cpreview'>" + count + "</div>");
 			},
@@ -84,7 +84,7 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/main.js">
-   
+
 
 </script>
 
@@ -122,7 +122,7 @@
 		//2. 1일의 요일
 		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
 
-		//3. 현재 월의 마지막 일 
+		//3. 현재 월의 마지막 일
 		int lastday = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
 		//달력의 일정표현
@@ -130,7 +130,7 @@
 		List<TeleDto> tlist = (List<TeleDto>) request.getAttribute("tlist");
 	%>
 	<%@ include file="form/header.jsp" %>
-	
+
 	<div class="calendarWrap">
 		<h1 style="width: 50%;">예약확인</h1>
 		<div style="float: left margin-top: 14%; margin-left: 39%; height: 50px;">
@@ -144,7 +144,7 @@
 				<a href="calendarServlet?command=schedual&year=<%=year%>&month=<%=month + 1%>&id_u=UID">▷</a>
 				<a href="calendarServlet?command=schedual&year=<%=year + 1%>&month<%=month%>&id_u=UID">▷▷</a>
 			</caption>
-	
+
 			<tr>
 				<th>일</th>
 				<th>월</th>
@@ -165,20 +165,22 @@
 				%>
 				<td><a class="countview" href=""><%=i%></a>
 					<div class="clist">
+
 						<%=Util.getCalViewPatient(month, i, clist, tlist)%>
+
 					</div></td>
 				<%
 					if ((dayOfWeek - 1 + i) % 7 == 0) {
 							out.print("</tr><tr>");
 						}
 					}
-	
+
 					for (int i = 0; i < (7 - (dayOfWeek - 1 + lastday) % 7) % 7; i++) {
 						out.print("<td>&nbsp;</td>");
-	
+
 					}
 				%>
-	
+
 			</tr>
 		</table>
 	</div>

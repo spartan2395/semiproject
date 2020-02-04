@@ -41,13 +41,13 @@
                <a href="patient_schedule.jsp">
                   <h2>예약확인</h2>
                </a>
-               <a href="#">
+               <a href="patientMypage.jsp">
                   <h2>개인정보수정</h2>
                </a>
                <a href="#">
                   <h2>즐겨찾는병원</h2>
                </a>
-               <a href="#">
+               <a href="telmedical.jsp">
                   <h2>원격 진료</h2>
                </a>
             </div>

@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.boardsh.mapper">
-<select id = "board_sh_list" resultType="boardshdto">
-	SELECT BOARD_SH_NO , ID_U , TITLE , CONTENT , MEDICAL_NAME,
-	REGDATE, VIEWS FROM BOARD_SH ORDER BY BOARD_SH_NO DESC
+<resultMap type="boardshdto" id="boardshmap">
+		<result property="board_sh_no" column="board_sh_no"/>
+		<result property="id_u" column="id_u"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content" />
+		<result property="medical_name" column="medical_name"/>
+		<result property="regdate" column="regdate" />
+		<result property="views" column="views"/>
+	</resultMap>
+<select id = "board_sh_list" resultMap="boardshmap">
+ <![CDATA[
+	SELECT * FROM (
+	SELECT * FROM (
+	SELECT ROWNUM RNM, BOARD_SH_NO , ID_U , TITLE , CONTENT , MEDICAL_NAME,REGDATE, VIEWS 
+	FROM (SELECT * FROM BOARD_SH ORDER BY BOARD_SH_NO)) WHERE RNM <=(#{page}) * #{pageCount} AND RNM > (#{page}-1) * #{pageCount}) WHERE RNM >=#{page}
+	]]>	
 </select>
-
+<select id="countBoard" resultType="int" >
+		SELECT COUNT(*) FROM BOARD_SH
+</select>
 <select id = "board_sh_info" parameterType="int" resultType="boardshdto">
 	SELECT BOARD_SH_NO , ID_U,TITLE,CONTENT,MEDICAL_NAME,REGDATE,VIEWS FROM BOARD_SH WHERE
 	BOARD_SH_NO = #{no}

@@ -24,14 +24,6 @@ public class ClinicDto {
 		this.category = category;
 		this.checkd = checkd;
 	}
-	public ClinicDto(String id_u,String id_d,String disease,Date reserv_date , String category ) {
-		this.id_u = id_u;
-		this.id_d = id_d;
-		this.disease = disease;
-		this.reserv_date = reserv_date;
-		this.category = category;
-		
-	}
 	
 	public ClinicDto(String id_u,String id_d,String disease,Date reserv_date , String category , String checkd) {
 		this.id_u = id_u;
@@ -41,6 +33,15 @@ public class ClinicDto {
 		this.category = category;
 		this.checkd = checkd;
 	}
+	
+	public ClinicDto(String id_u,String id_d,String disease,Date reserv_date , String category ) {
+	      this.id_u = id_u;
+	      this.id_d = id_d;
+	      this.disease = disease;
+	      this.reserv_date = reserv_date;
+	      this.category = category;
+	      
+	   }
 	
 	public ClinicDto(String id_u,String id_d,String disease,Date reserv_date , String category , String checkd,String medical_d) {
 		this.id_u = id_u;

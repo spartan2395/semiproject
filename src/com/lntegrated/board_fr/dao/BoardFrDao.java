@@ -5,18 +5,26 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.Integrated.db.SqlConfig;
+import com.lntegrated.board_fr.dto.Criteria;
 import com.lntegrated.board_fr.dto.BoardFrDto;
 
 public class BoardFrDao extends SqlConfig{
 	private SqlSession session = null;
 	private String namespace = "com.board_fr.mapper.";
 	//�Խñ� ��ü ����Ʈ
-	public List<BoardFrDto> boardFrList(){
+	public List<BoardFrDto> boardFrList(int pageNum, int pageCount){
 		List<BoardFrDto> list = null;
 		try {
+			
+			Criteria cri = new Criteria();
+			cri.setPage(pageNum);
+			cri.setPageCount(pageCount);
+			
 			session = getSessionFactory("board_fr/boardfr_config.xml").openSession();
-			list = session.selectList(namespace+"board_list");
+			list = session.selectList(namespace+"board_list", cri);
+			
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Board_Fr_list ERROR");
 		}finally {
 			session.close();
@@ -92,7 +100,6 @@ public class BoardFrDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
-			e.printStackTrace();
 			System.out.println("Board_Update_Views ERROR");
 		}finally {
 			session.close();
@@ -114,6 +121,16 @@ public class BoardFrDao extends SqlConfig{
 		}finally {
 			session.close();
 		}
+		return res;
+	}
+	public int countBoard() {
+		
+		SqlSession session = null;
+		int res = 0;
+		
+		session = getSessionFactory("board_fr/boardfr_config.xml").openSession();
+		res = session.selectOne(namespace+"countBoard");
+		
 		return res;
 	}
 }

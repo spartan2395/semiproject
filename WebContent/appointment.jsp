@@ -16,11 +16,13 @@
 
 	.appointmentWrap{width: 1000px; height:940px;  margin: 0 auto; padding: 0 110px 150px; margin-bottom:10px; margin-top: 100px; border-radius: 10px; border: 1px solid rgb(210,210,210);}
 	.appointmentWrap h1{padding: 30px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
+
 	.medicalinfo {width: 30%; float: left; margin-right: 24px; margin-bottom: 15px; }
+
 	.medicalinfo_3 {width: 217px; float: left; margin-right: 0; margin-bottom: 15px;}
-	.medical_info{width: 217px; text-align: center; margin-top: 15px; margin-bottom: 0; font-size: medium; font-weight: bold; }
+	.medical_info{width: 217px;height:50px; text-align: center; margin-top: 15px; margin-bottom: 0; font-size: medium; font-weight: bold; }
 	.medical_photo >img{width: 217px; height: 200px; border-radius: 5px;}
-	
+
 	.appointmentWrap .paginate{width:100%; float:left; text-align: center;}
 	.appointmentWrap .paginate a{display: inline-block; width: 24px; height: 24px; padding: 0 3px; font-size: 14px; color: #999;
 							 font-weight: 300; line-height: 23px; vertical-align: top; box-sizing: unset;}
@@ -29,7 +31,7 @@
 	.appointmentWrap .paginate a.direction:nth-of-type(2){background-position: 0 -24px; margin-right: 10px;}
 	.appointmentWrap .paginate a.next{background-position: 0 -48px; margin-left: 10px;}
 	.appointmentWrap .paginate a.direction:last-of-type{background-position: 0 -74px; margin-left: 0;}
-	
+
 	.search{padding-top: 5%; padding-left: 55%; }
 	.search >input {width: 400px; height: 40px;}
 	#search_button {width: 40px; height: 40px;}
@@ -56,21 +58,23 @@
 		</ul>
 		<div class="search">
 			<input id="searchInput" type="text" name="search_input" placeholder="병원이름, 진료과목 등을 검색해보세요.">
-			<button id="search_button">
-				<img class="search_icon" alt="search" src="./image/search_icon.svg"> 
+
+			<button id="search_button" onclick = "searchHos()">
+				<img class="search_icon" alt="search" src="./image/search_icon.svg">
+
 			</button>
 		</div>
 	</div>
 
 
 	<div class="appointmentWrap">
-		
+
 		<h1>병원목록</h1>
 
-		<!-- 
+		<!--
+
 
 		<div id="1">
-
 		<article class="medicalinfo">
 			<a class="medical_link" onclick = "send(0)">
 				<div class="medical_photo">
@@ -95,7 +99,7 @@
 				</div>
 			</a>
 		</article>
-		
+
 		<article class="medicalinfo_3">
 			<a class="medical_link" onclick = "send(2)">
 				<div class="medical_photo">
@@ -121,7 +125,7 @@
 				</div>
 			</a>
 		</article>
-		
+
 		<article class="medicalinfo">
 			<a class="medical_link" onclick = "send(4)">
 				<div class="medical_photo">
@@ -134,7 +138,7 @@
 				</div>
 			</a>
 		</article>
-		
+
 		<article class="medicalinfo_3">
 			<a class="medical_link" href="#">
 				<div class="medical_photo">
@@ -147,7 +151,7 @@
 				</div>
 			</a>
 		</article>
-		
+
 		<article class="medicalinfo">
 			<a class="medical_link" href="#">
 				<div class="medical_photo">
@@ -160,7 +164,7 @@
 				</div>
 			</a>
 		</article>
-		
+
 		<article class="medicalinfo">
 			<a class="medical_link" href="#">
 				<div class="medical_photo">
@@ -173,7 +177,7 @@
 				</div>
 			</a>
 		</article>
-		
+
 		<article class="medicalinfo_3">
 			<a class="medical_link" href="#">
 				<div class="medical_photo">
@@ -187,6 +191,7 @@
 			</a>
 		</article>
 		 -->
+		 <!--
 		<article class="paginate" >
 			<a href="" class="direction prev"></a>
 			<a href="" class="direction prev"></a>
@@ -194,29 +199,20 @@
 			<a href="" class="direction next"></a>
 			<a href="" class="direction next"></a>
 		</article>
-		
-	
-		
+
+		 -->
+
+
+
+
+
 	</div>
-	
+
 	<%@ include file="./form/footer.jsp" %>
 
 
 
 </body>
 
-<script type="text/javascript">
 
-	$('#add').on('click',function() {
-		$('#1').appendchild($('#1'))
-	});
-
-	function() {
-		var div = document.creatElement('div');
-		//var x = document.getElementByClassName('1').length;
-		div.innerHTML = document.getElementById('1').innerHTML;
-
-		document.getElementById('1').appendchild(div);
-	}
-	</script>
 </html>
