@@ -64,6 +64,7 @@ public class InquiryDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("Inquiry_Update ERROR");
 		}
 		return res;
