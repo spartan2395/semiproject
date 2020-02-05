@@ -7,26 +7,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%
-	String ykiho = (String)request.getAttribute("ykiho");
-	String hosName = (String)request.getAttribute("hosName");
-	String addr = (String)request.getAttribute("addr");
-	
-	System.out.println(addr);
-%>
+
+<script type="text/javascript" src="js/kakaomaps.js"></script>
+<script type="text/javascript" src ="js/hospitol.js"></script>
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src= "/semi_prj/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ccb039f1009ae7fadcb5d4bcf333ef15&libraries=services"></script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.appointmentwriteWrap{width: 1000px; height:100% margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.appointmentwriteWrap{width: 1000px; height:100% margin: 0 auto; padding: 0 80px 160px;margin-left:10%; margin-top: 130px;}
 	.appointmentwriteWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 	
 </style>
 
 </head>
-<%ClinicDto dto = (ClinicDto)request.getAttribute("dto"); %>
+<%ClinicDto dto = (ClinicDto)request.getAttribute("dto");
+	String hosName = request.getParameter("hosName");
+%>
 <body>
 
 
@@ -50,11 +49,11 @@
 				<col width="200px;"/>
 				<tr>
 					<th>병원명</th>
-					<td><input type="text" name="medical_d" value="<%=hosName%>" readonly="readonly"></td>
+					<td><input type="text" name="medical_d" value="<%=hosName %>" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<th>예약자명</th>
-					<td><input type="text" name="name_u"> </td>
+					<td><input type="text" name="name_u" value = "${dto.name_u }" readonly="readonly"> </td>
 				</tr>
 				<tr>
 					<th>진료과목</th>
@@ -108,7 +107,7 @@
 				<tr>
 					<td colspan="2" align="right">
 					<input type="submit" value="예약하기">
-					<input type="button" value="취소" onclick="location.href='app_medical_detatil.jsp'">
+					<input type="button" value="취소" onclick="location.href='appointmet_tel.jsp'">
 				</tr>
 			</table>
 		</form>

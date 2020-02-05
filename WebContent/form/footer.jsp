@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-	footer {background:  rgb(255,255,204); margin-top: 10%;}
+	footer {background:  rgb(255,255,204);}
 	footer >p {padding-left: 20px; }
 	footer >p > img {width: 100px; height: 30px; padding-top: 5px; }
 	.address {padding-top: 10px; padding-left: 20px; font-size: smaller; }

@@ -122,9 +122,9 @@ public class Util {
 					System.out.println(df.format(cdto.getReserv_date()).substring(8,10));
 					System.out.println("d="+d);
 					if(cdto.getMedical_d() != null&&cdto.getCheckd().equals("N")) {
-						res+="<p style='background-color:gray; color:white;'>" + cdto.getMedical_d() + " "+cdto.getName_d() + "</p>";
+						res+="<p style='background-color:gray; color:white;'>" + cdto.getMedical_d() + " "+cdto.getId_d() + "</p>";
 					} else if (cdto.getMedical_d() !=null && cdto.getCheckd().equals("Y")) {
-						res+="<p style='background-color:pink; color:white;'>" + cdto.getMedical_d() + " "+cdto.getName_d() + "</p>";
+						res+="<p style='background-color:pink; color:white;'>" + cdto.getMedical_d() + " "+cdto.getId_d() + "</p>";
 					} else {
 						System.out.println("cdtonull");
 					}

@@ -24,7 +24,7 @@
 	.inquiryinfoWrap .meminfo span img{height: 20px; width: 20px; margin-right: 8px;}
 	.inquiryinfoWrap .meminfo .sysinfo{float: right;}
 	.inquiryinfoWrap .meminfo .sysinfo p{float: left; font-size: 12px; color: #aaa; margin-right: 25px; line-height: 1; margin-top: 10px;}
-	.inquiryinfoWrap .meminfo .sysinfo p img{margin-right: 4px; vertical-align: middle; margin-bottom: 2px;}
+	.inquiryinfoWrap .meminfo .sysinfo p img{margin-right: 4px; vertical-align: middle; margin-bottom: 2px; }
 	.inquiryinfoWrap .meminfo .sysinfo p.last{margin-right: 27px;}
 	.inquiryinfoWrap .text{float: left; width: 1000px; margin-top: 40px; margin-left: 27px; font-size: 16px;
    							 color: #333; line-height: 26px;margin-bottom: 40px; word-break: break-all; display: block;}
@@ -54,18 +54,20 @@
 			<span><img alt="" src="image/happycarrot.png"><%=list.getId_u() %></span>
 			<div class="sysinfo">
 				<p>
-					<img alt="답변유무" src="image/eye_new.png">
+					<img alt="답변유무" src="image/Y.png" style="width: 15px; height: 15px;">
 					<%=list.getAns_chk() %>
 				</p>
 				<p class="last">
-					<img alt="작성시간" src="image/sub_date_new.png">
+					<img alt="작성시간" src="image/sub_date_new.png" >
 					<fmt:formatDate value="<%=list.getRegdate() %>" pattern="yyyy.MM.dd a hh:mm"/>
 				</p>
 			</div>
 		</div>
 		<div class="text" >
 			<div><%=list.getContent() %></div>
-			<input type="button" value="수정" onclick="location.href='InquiryServlet?command=updateform&no=<%=list.getBoard_no()%>&id_u=${dto.id_u }'">
+			<c:if test="${not empty id_u}">
+			<input type="button" value="수정" onclick="location.href='InquiryServlet?command=updateform&no=<%=list.getBoard_no()%>&id_u=${dto.id_u}'">
+			</c:if>
 			<input type="button" value="목록" onclick="location.href='InquiryServlet?command=boardlist'">
 			
 		</div>
