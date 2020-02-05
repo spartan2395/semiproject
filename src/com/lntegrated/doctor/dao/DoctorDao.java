@@ -159,4 +159,17 @@ public class DoctorDao extends SqlConfig{
 		}
 		return result;
 	}
+	
+	public DoctorDto googleLogin(String email) {
+		DoctorDto dto = null;
+		try {
+			session = getSessionFactory("doctor/doctor_config.xml").openSession();
+			dto = session.selectOne(namespace+"doctor_google_login",email);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return dto;
+	}
 }

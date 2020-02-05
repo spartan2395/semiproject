@@ -9,7 +9,8 @@
 </head>
 <script type='text/javascript' src="resources/login.js"></script>
 <script type='text/javascript' src="js/jquery-3.4.1.min.js"></script>
-
+<script type="text/javascript" src="js/googlelogin.js"></script>
+<script src="https://apis.google.com/js/api:client.js"></script>
 <body>
 	<div class="frame">
 		<div class="header">
@@ -51,8 +52,8 @@
 				<a href=""><img src="resources/imgs/facebook.png" alt="facebook"
 					class="snsicon" id="facebook"></a> <a href=""><img
 					src="resources/imgs/naver.svg" alt="naver" class="snsicon"
-					id="naver"></a> <a href=""><img
-					src="resources/imgs/Google.png" alt="Google" class="snsicon"
+					id="naver"></a> <a onclick = "startApp();"><img
+					src="resources/imgs/Google.png" alt="Google" class="snsicon customGPlusSignIn"
 					id="google"></a>
 			</div>
 			<div class="register">

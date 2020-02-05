@@ -49,9 +49,12 @@ public class MemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		
-		String command = request.getParameter("command");
+		String command = null;
+		command = (String)request.getAttribute("command");
 		System.out.println("command=====================>"+command);
+		if(command == null) {
+			command = request.getParameter("command");
+		}
 		MemberDto dto = null;
 		PrintWriter out = response.getWriter();
 		
@@ -166,7 +169,11 @@ public class MemberServlet extends HttpServlet {
 			// 로그인 
 		case "login" :/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 		{	JSONObject obj = new JSONObject();
+			dto = null;
 			dto = dao.memberlogin(request.getParameter("id"), request.getParameter("pw"));
+			if(dto == null) {
+				dto = dao.memberlogin((String)request.getAttribute("id"),(String)request.getAttribute("pw"));
+			}
 			System.out.println("Member servelt: "+request.getParameter("id")+ request.getParameter("pw"));
 			if (dto != null && dto.getActivation().equals("L")) {
 				System.out.println("dto okok");
@@ -219,7 +226,7 @@ public class MemberServlet extends HttpServlet {
 			break;
 			
 		case "emailcodesend":/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-			String email = request.getParameter("email");
+			{String email = request.getParameter("email");
 			
 			String host = "smtp.gmail.com";
 			String user = "zzz0qq";
@@ -289,7 +296,7 @@ public class MemberServlet extends HttpServlet {
             
             out.println("인증번호를 입력해주세요.");
 			
-            break;
+			}break;
             
 		case "code":/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 			HttpSession saveKeyChk = request.getSession();
@@ -304,13 +311,28 @@ public class MemberServlet extends HttpServlet {
 			} else {
 				System.out.println("불일치!!");
 				out.println(1);
-			}
-			
+			}		
 			 break;
-	
+		case "googlelogin":
+			{
+			String email = request.getParameter("email");
+			dto = null;
+			dto = dao.googleLogin(email);
+			if(dto == null) {
+				//
+			}else {
+				HttpSession session = request.getSession();
+				String[] bd = dto.getBd_u().split("/");
+				session.setAttribute("dto", dto);
+				session.setAttribute("bd_yy", bd[0]);
+				session.setAttribute("bd_mm", bd[1]);
+				session.setAttribute("bd_d", bd[2]);
+				response.sendRedirect("patientmain.jsp");
+			}
+			}break;
 		}
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
