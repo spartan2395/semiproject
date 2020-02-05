@@ -14,7 +14,7 @@
 
 <style type="text/css">
 
-	.appointmentWrap{width: 1000px; height:940px;  margin: 0 auto; padding: 0 110px 150px; margin-bottom:10px; margin-top: 100px; border-radius: 10px; border: 1px solid rgb(210,210,210);}
+	.appointmentWrap{width: 1000px; height:auto; overflow:hidden; margin: 0 auto; padding: 0 110px 150px; margin-bottom:10px; margin-top: 100px; border-radius: 10px; border: 1px solid rgb(210,210,210);}
 	.appointmentWrap h1{padding: 30px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 
 	.medicalinfo {width: 30%; float: left; margin-right: 24px; margin-bottom: 15px; }

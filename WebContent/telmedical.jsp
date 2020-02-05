@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.telmediWrap{width: 1100px; height:100%; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.telmediWrap{width: 1100px; height:auto; overflow:hidden; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
 	.telmediWrap h1{padding: 59px 0 30px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 	.telmediWrap .telelist{background-color: lightgray; width: 200px; height: 250px; float: left;}
 	.telmediWrap .telelist>div:nth-of-type(1) {height: 30px; border-bottom: 1px solid gray; text-align: center; padding-top: 5px;}

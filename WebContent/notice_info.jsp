@@ -68,8 +68,11 @@
 				</div>
 				
 				<div class="btn_group" align="right">
-					<input type = "button" value="수정" onclick="location.href='NoticeServlet?command=updateform&nt_seq=<%=list.getNt_seq()%>&id_d=${dto.id_d }'">
-					<input type = "button" value="목록" onclick = "location.href = 'BoardFrServlet?command=delete&board_no=<%=list.getNt_seq()%>&id_d=${dto.id_d }'">
+					<c:if test="${not empty id_d }">
+						<input type = "button" value="수정" onclick="location.href='NoticeServlet?command=updateform&nt_seq=<%=list.getNt_seq()%>&id_d=${dto.id_d }'">
+						<input type = "button" value="삭제" onclick = "location.href = 'NoticeServlet?command=delete&nt_seq=<%=list.getNt_seq()%>&id_d=${dto.id_d }'">
+						<input type = "button" value="목록" onclick = "location.href = 'NoticeServlet?command=boardlist'">
+					</c:if>
 				</div>
 		</div>
 	</div>

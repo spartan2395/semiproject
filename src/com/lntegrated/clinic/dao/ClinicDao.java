@@ -69,6 +69,7 @@ public class ClinicDao extends SqlConfig{
 				session.commit();
 			}
 		}catch(Exception e) {
+			e.printStackTrace();
 			System.out.println("clinic_insert ERROR");
 		}finally {
 			session.close();

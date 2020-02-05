@@ -106,33 +106,30 @@
 
 				<tr>
 					<td colspan="4" align="right">
-						<c:if test="${not empty id_u }"><button onclick="location.href='InquiryServlet?command=writeform&id_u=${dto.id_u}'">글쓰기</button>
+						<c:if test="${not empty id_u }"><button onclick="location.href='InquiryServlet?command=writeform&id_u=${dto.id_u}'">글쓰기</button></c:if>
 					</td>
 				</tr>
 
 				<tr>
-						<td colspan = "4" align = "center">
-							<c:if test="${pageMaker.prev }">
-								<a href = "InquiryServlet?command=boardlist&page=1">처음</a>
-								<a href = "InquiryServlet?command=boardlist&page=${pageMaker.startPage-1 }">이전</a>
-							</c:if>
-							<c:forEach begin = "${pageMaker.startPage }" end = "${pageMaker.endPage }" var = "pageNum">
-								<a href = '<c:url value = "InquiryServlet?command=boardlist&page=${pageNum }"/>'>${pageNum }</a>
-							</c:forEach>
-							<c:if test = "${pageMaker.next && pageMaker.endPage >0 }">
-								<a href = "InquiryServlet?command=boardlist&page=${pageMaker.endPage+1 }">다음</a>
-								<a href = "InquiryServlet?command=boardlist&page=${pageMaker.tempEndPage }">마지막</a>
-							</c:if>
-
-						</td>
-					</tr>
-
-			</c:if>
-
+					<td colspan = "4" align = "center">
+						<c:if test="${pageMaker.prev }">
+							<a href = "InquiryServlet?command=boardlist&page=1">처음</a>
+							<a href = "InquiryServlet?command=boardlist&page=${pageMaker.startPage-1 }">이전</a>
+						</c:if>
+						<c:forEach begin = "${pageMaker.startPage }" end = "${pageMaker.endPage }" var = "pageNum">
+							<a href = '<c:url value = "InquiryServlet?command=boardlist&page=${pageNum }"/>'>${pageNum }</a>
+						</c:forEach>
+						<c:if test = "${pageMaker.next && pageMaker.endPage >0 }">
+							<a href = "InquiryServlet?command=boardlist&page=${pageMaker.endPage+1 }">다음</a>
+							<a href = "InquiryServlet?command=boardlist&page=${pageMaker.tempEndPage }">마지막</a>
+						</c:if>
+					</td>
+				</tr>
+	
 			</tfoot>
 			</table>
 		</div>
-
+</div>
 
 
 

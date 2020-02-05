@@ -174,6 +174,7 @@ $(document).ready(function(){
 		<div class="btn">
 			<input type="button" value="진단서업로드"
 				onclick="location.href='TeleServlet?command=resultupload&id_d=${dto.id_d }'">
+			<input type="button" value="미승인목록" onclick="location.href='approval.jsp'">	
 		</div>
 		<table id="calendar">
 			<caption>

@@ -4,6 +4,7 @@ var location;
 var hos_x;
 var hos_y;
 
+// 현재 위치 잡아서 시작 
 function thispos(){
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(showPosition);
@@ -11,6 +12,7 @@ function thispos(){
 	  console.log("Geolocation is not supported by this browser.");
 	}
 }
+
 function showPosition(position) {
 	y = position.coords.latitude; 
 	x = position.coords.longitude; 

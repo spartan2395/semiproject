@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.ParseException;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -24,6 +23,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.lntegrated.clinic.dao.ClinicDao;
 import com.lntegrated.clinic.dto.ClinicDto;
+import com.lntegrated.member.dto.MemberDto;
 
 /**
  * Servlet implementation class HosSelected
@@ -46,8 +46,8 @@ public class ClinicSelected extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=utf-8");
-
+		response.setContentType("text/html; charset=utf-8");
+		
 		ClinicDao dao = new ClinicDao();
 		String command = request.getParameter("command");
 
@@ -157,13 +157,19 @@ public class ClinicSelected extends HttpServlet {
 			request.setAttribute("x", request.getParameter("x"));
 			request.setAttribute("y", request.getParameter("y"));
 			disPatch("app_medical_clinic.jsp", request, response);
+			
 		}else if(command.equals("insertclinicform")) {
 
-	         String hosname = request.getParameter("hosName");
-	         response.sendRedirect("appointment_insertclinic.jsp");
+	         String hosName = request.getParameter("hosName");
+	         
+	         System.out.println(hosName);
+	         request.setAttribute("hosName", hosName);
+	         disPatch("appointment_insertclinic.jsp", request, response);
+	         //response.sendRedirect("appointment_insertclinic.jsp?hosName="+hosName);
 
 	      }else if(command.equals("write")) {
-	         String id_u = "UID";
+	    	  HttpSession session = request.getSession();
+	         String id_u = ((MemberDto)session.getAttribute("dto")).getId_u();
 	         String id_d = "nexon";
 	         String category = request.getParameter("category");
 	         String year = request.getParameter("year");
@@ -186,9 +192,9 @@ public class ClinicSelected extends HttpServlet {
 
 	         int res = dao.clinicinsert(dto);
 	         if(res > 0) {
-	             jsResponse("예약되었습니다", "app_medical_clinic.jsp", response);
+	             jsResponse("예약되었습니다", "appointment.jsp", response);
 	          }else {
-	             jsResponse("ㅜㅜ", "app_medical_clinic.jsp", response);
+	             jsResponse("ㅜㅜ", "appointmain.jsp", response);
 	          }
 	      }else if(command.equals("searchHos")) {
 	    	  String name = request.getParameter("name");

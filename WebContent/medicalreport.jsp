@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.contentWrap{width: 1100px; height:694px; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.contentWrap{width: 1100px; height:auto; overflow:hidden; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
 	.contentWrap h1{padding: 59px 0 30px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 	.contentWrap .reportlist{background-color: lightgray; width: 200px; height: 250px; float: left;}
 	.contentWrap .reportlist>div:nth-of-type(1) {height: 30px; border-bottom: 1px solid gray; text-align: center; padding-top: 5px;}
@@ -49,6 +49,7 @@
 	background: rgb(255, 255, 204);
 	margin-top: 10px;
 	margin-left: 58%;
+	margin-bottom: 5%;
 }
 </style>
 <script type="text/javascript">
@@ -154,11 +155,12 @@ $(function(){
 			</form> -->
 			<!-- <iframe width="700" height="315" src="tabletest.html"></iframe> -->
 		</div>
-	</div>
-	
 		<div class="payment">
 			<a>결제하기</a>
 		</div>
+	</div>
+	
+		
 	
 
 
