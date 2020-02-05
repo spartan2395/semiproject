@@ -14,7 +14,7 @@
 	<!--왕진/통원 진료 예약 -->
 	<insert id="clinic_insert" parameterType="clinicdto">
 		INSERT INTO CLINIC
-		VALUES(#{id_u},#{id_d},#{disease},#{reserv_date},#{category},'N')
+		VALUES(#{id_u},#{id_d},#{disease},#{reserv_date},#{category},'Y')
 	</insert>
 	<!-- 예약자 정보 -->
 	<select id="clinic_memberinfo" parameterType="String"

@@ -53,7 +53,7 @@
 					<tr>
 						<td colspan="2" align="right">
 						<input type="submit" value="작성"/>
-						<input type="button" value="목록" onclick="location.href='InquiryServlet?command=list'"> 
+						<input type="button" value="목록" onclick="location.href='InquiryServlet?command=boardlist'"> 
 						 
 				</table>
 			</form>

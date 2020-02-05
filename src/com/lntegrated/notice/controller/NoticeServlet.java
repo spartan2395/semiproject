@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lntegrated.board_fr.dto.BoardFrDto;
 import com.lntegrated.board_fr.dto.Criteria;
 import com.lntegrated.board_fr.dto.PageMaker;
 import com.lntegrated.notice.dao.NoticeDao;
@@ -86,13 +85,14 @@ public class NoticeServlet extends HttpServlet {
 			NoticeDto dto = new NoticeDto(id_d, medical_d, title, content);
 			int res = dao.notice_insert(dto);
 			if(res >0) {
-				jsResponse("작성성공!", "NoticeServlet?command=list", response);
+				jsResponse("작성성공!", "NoticeServlet?command=boardlist", response);
 			}else {
-				jsResponse("ㅜㅜ", "NoticeServlet?command=list", response);
+				jsResponse("ㅜㅜ", "NoticeServlet?command=boardlist", response);
 			}
 			
 		}else if(command.equals("updateform")) {
 			int nt_seq = Integer.parseInt(request.getParameter("nt_seq"));
+			
 			NoticeDto dto = dao.notice_Info(nt_seq);
 			//System.out.println(dto.getId_d());
 			request.setAttribute("dto", dto);
@@ -107,7 +107,7 @@ public class NoticeServlet extends HttpServlet {
 			int res = dao.notice_update(dto);
 			
 			if(res > 0) {
-				jsResponse("수정성공", "NoticeServlet?command=list", response);
+				jsResponse("수정성공", "NoticeServlet?command=one&nt_seq="+nt_seq, response);
 			}else {
 				jsResponse("ㅜㅜ", "NoticeServlet?command=one&nt_seq="+nt_seq, response);
 				
@@ -118,7 +118,7 @@ public class NoticeServlet extends HttpServlet {
 			
 			int res = dao.notice_delete(nt_seq);
 			if(res >0) {
-				jsResponse("삭제성공!", "NoticeServlet?command=list", response);
+				jsResponse("삭제성공!", "NoticeServlet?command=boardlist", response);
 			}else {
 				jsResponse("ㅜㅜ","NoticeServlet?command=one&nt_seq="+nt_seq , response);
 			}

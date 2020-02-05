@@ -38,7 +38,7 @@
   </select>
   <!-- 예약 신청 -->
   <insert id = "tele_insert" parameterType="teledto">
-  	INSERT INTO TELEMEDICINE VALUES(TELE_SEQ.NEXTVAL,#{id_u},#{id_d},#{chat_no},#{checkd},#{disease},#{reserv_date})
+  	INSERT INTO TELEMEDICINE VALUES(TELE_SEQ.NEXTVAL,#{id_u},#{id_d},#{chat_no},'Y',#{disease},#{reserv_date})
   </insert>
   <!-- 예약 정보 수정 -->
   <update id = "tele_update_info" parameterType="map">

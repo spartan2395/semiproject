@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <style type="text/css">
-	.noticeboardupdateWrap{width: 1000px; height:100%; margin: 0 auto; padding: 0 80px 160px; margin-top: 130px;}
+	.noticeboardupdateWrap{width: 1000px; height:100%; margin: 0 10% auto; padding: 0 80px 160px; margin-top: 130px;}
 	.noticeboardupdateWrap h1{padding: 59px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
 </style>
 
@@ -44,11 +44,11 @@
 					</colgroup>
 						<tr>
 						<th>작성자</th>
-						<td><input type="text" name="writer" value="<%=dto.getId_d()%>"> </td>
+						<td><input type="text" name="writer" value="<%=dto.getId_d()%>" readonly="readonly"> </td>
 					</tr>
 					<tr>
 						<th>병원이름</th>
-						<td><input type="text" name="medical" value="<%=dto.getMedical_d()%>"> </td>
+						<td><input type="text" name="medical" value="<%=dto.getMedical_d()%>" readonly="readonly"> </td>
 					</tr>
 					<tr>
 						<th>제목</th>
@@ -59,9 +59,9 @@
 						<td><textarea id = "editor_ck" rows="10" cols="60" name="content"><%= dto.getContent() %></textarea> </td>
 					</tr>	
 					<tr>
-						<td colspan="2">
-							<input type="submit" value="update">
-							<input type="button" value="back" onclick="location.href='NoticeServlet?command=list'">
+						<td colspan="2" align="right">
+							<input type="submit" value="수정">
+							<input type="button" value="취소" onclick="location.href='NoticeServlet?command=one&nt_seq=${dto.nt_seq }'">
 						</td>
 					</tr>
 							
@@ -73,6 +73,6 @@
 		CKEDITOR.replace('editor_ck', {
 		});
 	</script>
-
+	<%@ include file="./form/footer.jsp" %>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-<script type="text/javascript" src = "js/hospitol.js"></script>
+<script type="text/javascript" src = "js/hospitol_tel.js"></script>
 
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -15,11 +15,11 @@
 
 <style type="text/css">
 
-	.appointmentWrap{width: 1000px; height:940px;  margin: 0 auto; padding: 0 110px 150px; margin-bottom:10px; margin-top: 100px; border-radius: 10px; border: 1px solid rgb(210,210,210);}
+	.appointmentWrap{width: 1000px; height:auto; overflow:hidden; margin: 0 auto; padding: 0 110px 150px; margin-bottom:10px; margin-top: 100px; border-radius: 10px; border: 1px solid rgb(210,210,210);}
 	.appointmentWrap h1{padding: 30px 0 58px; font-weight: 30px; font-size: 30px; line-height: 40px; color: orange;}
-	.medicalinfo {width: 30%; float: left; margin-right: 30px; margin-bottom: 15px; }
+	.medicalinfo {width: 30%; float: left; margin-right: 24px; margin-bottom: 15px; }
 	.medicalinfo_3 {width: 217px; float: left; margin-right: 0; margin-bottom: 15px;}
-	.medical_info{width: 217px; text-align: center; margin-top: 15px; margin-bottom: 0; font-size: medium; font-weight: bold; }
+	.medical_info{width: 217px; height:50px; text-align: center; margin-top: 15px; margin-bottom: 0; font-size: medium; font-weight: bold; }
 	.medical_photo >img{width: 217px; height: 200px; border-radius: 5px;}
 
 	.appointmentWrap .paginate{width:100%; float:left; text-align: center;}
@@ -193,13 +193,7 @@
 			</a>
 		</article>
 		 -->
-		<article class="paginate" >
-			<a href="" class="direction prev"></a>
-			<a href="" class="direction prev"></a>
-			<a href="" class="num active">1</a>
-			<a href="" class="direction next"></a>
-			<a href="" class="direction next"></a>
-		</article>
+		
 
 	</div>
 
