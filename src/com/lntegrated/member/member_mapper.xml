@@ -41,4 +41,9 @@
 	<select id="member_delete_pwchk" parameterType="String" resultType="String">
 		SELECT PW_U FROM USER_TB WHERE ID_U = #{ID_U}
 	</select>
+	
+	<select id = "member_google_login" parameterType="String" resultType="memberdto">
+		SELECT ID_U,PW_U,NAME_U,GENDER_U,BD_U,NUMBER_U,ADDR_U,EMAIL_U,ACTIVATION FROM USER_TB
+		WHERE EMAIL_U = #{email}
+	</select>
 </mapper>

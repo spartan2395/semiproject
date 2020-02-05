@@ -192,7 +192,7 @@ public class DoctorServlet extends HttpServlet {
 			break;
 
 		case "emailcodesend":/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
-			String email = request.getParameter("email");
+			{String email = request.getParameter("email");
 
 			String host = "smtp.gmail.com";
 			String user = "zzz0qq";
@@ -260,7 +260,7 @@ public class DoctorServlet extends HttpServlet {
 
 			out.println("인증번호를 입력해주세요.");
 
-			break;
+			}break;
 
 		case "code":/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 			HttpSession saveKeyChk = request.getSession();
@@ -278,8 +278,23 @@ public class DoctorServlet extends HttpServlet {
 			}
 
 			break;
-
+		case "googlelogin":
+		{
+			String email = request.getParameter("email");
+			dto = null;
+			dto = dao.googleLogin(email);
+			if(dto == null) {
+				//
+			}else {
+				HttpSession session = request.getSession();
+				String[] bd = dto.getBd_d().split("/");
+				session.setAttribute("dto", dto);
+				session.setAttribute("bd_yy", bd[0]);
+				session.setAttribute("bd_mm", bd[1]);
+				session.setAttribute("bd_d", bd[2]);
+				response.sendRedirect("doctormain.jsp");
+			}
+			}break;
 		}
 	}
-
 }

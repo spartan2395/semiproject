@@ -1,18 +1,21 @@
 function map(x,y){
-	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = {
-	        center: new kakao.maps.LatLng(y,x), // 지도의 중심좌표
-	        level: 2 // 지도의 확대 레벨
-	    };
-	
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
-	
-	var markerPosition = new kakao.maps.LatLng(y,x);
-	
-	var marker = new kakao.maps.Marker({
-		position: markerPosition
-	});
-	
-	marker.setMap(map);
+	var markers = [
+	    {
+	        position: new kakao.maps.LatLng(y, x)
+	    },
+	    {
+	        position: new kakao.maps.LatLng(y, x), 
+	        text: '진료 시간', // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
+	    }
+	];
+
+	var staticMapContainer  = document.getElementById('map'), // 이미지 지도를 표시할 div  
+	    staticMapOption = { 
+	        center: new kakao.maps.LatLng(y, x), // 이미지 지도의 중심좌표
+	        level: 3, // 이미지 지도의 확대 레벨
+	        marker: markers // 이미지 지도에 표시할 마커 
+	    };    
+
+	// 이미지 지도를 생성합니다
+	var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
 }

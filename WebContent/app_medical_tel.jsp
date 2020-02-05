@@ -66,7 +66,7 @@
 			<br>
 		</div>
 		<div class="addr">
-			<h3>주소 : 서울시어쩌구</h3>
+			<h3 id="addr">주소 : 서울시어쩌구</h3>
 		</div>
 		<div class="map">
 			<h2>지도어떻게넣는건지몰라서자리만잡아놈</h2>

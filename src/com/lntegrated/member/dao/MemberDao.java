@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.Integrated.db.SqlConfig;
+import com.lntegrated.doctor.dto.DoctorDto;
 import com.lntegrated.member.dto.MemberDto;
 
 public class MemberDao extends SqlConfig{
@@ -168,5 +169,18 @@ public class MemberDao extends SqlConfig{
 			session.close();
 		}
 		return result;
+	}
+	
+	public MemberDto googleLogin(String email) {
+		MemberDto dto = null;
+		try {
+			session = getSessionFactory("member/member_config.xml").openSession();
+			dto = session.selectOne(namespace+"member_google_login",email);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return dto;
 	}
 }

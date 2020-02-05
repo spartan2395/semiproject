@@ -38,4 +38,8 @@
 	<select id="doctor_delete_pwchk" parameterType="String" resultType="String">
 		SELECT PW_D FROM DOCTOR_TB WHERE ID_D = #{ID_D}
 	</select>
+	<select id = "doctor_google_login" parameterType="String" resultType="doctordto" >
+		SELECT ID_D,PW_D,NAME_D,GENDER_D,NUMBER_D,ADDR_D,MEDICAL_D,EMAIL_D,GRADE_D,DEPARTMENT, BD_D, ACTIVATION
+		FROM DOCTOR_TB WHERE EMAIL_D = #{email}
+	</select>
 </mapper>
